@@ -5,6 +5,7 @@ import ImmersiveVideoSection from "@/components/site/ImmersiveVideoSection";
 import LegendReinventedSection from "@/components/site/LegendReinventedSection";
 import LoveStorySection from "@/components/site/LoveStorySection";
 import LoveUnlimitedSection from "@/components/site/LoveUnlimitedSection";
+import NewLoveCTASection from "@/components/site/NewLoveCTASection";
 
 const Index = () => {
   return (
@@ -16,6 +17,7 @@ const Index = () => {
       <ImmersiveVideoSection />
       <LoveStorySection />
       <AppointmentSection />
+      <NewLoveCTASection />
     </div>
   );
 };
