@@ -29,11 +29,11 @@ const ImageMosaicSection = () => {
             For over a decade, Katherine Taylor escort has been the trusted choice for discerning clients in San Francisco and Sacramento.
           </h2>
         </div>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:gap-14">
+        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:gap-16">
           {tiles.map((tile) => (
             <article
               key={tile.src}
-              className="group bg-luxury-white p-8 shadow-luxury-md transition-all duration-luxury hover:shadow-luxury-lg"
+              className="group bg-luxury-white p-8 md:p-10 lg:p-12 shadow-luxury-md transition-all duration-luxury hover:shadow-luxury-lg"
             >
               <div className="mb-6 aspect-[4/5] overflow-hidden">
                 <img
