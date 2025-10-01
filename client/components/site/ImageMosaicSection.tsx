@@ -19,7 +19,7 @@ const tiles = [
 
 const ImageMosaicSection = () => {
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto flex max-w-[1200px] flex-col gap-10 px-6">
         <div className="space-y-4 text-center">
           <h2 className="text-[0.78rem] uppercase tracking-[0.4em] text-foreground">
