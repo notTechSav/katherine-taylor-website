@@ -1,4 +1,6 @@
 import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
+import { H2, H3 } from "@/components/ui/luxury-typography";
 import { useEffect, useRef, useState } from "react";
 
 const HERO_VIDEO_SRC =
@@ -51,18 +53,16 @@ const Hero = () => {
       <div className="pointer-events-none absolute inset-0 bg-black/45" />
       <div className="relative z-10 flex w-full flex-1 flex-col items-center justify-end px-6 pb-10 pt-24 sm:justify-center sm:pb-24">
         <div className="flex w-full max-w-[960px] flex-col items-start gap-6 sm:gap-8 text-white">
-          <p
+          <H3
+            as="p"
             aria-hidden="true"
-            className="text-2xl md:text-3xl font-light tracking-[-0.01em] leading-[1.25] text-white/70"
+            className="mb-0 md:mb-0 text-white/70"
           >
             Love, Elevated
-          </p>
-          <p
-            aria-hidden="true"
-            className="text-3xl md:text-4xl lg:text-5xl font-extralight tracking-[-0.02em] leading-[1.15] mb-6 md:mb-8 text-white"
-          >
+          </H3>
+          <H2 as="p" aria-hidden="true" className="text-white">
             An Experience That Reflects Your Highest Qualities
-          </p>
+          </H2>
           <Button asChild variant="ctaPrimary">
             <a href="/inquire">Request an Introduction</a>
           </Button>
