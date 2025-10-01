@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 
 const backgroundImage =
-  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe246c70555454c878a1ed76d322ad9a5?format=webp&width=1600";
+  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F32bd225e72b4401caaa255eefe65a6e8?format=webp&width=1600";
 
 const LegendReinventedSection = () => {
   return (
