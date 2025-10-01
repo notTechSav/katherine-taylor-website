@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useState } from "react";
 import {
   Heart,
   Menu,
@@ -43,7 +44,7 @@ export const Header = () => {
     setMobileMenuOpen(false);
   };
 
-  return ({
+  return (
     <header className="relative sticky top-0 z-40 border-b border-border/60 bg-white/90 backdrop-blur">
       <div className="hidden border-b border-border/40 bg-muted/20 text-[0.65rem] uppercase tracking-[0.35em] text-muted-foreground md:block">
         <div className="mx-auto flex max-w-luxury items-center justify-between px-10 py-3">
