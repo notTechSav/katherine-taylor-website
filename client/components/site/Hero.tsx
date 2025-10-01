@@ -30,7 +30,7 @@ const Hero = () => {
 
   return (
     <section className="relative">
-      <div className="relative aspect-[16/7] w-full overflow-hidden bg-black">
+      <div className="relative aspect-[3/4] w-full overflow-hidden bg-black sm:aspect-[16/7]">
         <video
           ref={videoRef}
           className="h-full w-full object-cover"
