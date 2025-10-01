@@ -11,7 +11,7 @@ const NewLoveCTASection = () => {
         </p>
         <button
           type="button"
-          className="inline-flex items-center justify-center border border-foreground px-7 py-2 text-[0.68rem] uppercase tracking-[0.38em] text-foreground transition hover:bg-foreground hover:text-background"
+          className="inline-flex items-center justify-center border border-foreground px-7 py-2 text-[0.68rem] uppercase tracking-[0.38em] text-foreground transition-all duration-luxury-fast ease-luxury-in hover:bg-foreground hover:text-background"
         >
           Shop
         </button>
