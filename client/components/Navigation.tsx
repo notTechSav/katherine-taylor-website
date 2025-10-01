@@ -4,13 +4,13 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 
 const navigationLinks = [
-  { label: "Collections", href: "/collections" },
-  { label: "High Jewelry", href: "/collections/high-jewelry" },
-  { label: "Jewelry", href: "/collections/jewelry" },
-  { label: "Watches", href: "/collections/watches" },
-  { label: "Bags & Accessories", href: "/collections/bags-and-accessories" },
-  { label: "Fragrances", href: "/collections/fragrances" },
-  { label: "La Maison", href: "/maison" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Gifts", href: "/gifts" },
+  { label: "Journal", href: "/journal" },
+  { label: "Frequently Asked Questions", href: "/faq" },
+  { label: "Inquire", href: "/inquire" },
 ];
 
 const Navigation = () => {
@@ -52,8 +52,10 @@ const Navigation = () => {
           href="/"
           className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
         >
-          <img src="/logo.svg" alt="Cartier" className="h-8" />
-          <span className="sr-only">Cartier</span>
+          <img src="/logo.svg" alt="Katherine Taylor" className="h-8" />
+          <span className="text-base font-light uppercase tracking-[0.6em] text-luxury-black">
+            Katherine Taylor
+          </span>
         </a>
         <button
           type="button"
