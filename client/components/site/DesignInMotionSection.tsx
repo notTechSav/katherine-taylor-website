@@ -5,7 +5,7 @@ const featureImage =
 
 const DesignInMotionSection = () => {
   return (
-    <section className="bg-white py-24 md:py-32 lg:py-40">
+    <section className="bg-luxury-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto grid max-w-luxury items-center gap-8 px-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:gap-12 lg:gap-16">
         <div className="space-y-6 text-left">
           <h2 className="text-[0.78rem] uppercase tracking-[0.4em] text-foreground">
