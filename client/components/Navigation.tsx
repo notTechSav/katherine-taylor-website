@@ -74,7 +74,7 @@ const Navigation = () => {
         </ul>
       </div>
       {isMenuOpen && (
-        <div className="mt-6 border-t border-border/60 px-2 pt-6 md:hidden">
+        <div className="mt-6 border-t border-gray-200 px-2 pt-6 md:hidden">
           <ul className="flex flex-col gap-4">
             {navigationLinks.map((link) => (
               <li key={link.label}>
