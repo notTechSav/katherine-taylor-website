@@ -11,19 +11,32 @@ const LegendReinventedSection = () => {
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
-        <div className="relative z-10 max-w-[520px] space-y-6 text-left text-white">
-          <span className="text-[0.72rem] uppercase tracking-[0.4em] text-white/80">
-            The Legend Reinvented
-          </span>
+        <div className="relative z-10 max-w-[560px] space-y-6 text-left text-white">
+          <H2 as="p" className="mb-0 text-white">
+            About Katherine Taylor – The Escort Experience That Redefines "Near Me"
+          </H2>
+          <H3 as="p" className="mb-0 text-white/80">
+            For Those Searching "Escorts Near Me" �� Discover Why Proximity Is Only the Beginning
+          </H3>
           <p className="max-w-[65ch] text-sm leading-loose text-white/80">
-            Born in New York City in 1969, the LOVE bracelet is a jewelry icon.
-            With its special screwdriver, falling in love became a bold,
-            symbolic adventure. Now, the Maison reimagines the original bracelet
-            with multiple gadrooned links punctuated by the characteristic
-            hand-polished screws. Flexible, classic, or studded with diamonds,
-            there is a LOVE bracelet for every style.
+            Too many “escorts near me” results promise the world but deliver something forgettable.
+            Convenience doesn’t create connection, and proximity alone never makes an experience worth
+            remembering.
           </p>
-          <Button variant="ctaPrimary">Discover the Collection</Button>
+          <p className="max-w-[65ch] text-sm leading-loose text-white/80">
+            That’s where I’m different. With over a decade of escort experience, I’ve built my
+            reputation on anticipation, memory, and refinement. I learn your preferences quickly — from
+            the way you like to be greeted to the smallest details that matter years later — and weave
+            them into every encounter.
+          </p>
+          <p className="max-w-[65ch] text-sm leading-loose text-white/80">
+            This is why clients return. Not because I’m the closest option, but because I transform time
+            together into something trusted, discreet, and lasting. That’s the difference of choosing
+            Katherine Taylor.
+          </p>
+          <Button asChild variant="ctaPrimary">
+            <a href="/about">Discover</a>
+          </Button>
         </div>
       </div>
     </section>
