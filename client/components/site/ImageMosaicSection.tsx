@@ -34,10 +34,10 @@ const ImageMosaicSection = () => {
     <section className="bg-luxury-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto flex max-w-luxury flex-col gap-10 px-6">
         <div className="space-y-4 text-center">
-          <h2 className="text-[0.78rem] uppercase tracking-[0.4em] text-foreground">
+          <h2 className="text-[0.78rem] uppercase tracking-[0.4em] text-gray-500">
             Love Unlimited in Focus
           </h2>
-          <p className="mx-auto max-w-[580px] text-[0.82rem] leading-7 text-foreground/80 sm:text-sm">
+          <p className="mx-auto max-w-[580px] text-[0.82rem] leading-7 text-gray-700 sm:text-sm">
             Explore the atelier, the savoir-faire, and the intimate gestures
             that bring each creation to life.
           </p>
@@ -56,10 +56,10 @@ const ImageMosaicSection = () => {
                   loading="lazy"
                 />
               </div>
-              <h3 className="mb-3 text-xl font-light tracking-tight text-foreground">
+              <h3 className="mb-3 text-xl font-light tracking-tight text-luxury-black">
                 {tile.title}
               </h3>
-              <p className="text-sm font-light leading-relaxed text-muted-foreground">
+              <p className="text-sm font-light leading-relaxed text-gray-700">
                 {tile.description}
               </p>
             </article>
