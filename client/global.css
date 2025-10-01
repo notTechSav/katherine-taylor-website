@@ -127,3 +127,15 @@
   animation: fadeInSlow 2.5s ease-out forwards;
   animation-delay: 0.5s;
 }
+
+.tracking-uppercase {
+  letter-spacing: 0.15em;
+}
+
+.tracking-display {
+  letter-spacing: 0.08em;
+}
+
+.tracking-luxury {
+  letter-spacing: 0.12em;
+}
