@@ -1,4 +1,6 @@
 import { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";
+
 import Navigation from "@/components/Navigation";
 
 const SiteLayout = ({ children }: PropsWithChildren) => {
