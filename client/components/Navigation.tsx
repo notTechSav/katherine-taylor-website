@@ -10,7 +10,7 @@ const navigationLinks = [
   { label: "Gifts", href: "/gifts" },
   { label: "Journal", href: "/journal" },
   { label: "Rates", href: "/rates" },
-  { label: "Frequently Asked Questions", href: "/faq" },
+  { label: "FAQ", href: "/faq" },
   { label: "Inquire", href: "/inquire" },
 ];
 
