@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Pause, Play, Volume2, VolumeX } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 const VIDEO_SRC =
   "https://cdn.coverr.co/videos/coverr-sunrise-over-new-york-city-1578921443792?download=1";
