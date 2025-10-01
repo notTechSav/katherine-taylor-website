@@ -5,7 +5,7 @@ const LegendReinventedSection = () => {
   return (
     <section className="relative isolate overflow-hidden bg-black">
       <div
-        className="relative flex min-h-[520px] w-full items-center justify-start bg-cover bg-center px-6 py-20 sm:min-h-[640px]"
+        className="relative flex min-h-[520px] w-full items-center justify-start bg-cover bg-center px-6 py-24 md:py-32 lg:py-40 sm:min-h-[640px]"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/10" aria-hidden="true" />
