@@ -12,6 +12,7 @@ const Index = () => {
   return (
     <div className="flex flex-col">
       <Hero />
+      <ImageMosaicSection />
       <LoveUnlimitedSection />
       <LegendReinventedSection />
       <DesignInMotionSection />
@@ -19,7 +20,6 @@ const Index = () => {
       <LoveStorySection />
       <AppointmentSection />
       <NewLoveCTASection />
-      <ImageMosaicSection />
     </div>
   );
 };
