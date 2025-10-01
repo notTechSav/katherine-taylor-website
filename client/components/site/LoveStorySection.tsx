@@ -16,10 +16,10 @@ const LoveStorySection = () => {
           />
         </div>
         <div className="space-y-4 text-left">
-          <span className="text-[0.75rem] uppercase tracking-[0.45em] text-foreground">
+          <span className="text-[0.75rem] uppercase tracking-[0.45em] text-gray-500">
             A Love Story Without Limits
           </span>
-          <p className="max-w-[65ch] text-[0.82rem] leading-7 text-foreground/80 sm:text-sm">
+          <p className="max-w-[65ch] text-[0.82rem] leading-7 text-gray-700 sm:text-sm">
             A true feat of innovation, the bracelet is the result of over one
             hundred trials and prototypes by the Manufacture and the
             Maison&apos;s design studios. Radiant as one or linked to another
