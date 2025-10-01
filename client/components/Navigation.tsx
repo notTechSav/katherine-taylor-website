@@ -1,6 +1,7 @@
 import * as React from "react";
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { useEffect, useState } from "react";
+
+import { cn } from "@/lib/utils";
 
 const navigationLinks = [
   { label: "Collections", href: "/collections" },
@@ -14,6 +15,20 @@ const navigationLinks = [
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen((previous) => !previous);
@@ -24,7 +39,14 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-white px-8 py-8">
+    <nav
+      className={cn(
+        "fixed top-0 z-50 w-full px-8 transition-all duration-luxury",
+        scrolled
+          ? "bg-white/95 py-4 backdrop-blur-sm shadow-luxury-sm"
+          : "bg-transparent py-8",
+      )}
+    >
       <div className="mx-auto flex max-w-luxury items-center justify-between">
         <a href="/" className="flex items-center gap-3">
           <img src="/logo.svg" alt="Cartier" className="h-8" />
@@ -33,14 +55,10 @@ const Navigation = () => {
         <button
           type="button"
           onClick={toggleMenu}
-          className="flex h-11 w-11 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition duration-200 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:hidden"
+          className="text-sm font-light uppercase tracking-widest text-foreground transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60 md:hidden"
           aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
         >
-          {isMenuOpen ? (
-            <X className="h-5 w-5" />
-          ) : (
-            <Menu className="h-5 w-5" />
-          )}
+          {isMenuOpen ? "Close" : "Menu"}
         </button>
         <ul className="hidden items-center gap-12 md:flex">
           {navigationLinks.map((link) => (
