@@ -48,18 +48,18 @@ const Hero = () => {
       >
         <source src={HERO_VIDEO_SRC} type="video/mp4" />
       </video>
-      <div className="pointer-events-none absolute inset-0 bg-white/80 backdrop-blur-sm" />
+      <div className="pointer-events-none absolute inset-0 bg-black/45" />
       <div className="relative z-10 flex w-full flex-1 flex-col items-center justify-end px-6 pb-10 pt-24 sm:justify-center sm:pb-24">
-        <div className="flex w-full max-w-[960px] flex-col items-start gap-6 sm:gap-8 text-luxury-black">
+        <div className="flex w-full max-w-[960px] flex-col items-start gap-6 sm:gap-8 text-white">
           <p
             aria-hidden="true"
-            className="text-2xl md:text-3xl font-light tracking-[-0.01em] leading-[1.25] text-luxury-black"
+            className="text-2xl md:text-3xl font-light tracking-[-0.01em] leading-[1.25] text-white/70"
           >
             Love, Elevated
           </p>
           <p
             aria-hidden="true"
-            className="text-3xl md:text-4xl lg:text-5xl font-extralight tracking-[-0.02em] leading-[1.15] mb-6 md:mb-8 text-luxury-black"
+            className="text-3xl md:text-4xl lg:text-5xl font-extralight tracking-[-0.02em] leading-[1.15] mb-6 md:mb-8 text-white"
           >
             An Experience That Reflects Your Highest Qualities
           </p>
