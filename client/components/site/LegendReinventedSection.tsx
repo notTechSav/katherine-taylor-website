@@ -13,7 +13,7 @@ const LegendReinventedSection = () => {
           <span className="text-[0.72rem] uppercase tracking-[0.4em] text-white/80">
             The Legend Reinvented
           </span>
-          <p className="text-sm leading-loose text-white/80">
+          <p className="max-w-[65ch] text-sm leading-loose text-white/80">
             Born in New York City in 1969, the LOVE bracelet is a jewelry icon.
             With its special screwdriver, falling in love became a bold,
             symbolic adventure. Now, the Maison reimagines the original
