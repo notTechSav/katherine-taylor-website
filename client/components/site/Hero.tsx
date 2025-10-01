@@ -63,7 +63,7 @@ const Hero = () => {
             An Experience That Reflects Your Highest Qualities
           </H2>
           <Button asChild variant="ctaPrimary">
-            <a href="/inquire">Request an Introduction</a>
+            <a href="/inquire">Reserve an Evening</a>
           </Button>
         </div>
       </div>
