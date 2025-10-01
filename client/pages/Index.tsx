@@ -8,6 +8,7 @@ import LegendReinventedSection from "@/components/site/LegendReinventedSection";
 import LimitedAvailabilitySection from "@/components/site/LimitedAvailabilitySection";
 import LoveStorySection from "@/components/site/LoveStorySection";
 import LoveUnlimitedSection from "@/components/site/LoveUnlimitedSection";
+import EmailSignupSection from "@/components/site/EmailSignupSection";
 
 const Index = () => {
   return (
@@ -23,6 +24,7 @@ const Index = () => {
       <BoutiqueAppointmentSection />
       <LimitedAvailabilitySection />
       <LoveStorySection />
+      <EmailSignupSection />
     </div>
   );
 };
