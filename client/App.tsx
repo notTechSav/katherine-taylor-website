@@ -8,6 +8,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SiteLayout from "@/components/site/SiteLayout";
 import Index from "./pages/Index";
+import Maison from "./pages/Maison";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -24,6 +25,14 @@ const App = () => (
             element={
               <SiteLayout>
                 <Index />
+              </SiteLayout>
+            }
+          />
+          <Route
+            path="/maison"
+            element={
+              <SiteLayout>
+                <Maison />
               </SiteLayout>
             }
           />
