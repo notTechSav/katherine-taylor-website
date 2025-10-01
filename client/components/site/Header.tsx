@@ -31,7 +31,7 @@ export const Header = () => {
               <button
                 key={item}
                 type="button"
-                className="transition-colors hover:text-foreground"
+                className="transition-all duration-luxury-fast ease-luxury-in hover:text-foreground"
               >
                 {item}
               </button>
@@ -56,14 +56,14 @@ export const Header = () => {
                 key={label}
                 type="button"
                 aria-label={label}
-                className="hidden rounded-full p-2 transition-colors hover:bg-secondary/60 hover:text-foreground md:flex"
+                className="hidden rounded-full p-2 transition-all duration-luxury-fast ease-luxury-in hover:bg-secondary/60 hover:text-foreground md:flex"
               >
                 <Icon className="h-5 w-5" strokeWidth={1.2} />
               </button>
             ))}
             <button
               type="button"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/70 text-xs uppercase tracking-[0.3em] md:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-border/70 text-xs uppercase tracking-[0.3em] transition-all duration-luxury-fast ease-luxury-in md:hidden"
             >
               Menu
             </button>
@@ -75,7 +75,7 @@ export const Header = () => {
             <Fragment key={item}>
               <button
                 type="button"
-                className="transition-colors hover:text-foreground"
+                className="transition-all duration-luxury-fast ease-luxury-in hover:text-foreground"
               >
                 {item}
               </button>
