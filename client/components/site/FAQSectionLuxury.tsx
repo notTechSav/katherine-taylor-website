@@ -116,7 +116,7 @@ const FAQSectionLuxury = () => {
     <div className="border-t border-stone-200">
       <button
         onClick={() => handleToggle(item.id)}
-        className="group flex w-full items-start justify-between py-8 transition-all duration-luxury-fast ease-luxury-in md:py-10"
+        className="group flex w-full items-start justify-between py-8 transition-all duration-luxury-fast ease-luxury-in focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:py-10"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${item.id}`}
         ref={(el) => {
