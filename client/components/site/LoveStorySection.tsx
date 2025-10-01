@@ -9,11 +9,11 @@ const LoveStorySection = () => {
       <div className="mx-auto grid max-w-luxury items-center gap-8 px-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] md:gap-12 lg:gap-16">
         <div className="relative flex items-center justify-center overflow-hidden border border-gray-200 bg-muted/40">
           <div
-          className="aspect-[4/5] w-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${braceletImage})` }}
-          role="img"
-          aria-label="Cartier Love bracelets against Brooklyn Bridge"
-        />
+            className="aspect-[4/5] w-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${braceletImage})` }}
+            role="img"
+            aria-label="Cartier Love bracelets against Brooklyn Bridge"
+          />
         </div>
         <div className="space-y-4 text-left">
           <span className="text-[0.75rem] uppercase tracking-[0.45em] text-gray-500">
