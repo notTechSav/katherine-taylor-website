@@ -282,7 +282,7 @@ const SidebarTrigger = React.forwardRef<
         toggleSidebar();
       }}
       {...props}
->
+    >
       <span aria-hidden="true" className="text-lg leading-none">
         ≡
       </span>

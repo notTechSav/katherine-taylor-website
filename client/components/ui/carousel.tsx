@@ -212,7 +212,7 @@ const CarouselPrevious = React.forwardRef<
       disabled={!canScrollPrev}
       onClick={scrollPrev}
       {...props}
->
+    >
       <span aria-hidden="true" className="text-sm">
         ‹
       </span>
@@ -243,7 +243,7 @@ const CarouselNext = React.forwardRef<
       disabled={!canScrollNext}
       onClick={scrollNext}
       {...props}
->
+    >
       <span aria-hidden="true" className="text-sm">
         ›
       </span>

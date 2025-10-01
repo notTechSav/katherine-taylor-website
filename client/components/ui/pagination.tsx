@@ -66,7 +66,7 @@ const PaginationPrevious = ({
     size="default"
     className={cn("gap-1 pl-2.5", className)}
     {...props}
->
+  >
     <span aria-hidden="true" className="text-xs">
       ‹
     </span>
@@ -84,7 +84,7 @@ const PaginationNext = ({
     size="default"
     className={cn("gap-1 pr-2.5", className)}
     {...props}
->
+  >
     <span>Next</span>
     <span aria-hidden="true" className="text-xs">
       ›
@@ -101,9 +101,8 @@ const PaginationEllipsis = ({
     aria-hidden
     className={cn("flex h-9 w-9 items-center justify-center", className)}
     {...props}
->
-    …
-    <span className="sr-only">More pages</span>
+  >
+    …<span className="sr-only">More pages</span>
   </span>
 );
 PaginationEllipsis.displayName = "PaginationEllipsis";
