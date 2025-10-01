@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
 
+import { H2, H3 } from "@/components/ui/luxury-typography";
+
 const backgroundImage =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F32bd225e72b4401caaa255eefe65a6e8?format=webp&width=1600";
 
@@ -16,7 +18,7 @@ const LegendReinventedSection = () => {
             About Katherine Taylor – The Escort Experience That Redefines "Near Me"
           </H2>
           <H3 as="p" className="mb-0 text-white/80">
-            For Those Searching "Escorts Near Me" �� Discover Why Proximity Is Only the Beginning
+            For Those Searching "Escorts Near Me" – Discover Why Proximity Is Only the Beginning
           </H3>
           <p className="max-w-[65ch] text-sm leading-loose text-white/80">
             Too many “escorts near me” results promise the world but deliver something forgettable.
