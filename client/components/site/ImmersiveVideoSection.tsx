@@ -63,7 +63,7 @@ const ImmersiveVideoSection = () => {
             An Immersive Viewpoint
           </span>
           <h2 className="font-serif text-5xl leading-tight">The Story Continues</h2>
-          <p className="max-w-[540px] text-sm leading-loose text-white/80">
+          <p className="max-w-[65ch] text-sm leading-loose text-white/80">
             Experience the LOVE collection in motion. Let the skyline mirror the
             timeless brilliance of every piece as the city awakens to golden
             light.
