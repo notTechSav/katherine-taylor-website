@@ -5,7 +5,7 @@ const LimitedAvailabilitySection = () => {
         <p className="mb-4 text-[0.78rem] uppercase tracking-[0.4em] text-stone-500">
           Limited Availability
         </p>
-        <p className="mx-auto mb-8 max-w-2xl text-[0.82rem] leading-7 text-stone-900/80 sm:text-sm">
+        <p className="mx-auto mb-8 max-w-[65ch] text-[0.82rem] leading-7 text-stone-900/80 sm:text-sm">
           Currently accepting 3-4 bookings monthly among SF escorts and Sacramento
           escorts. December has two remaining opportunities.
         </p>
