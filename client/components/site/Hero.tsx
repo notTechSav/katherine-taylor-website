@@ -45,7 +45,7 @@ const Hero = () => {
       >
         <source src={HERO_VIDEO_SRC} type="video/mp4" />
       </video>
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/10" />
+      <div className="pointer-events-none absolute inset-0 bg-black/45" />
       <div className="relative z-10 flex w-full flex-1 flex-col items-center justify-end px-6 pb-10 pt-24 sm:justify-center sm:pb-24">
         <div className="flex w-full max-w-[960px] flex-col items-start gap-6 text-white sm:gap-8">
           <span className="text-[0.72rem] uppercase tracking-[0.4em] text-white/70">
