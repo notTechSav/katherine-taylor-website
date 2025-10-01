@@ -5,9 +5,9 @@ const Maison = () => {
         Maison
       </h1>
       <p className="mt-6 max-w-2xl text-base font-light leading-loose text-gray-600">
-        Discover the stories, craftsmanship, and heritage behind our maison. Explore
-        curated collections, design inspirations, and exclusive experiences crafted for
-        modern connoisseurs.
+        Discover the stories, craftsmanship, and heritage behind our maison.
+        Explore curated collections, design inspirations, and exclusive
+        experiences crafted for modern connoisseurs.
       </p>
     </div>
   );

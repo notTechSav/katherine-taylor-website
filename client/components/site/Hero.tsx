@@ -54,8 +54,8 @@ const Hero = () => {
             A Contemporary Icon
           </h1>
           <p className="max-w-[520px] text-sm leading-relaxed text-white/75 sm:text-base">
-            Discover the timeless elegance of Cartier&apos;s LOVE designs reimagined for
-            new horizons.
+            Discover the timeless elegance of Cartier&apos;s LOVE designs
+            reimagined for new horizons.
           </p>
         </div>
       </div>
