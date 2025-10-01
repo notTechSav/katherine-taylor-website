@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 
 const HERO_VIDEO_SRC =
@@ -47,16 +48,19 @@ const Hero = () => {
       <div className="pointer-events-none absolute inset-0 bg-black/45" />
       <div className="relative z-10 flex w-full flex-1 flex-col items-center justify-end px-6 pb-10 pt-24 sm:justify-center sm:pb-24">
         <div className="flex w-full max-w-[960px] flex-col items-start gap-6 text-white sm:gap-8">
-          <span className="text-[0.72rem] uppercase tracking-[0.4em] text-white/70">
+          <p
+            aria-hidden="true"
+            className="text-[0.72rem] uppercase tracking-[0.4em] text-white/70"
+          >
             Love, Elevated
-          </span>
-          <h1 className="font-serif text-5xl leading-tight sm:text-6xl">
-            A Contemporary Icon
-          </h1>
-          <p className="max-w-[520px] text-sm leading-relaxed text-white/75 sm:text-base">
-            Discover the timeless elegance of Cartier&apos;s LOVE designs
-            reimagined for new horizons.
           </p>
+          <p
+            aria-hidden="true"
+            className="font-serif text-5xl leading-tight sm:text-6xl"
+          >
+            An Experience That Reflects Your Highest Qualities
+          </p>
+          <Button variant="ctaPrimary">Explore Collection</Button>
         </div>
       </div>
       <button
