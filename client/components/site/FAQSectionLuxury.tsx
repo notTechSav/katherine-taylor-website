@@ -1,6 +1,8 @@
 import { Minus, Plus } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { Button } from "@/components/ui/button";
+
 type FaqItem = {
   id: string;
   question: string;
@@ -192,13 +194,14 @@ const FAQSectionLuxury = () => {
           </div>
 
           <div className="mt-12 text-center">
-            <button
+            <Button
+              variant="ctaSecondary"
+              type="button"
               onClick={() => setShowHidden((prev) => !prev)}
-              className="text-[0.68rem] uppercase tracking-[0.38em] text-stone-600 transition-all duration-luxury-fast ease-luxury-in hover:text-stone-900"
               aria-expanded={showHidden}
             >
               {showHidden ? "Show Less" : "View All Questions"}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
