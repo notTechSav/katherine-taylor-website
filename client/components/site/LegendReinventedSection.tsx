@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 const backgroundImage =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe246c70555454c878a1ed76d322ad9a5?format=webp&width=1600";
 
@@ -21,12 +23,9 @@ const LegendReinventedSection = () => {
             characteristic hand-polished screws. Flexible, classic, or studded
             with diamonds, there is a LOVE bracelet for every style.
           </p>
-          <button
-            type="button"
-            className="inline-flex items-center justify-center border border-white/80 px-12 py-5 text-[0.68rem] uppercase tracking-[0.38em] text-white transition-all duration-luxury-fast ease-luxury-in hover:border-white hover:bg-white/10"
-          >
+          <Button variant="ctaPrimary">
             Discover the Collection
-          </button>
+          </Button>
         </div>
       </div>
     </section>
