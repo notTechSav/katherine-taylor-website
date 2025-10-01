@@ -35,7 +35,7 @@ const ImageMosaicSection = () => {
               key={tile.src}
               className="group bg-luxury-white p-8 shadow-luxury-md transition-all duration-luxury hover:shadow-luxury-lg"
             >
-              <div className="mb-6 aspect-square overflow-hidden">
+              <div className="aspect-square overflow-hidden">
                 <img
                   src={tile.src}
                   alt={tile.alt}
@@ -43,12 +43,6 @@ const ImageMosaicSection = () => {
                   loading="lazy"
                 />
               </div>
-              <h3 className="mb-3 text-xl font-light tracking-tight text-luxury-black">
-                {tile.title}
-              </h3>
-              <p className="text-sm font-light leading-relaxed text-gray-700">
-                {tile.description}
-              </p>
             </article>
           ))}
         </div>
