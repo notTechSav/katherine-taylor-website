@@ -56,7 +56,7 @@ const ImmersiveVideoSection = () => {
       >
         <source src={VIDEO_SRC} type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20" />
+      <div className="absolute inset-0 bg-black/50" />
       <div className="relative z-10 flex h-full min-h-screen flex-col justify-end px-6 pb-24">
         <div className="mx-auto flex w-full max-w-[960px] flex-col items-start gap-6 text-white">
           <span className="text-[0.72rem] uppercase tracking-[0.4em] text-white/70">
