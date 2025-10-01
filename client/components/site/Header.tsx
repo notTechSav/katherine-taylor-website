@@ -1,6 +1,4 @@
 import { Heart, Search, ShoppingBag, User } from "lucide-react";
-import { Fragment } from "react";
-
 const collectionLinks = [
   "Collections",
   "High Jewelry",
