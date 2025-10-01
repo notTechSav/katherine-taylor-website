@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 const NewLoveCTASection = () => {
   return (
     <section className="bg-white py-24 md:py-32 lg:py-40">
@@ -9,12 +11,9 @@ const NewLoveCTASection = () => {
           Creative, pure, and symbolically powerful, the latest LOVE Unlimited
           designs intensify the original design with luminous flexibility.
         </p>
-        <button
-          type="button"
-          className="inline-flex items-center justify-center border border-foreground px-8 py-4 text-[0.68rem] uppercase tracking-[0.38em] text-foreground transition-all duration-luxury-fast ease-luxury-in hover:bg-foreground hover:text-background"
-        >
+        <Button variant="ctaSecondary">
           Shop
-        </button>
+        </Button>
       </div>
     </section>
   );
