@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 const featureImage =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Ffc14bd30d26048e5a25fd00cf89da05e?format=webp&width=1600";
 
@@ -15,12 +17,9 @@ const DesignInMotionSection = () => {
             features of the bracelet: gadroons, sophistication, and precious
             sparkle with the iconic screw motif.
           </p>
-          <button
-          type="button"
-          className="inline-flex items-center justify-start text-[0.68rem] uppercase tracking-[0.38em] text-foreground underline underline-offset-4 transition-all duration-luxury-fast ease-luxury-in hover:text-accent"
-        >
+          <Button variant="ctaSecondary">
             Shop Love Rings
-          </button>
+          </Button>
         </div>
         <div className="relative h-full w-full overflow-hidden border border-border/80 bg-muted/40">
           <div
