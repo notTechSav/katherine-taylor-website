@@ -55,7 +55,7 @@ const Navigation = () => {
         <button
           type="button"
           onClick={toggleMenu}
-          className="text-sm font-light uppercase tracking-widest text-foreground transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60 md:hidden"
+          className="text-sm font-light uppercase tracking-widest text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60 md:hidden"
           aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
         >
           {isMenuOpen ? "Close" : "Menu"}
@@ -65,7 +65,7 @@ const Navigation = () => {
             <li key={link.label}>
               <a
                 href={link.href}
-                className="text-sm font-extralight uppercase tracking-widest text-foreground transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60"
+                className="text-sm font-extralight uppercase tracking-widest text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60"
               >
                 {link.label}
               </a>
@@ -81,7 +81,7 @@ const Navigation = () => {
                 <a
                   href={link.href}
                   onClick={handleLinkClick}
-                  className="block py-4 text-2xl font-extralight tracking-tight text-foreground transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60"
+                  className="block py-4 text-2xl font-extralight tracking-tight text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60"
                 >
                   {link.label}
                 </a>
