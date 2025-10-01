@@ -47,7 +47,9 @@ const Hero = () => {
         <button
           type="button"
           onClick={toggleMute}
-          className="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-foreground shadow-lg backdrop-blur"
+          aria-pressed={!isMuted}
+          aria-label={isMuted ? "Unmute hero video" : "Mute hero video"}
+          className="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-foreground shadow-lg backdrop-blur transition hover:bg-white"
         >
           {isMuted ? (
             <VolumeX className="h-5 w-5" strokeWidth={1.5} />
