@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 const braceletImage =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F3787c432450b4b348ab6d2d5752be09d?format=webp&width=1600";
 
@@ -23,12 +25,9 @@ const LoveStorySection = () => {
             design studios. Radiant as one or linked to another bracelet: its
             special clasp can connect, making a pair, or an endless amount.
           </p>
-          <button
-            type="button"
-            className="inline-flex items-center justify-start text-[0.68rem] uppercase tracking-[0.38em] text-foreground underline underline-offset-4 transition-all duration-luxury-fast ease-luxury-in hover:text-accent"
-          >
+          <Button variant="ctaSecondary">
             Shop Love Bracelets
-          </button>
+          </Button>
         </div>
       </div>
     </section>
