@@ -9,8 +9,11 @@ const Hero = () => {
   const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.muted = isMuted;
+    const element = videoRef.current;
+    if (!element) return;
+    element.muted = isMuted;
+    if (element.paused) {
+      void element.play();
     }
   }, [isMuted]);
 
@@ -29,36 +32,48 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative">
-      <div className="relative aspect-[3/4] w-full overflow-hidden bg-black sm:aspect-[16/7]">
-        <video
-          ref={videoRef}
-          className="h-full w-full object-cover"
-          autoPlay
-          loop
-          muted={isMuted}
-          playsInline
-          preload="auto"
-          poster="https://images.pexels.com/photos/15969264/pexels-photo-15969264.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260"
-        >
-          <source src={HERO_VIDEO_SRC} type="video/mp4" />
-        </video>
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/40 via-black/10 to-black/0" />
-        <button
-          type="button"
-          onClick={toggleMute}
-          aria-pressed={!isMuted}
-          aria-label={isMuted ? "Unmute hero video" : "Mute hero video"}
-          className="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-foreground shadow-lg backdrop-blur transition hover:bg-white"
-        >
-          {isMuted ? (
-            <VolumeX className="h-5 w-5" strokeWidth={1.5} />
-          ) : (
-            <Volume2 className="h-5 w-5" strokeWidth={1.5} />
-          )}
-          <span className="sr-only">Toggle sound</span>
-        </button>
+    <section className="relative isolate flex min-h-screen w-full overflow-hidden bg-black">
+      <video
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full object-cover"
+        autoPlay
+        loop
+        muted={isMuted}
+        playsInline
+        preload="auto"
+        poster="https://images.pexels.com/photos/15969264/pexels-photo-15969264.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260"
+      >
+        <source src={HERO_VIDEO_SRC} type="video/mp4" />
+      </video>
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-black/10" />
+      <div className="relative z-10 flex w-full flex-1 flex-col items-center justify-end px-6 pb-10 pt-24 sm:justify-center sm:pb-24">
+        <div className="flex w-full max-w-[960px] flex-col items-start gap-6 text-white sm:gap-8">
+          <span className="text-[0.72rem] uppercase tracking-[0.4em] text-white/70">
+            Love, Elevated
+          </span>
+          <h1 className="font-serif text-5xl leading-tight sm:text-6xl">
+            A Contemporary Icon
+          </h1>
+          <p className="max-w-[520px] text-sm leading-relaxed text-white/75 sm:text-base">
+            Discover the timeless elegance of Cartier&apos;s LOVE designs reimagined
+            for new horizons.
+          </p>
+        </div>
       </div>
+      <button
+        type="button"
+        onClick={toggleMute}
+        aria-pressed={!isMuted}
+        aria-label={isMuted ? "Unmute hero video" : "Mute hero video"}
+        className="absolute left-6 bottom-6 flex h-12 w-12 items-center justify-center rounded-full bg-white/80 text-foreground shadow-lg backdrop-blur transition hover:bg-white"
+      >
+        {isMuted ? (
+          <VolumeX className="h-5 w-5" strokeWidth={1.5} />
+        ) : (
+          <Volume2 className="h-5 w-5" strokeWidth={1.5} />
+        )}
+        <span className="sr-only">Toggle sound</span>
+      </button>
     </section>
   );
 };
