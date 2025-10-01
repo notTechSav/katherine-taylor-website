@@ -1,3 +1,4 @@
+import BoutiqueAppointmentSection from "@/components/site/BoutiqueAppointmentSection";
 import DesignInMotionSection from "@/components/site/DesignInMotionSection";
 import FAQSectionLuxury from "@/components/site/FAQSectionLuxury";
 import Hero from "@/components/site/Hero";
@@ -18,6 +19,7 @@ const Index = () => {
       <ImmersiveVideoSection />
       <ImageMosaicSection />
       <FAQSectionLuxury />
+      <BoutiqueAppointmentSection />
       <LoveStorySection />
     </div>
   );
