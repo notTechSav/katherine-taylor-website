@@ -19,7 +19,7 @@ const DesignInMotionSection = () => {
           </p>
           <Button variant="ctaSecondary">Shop Love Rings</Button>
         </div>
-        <div className="relative h-full w-full overflow-hidden border border-border/80 bg-muted/40">
+        <div className="relative h-full w-full overflow-hidden border border-gray-200 bg-muted/40">
           <div
             className="aspect-[4/3] w-full bg-cover bg-center"
             style={{ backgroundImage: `url(${featureImage})` }}
