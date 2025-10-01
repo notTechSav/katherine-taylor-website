@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as React from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 
 const navigationLinks = [
@@ -13,7 +13,7 @@ const navigationLinks = [
 ];
 
 const Navigation = () => {
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen((previous) => !previous);
