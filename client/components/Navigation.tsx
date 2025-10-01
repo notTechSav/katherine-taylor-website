@@ -1,4 +1,5 @@
 import * as React from "react";
+import * as React from "react";
 import { Menu, X } from "lucide-react";
 
 const navigationLinks = [
@@ -26,7 +27,7 @@ const Navigation = () => {
     <nav className="fixed top-0 z-50 w-full bg-white px-8 py-8">
       <div className="mx-auto flex max-w-luxury items-center justify-between">
         <a href="/" className="flex items-center gap-3">
-          <img src="/logo.svg" alt="Cartier" className="h-8 w-auto" />
+          <img src="/logo.svg" alt="Cartier" className="h-8" />
           <span className="sr-only">Cartier</span>
         </a>
         <button
@@ -62,7 +63,7 @@ const Navigation = () => {
                 <a
                   href={link.href}
                   onClick={handleLinkClick}
-                  className="block text-sm font-extralight uppercase tracking-widest text-muted-foreground transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60"
+                  className="block py-4 text-2xl font-extralight tracking-tight text-foreground transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60"
                 >
                   {link.label}
                 </a>
