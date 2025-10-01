@@ -17,9 +17,7 @@ const DesignInMotionSection = () => {
             features of the bracelet: gadroons, sophistication, and precious
             sparkle with the iconic screw motif.
           </p>
-          <Button variant="ctaSecondary">
-            Shop Love Rings
-          </Button>
+          <Button variant="ctaSecondary">Shop Love Rings</Button>
         </div>
         <div className="relative h-full w-full overflow-hidden border border-border/80 bg-muted/40">
           <div

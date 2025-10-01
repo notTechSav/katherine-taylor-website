@@ -11,9 +11,7 @@ const LoveUnlimitedSection = () => {
           Creative, pure, and symbolically powerful, the latest LOVE Unlimited
           designs intensify the original design with luminous flexibility.
         </p>
-        <Button variant="ctaSecondary">
-          Shop
-        </Button>
+        <Button variant="ctaSecondary">Shop</Button>
       </div>
     </section>
   );

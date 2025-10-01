@@ -174,8 +174,8 @@ const FAQSectionLuxury = () => {
           </h2>
           <div className="mx-auto mb-6 h-px w-24 bg-stone-300" />
           <p className="mx-auto max-w-[65ch] text-[0.82rem] leading-7 text-stone-600/90 sm:text-sm">
-            After over a decade as Katherine Taylor escort in San Francisco and Sacramento,
-            I answer what "escorts near me" searches won't tell you.
+            After over a decade as Katherine Taylor escort in San Francisco and
+            Sacramento, I answer what "escorts near me" searches won't tell you.
           </p>
         </div>
 
@@ -187,7 +187,11 @@ const FAQSectionLuxury = () => {
 
             {showHidden &&
               hiddenFaqs.map((item) => (
-                <FAQItem key={item.id} item={item} isOpen={openFaq === item.id} />
+                <FAQItem
+                  key={item.id}
+                  item={item}
+                  isOpen={openFaq === item.id}
+                />
               ))}
 
             <div className="border-t border-stone-200" />

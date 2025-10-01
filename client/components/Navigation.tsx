@@ -35,7 +35,11 @@ const Navigation = () => {
           className="flex h-11 w-11 items-center justify-center rounded-full border border-border/60 text-muted-foreground transition duration-200 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:hidden"
           aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
         >
-          {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          {isMenuOpen ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
         </button>
         <ul className="hidden items-center gap-12 md:flex">
           {navigationLinks.map((link) => (

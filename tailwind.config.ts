@@ -75,8 +75,10 @@ export default {
         luxury: "1120px",
       },
       boxShadow: {
-        "luxury-md": "0 24px 60px -40px rgba(17, 24, 39, 0.36), 0 14px 28px -24px rgba(17, 24, 39, 0.22)",
-        "luxury-lg": "0 30px 90px -45px rgba(17, 24, 39, 0.4), 0 18px 36px -26px rgba(17, 24, 39, 0.24)",
+        "luxury-md":
+          "0 24px 60px -40px rgba(17, 24, 39, 0.36), 0 14px 28px -24px rgba(17, 24, 39, 0.22)",
+        "luxury-lg":
+          "0 30px 90px -45px rgba(17, 24, 39, 0.4), 0 18px 36px -26px rgba(17, 24, 39, 0.24)",
       },
       borderRadius: {
         lg: "var(--radius)",

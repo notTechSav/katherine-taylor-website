@@ -62,7 +62,9 @@ const ImmersiveVideoSection = () => {
           <span className="text-[0.72rem] uppercase tracking-[0.4em] text-white/70">
             An Immersive Viewpoint
           </span>
-          <h2 className="font-serif text-5xl leading-tight">The Story Continues</h2>
+          <h2 className="font-serif text-5xl leading-tight">
+            The Story Continues
+          </h2>
           <p className="max-w-[65ch] text-sm leading-loose text-white/80">
             Experience the LOVE collection in motion. Let the skyline mirror the
             timeless brilliance of every piece as the city awakens to golden
@@ -72,18 +74,30 @@ const ImmersiveVideoSection = () => {
             <button
               type="button"
               onClick={togglePlay}
-              aria-label={isPaused ? "Play immersive video" : "Pause immersive video"}
+              aria-label={
+                isPaused ? "Play immersive video" : "Pause immersive video"
+              }
               className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/50 bg-white/10 text-white transition-all duration-luxury-fast ease-luxury-in hover:border-white hover:bg-white/20"
             >
-              {isPaused ? <Play className="h-5 w-5" /> : <Pause className="h-5 w-5" />}
+              {isPaused ? (
+                <Play className="h-5 w-5" />
+              ) : (
+                <Pause className="h-5 w-5" />
+              )}
             </button>
             <button
               type="button"
               onClick={toggleMute}
-              aria-label={isMuted ? "Unmute immersive video" : "Mute immersive video"}
+              aria-label={
+                isMuted ? "Unmute immersive video" : "Mute immersive video"
+              }
               className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/50 bg-white/10 text-white transition-all duration-luxury-fast ease-luxury-in hover:border-white hover:bg-white/20"
             >
-              {isMuted ? <VolumeX className="h-5 w-5" /> : <Volume2 className="h-5 w-5" />}
+              {isMuted ? (
+                <VolumeX className="h-5 w-5" />
+              ) : (
+                <Volume2 className="h-5 w-5" />
+              )}
             </button>
           </div>
         </div>

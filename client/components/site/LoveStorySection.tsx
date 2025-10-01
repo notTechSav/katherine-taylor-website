@@ -21,13 +21,12 @@ const LoveStorySection = () => {
           </span>
           <p className="max-w-[65ch] text-[0.82rem] leading-7 text-foreground/80 sm:text-sm">
             A true feat of innovation, the bracelet is the result of over one
-            hundred trials and prototypes by the Manufacture and the Maison&apos;s
-            design studios. Radiant as one or linked to another bracelet: its
-            special clasp can connect, making a pair, or an endless amount.
+            hundred trials and prototypes by the Manufacture and the
+            Maison&apos;s design studios. Radiant as one or linked to another
+            bracelet: its special clasp can connect, making a pair, or an
+            endless amount.
           </p>
-          <Button variant="ctaSecondary">
-            Shop Love Bracelets
-          </Button>
+          <Button variant="ctaSecondary">Shop Love Bracelets</Button>
         </div>
       </div>
     </section>

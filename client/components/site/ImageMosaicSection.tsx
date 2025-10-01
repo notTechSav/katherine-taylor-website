@@ -38,8 +38,8 @@ const ImageMosaicSection = () => {
             Love Unlimited in Focus
           </h2>
           <p className="mx-auto max-w-[580px] text-[0.82rem] leading-7 text-foreground/80 sm:text-sm">
-            Explore the atelier, the savoir-faire, and the intimate gestures that
-            bring each creation to life.
+            Explore the atelier, the savoir-faire, and the intimate gestures
+            that bring each creation to life.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:gap-14">
