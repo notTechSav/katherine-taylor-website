@@ -11,7 +11,7 @@ const LimitedAvailabilitySection = () => {
         </p>
         <a
           href="/booking"
-          className="inline-block border border-stone-900 px-8 py-4 text-[0.68rem] uppercase tracking-[0.38em] text-stone-900 transition-colors duration-300 hover:border-stone-600 hover:text-stone-600"
+          className="inline-block border border-stone-900 px-8 py-4 text-[0.68rem] uppercase tracking-[0.38em] text-stone-900 transition-all duration-luxury-fast ease-luxury-in hover:border-stone-600 hover:text-stone-600"
         >
           Reserve Your Experience
         </a>
