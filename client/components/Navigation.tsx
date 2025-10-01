@@ -23,7 +23,7 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-white px-8 py-8 shadow-lg">
+    <nav className="fixed top-0 z-50 w-full bg-white px-8 py-8">
       <div className="mx-auto flex max-w-luxury items-center justify-between">
         <a href="/" className="flex items-center gap-3">
           <img src="/logo.svg" alt="Cartier" className="h-8 w-auto" />
