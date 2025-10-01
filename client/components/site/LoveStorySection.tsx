@@ -3,7 +3,7 @@ const braceletImage =
 
 const LoveStorySection = () => {
   return (
-    <section className="bg-white py-16 sm:py-24">
+    <section className="bg-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto grid max-w-[1200px] items-center gap-12 px-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] md:gap-20">
         <div className="relative flex items-center justify-center overflow-hidden border border-border/70 bg-muted/40">
           <div
