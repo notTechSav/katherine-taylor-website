@@ -52,11 +52,7 @@ const Hero = () => {
       <div className="pointer-events-none absolute inset-0 bg-black/45" />
       <div className="relative z-10 flex w-full flex-1 flex-col items-center justify-end px-6 pb-10 pt-24 sm:justify-center sm:pb-24">
         <div className="flex w-full max-w-[960px] flex-col items-start gap-6 sm:gap-8 text-white">
-          <H3
-            as="p"
-            aria-hidden="true"
-            className="mb-0 md:mb-0 text-white/70"
-          >
+          <H3 as="p" aria-hidden="true" className="mb-0 md:mb-0 text-white/70">
             Love, Elevated
           </H3>
           <H2 as="p" aria-hidden="true" className="text-white">

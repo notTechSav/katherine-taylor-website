@@ -15,14 +15,14 @@ const createHeading = <TDefault extends ElementType>(
   defaultTag: TDefault,
   baseClasses: string,
 ) => {
-  return <TExtends extends ElementType = TDefault>(
-    { as, className, ...props }: PolymorphicProps<TExtends>,
-  ) => {
+  return <TExtends extends ElementType = TDefault>({
+    as,
+    className,
+    ...props
+  }: PolymorphicProps<TExtends>) => {
     const Component = (as ?? defaultTag) as ElementType;
 
-    return (
-      <Component className={cn(baseClasses, className)} {...props} />
-    );
+    return <Component className={cn(baseClasses, className)} {...props} />;
   };
 };
 
