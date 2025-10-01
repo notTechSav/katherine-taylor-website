@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useState } from "react";
+import * as React from "react";
 import {
   Heart,
   Menu,
@@ -34,7 +34,7 @@ const iconButtons = [
 ];
 
 export const Header = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen((previous) => !previous);
