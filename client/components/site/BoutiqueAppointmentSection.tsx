@@ -19,7 +19,7 @@ const BoutiqueAppointmentSection = () => {
           </p>
           <button
             type="button"
-            className="inline-flex items-center justify-center border border-white/80 px-9 py-3 text-[0.68rem] uppercase tracking-[0.38em] text-white transition-all duration-luxury-fast ease-luxury-in hover:border-white hover:bg-white/10"
+            className="inline-flex items-center justify-center border border-white/80 px-12 py-5 text-[0.68rem] uppercase tracking-[0.38em] text-white transition-all duration-luxury-fast ease-luxury-in hover:border-white hover:bg-white/10"
           >
             Book an Appointment
           </button>
