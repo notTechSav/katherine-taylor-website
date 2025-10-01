@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 const appointmentImage =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F2da61afc112641aebee8b6e185ff6d03?format=webp&width=1600";
 
@@ -17,12 +19,9 @@ const AppointmentSection = () => {
             Take a closer look at the new LOVE Unlimited creations at your
             boutique.
           </p>
-          <button
-            type="button"
-            className="inline-flex items-center justify-center border border-white/80 px-12 py-5 text-[0.68rem] uppercase tracking-[0.38em] text-white transition-all duration-luxury-fast ease-luxury-in hover:border-white hover:bg-white/10"
-          >
+          <Button variant="ctaPrimary">
             Book an Appointment
-          </button>
+          </Button>
         </div>
       </div>
     </section>
