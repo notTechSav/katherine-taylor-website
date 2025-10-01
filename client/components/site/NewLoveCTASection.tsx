@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 const NewLoveCTASection = () => {
   return (
-    <section className="bg-white py-24 md:py-32 lg:py-40">
+    <section className="bg-luxury-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto flex max-w-[720px] flex-col items-center gap-5 px-6 text-center">
         <h2 className="text-[0.78rem] uppercase tracking-[0.4em] text-foreground">
           The New Love Unlimited
