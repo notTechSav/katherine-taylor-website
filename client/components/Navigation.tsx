@@ -9,6 +9,7 @@ const navigationLinks = [
   { label: "Gallery", href: "/gallery" },
   { label: "Gifts", href: "/gifts" },
   { label: "Journal", href: "/journal" },
+  { label: "Rates", href: "/rates" },
   { label: "Frequently Asked Questions", href: "/faq" },
   { label: "Inquire", href: "/inquire" },
 ];
