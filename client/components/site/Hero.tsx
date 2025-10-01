@@ -1,4 +1,4 @@
-import PrimaryButton from "@/components/ui/primary-button";
+import { Button } from "@/components/ui/button";
 import { useEffect, useRef, useState } from "react";
 
 const HERO_VIDEO_SRC =
@@ -63,9 +63,9 @@ const Hero = () => {
           >
             An Experience That Reflects Your Highest Qualities
           </p>
-          <PrimaryButton asLink={{ href: "/inquire" }}>
-            Request an Introduction
-          </PrimaryButton>
+          <Button asChild variant="ctaPrimary">
+            <a href="/inquire">Request an Introduction</a>
+          </Button>
         </div>
       </div>
       <button
