@@ -36,6 +36,62 @@ const App = () => (
             }
           />
           <Route
+            path="/about"
+            element={
+              <SiteLayout>
+                <About />
+              </SiteLayout>
+            }
+          />
+          <Route
+            path="/gallery"
+            element={
+              <SiteLayout>
+                <Gallery />
+              </SiteLayout>
+            }
+          />
+          <Route
+            path="/gifts"
+            element={
+              <SiteLayout>
+                <Gifts />
+              </SiteLayout>
+            }
+          />
+          <Route
+            path="/journal"
+            element={
+              <SiteLayout>
+                <Journal />
+              </SiteLayout>
+            }
+          />
+          <Route
+            path="/rates"
+            element={
+              <SiteLayout>
+                <Rates />
+              </SiteLayout>
+            }
+          />
+          <Route
+            path="/faq"
+            element={
+              <SiteLayout>
+                <FAQ />
+              </SiteLayout>
+            }
+          />
+          <Route
+            path="/inquire"
+            element={
+              <SiteLayout>
+                <Inquire />
+              </SiteLayout>
+            }
+          />
+          <Route
             path="/maison"
             element={
               <SiteLayout>
