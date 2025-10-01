@@ -52,8 +52,7 @@ const Navigation = () => {
           href="/"
           className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
         >
-          <img src="/logo.svg" alt="Katherine Taylor" className="h-8" />
-          <span className="text-base font-light uppercase tracking-[0.6em] text-luxury-black">
+          <span className="text-3xl font-serif italic tracking-tight text-luxury-black">
             Katherine Taylor
           </span>
         </a>
