@@ -35,7 +35,7 @@ const ImageMosaicSection = () => {
               key={tile.src}
               className="group bg-luxury-white p-8 shadow-luxury-md transition-all duration-luxury hover:shadow-luxury-lg"
             >
-              <div className="aspect-square overflow-hidden">
+              <div className="mb-6 aspect-[4/5] overflow-hidden">
                 <img
                   src={tile.src}
                   alt={tile.alt}
