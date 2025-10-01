@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Button } from "@/components/ui/button";
 import { H2, H3 } from "@/components/ui/luxury-typography";
 import { useEffect, useRef, useState } from "react";
 
