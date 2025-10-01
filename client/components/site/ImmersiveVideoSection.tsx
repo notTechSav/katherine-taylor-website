@@ -77,13 +77,9 @@ const ImmersiveVideoSection = () => {
               aria-label={
                 isPaused ? "Play immersive video" : "Pause immersive video"
               }
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/50 bg-white/10 text-white transition-all duration-luxury-fast ease-luxury-in hover:border-white hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+              className="inline-flex items-center justify-center rounded-full border border-white/50 bg-white/10 px-5 py-2 text-sm text-white transition-all duration-luxury-fast ease-luxury-in hover:border-white hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
             >
-              {isPaused ? (
-                <Play className="h-5 w-5" />
-              ) : (
-                <Pause className="h-5 w-5" />
-              )}
+              {isPaused ? "Play" : "Pause"}
             </button>
             <button
               type="button"
@@ -91,13 +87,9 @@ const ImmersiveVideoSection = () => {
               aria-label={
                 isMuted ? "Unmute immersive video" : "Mute immersive video"
               }
-              className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-white/50 bg-white/10 text-white transition-all duration-luxury-fast ease-luxury-in hover:border-white hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+              className="inline-flex items-center justify-center rounded-full border border-white/50 bg-white/10 px-5 py-2 text-sm text-white transition-all duration-luxury-fast ease-luxury-in hover:border-white hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
             >
-              {isMuted ? (
-                <VolumeX className="h-5 w-5" />
-              ) : (
-                <Volume2 className="h-5 w-5" />
-              )}
+              {isMuted ? "Unmute" : "Mute"}
             </button>
           </div>
         </div>
