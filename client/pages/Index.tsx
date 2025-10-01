@@ -1,4 +1,5 @@
 import Hero from "@/components/site/Hero";
+import LegendReinventedSection from "@/components/site/LegendReinventedSection";
 import LoveUnlimitedSection from "@/components/site/LoveUnlimitedSection";
 
 const Index = () => {
@@ -6,6 +7,7 @@ const Index = () => {
     <div className="flex flex-col">
       <Hero />
       <LoveUnlimitedSection />
+      <LegendReinventedSection />
     </div>
   );
 };
