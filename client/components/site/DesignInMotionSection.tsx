@@ -21,7 +21,7 @@ const DesignInMotionSection = () => {
         </div>
         <div className="relative h-full w-full overflow-hidden border border-gray-200 bg-muted/40">
           <div
-            className="aspect-[4/3] w-full bg-cover bg-center"
+            className="aspect-[4/5] w-full bg-cover bg-center"
             style={{ backgroundImage: `url(${featureImage})` }}
             role="img"
             aria-label="Love rings displayed against NYC skyline"
