@@ -1,4 +1,3 @@
-import { Minus, Plus } from "lucide-react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -127,14 +126,15 @@ const FAQSectionLuxury = () => {
           {item.question}
         </h3>
         <div className="mt-1">
-          {isOpen ? (
-            <Minus className="h-4 w-4 text-stone-400" strokeWidth={1} />
-          ) : (
-            <Plus
-              className="h-4 w-4 text-stone-400 transition-colors group-hover:text-stone-600"
-              strokeWidth={1}
-            />
-          )}
+          <span
+            aria-hidden="true"
+            className={cn(
+              "inline-block text-base leading-none text-stone-400 transition-colors",
+              isOpen && "group-hover:text-stone-600",
+            )}
+          >
+            {isOpen ? "–" : "+"}
+          </span>
         </div>
       </button>
 
