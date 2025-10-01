@@ -9,7 +9,7 @@ const DesignInMotionSection = () => {
           <h2 className="text-[0.78rem] uppercase tracking-[0.4em] text-foreground">
             A Design in Motion
           </h2>
-          <p className="text-[0.82rem] leading-7 text-foreground/80 sm:text-sm">
+          <p className="max-w-[65ch] text-[0.82rem] leading-7 text-foreground/80 sm:text-sm">
             Preserving the harmony and proportion of the beloved collection, the
             new LOVE Unlimited ring designs echo all the same distinctive
             features of the bracelet: gadroons, sophistication, and precious
