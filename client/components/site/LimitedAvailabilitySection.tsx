@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 const LimitedAvailabilitySection = () => {
   return (
     <section className="animate-fade-in-up bg-stone-50 py-24 md:py-32 lg:py-40">
@@ -9,12 +11,9 @@ const LimitedAvailabilitySection = () => {
           Currently accepting 3-4 bookings monthly among SF escorts and Sacramento
           escorts. December has two remaining opportunities.
         </p>
-        <a
-          href="/booking"
-          className="inline-block border border-stone-900 px-8 py-4 text-[0.68rem] uppercase tracking-[0.38em] text-stone-900 transition-all duration-luxury-fast ease-luxury-in hover:border-stone-600 hover:text-stone-600"
-        >
-          Reserve Your Experience
-        </a>
+        <Button variant="ctaSecondary" asChild>
+          <a href="/booking">Reserve Your Experience</a>
+        </Button>
       </div>
     </section>
   );
