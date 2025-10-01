@@ -59,7 +59,7 @@ const ImageMosaicSection = () => {
             bring each creation to life.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-4 auto-rows-[180px] sm:grid-cols-3 sm:auto-rows-[220px] lg:auto-rows-[240px]">
+        <div className="grid auto-rows-[180px] grid-cols-2 gap-4 grid-flow-dense sm:auto-rows-[220px] sm:grid-cols-3 lg:auto-rows-[240px]">
           {tiles.map((tile) => (
             <div
               key={tile.src}
