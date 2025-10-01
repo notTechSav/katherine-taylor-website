@@ -1,5 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { cn } from "@/lib/utils";
+
 import { Button } from "@/components/ui/button";
 
 type FaqItem = {
