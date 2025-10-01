@@ -63,7 +63,9 @@ const Hero = () => {
           >
             An Experience That Reflects Your Highest Qualities
           </p>
-          <PrimaryButton asLink={{ href: "/inquire" }}>Explore Collection</PrimaryButton>
+          <PrimaryButton asLink={{ href: "/inquire" }}>
+            Request an Introduction
+          </PrimaryButton>
         </div>
       </div>
       <button
