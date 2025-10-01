@@ -35,10 +35,10 @@ const ImageMosaicSection = () => {
       <div className="mx-auto flex max-w-luxury flex-col gap-10 px-6">
         <div className="space-y-4 text-center">
           <h1 className="text-[0.78rem] uppercase tracking-[0.4em] text-gray-500">
-            Katherine Taylor Escort
+            Escorts Near Me | The High-End Experience by Katherine Taylor
           </h1>
           <h2 className="mx-auto max-w-[580px] text-[0.82rem] leading-7 text-gray-700 sm:text-sm">
-            The Trusted Choice Among Sacramento and San Francisco Escorts
+            For over a decade, Katherine Taylor escort has been the trusted choice for discerning clients in San Francisco and Sacramento.
           </h2>
         </div>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:gap-14">
