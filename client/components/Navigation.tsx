@@ -48,14 +48,17 @@ const Navigation = () => {
       )}
     >
       <div className="mx-auto flex max-w-luxury items-center justify-between">
-        <a href="/" className="flex items-center gap-3">
+        <a
+          href="/"
+          className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+        >
           <img src="/logo.svg" alt="Cartier" className="h-8" />
           <span className="sr-only">Cartier</span>
         </a>
         <button
           type="button"
           onClick={toggleMenu}
-          className="text-sm font-light uppercase tracking-widest text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60 md:hidden"
+          className="text-sm font-light uppercase tracking-widest text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:hidden"
           aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
         >
           {isMenuOpen ? "Close" : "Menu"}
@@ -65,7 +68,7 @@ const Navigation = () => {
             <li key={link.label}>
               <a
                 href={link.href}
-                className="text-sm font-extralight uppercase tracking-widest text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60"
+                className="text-sm font-extralight uppercase tracking-widest text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
               >
                 {link.label}
               </a>
@@ -81,7 +84,7 @@ const Navigation = () => {
                 <a
                   href={link.href}
                   onClick={handleLinkClick}
-                  className="block py-4 text-2xl font-extralight tracking-tight text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60"
+                  className="block py-4 text-2xl font-extralight tracking-tight text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
                 >
                   {link.label}
                 </a>
