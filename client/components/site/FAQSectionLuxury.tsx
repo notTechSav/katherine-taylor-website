@@ -121,7 +121,7 @@ const FAQSectionLuxury = () => {
           faqRefs.current[item.id] = el;
         }}
       >
-        <h3 className="pr-8 text-left text-base font-light tracking-[0.03em] text-stone-900 transition-colors duration-300 group-hover:text-stone-600 md:text-lg">
+        <h3 className="pr-8 text-left text-[0.9rem] font-light tracking-[0.05em] text-stone-900 transition-colors duration-300 group-hover:text-stone-600 sm:text-base">
           {item.question}
         </h3>
         <div className="mt-1">
@@ -143,14 +143,14 @@ const FAQSectionLuxury = () => {
         }`}
       >
         <div className="pr-12 md:pr-24">
-          <p className="text-sm font-light leading-relaxed tracking-wide text-stone-600 md:text-base">
+          <p className="text-[0.82rem] font-light leading-7 tracking-wide text-stone-600/90 sm:text-sm">
             {item.answer}
           </p>
 
           <div className="mt-6">
             <a
               href="/booking"
-              className="inline-block border-b border-stone-900 pb-1 text-xs uppercase tracking-[0.2em] text-stone-900 transition-colors duration-300 hover:border-stone-600 hover:text-stone-600"
+              className="inline-block border-b border-stone-900 pb-1 text-[0.68rem] uppercase tracking-[0.38em] text-stone-900 transition-colors duration-300 hover:border-stone-600 hover:text-stone-600"
             >
               Learn More
             </a>
@@ -164,11 +164,14 @@ const FAQSectionLuxury = () => {
     <section className="relative bg-white py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-8 md:px-12">
         <div className="mb-20 text-center md:mb-28">
-          <h2 className="mb-6 text-3xl font-extralight tracking-[0.08em] text-stone-900 md:text-4xl lg:text-5xl">
-            Frequently Asked
+          <span className="mb-4 block text-[0.78rem] uppercase tracking-[0.4em] text-stone-500">
+            Insights & Guidance
+          </span>
+          <h2 className="mb-6 font-serif text-4xl tracking-[0.04em] text-stone-900 md:text-5xl">
+            Frequently Asked Questions
           </h2>
           <div className="mx-auto mb-6 h-px w-24 bg-stone-300" />
-          <p className="mx-auto max-w-2xl text-sm font-light leading-relaxed tracking-[0.05em] text-stone-600 md:text-base">
+          <p className="mx-auto max-w-2xl text-[0.82rem] leading-7 text-stone-600/90 sm:text-sm">
             After over a decade as Katherine Taylor escort in San Francisco and Sacramento,
             I answer what "escorts near me" searches won't tell you.
           </p>
@@ -191,7 +194,7 @@ const FAQSectionLuxury = () => {
           <div className="mt-12 text-center">
             <button
               onClick={() => setShowHidden((prev) => !prev)}
-              className="text-xs uppercase tracking-[0.2em] text-stone-600 transition-colors duration-300 hover:text-stone-900"
+              className="text-[0.68rem] uppercase tracking-[0.38em] text-stone-600 transition-colors duration-300 hover:text-stone-900"
               aria-expanded={showHidden}
             >
               {showHidden ? "Show Less" : "View All Questions"}
