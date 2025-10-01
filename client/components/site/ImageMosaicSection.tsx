@@ -46,7 +46,7 @@ const ImageMosaicSection = () => {
           {tiles.map((tile) => (
             <article
               key={tile.src}
-              className="group bg-white p-8 shadow-md transition-all duration-luxury hover:shadow-lg"
+              className="group bg-white p-8 shadow-luxury-md transition-all duration-luxury hover:shadow-luxury-lg"
             >
               <div className="mb-6 aspect-square overflow-hidden">
                 <img
