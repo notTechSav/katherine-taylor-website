@@ -15,6 +15,7 @@ const Index = () => {
       <LegendReinventedSection />
       <DesignInMotionSection />
       <ImmersiveVideoSection />
+      <ImageMosaicSection />
       <LoveStorySection />
     </div>
   );
