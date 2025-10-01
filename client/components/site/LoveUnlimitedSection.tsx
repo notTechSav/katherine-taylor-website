@@ -5,7 +5,7 @@ const LoveUnlimitedSection = () => {
         <h2 className="text-[0.78rem] uppercase tracking-[0.4em] text-foreground">
           The New Love Unlimited
         </h2>
-        <p className="text-[0.82rem] leading-7 text-foreground/80 sm:text-sm">
+        <p className="max-w-[65ch] text-[0.82rem] leading-7 text-foreground/80 sm:text-sm">
           Creative, pure, and symbolically powerful, the latest LOVE Unlimited
           designs intensify the original design with luminous flexibility.
         </p>
