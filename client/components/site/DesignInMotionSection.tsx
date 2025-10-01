@@ -16,9 +16,9 @@ const DesignInMotionSection = () => {
             sparkle with the iconic screw motif.
           </p>
           <button
-            type="button"
-            className="inline-flex items-center justify-start text-[0.68rem] uppercase tracking-[0.38em] text-foreground underline underline-offset-4 transition hover:text-accent"
-          >
+          type="button"
+          className="inline-flex items-center justify-start text-[0.68rem] uppercase tracking-[0.38em] text-foreground underline underline-offset-4 transition-all duration-luxury-fast ease-luxury-in hover:text-accent"
+        >
             Shop Love Rings
           </button>
         </div>
