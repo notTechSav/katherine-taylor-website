@@ -5,8 +5,8 @@ const FAQ = () => {
         Frequently Asked Questions
       </h1>
       <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-600">
-        A curated list of common questions, policies, and resources will be available
-        here to support your journey with Katherine Taylor.
+        A curated list of common questions, policies, and resources will be
+        available here to support your journey with Katherine Taylor.
       </p>
     </section>
   );

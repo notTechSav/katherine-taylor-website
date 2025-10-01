@@ -5,8 +5,8 @@ const Rates = () => {
         Rates
       </h1>
       <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-600">
-        Detailed investment guides, consultation packages, and service tiers will be
-        published here. Please check back soon for complete information.
+        Detailed investment guides, consultation packages, and service tiers
+        will be published here. Please check back soon for complete information.
       </p>
     </section>
   );

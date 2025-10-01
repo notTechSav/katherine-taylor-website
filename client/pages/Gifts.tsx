@@ -5,8 +5,8 @@ const Gifts = () => {
         Gifts
       </h1>
       <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-600">
-        Discover signature gifting experiences and bespoke recommendations to delight
-        every occasion and recipient.
+        Discover signature gifting experiences and bespoke recommendations to
+        delight every occasion and recipient.
       </p>
     </section>
   );

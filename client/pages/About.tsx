@@ -5,8 +5,8 @@ const About = () => {
         About
       </h1>
       <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-600">
-        Learn about the heritage, vision, and philosophy that shape our maison. This
-        space will share the stories that define our craft.
+        Learn about the heritage, vision, and philosophy that shape our maison.
+        This space will share the stories that define our craft.
       </p>
     </section>
   );

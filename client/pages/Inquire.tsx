@@ -5,8 +5,8 @@ const Inquire = () => {
         Inquire
       </h1>
       <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-600">
-        Connect directly with our team for bespoke services, private appointments, and
-        personalized recommendations.
+        Connect directly with our team for bespoke services, private
+        appointments, and personalized recommendations.
       </p>
     </section>
   );

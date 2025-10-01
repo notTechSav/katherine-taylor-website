@@ -5,8 +5,8 @@ const Journal = () => {
         Journal
       </h1>
       <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-600">
-        Stay up to date with editorials, interviews, and inspiration from the world of
-        Katherine Taylor. Articles and updates will appear here soon.
+        Stay up to date with editorials, interviews, and inspiration from the
+        world of Katherine Taylor. Articles and updates will appear here soon.
       </p>
     </section>
   );
