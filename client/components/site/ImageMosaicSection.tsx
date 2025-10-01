@@ -1,31 +1,19 @@
 const tiles = [
   {
-    src: "https://images.pexels.com/photos/1457932/pexels-photo-1457932.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260",
-    alt: "Close-up of intertwined gold bracelets",
-    title: "Signature Bracelet Duo",
-    description:
-      "Iconic LOVE bangles interpreted in luminous rose gold, hand-polished for a mirror finish that embraces the wrist with ease.",
+    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Feb43c94d56914a3e9070f0803602ba8e?format=webp&width=800",
+    alt: "Portrait of Katherine Taylor in tailored attire",
   },
   {
-    src: "https://images.pexels.com/photos/3641053/pexels-photo-3641053.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260",
-    alt: "Jeweler polishing a ring",
-    title: "Atelier Craftsmanship",
-    description:
-      "Parisian artisans perfect every setting, refining each screw motif until it reflects the Maison's signature precision.",
+    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fd3ec1e31a22847378a6aaa373933f6b7?format=webp&width=800",
+    alt: "Overhead view of a white luxury car",
   },
   {
-    src: "https://images.pexels.com/photos/1773139/pexels-photo-1773139.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260",
-    alt: "Diamond bracelet resting on silk",
-    title: "Diamond Paved Bangle",
-    description:
-      "Brilliant-cut diamonds drape across supple links, illuminating the LOVE silhouette with delicate radiance.",
+    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F2eeac4f0544d4ec5952dafcbdbce130b?format=webp&width=800",
+    alt: "Katherine Taylor wearing a fur coat",
   },
   {
-    src: "https://images.pexels.com/photos/3044279/pexels-photo-3044279.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=1260",
-    alt: "Gold watch showcased on velvet",
-    title: "Timeless Timepiece",
-    description:
-      "A refined liaison of horology and jewelry—the LOVE motif encircles the dial for a quietly confident statement.",
+    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F49821e94c0e742a6afe147811dfebac6?format=webp&width=800",
+    alt: "Katherine Taylor posing on a staircase",
   },
 ];
 
