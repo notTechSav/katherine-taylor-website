@@ -9,7 +9,7 @@ const DesignInMotionSection = () => {
     <section className="bg-luxury-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto grid max-w-luxury items-center gap-8 px-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] md:gap-12 lg:gap-16">
         <div className="space-y-6 text-left">
-          <H2 as="p">SF Escorts | Framed Side-by-side</H2>
+          <H2 as="p">SF Escorts | Framed Side-By-Side</H2>
           <H3 as="p">
             What sets Katherine Taylor Apart From Other Escorts Near Me?
           </H3>
