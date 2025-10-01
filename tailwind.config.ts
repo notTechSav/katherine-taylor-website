@@ -71,6 +71,9 @@ export default {
         "luxury-in": "cubic-bezier(0, 0, 0.58, 1.0)", // ease-out
         "luxury-out": "cubic-bezier(0.42, 0, 1.0, 1.0)", // ease-in
       },
+      maxWidth: {
+        luxury: "1120px",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
