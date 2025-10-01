@@ -37,36 +37,16 @@ export const Header = () => {
               </button>
             ))}
           </div>
-          <div className="flex items-center gap-4 text-foreground/70">
-            {iconButtons.map(({ icon: Icon, label }) => (
-              <button
-                key={label}
-                type="button"
-                aria-label={label}
-                className="transition-colors hover:text-foreground"
-              >
-                <Icon className="h-4 w-4" strokeWidth={1.25} />
-              </button>
-            ))}
+          <div className="flex items-center gap-6 text-muted-foreground/80">
+            <span>Newsletter</span>
+            <span>Boutiques</span>
           </div>
         </div>
       </div>
 
       <div className="mx-auto flex w-full max-w-[1200px] flex-col items-center px-6 pb-6 pt-8">
         <div className="flex w-full items-center justify-between gap-6">
-          <div className="hidden flex-1 items-center justify-start md:flex">
-            <div className="flex items-center gap-8 text-[0.68rem] uppercase tracking-[0.38em] text-muted-foreground/90">
-              {utilityLinks.map((item) => (
-                <button
-                  key={item}
-                  type="button"
-                  className="transition-colors hover:text-foreground"
-                >
-                  {item}
-                </button>
-              ))}
-            </div>
-          </div>
+          <div className="hidden flex-1 md:flex" />
           <div className="flex flex-none items-center justify-center">
             <span className="font-brand text-5xl tracking-[0.08em] text-foreground">Cartier</span>
           </div>
@@ -90,7 +70,7 @@ export const Header = () => {
           </div>
         </div>
 
-        <nav className="mt-6 hidden w-full items-center justify-center gap-8 text-[0.68rem] uppercase tracking-[0.38em] text-foreground/80 lg:flex">
+        <nav className="mt-6 hidden w-full items-center justify-center gap-8 text-[0.68rem] uppercase tracking-[0.38em] text-foreground/80 md:flex">
           {collectionLinks.map((item, index) => (
             <Fragment key={item}>
               <button
