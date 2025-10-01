@@ -161,7 +161,7 @@ const FAQSectionLuxury = () => {
   );
 
   return (
-    <section className="relative bg-white py-24 md:py-32">
+    <section className="relative bg-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-7xl px-8 md:px-12">
         <div className="mb-20 text-center md:mb-28">
           <span className="mb-4 block text-[0.78rem] uppercase tracking-[0.4em] text-stone-500">
