@@ -52,7 +52,7 @@ const Navigation = () => {
           href="/"
           className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
         >
-          <span className="text-3xl font-serif italic tracking-tight text-luxury-black">
+          <span className="text-3xl font-serif font-extralight uppercase tracking-[0.15em] leading-[1.1] text-luxury-black">
             KATHERINE TAYLOR
           </span>
         </a>
