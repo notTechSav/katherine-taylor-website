@@ -1,6 +1,6 @@
 const LimitedAvailabilitySection = () => {
   return (
-    <section className="animate-fade-in-up bg-stone-50 py-16">
+    <section className="animate-fade-in-up bg-stone-50 py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-7xl px-8 text-center md:px-12">
         <p className="mb-4 text-[0.78rem] uppercase tracking-[0.4em] text-stone-500">
           Limited Availability
