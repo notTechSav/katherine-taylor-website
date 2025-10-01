@@ -7,8 +7,15 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SiteLayout from "@/components/site/SiteLayout";
+import About from "./pages/About";
+import FAQ from "./pages/FAQ";
+import Gallery from "./pages/Gallery";
+import Gifts from "./pages/Gifts";
 import Index from "./pages/Index";
+import Inquire from "./pages/Inquire";
+import Journal from "./pages/Journal";
 import Maison from "./pages/Maison";
+import Rates from "./pages/Rates";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
