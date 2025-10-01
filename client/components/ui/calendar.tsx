@@ -1,5 +1,4 @@
 import * as React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 
 import { cn } from "@/lib/utils";
@@ -52,12 +51,11 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        Chevron: (props) => {
-          if (props.orientation === "left") {
-            return <ChevronLeft className="h-4 w-4" />;
-          }
-          return <ChevronRight className="h-4 w-4" />;
-        },
+        Chevron: ({ orientation }) => (
+          <span aria-hidden="true" className="text-sm leading-none">
+            {orientation === "left" ? "‹" : "›"}
+          </span>
+        ),
       }}
       {...props}
     />
