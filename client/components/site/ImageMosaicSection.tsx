@@ -31,7 +31,7 @@ const tiles = [
 
 const ImageMosaicSection = () => {
   return (
-    <section className="bg-white py-24 md:py-32 lg:py-40">
+    <section className="bg-luxury-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto flex max-w-luxury flex-col gap-10 px-6">
         <div className="space-y-4 text-center">
           <h2 className="text-[0.78rem] uppercase tracking-[0.4em] text-foreground">
@@ -46,7 +46,7 @@ const ImageMosaicSection = () => {
           {tiles.map((tile) => (
             <article
               key={tile.src}
-              className="group bg-white p-8 shadow-luxury-md transition-all duration-luxury hover:shadow-luxury-lg"
+              className="group bg-luxury-white p-8 shadow-luxury-md transition-all duration-luxury hover:shadow-luxury-lg"
             >
               <div className="mb-6 aspect-square overflow-hidden">
                 <img
