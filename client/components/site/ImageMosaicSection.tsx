@@ -39,7 +39,7 @@ const ImageMosaicSection = () => {
               <img
                 src={tile.src}
                 alt={tile.alt}
-                className="absolute inset-0 h-full w-full object-cover transition duration-700 ease-out group-hover:scale-[1.05]"
+                className="absolute inset-0 h-full w-full object-cover"
                 loading="lazy"
               />
               <span className="sr-only">{tile.alt}</span>
