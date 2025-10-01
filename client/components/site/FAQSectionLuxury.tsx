@@ -114,7 +114,7 @@ const FAQSectionLuxury = () => {
     <div className="border-t border-stone-200">
       <button
         onClick={() => handleToggle(item.id)}
-        className="group flex w-full items-start justify-between py-8 transition-all duration-300 md:py-10"
+        className="group flex w-full items-start justify-between py-8 transition-all duration-luxury-fast ease-luxury-in md:py-10"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${item.id}`}
         ref={(el) => {
@@ -150,7 +150,7 @@ const FAQSectionLuxury = () => {
           <div className="mt-6">
             <a
               href="/booking"
-              className="inline-block border-b border-stone-900 pb-1 text-[0.68rem] uppercase tracking-[0.38em] text-stone-900 transition-colors duration-300 hover:border-stone-600 hover:text-stone-600"
+              className="inline-block border-b border-stone-900 pb-1 text-[0.68rem] uppercase tracking-[0.38em] text-stone-900 transition-all duration-luxury-fast ease-luxury-in hover:border-stone-600 hover:text-stone-600"
             >
               Learn More
             </a>
@@ -194,7 +194,7 @@ const FAQSectionLuxury = () => {
           <div className="mt-12 text-center">
             <button
               onClick={() => setShowHidden((prev) => !prev)}
-              className="text-[0.68rem] uppercase tracking-[0.38em] text-stone-600 transition-colors duration-300 hover:text-stone-900"
+              className="text-[0.68rem] uppercase tracking-[0.38em] text-stone-600 transition-all duration-luxury-fast ease-luxury-in hover:text-stone-900"
               aria-expanded={showHidden}
             >
               {showHidden ? "Show Less" : "View All Questions"}
