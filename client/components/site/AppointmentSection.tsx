@@ -13,7 +13,7 @@ const AppointmentSection = () => {
           <span className="text-[0.72rem] uppercase tracking-[0.4em] text-white/70">
             Your Love Story Awaits
           </span>
-          <p className="text-sm leading-relaxed text-white/80">
+          <p className="max-w-[65ch] text-sm leading-relaxed text-white/80">
             Take a closer look at the new LOVE Unlimited creations at your
             boutique.
           </p>
