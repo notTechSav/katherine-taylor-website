@@ -14,8 +14,7 @@ const LegendReinventedSection = () => {
         <div className="absolute inset-0 bg-black/55" aria-hidden="true" />
         <div className="relative z-10 max-w-[560px] space-y-6 text-left text-white">
           <H2 as="p" className="mb-0 text-white">
-            About Katherine Taylor – The Escort Experience That Redefines "Near
-            Me"
+            Katherine Taylor — Elegant San Francisco & Sacramento Escort
           </H2>
           <H3 as="p" className="mb-0 text-white/80">
             For Those Searching "Escorts Near Me" – Discover Why Proximity Is
