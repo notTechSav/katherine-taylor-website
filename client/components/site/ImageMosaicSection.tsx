@@ -1,3 +1,5 @@
+import { cn } from "@/lib/utils";
+
 const defaultTiles = [
   {
     src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Feb43c94d56914a3e9070f0803602ba8e?format=webp&width=800",
