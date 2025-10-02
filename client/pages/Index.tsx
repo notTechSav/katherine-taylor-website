@@ -26,12 +26,12 @@ const Index = () => {
             alt: "Reclining woman surrounded by luxurious gifts and accessories",
           },
           {
-            src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F12bc9c0423ed493994809f8e110f4a0f?format=webp&width=800",
-            alt: "Hand raising a crystal coupe glass in celebration",
+            src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F65909920a7b144bbb16190fee459fafa?format=webp&width=800",
+            alt: "Woman in gold attire lighting money while celebrating with champagne",
           },
           {
-            src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F271fccca34744dbd9771ebea5440adfb?format=webp&width=800",
-            alt: "Woman in gold dress lighting a dollar bill at an opulent dinner table",
+            src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe98fdd6d66ad48e2b18ab6284dfd9e2b?format=webp&width=800",
+            alt: "Gloved hand presenting black designer heels with jeweled buckles",
           },
           {
             src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fd1535f1c8d094f7c8c299372b731133a?format=webp&width=800",
