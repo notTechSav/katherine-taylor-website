@@ -17,9 +17,12 @@ const defaultTiles = [
   },
 ];
 
+type OverlayVariant = "dark" | "sepia";
+
 type ImageTile = {
   src: string;
   alt: string;
+  overlay?: OverlayVariant;
 };
 
 type ImageMosaicSectionProps = {
@@ -33,6 +36,12 @@ const DEFAULT_TITLE =
   "Escorts Near Me | The High-End Experience by Katherine Taylor";
 const DEFAULT_SUBTITLE =
   "For over a decade, Katherine Taylor escort has been the trusted choice for discerning clients in San Francisco and Sacramento.";
+
+const overlayClasses: Record<OverlayVariant, string> = {
+  dark: "bg-gradient-to-br from-black/70 via-black/40 to-black/10 opacity-90 mix-blend-multiply",
+  sepia:
+    "bg-gradient-to-br from-[#3a2414]/75 via-[#4a2d18]/50 to-[#6b4021]/20 opacity-90 mix-blend-multiply",
+};
 
 const ImageMosaicSection = ({
   title = DEFAULT_TITLE,
@@ -65,9 +74,21 @@ const ImageMosaicSection = ({
                   className="h-full w-full object-cover transition-transform duration-[700ms] group-hover:scale-105"
                   loading="lazy"
                 />
-                {withOverlay ? (
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/10 opacity-90 mix-blend-multiply" />
-                ) : null}
+                {(() => {
+                  const overlayKey = tile.overlay ?? (withOverlay ? "dark" : null);
+                  if (!overlayKey) {
+                    return null;
+                  }
+
+                  return (
+                    <div
+                      className={cn(
+                        "pointer-events-none absolute inset-0",
+                        overlayClasses[overlayKey],
+                      )}
+                    />
+                  );
+                })()}
               </div>
             </article>
           ))}
