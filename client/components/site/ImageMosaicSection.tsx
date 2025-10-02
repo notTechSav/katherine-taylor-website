@@ -1,19 +1,19 @@
 const tiles = [
   {
-    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F90e6ea7a489c45f484ccfc2cc5a8da76?format=webp&width=800",
-    alt: "Luxury heels displayed on ice in a freezer",
+    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Feb43c94d56914a3e9070f0803602ba8e?format=webp&width=800",
+    alt: "Portrait of Katherine Taylor in tailored attire",
   },
   {
-    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6030363da8e5421ebdcbc885e5ffb31c?format=webp&width=800",
-    alt: "Woman in gold dress lighting a dollar bill with a cigarette",
+    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fd3ec1e31a22847378a6aaa373933f6b7?format=webp&width=800",
+    alt: "Overhead view of a white luxury car",
   },
   {
-    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fdc2cf87e4f974dea8523c77c35d9e77b?format=webp&width=800",
-    alt: "Hand holding a crystal coupe glass filled with champagne",
+    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F2eeac4f0544d4ec5952dafcbdbce130b?format=webp&width=800",
+    alt: "Katherine Taylor wearing a fur coat",
   },
   {
-    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F85037534c78640379bd5dbbd264663ac?format=webp&width=800",
-    alt: "Woman surrounded by luxurious accessories and perfume bottles",
+    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F49821e94c0e742a6afe147811dfebac6?format=webp&width=800",
+    alt: "Katherine Taylor posing on a staircase",
   },
 ];
 
