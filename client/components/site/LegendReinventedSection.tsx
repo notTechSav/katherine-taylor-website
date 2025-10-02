@@ -16,26 +16,8 @@ const LegendReinventedSection = () => {
           <H2 as="p" className="mb-0 text-white">
             Katherine Taylor — Elegant San Francisco & Sacramento Escort
           </H2>
-          <H3 as="p" className="mb-0 text-white/80">
-            For Those Searching "Escorts Near Me" – Discover Why Proximity Is
-            Only the Beginning
-          </H3>
           <p className="max-w-[65ch] text-sm leading-loose text-white/80">
-            Too many “escorts near me” results promise the world but deliver
-            something forgettable. Convenience doesn’t create connection, and
-            proximity alone never makes an experience worth remembering.
-          </p>
-          <p className="max-w-[65ch] text-sm leading-loose text-white/80">
-            That’s where I’m different. With over a decade of escort experience,
-            I’ve built my reputation on anticipation, memory, and refinement. I
-            learn your preferences quickly — from the way you like to be greeted
-            to the smallest details that matter years later — and weave them
-            into every encounter.
-          </p>
-          <p className="max-w-[65ch] text-sm leading-loose text-white/80">
-            This is why clients return. Not because I’m the closest option, but
-            because I transform time together into something trusted, discreet,
-            and lasting. That’s the difference of choosing Katherine Taylor.
+            Is it possible to find a genuine connection when searching for escorts near me? Katherine Taylor is an elegant San Francisco escort who transforms uncertainty into warm, authentic companionship that puts you at ease — whether in San Francisco or Sacramento.
           </p>
           <Button asChild variant="ctaPrimary">
             <a href="/about">Discover</a>
