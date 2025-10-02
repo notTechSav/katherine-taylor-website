@@ -71,60 +71,55 @@ const ImageMosaicSection = ({
           </h2>
         </div>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:gap-16">
-          {displayTiles.map((tile) => (
-            <article
-              key={tile.src}
-              className="group bg-luxury-white p-8 md:p-10 lg:p-12 shadow-luxury-md transition-all duration-luxury hover:shadow-luxury-lg"
-            >
-              <div className="relative mb-6 aspect-[4/5] overflow-hidden">
-                <img
-                  src={tile.src}
-                  alt={tile.alt}
-                  className="h-full w-full object-cover transition-transform duration-[700ms] group-hover:scale-105"
-                  loading="lazy"
-                />
-                {(() => {
-                  const overlayKey =
-                    tile.overlay ??
-                    (withOverlay || tile.heading || tile.subheading ? "dark" : null);
+          {displayTiles.map((tile) => {
+            const overlayKey =
+              tile.overlay ??
+              (withOverlay || tile.heading || tile.subheading ? "dark" : null);
+            const captionTone = overlayKey ?? "dark";
 
-                  if (!overlayKey) {
-                    return null;
-                  }
-
-                  return (
+            return (
+              <article
+                key={tile.src}
+                className="group bg-luxury-white p-8 md:p-10 lg:p-12 shadow-luxury-md transition-all duration-luxury hover:shadow-luxury-lg"
+              >
+                <div className="relative mb-6 aspect-[4/5] overflow-hidden">
+                  <img
+                    src={tile.src}
+                    alt={tile.alt}
+                    className="h-full w-full object-cover transition-transform duration-[700ms] group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  {overlayKey ? (
                     <div
                       className={cn(
                         "pointer-events-none absolute inset-0 opacity-90 mix-blend-multiply transition-opacity duration-500 group-hover:opacity-100",
                         overlayClasses[overlayKey],
                       )}
                     />
-                  );
-                })()}
-                {(tile.heading || tile.subheading) && (
-                  <div
-                    className={cn(
-                      "pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-1 px-5 pb-5 pt-16 text-left",
-                      captionTextClasses[
-                        (tile.overlay ?? "dark") as OverlayVariant
-                      ],
-                    )}
-                  >
-                    {tile.heading ? (
-                      <span className="text-xs font-medium uppercase tracking-[0.45em]">
-                        {tile.heading}
-                      </span>
-                    ) : null}
-                    {tile.subheading ? (
-                      <span className="text-sm leading-relaxed text-white/85">
-                        {tile.subheading}
-                      </span>
-                    ) : null}
-                  </div>
-                )}
-              </div>
-            </article>
-          ))}
+                  ) : null}
+                  {(tile.heading || tile.subheading) && (
+                    <div
+                      className={cn(
+                        "pointer-events-none absolute inset-x-0 bottom-0 flex flex-col gap-1 px-5 pb-5 pt-16 text-left",
+                        captionTextClasses[captionTone],
+                      )}
+                    >
+                      {tile.heading ? (
+                        <span className="text-xs font-medium uppercase tracking-[0.45em]">
+                          {tile.heading}
+                        </span>
+                      ) : null}
+                      {tile.subheading ? (
+                        <span className="text-sm leading-relaxed opacity-85">
+                          {tile.subheading}
+                        </span>
+                      ) : null}
+                    </div>
+                  )}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
