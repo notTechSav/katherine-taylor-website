@@ -66,7 +66,7 @@ const ImageMosaicSection = ({
                   loading="lazy"
                 />
                 {withOverlay ? (
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/35 via-black/10 to-transparent opacity-80 mix-blend-multiply" />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/70 via-black/40 to-black/10 opacity-90 mix-blend-multiply" />
                 ) : null}
               </div>
             </article>
