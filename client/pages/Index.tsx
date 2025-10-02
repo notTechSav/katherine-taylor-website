@@ -9,7 +9,6 @@ import LimitedAvailabilitySection from "@/components/site/LimitedAvailabilitySec
 import LoveStorySection from "@/components/site/LoveStorySection";
 import EmailSignupSection from "@/components/site/EmailSignupSection";
 import GiftsTeaserSection from "@/components/site/GiftsTeaserSection";
-import BoutiqueAppointmentSection from "@/components/site/BoutiqueAppointmentSection";
 
 const Index = () => {
   return (
