@@ -43,21 +43,10 @@ const Index = () => {
           },
         ]}
         withOverlay
+        footerHeading="Ready to curate the perfect gesture?"
+        footerLinkLabel="Browse curated gift itineraries"
+        footerLinkHref="/gifts"
       />
-      <div className="bg-luxury-white">
-        <div className="mx-auto flex max-w-luxury flex-col items-start gap-4 border-t border-black/5 px-6 pb-16 pt-8 text-left sm:flex-row sm:items-center sm:justify-between">
-          <span className="text-xs font-medium uppercase tracking-[0.45em] text-gray-500">
-            Ready to curate the perfect gesture?
-          </span>
-          <a
-            href="/gifts"
-            className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.3em] text-black transition-colors duration-luxury hover:text-gray-600"
-          >
-            Browse curated gift itineraries
-            <span aria-hidden="true">→</span>
-          </a>
-        </div>
-      </div>
       <FAQSectionLuxury />
       <BoutiqueAppointmentSection />
       <LimitedAvailabilitySection />
