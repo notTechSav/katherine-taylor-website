@@ -17,17 +17,29 @@ const tiles = [
   },
 ];
 
-const ImageMosaicSection = () => {
+type ImageMosaicSectionProps = {
+  title?: string;
+  subtitle?: string;
+};
+
+const DEFAULT_TITLE =
+  "Escorts Near Me | The High-End Experience by Katherine Taylor";
+const DEFAULT_SUBTITLE =
+  "For over a decade, Katherine Taylor escort has been the trusted choice for discerning clients in San Francisco and Sacramento.";
+
+const ImageMosaicSection = ({
+  title = DEFAULT_TITLE,
+  subtitle = DEFAULT_SUBTITLE,
+}: ImageMosaicSectionProps) => {
   return (
     <section className="bg-luxury-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto flex max-w-luxury flex-col gap-10 px-6">
         <div className="space-y-4 text-center">
           <h1 className="text-[0.78rem] uppercase tracking-[0.4em] text-gray-500">
-            Escorts Near Me | The High-End Experience by Katherine Taylor
+            {title}
           </h1>
           <h2 className="mx-auto max-w-[580px] text-[0.82rem] leading-7 text-gray-700 sm:text-sm">
-            For over a decade, Katherine Taylor escort has been the trusted
-            choice for discerning clients in San Francisco and Sacramento.
+            {subtitle}
           </h2>
         </div>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:gap-16">
