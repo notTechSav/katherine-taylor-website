@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { H2, H3 } from "@/components/ui/luxury-typography";
 
 const backgroundImage =
-  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F32bd225e72b4401caaa255eefe65a6e8?format=webp&width=1600";
+  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F17dbe947019943a4b2525e07a4630cd4?format=webp&width=800";
 
 const LegendReinventedSection = () => {
   return (
