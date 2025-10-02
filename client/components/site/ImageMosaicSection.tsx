@@ -110,7 +110,7 @@ const ImageMosaicSection = ({
                         </span>
                       ) : null}
                       {tile.subheading ? (
-                        <span className="text-sm leading-relaxed opacity-85">
+                        <span className="text-sm leading-relaxed opacity-90">
                           {tile.subheading}
                         </span>
                       ) : null}
