@@ -60,6 +60,9 @@ const ImageMosaicSection = ({
   subtitle = DEFAULT_SUBTITLE,
   tiles,
   withOverlay = false,
+  footerHeading,
+  footerLinkHref,
+  footerLinkLabel,
 }: ImageMosaicSectionProps) => {
   const displayTiles = tiles ?? defaultTiles;
   return (
