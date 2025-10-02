@@ -17,7 +17,10 @@ const Index = () => {
       <LegendReinventedSection />
       <DesignInMotionSection />
       <ImmersiveVideoSection />
-      <ImageMosaicSection />
+      <ImageMosaicSection
+        title="Gifts – What to Give an Escort?"
+        subtitle="Thoughtful Gestures for Escort Arrangements in San Francisco and Beyond."
+      />
       <FAQSectionLuxury />
       <BoutiqueAppointmentSection />
       <LimitedAvailabilitySection />
