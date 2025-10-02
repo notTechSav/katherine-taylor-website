@@ -78,7 +78,7 @@ const ImageMosaicSection = ({
             const overlayKey =
               tile.overlay ??
               (withOverlay || tile.heading || tile.subheading ? "dark" : null);
-            const captionTone = overlayKey ?? "dark";
+            const captionTone = (overlayKey ?? "dark") as OverlayVariant;
 
             return (
               <article
