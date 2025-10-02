@@ -25,24 +25,47 @@ const Index = () => {
             src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fcf7a7e4f72714427af4c89e3a5f1d15a?format=webp&width=800",
             alt: "Reclining woman surrounded by luxurious gifts and accessories",
             overlay: "sepia",
+            heading: "Weekend Escape",
+            subheading: "Palm Springs spontaneity with bespoke arrangements handled start to finish.",
           },
           {
             src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F65909920a7b144bbb16190fee459fafa?format=webp&width=800",
             alt: "Woman in gold attire lighting money while celebrating with champagne",
+            overlay: "dark",
+            heading: "After-Hours Indulgence",
+            subheading: "Champagne rituals, private tables, and a driver waiting when you are.",
           },
           {
             src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe98fdd6d66ad48e2b18ab6284dfd9e2b?format=webp&width=800",
             alt: "Gloved hand presenting black designer heels with jeweled buckles",
             overlay: "sepia",
+            heading: "Signature Tokens",
+            subheading: "Gifts that feel personal, discreet, and entirely yours to give.",
           },
           {
             src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fd1535f1c8d094f7c8c299372b731133a?format=webp&width=800",
             alt: "Designer heels staged on crushed ice inside a freezer",
             overlay: "sepia",
+            heading: "Arrival Rituals",
+            subheading: "Surprises staged before the door even opens, right down to the shoes on ice.",
           },
         ]}
         withOverlay
       />
+      <div className="bg-luxury-white">
+        <div className="mx-auto flex max-w-luxury flex-col items-start gap-4 border-t border-black/5 px-6 pb-16 pt-8 text-left sm:flex-row sm:items-center sm:justify-between">
+          <span className="text-xs font-medium uppercase tracking-[0.45em] text-gray-500">
+            Ready to curate the perfect gesture?
+          </span>
+          <a
+            href="/gifts"
+            className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.3em] text-black transition-colors duration-luxury hover:text-gray-600"
+          >
+            Browse curated gift itineraries
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
       <FAQSectionLuxury />
       <BoutiqueAppointmentSection />
       <LimitedAvailabilitySection />
