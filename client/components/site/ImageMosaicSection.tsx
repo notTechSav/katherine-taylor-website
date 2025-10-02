@@ -1,4 +1,4 @@
-const tiles = [
+const defaultTiles = [
   {
     src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Feb43c94d56914a3e9070f0803602ba8e?format=webp&width=800",
     alt: "Portrait of Katherine Taylor in tailored attire",
@@ -17,9 +17,16 @@ const tiles = [
   },
 ];
 
+type ImageTile = {
+  src: string;
+  alt: string;
+};
+
 type ImageMosaicSectionProps = {
   title?: string;
   subtitle?: string;
+  tiles?: ImageTile[];
+  withOverlay?: boolean;
 };
 
 const DEFAULT_TITLE =
@@ -30,7 +37,10 @@ const DEFAULT_SUBTITLE =
 const ImageMosaicSection = ({
   title = DEFAULT_TITLE,
   subtitle = DEFAULT_SUBTITLE,
+  tiles,
+  withOverlay = false,
 }: ImageMosaicSectionProps) => {
+  const displayTiles = tiles ?? defaultTiles;
   return (
     <section className="bg-luxury-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto flex max-w-luxury flex-col gap-10 px-6">
@@ -43,18 +53,21 @@ const ImageMosaicSection = ({
           </h2>
         </div>
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:gap-16">
-          {tiles.map((tile) => (
+          {displayTiles.map((tile) => (
             <article
               key={tile.src}
               className="group bg-luxury-white p-8 md:p-10 lg:p-12 shadow-luxury-md transition-all duration-luxury hover:shadow-luxury-lg"
             >
-              <div className="mb-6 aspect-[4/5] overflow-hidden">
+              <div className="relative mb-6 aspect-[4/5] overflow-hidden">
                 <img
                   src={tile.src}
                   alt={tile.alt}
                   className="h-full w-full object-cover transition-transform duration-[700ms] group-hover:scale-105"
                   loading="lazy"
                 />
+                {withOverlay ? (
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-black/35 via-black/10 to-transparent opacity-80 mix-blend-multiply" />
+                ) : null}
               </div>
             </article>
           ))}
