@@ -34,6 +34,9 @@ type ImageMosaicSectionProps = {
   subtitle?: string;
   tiles?: ImageTile[];
   withOverlay?: boolean;
+  footerHeading?: string;
+  footerLinkLabel?: string;
+  footerLinkHref?: string;
 };
 
 const DEFAULT_TITLE =
@@ -121,6 +124,28 @@ const ImageMosaicSection = ({
             );
           })}
         </div>
+        {footerHeading || (footerLinkHref && footerLinkLabel) ? (
+          <div className="border-t border-black/5 pt-8 text-left">
+            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+              {footerHeading ? (
+                <span className="text-xs font-medium uppercase tracking-[0.45em] text-gray-500">
+                  {footerHeading}
+                </span>
+              ) : (
+                <span className="sr-only">Gift guide prompt</span>
+              )}
+              {footerLinkHref && footerLinkLabel ? (
+                <a
+                  href={footerLinkHref}
+                  className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.3em] text-black transition-colors duration-luxury hover:text-gray-600"
+                >
+                  {footerLinkLabel}
+                  <span aria-hidden="true">→</span>
+                </a>
+              ) : null}
+            </div>
+          </div>
+        ) : null}
       </div>
     </section>
   );
