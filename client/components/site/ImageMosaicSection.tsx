@@ -46,22 +46,6 @@ const ImageMosaicSection = () => {
               </div>
             </article>
           ))}
-          <article className="flex h-full flex-col justify-between bg-black p-8 text-left text-white md:p-10 lg:p-12">
-            <div className="space-y-4">
-              <h2 className="text-2xl font-light tracking-tight md:text-3xl">
-                Gifts – What to Give an Escort
-              </h2>
-              <p className="text-sm leading-relaxed text-white/80">
-                What’s the etiquette when gifting an escort?
-              </p>
-            </div>
-            <a
-              href="/gifts"
-              className="mt-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.3em] text-white transition-colors duration-luxury hover:text-white/70"
-            >
-              Explore the Gifts Guide
-            </a>
-          </article>
         </div>
       </div>
     </section>
