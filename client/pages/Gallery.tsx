@@ -113,7 +113,12 @@ const Gallery = () => {
             role="button"
             tabIndex={0}
             onKeyDown={(event) => {
-              if (event.key === "Enter" || event.key === " ") {
+              if (
+                event.key === "Enter" ||
+                event.key === " " ||
+                event.key === "Space" ||
+                event.key === "Spacebar"
+              ) {
                 event.preventDefault();
                 openLightbox(0);
               }
@@ -153,7 +158,12 @@ const Gallery = () => {
                   role="button"
                   tabIndex={0}
                   onKeyDown={(event) => {
-                    if (event.key === "Enter" || event.key === " ") {
+                    if (
+                      event.key === "Enter" ||
+                      event.key === " " ||
+                      event.key === "Space" ||
+                      event.key === "Spacebar"
+                    ) {
                       event.preventDefault();
                       openLightbox(actualIndex);
                     }
@@ -188,7 +198,7 @@ const Gallery = () => {
           <button
             type="button"
             onClick={closeLightbox}
-            className="absolute right-8 top-8 text-4xl font-extralight text-white transition-opacity duration-300 hover:opacity-70"
+            className="absolute right-8 top-8 z-[60] text-4xl font-extralight text-white transition-opacity duration-300 hover:opacity-70"
             aria-label="Close lightbox"
           >
             ×
@@ -200,7 +210,7 @@ const Gallery = () => {
               event.stopPropagation();
               showPreviousImage();
             }}
-            className="absolute left-8 text-4xl font-extralight text-white transition-opacity duration-300 hover:opacity-70"
+            className="absolute left-8 z-[60] text-4xl font-extralight text-white transition-opacity duration-300 hover:opacity-70"
             aria-label="Previous image"
           >
             ‹
@@ -226,7 +236,7 @@ const Gallery = () => {
               event.stopPropagation();
               showNextImage();
             }}
-            className="absolute right-8 text-4xl font-extralight text-white transition-opacity duration-300 hover:opacity-70"
+            className="absolute right-8 z-[60] text-4xl font-extralight text-white transition-opacity duration-300 hover:opacity-70"
             aria-label="Next image"
           >
             ›
