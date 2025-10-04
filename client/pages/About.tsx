@@ -51,12 +51,14 @@ const About = () => {
           className="space-y-6 opacity-0 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100 data-[visible=true]:delay-100"
         >
           <h1 className="font-serif text-4xl font-light tracking-[-0.01em] text-[#1a1a1a] md:text-[48px]">
-            Katherine Taylor
+            About Me
           </h1>
           <p className="text-[17px] leading-[1.9]">
-            Seven years later, he still signs his texts "J, The Wine Man" — as if I
-            could forget the man who loves his grandkids more than his favorite
-            Bordeaux, or the hotel in Miami where we met. I remember everything.
+            The conversation never resets. I carry forward everything—your M&amp;A
+            timeline, your board anxieties, your daughter’s college decision, the
+            trip to Patagonia you’ve been planning. Not because I take notes, but
+            because I’ve built a decade of pattern libraries that let me read what
+            you don’t say.
           </p>
         </header>
 
