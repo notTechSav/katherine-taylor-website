@@ -26,7 +26,7 @@ export const journalDisplay: JournalDisplayCopy = {
 };
 
 export const heroImage = {
-  src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F9a26af5454b046978125074e206d72fe?format=webp&width=1600",
+  src: "/assets/journal/hero.jpg",
   alt: "Luxury escorts San Francisco - Morning light across linen, serene and elegant",
 };
 
