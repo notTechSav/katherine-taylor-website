@@ -24,6 +24,7 @@ const JournalModal = ({
   essay,
   closeLabel,
   readNextLabel,
+  nextEssay,
   onNavigateNext,
 }: JournalModalProps) => {
   const paragraphs = useMemo(() => {
