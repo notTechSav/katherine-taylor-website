@@ -3,7 +3,21 @@
 import { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import JournalFooter from "@/components/journal/JournalFooter";
-import { heroImage, journalDisplay, journalFooter, getEssayBySlug, getReadNextEssay } from "@/lib/journal-content";
+import {
+  heroImage,
+  journalDisplay,
+  journalFooter,
+  getEssayBySlug,
+  getReadNextEssay,
+  essayMetadata,
+} from "@/lib/journal-content";
+import {
+  injectJsonLd,
+  removeJsonLd,
+  setLinkTag,
+  setNamedMeta,
+  setPropertyMeta,
+} from "@/lib/seo-helpers";
 import NotFound from "@/pages/NotFound";
 
 const headingLetterSpacing = { letterSpacing: "-0.02em" } as const;
@@ -19,6 +33,54 @@ const JournalArticle = () => {
       return;
     }
     window.scrollTo({ top: 0, behavior: "auto" });
+
+    const baseTitle = `${essay.title} — Katherine Taylor Escort`;
+    document.title = baseTitle;
+
+    const description = essayMetadata.description;
+    setNamedMeta("description", description);
+    setNamedMeta("keywords", essayMetadata.keywords);
+    setNamedMeta("geo.region", "US-CA");
+    setNamedMeta("geo.position", "37.7749;-122.4194");
+    setNamedMeta("ICBM", "37.7749, -122.4194");
+
+    const canonicalUrl = typeof window !== "undefined"
+      ? `${window.location.origin}/journal/${essay.slug}`
+      : `/journal/${essay.slug}`;
+
+    setLinkTag("canonical", canonicalUrl);
+
+    setPropertyMeta("og:type", "article");
+    setPropertyMeta("og:title", essay.title);
+    setPropertyMeta("og:description", description);
+    setPropertyMeta("og:url", canonicalUrl);
+    setPropertyMeta("og:image", heroImage.src);
+
+    injectJsonLd("journal-article", {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: essay.title,
+      description,
+      author: {
+        "@type": "Person",
+        name: "Katherine Taylor",
+      },
+      publisher: {
+        "@type": "Person",
+        name: "Katherine Taylor",
+      },
+      datePublished: essay.publishedDate,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonicalUrl,
+      },
+      keywords: essayMetadata.keywords,
+      image: heroImage.src,
+    });
+
+    return () => {
+      removeJsonLd("journal-article");
+    };
   }, [essay]);
 
   if (!essay) {
