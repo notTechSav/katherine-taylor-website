@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import JournalFooter from "@/components/journal/JournalFooter";
 import JournalGrid from "@/components/journal/JournalGrid";
