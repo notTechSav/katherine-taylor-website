@@ -8,6 +8,7 @@ interface JournalModalProps {
   essay: JournalEssay | undefined;
   closeLabel: string;
   readNextLabel: string;
+  nextEssay?: JournalEssay;
   onNavigateNext?: (slug: string) => void;
 }
 
