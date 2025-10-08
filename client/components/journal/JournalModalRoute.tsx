@@ -36,6 +36,15 @@ const JournalModalRoute = () => {
     }
   };
 
+  useEffect(() => {
+    if (!essay) return;
+    const previousTitle = document.title;
+    document.title = `${essay.title} — Katherine Taylor Escort`;
+    return () => {
+      document.title = previousTitle;
+    };
+  }, [essay]);
+
   const handleNavigateNext = (nextSlug: string) => {
     navigate(`/journal/${nextSlug}`, {
       replace: true,
