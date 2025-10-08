@@ -5,7 +5,7 @@ import { createRoot, type Root } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation, type Location } from "react-router-dom";
 import SiteLayout from "@/components/site/SiteLayout";
 import JournalModalRoute from "@/components/journal/JournalModalRoute";
 import About from "./pages/About";
