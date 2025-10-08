@@ -64,7 +64,7 @@ const JournalModal = ({
                 ))}
               </div>
             </DialogPrimitive.Description>
-            {essay?.readNext && onNavigateNext ? (
+            {essay?.readNext && onNavigateNext && nextEssay ? (
               <footer className="border-t border-[#e8e8e5] pt-6">
                 <button
                   type="button"
