@@ -13,10 +13,10 @@ interface JournalModalProps {
 }
 
 const overlayClassName =
-  "fixed inset-0 z-[70] bg-[rgba(0,0,0,0.08)] backdrop-blur-sm transition-opacity duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in data-[state=closed]:fade-out";
+  "fixed inset-0 z-[70] bg-[rgba(0,0,0,0.08)] backdrop-blur-sm transition-opacity duration-[350ms] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in data-[state=closed]:fade-out";
 
 const contentClassName =
-  "fixed left-1/2 top-1/2 z-[80] w-full max-w-[620px] -translate-x-1/2 -translate-y-1/2 bg-[#fafaf7] px-8 py-12 shadow-[0_24px_60px_rgba(0,0,0,0.12)] outline-none transition-[opacity,transform] duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in data-[state=closed]:fade-out data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 sm:rounded-none";
+  "fixed left-1/2 top-1/2 z-[80] w-full max-w-[620px] -translate-x-1/2 -translate-y-1/2 bg-[#fafaf7] px-8 py-12 shadow-[0_24px_60px_rgba(0,0,0,0.12)] outline-none transition-[opacity,transform] duration-[350ms] data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=open]:fade-in data-[state=closed]:fade-out data-[state=open]:zoom-in-95 data-[state=closed]:zoom-out-95 sm:rounded-none";
 
 const JournalModal = ({
   isOpen,
