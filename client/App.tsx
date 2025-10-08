@@ -5,8 +5,9 @@ import { createRoot, type Root } from "react-dom/client";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import SiteLayout from "@/components/site/SiteLayout";
+import JournalModalRoute from "@/components/journal/JournalModalRoute";
 import About from "./pages/About";
 import FAQ from "./pages/FAQ";
 import Gallery from "./pages/Gallery";
@@ -14,19 +15,25 @@ import Gifts from "./pages/Gifts";
 import Index from "./pages/Index";
 import Inquire from "./pages/Inquire";
 import Journal from "./pages/Journal";
+import JournalArticle from "./pages/JournalArticle";
 import Maison from "./pages/Maison";
 import Rates from "./pages/Rates";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
+type RouterState = {
+  backgroundLocation?: Location;
+};
+
+const AppRoutes = () => {
+  const location = useLocation();
+  const state = location.state as RouterState | undefined;
+  const backgroundLocation = state?.backgroundLocation ?? location;
+
+  return (
+    <>
+      <Routes location={backgroundLocation}>
           <Route
             path="/"
             element={
@@ -64,6 +71,14 @@ const App = () => (
             element={
               <SiteLayout>
                 <Journal />
+              </SiteLayout>
+            }
+          />
+          <Route
+            path="/journal/:slug"
+            element={
+              <SiteLayout>
+                <JournalArticle />
               </SiteLayout>
             }
           />
@@ -109,6 +124,22 @@ const App = () => (
             }
           />
         </Routes>
+      {state?.backgroundLocation ? (
+        <Routes>
+          <Route path="/journal/:slug" element={<JournalModalRoute />} />
+        </Routes>
+      ) : null}
+    </>
+  );
+};
+
+const App = () => (
+  <QueryClientProvider client={queryClient}>
+    <TooltipProvider>
+      <Toaster />
+      <Sonner />
+      <BrowserRouter>
+        <AppRoutes />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
