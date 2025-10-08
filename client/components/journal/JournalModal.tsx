@@ -1,4 +1,5 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { type CSSProperties, useMemo } from "react";
 import type { JournalEssay } from "@/lib/journal-content";
 
