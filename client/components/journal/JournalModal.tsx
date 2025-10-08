@@ -18,7 +18,8 @@ const overlayClassName =
 const contentClassName =
   "fixed left-1/2 top-1/2 z-[80] w-full max-w-[640px] -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-[#fafaf7] px-8 py-12 shadow-[0_32px_80px_rgba(0,0,0,0.14)] outline-none transition-opacity duration-[350ms] ease-in-out data-[state=open]:opacity-100 data-[state=closed]:opacity-0 sm:rounded-none";
 
-const innerScrollClassName = "max-h-[84vh] overflow-y-auto pr-2 pt-6 sm:pr-3 sm:pt-8";
+const innerScrollClassName =
+  "max-h-[84vh] overflow-y-auto pr-2 pt-6 sm:pr-3 sm:pt-8";
 
 const transitionStyle: CSSProperties = {
   transitionDuration: "350ms",
@@ -69,7 +70,10 @@ const JournalModal = ({
   return (
     <DialogPrimitive.Root open={isOpen} onOpenChange={handleOpenChange}>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className={overlayClassName} style={transitionStyle} />
+        <DialogPrimitive.Overlay
+          className={overlayClassName}
+          style={transitionStyle}
+        />
         <DialogPrimitive.Content
           className={contentClassName}
           style={{ ...transitionStyle, ...linenWashStyle }}
@@ -106,7 +110,9 @@ const JournalModal = ({
               <DialogPrimitive.Description asChild>
                 <div className="space-y-6 text-[18px] font-light leading-[1.75] text-[#1a1a1a]">
                   {paragraphs.map((paragraph, index) => (
-                    <p key={`${essay?.slug ?? ""}-paragraph-${index}`}>{paragraph}</p>
+                    <p key={`${essay?.slug ?? ""}-paragraph-${index}`}>
+                      {paragraph}
+                    </p>
                   ))}
                 </div>
               </DialogPrimitive.Description>
@@ -118,7 +124,8 @@ const JournalModal = ({
                     onClick={() => onNavigateNext(essay.readNext!)}
                     className="text-sm font-light tracking-[0.01em] text-[#1a1a1a] underline-offset-[6px] transition-colors duration-300 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-[#1a1a1a]/40 focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf7]"
                   >
-                    {readNextLabel} <span className="font-normal">{nextEssay.title}</span>
+                    {readNextLabel}{" "}
+                    <span className="font-normal">{nextEssay.title}</span>
                   </button>
                 </footer>
               ) : null}
