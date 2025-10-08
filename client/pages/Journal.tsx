@@ -32,12 +32,17 @@ const Journal = () => {
       ? `${window.location.origin}/journal`
       : "/journal";
 
+    const heroImageUrl = typeof window !== "undefined"
+      ? new URL(heroImage.src, window.location.origin).toString()
+      : heroImage.src;
+
     setLinkTag("canonical", canonicalUrl);
     setPropertyMeta("og:type", "website");
     setPropertyMeta("og:title", openGraph.title);
     setPropertyMeta("og:description", openGraph.description);
     setPropertyMeta("og:url", canonicalUrl);
-    setPropertyMeta("og:image", openGraph.image);
+    setPropertyMeta("og:image", heroImageUrl);
+    setPropertyMeta("og:image:alt", heroImage.alt);
 
     injectJsonLd("journal", {
       "@context": "https://schema.org",
@@ -45,6 +50,7 @@ const Journal = () => {
       name: journalDisplay.pageTitle,
       description: openGraph.description,
       url: canonicalUrl,
+      image: heroImageUrl,
       author: {
         "@type": "Person",
         name: "Katherine Taylor",
