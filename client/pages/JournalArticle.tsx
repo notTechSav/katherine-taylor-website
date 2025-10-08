@@ -28,6 +28,19 @@ const JournalArticle = () => {
   const readNextEssay = useMemo(() => getReadNextEssay(slug), [slug]);
   const navigate = useNavigate();
 
+  const formattedPublishedDate = useMemo(() => {
+    if (!essay) return "";
+    const parsed = new Date(essay.publishedDate);
+    if (Number.isNaN(parsed.getTime())) {
+      return essay.publishedDate;
+    }
+    return new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    }).format(parsed);
+  }, [essay]);
+
   useEffect(() => {
     if (!essay) {
       return;
@@ -50,11 +63,16 @@ const JournalArticle = () => {
 
     setLinkTag("canonical", canonicalUrl);
 
+    const heroImageUrl = typeof window !== "undefined"
+      ? new URL(heroImage.src, window.location.origin).toString()
+      : heroImage.src;
+
     setPropertyMeta("og:type", "article");
     setPropertyMeta("og:title", essay.title);
     setPropertyMeta("og:description", description);
     setPropertyMeta("og:url", canonicalUrl);
-    setPropertyMeta("og:image", heroImage.src);
+    setPropertyMeta("og:image", heroImageUrl);
+    setPropertyMeta("og:image:alt", heroImage.alt);
 
     injectJsonLd("journal-article", {
       "@context": "https://schema.org",
@@ -75,7 +93,7 @@ const JournalArticle = () => {
         "@id": canonicalUrl,
       },
       keywords: essayMetadata.keywords,
-      image: heroImage.src,
+      image: heroImageUrl,
     });
 
     return () => {
@@ -91,26 +109,32 @@ const JournalArticle = () => {
 
   return (
     <div className="bg-[#fafaf7] text-[#1a1a1a]">
-      <section className="relative overflow-hidden">
-        <div className="relative h-[42vh] min-h-[260px] sm:h-[48vh]">
+      <section className="relative overflow-hidden bg-[#fafaf7]">
+        <div className="relative h-[48vh] min-h-[260px] w-full sm:h-[52vh]">
           <img
             src={heroImage.src}
             alt={heroImage.alt}
             className="h-full w-full object-cover"
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(26,26,26,0)0%,rgba(26,26,26,0.55)90%)]" aria-hidden />
-          <div className="absolute inset-0 flex items-end px-8 pb-16 sm:px-12">
-            <div className="max-w-2xl space-y-3 text-[#fafaf7]">
-              <p className="text-xs font-light uppercase tracking-[0.12em] text-[#f5f4f0]/80">
-                {essay.publishedDate}
-              </p>
-              <h1
-                className="text-[40px] font-extralight leading-[1.1] sm:text-[48px]"
-                style={headingLetterSpacing}
-              >
-                {essay.title}
-              </h1>
+          <div
+            className="absolute inset-0"
+            style={{ background: "linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.65) 100%)" }}
+            aria-hidden
+          />
+          <div className="absolute inset-0 flex items-end">
+            <div className="mx-auto w-full max-w-[1120px] px-8 pb-16 sm:px-12">
+              <div className="max-w-2xl space-y-3 text-[#fafaf7]">
+                <p className="text-xs font-light uppercase tracking-[0.12em] text-[#f5f4f0]/80">
+                  {formattedPublishedDate}
+                </p>
+                <h1
+                  className="text-[40px] font-extralight leading-[1.1] sm:text-[48px]"
+                  style={headingLetterSpacing}
+                >
+                  {essay.title}
+                </h1>
+              </div>
             </div>
           </div>
         </div>
