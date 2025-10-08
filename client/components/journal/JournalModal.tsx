@@ -1,5 +1,5 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
-import { Fragment, useMemo } from "react";
+import { useMemo } from "react";
 import type { JournalEssay } from "@/lib/journal-content";
 
 interface JournalModalProps {
