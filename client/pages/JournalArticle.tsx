@@ -67,7 +67,13 @@ const JournalArticle = () => {
           <div className="flex justify-between pt-8 text-sm font-light text-[#1a1a1a]">
             <button
               type="button"
-              onClick={() => navigate(-1)}
+              onClick={() => {
+                if (window.history.length > 1) {
+                  navigate(-1);
+                } else {
+                  navigate("/journal", { replace: true });
+                }
+              }}
               className="underline-offset-[6px] transition-colors duration-300 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-[#1a1a1a]/40 focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf7]"
             >
               {journalDisplay.closeLabel}
