@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { type Location, useLocation, useNavigate, useParams } from "react-router-dom";
 import JournalModal from "@/components/journal/JournalModal";
 import { getEssayBySlug, getReadNextEssay, journalDisplay } from "@/lib/journal-content";
@@ -14,6 +14,7 @@ const JournalModalRoute = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const state = location.state as LocationState | undefined;
+  const scrollPositionRef = useRef(0);
 
   const essay = getEssayBySlug(slug);
   const nextEssay = getReadNextEssay(slug ?? undefined);
@@ -27,6 +28,40 @@ const JournalModalRoute = () => {
       navigate("/journal", { replace: true });
     }
   }, [essay, navigate, slug]);
+
+  useEffect(() => {
+    if (!essay) {
+      return;
+    }
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const body = document.body;
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+    const alreadyLocked = body.style.position === "fixed";
+
+    if (!alreadyLocked) {
+      scrollPositionRef.current = window.scrollY;
+      body.style.position = "fixed";
+      body.style.top = `-${scrollPositionRef.current}px`;
+      body.style.width = "100%";
+      if (scrollbarWidth > 0) {
+        body.style.paddingRight = `${scrollbarWidth}px`;
+      }
+      body.classList.add("journal-modal-open");
+    }
+
+    return () => {
+      const storedScroll = scrollPositionRef.current;
+      body.style.position = "";
+      body.style.top = "";
+      body.style.width = "";
+      body.style.paddingRight = "";
+      body.classList.remove("journal-modal-open");
+      window.scrollTo(0, storedScroll);
+    };
+  }, [Boolean(essay)]);
 
   const handleClose = () => {
     if (state?.backgroundLocation) {
