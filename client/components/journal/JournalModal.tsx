@@ -80,7 +80,7 @@ const JournalModal = ({
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-8 top-8 text-sm font-light tracking-[0.08em] text-[#1a1a1a] underline-offset-4 transition-colors duration-300 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-[#1a1a1a]/40 focus-visible:ring-offset-4 focus-visible_ring-offset-[#fafaf7]"
+              className="absolute right-8 top-8 text-sm font-light tracking-[0.08em] text-[#1a1a1a] underline-offset-4 transition-colors duration-300 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-[#1a1a1a]/40 focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf7]"
             >
               {closeLabel}
             </button>
