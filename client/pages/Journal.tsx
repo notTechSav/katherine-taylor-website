@@ -1,14 +1,37 @@
+'use client';
+
+import { useLocation, useNavigate } from "react-router-dom";
+import JournalFooter from "@/components/journal/JournalFooter";
+import JournalGrid from "@/components/journal/JournalGrid";
+import JournalHero from "@/components/journal/JournalHero";
+import { essays, heroImage, journalDisplay, journalFooter } from "@/lib/journal-content";
+
 const Journal = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleOpen = (slug: string) => {
+    navigate(`/journal/${slug}`, {
+      state: { backgroundLocation: location },
+    });
+  };
+
   return (
-    <section className="flex min-h-[60vh] flex-col items-center justify-center bg-white px-6 py-24 text-center">
-      <h1 className="text-4xl font-light uppercase tracking-[0.35em] text-gray-900">
-        Journal
-      </h1>
-      <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-gray-600">
-        Stay up to date with editorials, interviews, and inspiration from the
-        world of Katherine Taylor. Articles and updates will appear here soon.
-      </p>
-    </section>
+    <div className="bg-[#fafaf7] text-[#1a1a1a]">
+      <JournalHero
+        title={journalDisplay.pageTitle}
+        subtitle={journalDisplay.subtitle}
+        imageSrc={heroImage.src}
+        imageAlt={heroImage.alt}
+      />
+      <JournalGrid
+        entries={essays}
+        microline={journalDisplay.microline}
+        onOpen={handleOpen}
+        ctaLabel={journalDisplay.ctaLabel}
+      />
+      <JournalFooter intro={journalFooter.intro} links={journalFooter.links} />
+    </div>
   );
 };
 
