@@ -70,8 +70,8 @@ const JournalModal = ({
                   type="button"
                   onClick={() => onNavigateNext(essay.readNext!)}
                   className="text-sm font-light tracking-[0.01em] text-[#1a1a1a] underline-offset-[6px] transition-colors duration-300 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-[#1a1a1a]/40 focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf7]"
-                >
-                  {readNextLabel} <span className="font-normal">{essay?.readNext.replace(/-/g, " ")}</span>
+>
+                  {readNextLabel} <span className="font-normal">{nextEssay.title}</span>
                 </button>
               </footer>
             ) : null}
