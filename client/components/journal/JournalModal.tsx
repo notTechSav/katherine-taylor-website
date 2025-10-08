@@ -20,6 +20,7 @@ const contentClassName =
 
 const transitionStyle: CSSProperties = {
   transitionDuration: "350ms",
+  transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
 };
 
 const JournalModal = ({
