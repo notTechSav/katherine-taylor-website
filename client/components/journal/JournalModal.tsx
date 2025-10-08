@@ -45,8 +45,12 @@ const JournalModal = ({
   return (
     <DialogPrimitive.Root open={isOpen} onOpenChange={handleOpenChange}>
       <DialogPrimitive.Portal>
-        <DialogPrimitive.Overlay className={overlayClassName} />
-        <DialogPrimitive.Content className={contentClassName} aria-describedby={undefined}>
+        <DialogPrimitive.Overlay className={overlayClassName} style={transitionStyle} />
+        <DialogPrimitive.Content
+          className={contentClassName}
+          style={transitionStyle}
+          aria-describedby={undefined}
+        >
           <div className="flex flex-col gap-8">
             <header className="space-y-3 text-left">
               <p className="text-xs font-light uppercase tracking-[0.12em] text-[#4a4a4a]">
