@@ -89,9 +89,11 @@ const JournalModal = ({
           <div className={innerScrollClassName}>
             <div className="flex flex-col gap-8 text-left">
               <header className="space-y-3">
-                <p className="text-xs font-light uppercase tracking-[0.12em] text-[#4a4a4a]">
-                  Published {formattedPublishedDate}
-                </p>
+                {formattedPublishedDate ? (
+                  <p className="text-xs font-light uppercase tracking-[0.12em] text-[#4a4a4a]">
+                    Published {formattedPublishedDate}
+                  </p>
+                ) : null}
                 <DialogPrimitive.Title asChild>
                   <h2
                     className="text-[32px] font-extralight leading-[1.2] tracking-[-0.02em] text-[#1a1a1a]"
