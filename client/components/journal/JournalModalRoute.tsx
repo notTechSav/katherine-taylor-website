@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { type Location, useLocation, useNavigate, useParams } from "react-router-dom";
 import JournalModal from "@/components/journal/JournalModal";
 import { getEssayBySlug, getReadNextEssay, journalDisplay } from "@/lib/journal-content";
 
@@ -19,10 +19,14 @@ const JournalModalRoute = () => {
   const nextEssay = getReadNextEssay(slug ?? undefined);
 
   useEffect(() => {
+    if (!slug) {
+      navigate("/journal", { replace: true });
+      return;
+    }
     if (!essay) {
       navigate("/journal", { replace: true });
     }
-  }, [essay, navigate]);
+  }, [essay, navigate, slug]);
 
   const handleClose = () => {
     if (state?.backgroundLocation) {
@@ -33,7 +37,7 @@ const JournalModalRoute = () => {
   };
 
   const handleNavigateNext = (nextSlug: string) => {
-    navigate(`/journal/${nextSlug}` , {
+    navigate(`/journal/${nextSlug}`, {
       replace: true,
       state: { backgroundLocation: state?.backgroundLocation ?? location },
     });
