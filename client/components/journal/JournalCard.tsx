@@ -26,7 +26,7 @@ const JournalCard = memo(
         <button
           type="button"
           onClick={() => onOpen(slug)}
-          className="inline-flex items-center text-[14px] font-light tracking-[0.01em] text-[#1a1a1a] transition-all"
+          className="inline-flex items-center text-[14px] font-light tracking-[0.01em] text-[#1a1a1a] transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-[#1a1a1a]/40 focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf7]"
           style={{
             transitionDuration: "350ms",
             letterSpacing: "0.01em",
