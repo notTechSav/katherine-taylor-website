@@ -22,44 +22,32 @@ export const useDynamicContent = (options: DynamicContentOptions = {}) => {
   const generateContent = async () => {
     const page = options.page || window.location.pathname || "home";
     const brandVoice = options.brandVoice || "Katherine Taylor brand voice";
-    const prompt = options.customPrompt || 
+    const prompt = options.customPrompt ||
       `Write the final website copy for the ${page} page in the ${brandVoice}. Use quiet authority, precision, no filler.`;
 
     setState(prev => ({ ...prev, loading: true, error: null }));
 
     try {
-      const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
-
-      if (!apiKey) {
-        throw new Error('Anthropic API key not found. Please set VITE_ANTHROPIC_API_KEY environment variable.');
-      }
-
-      const response = await fetch("https://api.anthropic.com/v1/messages", {
+      // Call server-side API route instead of Anthropic directly (security best practice)
+      const response = await fetch("/api/content/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "x-api-key": apiKey,
-          "anthropic-version": "2023-06-01",
         },
         body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 4096,
-          system: "Return only HTML, no commentary.",
-          messages: [
-            {
-              role: "user",
-              content: prompt
-            }
-          ]
+          prompt,
+          temperature: 0.9,
+          maxTokens: 4096,
         })
       });
 
       if (!response.ok) {
-        throw new Error(`API request failed: ${response.status} ${response.statusText}`);
+        const errorData = await response.json().catch(() => ({}));
+        throw new Error(errorData.error || `API request failed: ${response.status} ${response.statusText}`);
       }
 
       const data = await response.json();
-      const content = data.content?.[0]?.text || "";
+      const content = data.content || "";
 
       setState({
         content,
