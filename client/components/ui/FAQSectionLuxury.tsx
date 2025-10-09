@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { ChevronDown, ExternalLink } from 'lucide-react';
 
 import { cn } from "@/lib/utils";
 
@@ -8,61 +9,85 @@ type FaqItem = {
   id: string;
   question: string;
   answer: string;
+  seoLinks: Array<{ text: string; url: string }>;
+  featured: boolean;
 };
 
-const featuredFaqs: FaqItem[] = [
+const faqData: FaqItem[] = [
   {
     id: "what-is-escort",
     question: "What is an escort?",
-    answer:
-      "Having worked as an escort for over a decade, I can tell you it's refined companionship at its finest. As Katherine Taylor escort, I offer what the best SF escorts aspire to—cultured company that's elegant, confidential, and beautifully timed. Unlike what you might find searching 'escorts near me,' this is bespoke connection.",
+    answer: "A refined companion. As Katherine Taylor escort, I offer cultured company—elegant, confidential, and beautifully timed—what discerning sf escorts aspire to.",
+    seoLinks: [
+      { text: "About Companionship", url: "/companion-services" },
+      { text: "Etiquette Guide", url: "/escort-etiquette" }
+    ],
+    featured: true
   },
   {
     id: "how-much-do-escorts-cost",
     question: "How much do escorts cost?",
-    answer:
-      "After over a decade as a San Francisco escort, I've seen rates vary wildly—from $400 to $5000+ per hour. My rates begin at $2000 hourly, reflecting the caliber of experience you won't find in typical 'escort near me' searches. This investment ensures exclusive attention, impeccable preparation, and the refined companionship that distinguishes premium SF escorts.",
+    answer: "After over a decade as an escort in San Francisco, I've observed that rates vary significantly based on experience, location, and service quality. My current rates are transparently detailed on my rates page, reflecting the caliber of companionship I provide.",
+    seoLinks: [
+      { text: "View Rates", url: "/escort-rates-sf" },
+      { text: "Premium Services", url: "/luxury-escort-services" }
+    ],
+    featured: true
   },
   {
     id: "katherine-taylor-different",
-    question: "What sets Katherine Taylor apart from other escorts near me?",
-    answer:
-      "In my decade-plus among San Francisco escorts and Bay Area escorts, I've cultivated something rare: truly bespoke encounters. While others juggle volume, I accept only 3-4 bookings monthly. Whether you're searching 'SF escort' or 'Sacramento escorts,' you'll find I'm the outlier—immaculate preparation, genuine chemistry, and experiences that transcend transaction.",
-  },
-];
-
-const hiddenFaqs: FaqItem[] = [
-  {
-    id: "escort-vs-prostitute",
-    question: "What is the difference between an escort and a prostitute?",
-    answer:
-      "After over a decade as an escort in San Francisco, I can clarify: escorts provide companionship services—attending events, dinners, cultural activities, offering sophisticated conversation. The distinction matters. When you search 'San Francisco escorts' or 'Bay Area escorts,' you're seeking social companionship, not transactional encounters. The focus remains on genuine connection.",
+    question: "What Sets Katherine Taylor Apart from Other Escorts Near Me?",
+    answer: "Among San Francisco escorts and Bay Area escorts, I keep encounters bespoke: limited bookings, immaculate preparation, and chemistry that feels effortless.",
+    seoLinks: [
+      { text: "Exclusive Services", url: "/premium-escort-experience" },
+      { text: "San Francisco Portfolio", url: "/sf-escort-gallery" }
+    ],
+    featured: true
   },
   {
     id: "escorting-legal",
-    question: "Is escorting legal in San Francisco and Sacramento?",
-    answer:
-      "Yes, with nuance. In my years as both a San Francisco escort and among Sacramento escorts, I've learned that companionship services operate legally when focused on social accompaniment. Whether you're searching 'SF escorts' or 'Sacramento escorts,' professional boundaries and mutual respect keep everything above board. Bay Area escorts who maintain these standards thrive.",
+    question: "Is escorting legal?",
+    answer: "Yes and no; when meeting San Francisco escorts, Sacramento escorts, or Bay Area escorts, try to keep to etiquette and the law tends favor you for being respectful.",
+    seoLinks: [
+      { text: "Legal Information", url: "/escort-laws-california" },
+      { text: "Safety Guidelines", url: "/escort-safety-tips" }
+    ],
+    featured: false
   },
   {
-    id: "what-do-escorts-do",
-    question: "What do escorts do?",
-    answer:
-      "Having spent over a decade as Katherine Taylor escort, I provide sophisticated companionship that goes beyond what most 'escorts near me' searches yield. From tech galas in SF to wine country retreats, I offer genuine connection, cultural fluency, and social ease. This isn't what you'll find from typical San Francisco escorts—it's carefully curated experience.",
+    id: "how-to-find-escort",
+    question: "How to find an escort?",
+    answer: "Introduce yourself with date, time, and city—San Francisco, Sacramento, or elsewhere in the Bay Area. My escort rates in San Francisco are shared upon confirmation—clear, tasteful, and simple.",
+    seoLinks: [
+      { text: "Booking Process", url: "/how-to-book" },
+      { text: "Contact Guidelines", url: "/escort-contact-etiquette" }
+    ],
+    featured: false
   },
   {
     id: "are-escorts-safe",
     question: "Are escorts safe?",
-    answer:
-      "In my decade-plus as an SF escort, safety has been paramount. Unlike random 'escort near me' encounters, established San Francisco escorts maintain thorough screening, clear boundaries, and mutual respect. My process, refined over years among Bay Area escorts, ensures both parties feel secure and valued.",
+    answer: "Safety in escorting depends on thorough screening, clear communication, and professional boundaries. In my decade-plus experience, I maintain strict screening protocols and always prioritize mutual safety and respect.",
+    seoLinks: [
+      { text: "Safety Protocols", url: "/escort-safety-screening" },
+      { text: "Professional Standards", url: "/escort-safety-guidelines" }
+    ],
+    featured: false
   },
   {
-    id: "escorts-near-me-travel",
-    question: "What if I'm searching 'escorts near me' but you're not nearby?",
-    answer:
-      "I split my time as both a San Francisco escort and among Sacramento escorts, but distance is merely logistics. Whether you're searching 'SF escort,' 'Bay Area escorts,' or need me elsewhere entirely, fly-me-to-you arrangements are welcome. After a decade of travel companionship, I've perfected the art of arrival.",
-  },
+    id: "escorts-near-me",
+    question: "What if you're nowhere near me when I search \"escorts near me\"?",
+    answer: "I tour and host across the Bay Area—most often as a San Francisco escort—and I indulge in being one of the Sacramento escorts. Fly-me-to-you is available; distance is merely an invitation.",
+    seoLinks: [
+      { text: "Bay Area Services", url: "/bay-area-escort-services" },
+      { text: "Travel Arrangements", url: "/escort-travel-booking" }
+    ],
+    featured: false
+  }
 ];
+
+const featuredFaqs = faqData.filter(item => item.featured);
+const hiddenFaqs = faqData.filter(item => !item.featured);
 
 const FAQSectionLuxury = () => {
   const [openFaq, setOpenFaq] = useState<string | null>(null);
@@ -114,100 +139,118 @@ const FAQSectionLuxury = () => {
   };
 
   const FAQItem = ({ item, isOpen }: { item: FaqItem; isOpen: boolean }) => (
-    <div className="border-t border-stone-200">
+    <article
+      id={item.id}
+      className="group border border-stone-200/50 bg-white overflow-hidden transition-all duration-300 hover:shadow-[0_1px_1px_rgba(0,0,0,0.12),0_2px_2px_rgba(0,0,0,0.12),0_4px_4px_rgba(0,0,0,0.12),0_8px_8px_rgba(0,0,0,0.12)] hover:border-stone-300/60"
+    >
       <button
         onClick={() => handleToggle(item.id)}
-        className="group flex w-full items-start justify-between py-8 transition-all duration-luxury-fast ease-luxury-in focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:py-10"
+        className="w-full px-6 md:px-8 py-6 md:py-8 text-left flex items-center justify-between hover:bg-gradient-to-r hover:from-stone-50/50 hover:to-stone-50/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-stone-300 focus:ring-offset-2"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${item.id}`}
         ref={(el) => {
           faqRefs.current[item.id] = el;
         }}
       >
-        <h3 className="pr-8 text-left text-[0.9rem] font-light tracking-[0.05em] text-stone-900 transition-colors duration-300 group-hover:text-stone-600 sm:text-base">
+        <h3 className="text-lg md:text-xl font-light text-stone-900 tracking-[0.05em] pr-4 group-hover:text-stone-600 transition-colors duration-300">
           {item.question}
         </h3>
-        <div className="mt-1">
-          <span
-            aria-hidden="true"
-            className={cn(
-              "inline-block text-base leading-none text-stone-400 transition-colors",
-              isOpen && "group-hover:text-stone-600",
-            )}
-          >
-            {isOpen ? "–" : "+"}
-          </span>
-        </div>
+        <ChevronDown
+          className={cn(
+            "w-5 h-5 md:w-6 md:h-6 text-stone-400 transition-all duration-300",
+            isOpen ? "rotate-180 scale-110" : "group-hover:scale-110"
+          )}
+        />
       </button>
 
       <div
         id={`faq-answer-${item.id}`}
-        className={`overflow-hidden transition-all duration-500 ${
-          isOpen ? "max-h-96 pb-8" : "max-h-0"
-        }`}
+        className={cn(
+          "transition-all duration-500 ease-out overflow-hidden",
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        )}
       >
-        <div className="pr-12 md:pr-24">
-          <p className="max-w-[65ch] text-[0.82rem] font-light leading-7 tracking-wide text-stone-600/90 sm:text-sm">
+        <div className="px-6 md:px-8 pb-6 md:pb-8">
+          <div className="w-16 h-px bg-gradient-to-r from-stone-400 to-transparent mb-4 md:mb-6" />
+
+          <p className="text-base md:text-lg text-stone-700 leading-[1.8] mb-4 md:mb-6 font-light tracking-[0.01em] max-w-[65ch]">
             {item.answer}
           </p>
 
-          <div className="mt-6">
-            <a
-              href="/booking"
-              className="inline-block border-b border-stone-900 pb-1 text-[0.68rem] uppercase tracking-[0.38em] text-stone-900 transition-all duration-luxury-fast ease-luxury-in hover:border-stone-600 hover:text-stone-600"
-            >
-              Learn More
-            </a>
+          <div className="flex flex-wrap gap-3">
+            {item.seoLinks.map((link, linkIndex) => (
+              <a
+                key={linkIndex}
+                href={link.url}
+                className="group inline-flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-stone-100 hover:bg-stone-200 text-stone-800 hover:text-stone-900 text-xs md:text-sm font-medium tracking-[0.08em] transition-all duration-300 hover:shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:-translate-y-0.5"
+              >
+                <span>{link.text}</span>
+                <ExternalLink className="w-3 h-3 md:w-4 md:h-4 transition-transform group-hover:translate-x-0.5" />
+              </a>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 
   return (
-    <section className="relative bg-luxury-white py-24 md:py-32 lg:py-40">
-      <div className="mx-auto max-w-luxury px-8 md:px-12">
-        <div className="mb-20 text-center md:mb-28">
-          <span className="mb-4 block text-[0.78rem] uppercase tracking-[0.4em] text-stone-500">
-            Insights & Guidance
-          </span>
-          <h2 className="mb-6 font-serif text-4xl tracking-[0.04em] text-stone-900 md:text-5xl">
-            Frequently Asked Questions
+    <section className="relative py-20 md:py-32 bg-white" id="faq">
+      <div className="container mx-auto px-6 md:px-8">
+
+        <div className="text-center mb-16 md:mb-20">
+          <div className="inline-flex items-center gap-4 mb-8">
+            <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent to-stone-400"></div>
+            <div className="w-1.5 h-1.5 bg-stone-400 rotate-45"></div>
+            <div className="w-12 md:w-16 h-px bg-gradient-to-r from-stone-400 to-transparent"></div>
+          </div>
+
+          <h2 className="text-4xl md:text-5xl font-extralight tracking-[0.05em] text-stone-900 mb-6">
+            FAQ
           </h2>
-          <div className="mx-auto mb-6 h-px w-24 bg-stone-300" />
-          <p className="mx-auto max-w-[65ch] text-[0.82rem] leading-7 text-stone-600/90 sm:text-sm">
-            After over a decade as Katherine Taylor escort in San Francisco and
-            Sacramento, I answer what "escorts near me" searches won't tell you.
+          <p className="text-lg md:text-xl text-stone-600 tracking-[0.02em] font-light leading-[1.8] max-w-3xl mx-auto">
+            What is an escort? How much do escorts cost? After over a decade in San Francisco, Katherine Taylor escorts You, If You Will, Through Escort Culture as your personal tour guide through San Francisco, Sacramento, and the Bay Area.
           </p>
         </div>
 
-        <div className="mx-auto max-w-4xl">
-          <div>
+        <div className="max-w-4xl mx-auto">
+
+          {/* Featured FAQs (always visible) */}
+          <div className="space-y-4 mb-6">
             {featuredFaqs.map((item) => (
               <FAQItem key={item.id} item={item} isOpen={openFaq === item.id} />
             ))}
-
-            {showHidden &&
-              hiddenFaqs.map((item) => (
-                <FAQItem
-                  key={item.id}
-                  item={item}
-                  isOpen={openFaq === item.id}
-                />
-              ))}
-
-            <div className="border-t border-stone-200" />
           </div>
 
-          <div className="mt-12 text-center">
-            <Button
-              variant="ctaSecondary"
-              type="button"
+          {/* Hidden FAQs (expandable) */}
+          <div className={cn(
+            "space-y-4 transition-all duration-700 ease-in-out overflow-hidden",
+            showHidden ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
+          )}>
+            {hiddenFaqs.map((item) => (
+              <FAQItem
+                key={item.id}
+                item={item}
+                isOpen={openFaq === item.id}
+              />
+            ))}
+          </div>
+
+          {/* Show More/Less Toggle */}
+          <div className="text-center mt-8">
+            <button
               onClick={() => setShowHidden((prev) => !prev)}
+              className="group inline-flex items-center gap-3 px-8 py-4 border border-stone-300 hover:border-stone-400 text-stone-700 hover:text-stone-900 font-medium tracking-[0.1em] transition-all duration-300 hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)] transform hover:-translate-y-0.5 text-sm"
               aria-expanded={showHidden}
             >
-              {showHidden ? "Show Less" : "View All Questions"}
-            </Button>
+              <span>{showHidden ? 'SHOW FEWER' : 'STEP FURTHER'}</span>
+              <ChevronDown
+                className={cn(
+                  "w-4 h-4 transition-all duration-300",
+                  showHidden && "rotate-180"
+                )}
+              />
+            </button>
           </div>
         </div>
       </div>
