@@ -10,15 +10,15 @@ console.log('━━━━━━━━━━━━━━━━━━━━━━�
 
 // Check environment variables
 console.log('📋 Environment Variables:');
-console.log('  AI_GATEWAY_API_KEY:', process.env.AI_GATEWAY_API_KEY ? '✅ Set (starting with: ' + process.env.AI_GATEWAY_API_KEY.substring(0, 10) + '...)' : '❌ Not set');
-console.log('  OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? '✅ Set (starting with: ' + process.env.OPENAI_API_KEY.substring(0, 10) + '...)' : '❌ Not set');
+console.log('  AI_GATEWAY_API_KEY:', process.env.AI_GATEWAY_API_KEY ? '✅ Set (hidden)' : '❌ Not set');
+console.log('  OPENAI_API_KEY:', process.env.OPENAI_API_KEY ? '✅ Set (hidden)' : '❌ Not set');
 console.log('');
 
 // Show the configuration
 console.log('🔧 Gateway Configuration:');
 console.log('  Base URL: https://api.vercel.com/v1/ai-gateway');
 console.log('  Expected Header: X-Vercel-AI-Gateway-API-Key');
-console.log('  Your Gateway Key starts with:', process.env.AI_GATEWAY_API_KEY?.substring(0, 15) + '...');
+console.log('  Gateway Key Status:', process.env.AI_GATEWAY_API_KEY ? 'Set (hidden)' : 'Not set');
 console.log('');
 
 // Test a manual fetch to see the actual request
