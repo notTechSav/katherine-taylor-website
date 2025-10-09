@@ -2,8 +2,9 @@
 
 import { useCallback, useMemo, useState } from "react";
 
+// Remove query params for responsive image component
 const BACKGROUND_IMAGE_URL =
-  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe8959b4139fc4dd9a3ce4786c1b4e8dc?format=webp&width=1600";
+  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe8959b4139fc4dd9a3ce4786c1b4e8dc";
 
 const GUIDANCE_COPY = [
   "I don't expect gifts. When they happen, they feel like punctuation — a quiet thank-you, a gesture that marks continuity, not transaction.",
@@ -27,13 +28,22 @@ const Gifts = () => {
   return (
     <div className="bg-[#f5f3f0] text-[#1a1a1a]">
       <section className="relative isolate min-h-[60vh]">
-        <div
-          className="absolute inset-0 -z-20"
-          aria-hidden
+        <img
+          src={`${BACKGROUND_IMAGE_URL}?format=webp&width=1600`}
+          srcSet={`
+            ${BACKGROUND_IMAGE_URL}?format=webp&width=400 400w,
+            ${BACKGROUND_IMAGE_URL}?format=webp&width=800 800w,
+            ${BACKGROUND_IMAGE_URL}?format=webp&width=1200 1200w,
+            ${BACKGROUND_IMAGE_URL}?format=webp&width=1600 1600w,
+            ${BACKGROUND_IMAGE_URL}?format=webp&width=2400 2400w
+          `}
+          sizes="100vw"
+          alt="Gifts background"
+          loading="eager"
+          decoding="async"
+          className="absolute inset-0 -z-20 h-full w-full object-cover object-center"
           style={{
-            backgroundImage: `url(${BACKGROUND_IMAGE_URL})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center 35%",
+            objectPosition: "center 35%",
             filter: "grayscale(8%)",
             opacity: 0.65,
           }}

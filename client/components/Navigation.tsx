@@ -3,6 +3,17 @@ import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
+// Route prefetch mapping for lazy-loaded pages
+const routePrefetchMap: Record<string, () => Promise<any>> = {
+  '/about': () => import('@/pages/About'),
+  '/gallery': () => import('@/pages/Gallery'),
+  '/gifts': () => import('@/pages/Gifts'),
+  '/journal': () => import('@/pages/Journal'),
+  '/rates': () => import('@/pages/Rates'),
+  '/faq': () => import('@/pages/FAQ'),
+  '/inquire': () => import('@/pages/Inquire'),
+};
+
 const navigationLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
@@ -39,6 +50,16 @@ const Navigation = () => {
     setIsMenuOpen(false);
   };
 
+  // Prefetch route on hover for instant navigation
+  const handleMouseEnter = (href: string) => {
+    const prefetch = routePrefetchMap[href];
+    if (prefetch) {
+      prefetch().catch(() => {
+        // Silently fail if prefetch errors
+      });
+    }
+  };
+
   return (
     <nav
       className={cn(
@@ -70,6 +91,7 @@ const Navigation = () => {
             <li key={link.label}>
               <a
                 href={link.href}
+                onMouseEnter={() => handleMouseEnter(link.href)}
                 className="text-sm font-extralight uppercase tracking-widest text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
               >
                 {link.label}
