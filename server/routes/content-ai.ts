@@ -12,9 +12,16 @@ import {
 
 /**
  * POST /api/content/generate
- * Generate luxury service description
- * 
- * Body:
+ * Generate content - supports both generic prompts and structured service details
+ *
+ * Body (Generic):
+ * {
+ *   prompt: string;
+ *   temperature?: number;
+ *   maxTokens?: number;
+ * }
+ *
+ * Body (Service Details):
  * {
  *   serviceName: string;
  *   description?: string;
@@ -27,12 +34,48 @@ import {
  */
 export const handleGenerateContent: RequestHandler = async (req, res) => {
   try {
-    const serviceDetails = req.body;
+    const requestBody = req.body;
 
-    // Validation
+    // Check if this is a generic prompt request
+    if (requestBody.prompt) {
+      const { prompt, temperature = 0.7, maxTokens = 4096 } = requestBody;
+
+      if (!prompt || typeof prompt !== 'string') {
+        return res.status(400).json({
+          error: 'prompt must be a non-empty string',
+        });
+      }
+
+      console.log(`Generating content from generic prompt (${prompt.substring(0, 50)}...)`);
+
+      // Import Anthropic SDK for direct API call
+      const Anthropic = require('@anthropic-ai/sdk');
+      const anthropic = new Anthropic({
+        apiKey: process.env.ANTHROPIC_API_KEY,
+      });
+
+      const response = await anthropic.messages.create({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: maxTokens,
+        temperature,
+        messages: [{ role: 'user', content: prompt }],
+      });
+
+      const content = response.content[0].text;
+
+      return res.json({
+        success: true,
+        content,
+        generatedAt: new Date().toISOString(),
+      });
+    }
+
+    // Otherwise, treat as service description request
+    const serviceDetails = requestBody;
+
     if (!serviceDetails.serviceName) {
       return res.status(400).json({
-        error: 'serviceName is required',
+        error: 'Either "prompt" or "serviceName" is required',
       });
     }
 
