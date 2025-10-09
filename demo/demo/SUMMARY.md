@@ -211,3 +211,4 @@ const result = await generateText({
 - [AI Gateway Docs](https://vercel.com/docs/ai-gateway)
 - [OpenAI Platform](https://platform.openai.com/)
 
+

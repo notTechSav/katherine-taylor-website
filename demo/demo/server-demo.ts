@@ -125,3 +125,4 @@ app.listen(PORT, () => {
   console.log(`   curl -X POST http://localhost:${PORT}/api/generate -H "Content-Type: application/json" -d '{"prompt":"Hello!"}'`);
 });
 
+
