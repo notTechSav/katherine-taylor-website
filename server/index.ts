@@ -2,6 +2,12 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { handleDemo } from "./routes/demo";
+import {
+  handleGenerateContent,
+  handleBatchGenerate,
+  handleSeasonalRefresh,
+  handleHealthCheck,
+} from "./routes/content-ai";
 
 export function createServer() {
   const app = express();
@@ -18,6 +24,12 @@ export function createServer() {
   });
 
   app.get("/api/demo", handleDemo);
+
+  // AI Content Generation routes
+  app.get("/api/content/health", handleHealthCheck);
+  app.post("/api/content/generate", handleGenerateContent);
+  app.post("/api/content/batch-generate", handleBatchGenerate);
+  app.post("/api/content/refresh-seasonal", handleSeasonalRefresh);
 
   return app;
 }

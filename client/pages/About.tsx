@@ -2,6 +2,7 @@ import { useEffect } from "react";
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from "@/lib/utils";
+import DynamicContent from "@/components/DynamicContent";
 
 const ABOUT_HERO_IMAGE =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F555456e693aa4baea56d46da819d34af?format=webp&width=1600";
@@ -61,6 +62,19 @@ const About = () => {
             you don’t say.
           </p>
         </header>
+
+        <div className="my-16 flex justify-center" aria-hidden="true">
+          <span className="h-24 w-px bg-gradient-to-b from-transparent via-[#8b7355]/60 to-transparent opacity-40" />
+        </div>
+
+        {/* AI-Generated Content Section */}
+        <div className="my-16">
+          <DynamicContent 
+            page="about"
+            brandVoice="Katherine Taylor brand voice"
+            className="text-[#4a4a4a]"
+          />
+        </div>
 
         <div className="my-16 flex justify-center" aria-hidden="true">
           <span className="h-24 w-px bg-gradient-to-b from-transparent via-[#8b7355]/60 to-transparent opacity-40" />

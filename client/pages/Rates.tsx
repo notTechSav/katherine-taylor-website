@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import DynamicContent from "@/components/DynamicContent";
 
 const RatesPage = () => {
   const [isRevealed, setIsRevealed] = useState(false);
@@ -18,6 +19,15 @@ const RatesPage = () => {
           <p className="mb-6 text-[1.0625rem] font-light tracking-[0.01em] text-neutral-700 leading-[1.85]">
             My work is cumulative, not transactional. Each engagement carries forward the full history of your context—professional, personal, logistical—so nothing resets. The premium reflects continuity, discretion, and the scarcity discipline required to deliver them without compromise.
           </p>
+          
+          {/* AI-Generated Content Section */}
+          <div className="mt-12">
+            <DynamicContent 
+              page="rates"
+              brandVoice="Katherine Taylor brand voice"
+              className="text-neutral-700"
+            />
+          </div>
         </div>
       </section>
 

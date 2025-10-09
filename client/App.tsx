@@ -18,6 +18,7 @@ import Journal from "./pages/Journal";
 import JournalArticle from "./pages/JournalArticle";
 import Maison from "./pages/Maison";
 import Rates from "./pages/Rates";
+import ContentGenerator from "./pages/ContentGenerator";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -111,6 +112,14 @@ const AppRoutes = () => {
             element={
               <SiteLayout>
                 <Maison />
+              </SiteLayout>
+            }
+          />
+          <Route
+            path="/content-generator"
+            element={
+              <SiteLayout>
+                <ContentGenerator />
               </SiteLayout>
             }
           />
