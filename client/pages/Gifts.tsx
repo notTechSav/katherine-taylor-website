@@ -25,7 +25,7 @@ const Gifts = () => {
   );
 
   return (
-    <div className="bg-[#faf8f5] text-[#1a1a1a]">
+    <div className="bg-[#f5f3f0] text-[#1a1a1a]">
       <section className="relative isolate min-h-[60vh]">
         <div
           className="absolute inset-0 -z-20"
@@ -35,14 +35,14 @@ const Gifts = () => {
             backgroundSize: "cover",
             backgroundPosition: "center 35%",
             filter: "grayscale(8%)",
-            opacity: 0.18,
+            opacity: 0.65,
           }}
         />
         <div
           className="absolute inset-0 -z-10"
           aria-hidden
           style={{
-            background: "linear-gradient(180deg, rgba(250, 248, 245, 0.4) 0%, rgba(250, 248, 245, 0.2) 100%)",
+            background: "linear-gradient(180deg, rgba(245, 243, 240, 0.4) 0%, rgba(245, 243, 240, 0.2) 100%)",
           }}
         />
 
@@ -56,7 +56,7 @@ const Gifts = () => {
                   fontSize: "48px",
                   letterSpacing: "-0.02em",
                   lineHeight: 1.1,
-                  color: "#1A1A1A",
+                  color: "#262626",
                   marginBottom: "16px",
                 }}
               >
@@ -82,7 +82,7 @@ const Gifts = () => {
                 onClick={toggleGuidance}
                 aria-expanded={isExpanded}
                 aria-controls="gifts-guidance"
-                className="inline-flex items-center justify-center border border-[rgba(26,26,26,0.15)] bg-transparent px-7 py-3 text-[14px] font-light tracking-[0.02em] text-[#1A1A1A] transition-all duration-[480ms] ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-[1px] hover:border-[rgba(26,26,26,0.32)] hover:bg-[rgba(26,26,26,0.02)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(26,26,26,0.32)]"
+                className="inline-flex items-center justify-center border border-[rgba(26,26,26,0.2)] bg-transparent px-7 py-3 text-[14px] font-light tracking-[0.02em] text-[#1a1a1a] transition-all duration-[480ms] ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-[1px] hover:border-[rgba(26,26,26,0.4)] hover:bg-[rgba(26,26,26,0.02)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(26,26,26,0.32)]"
               >
                 {revealButtonLabel}
               </button>
@@ -111,7 +111,7 @@ const Gifts = () => {
                     fontSize: "17px",
                     letterSpacing: "0.008em",
                     lineHeight: 1.85,
-                    color: "rgba(26, 26, 26, 0.88)",
+                    color: "#404040",
                   }}
                 >
                   {paragraph}

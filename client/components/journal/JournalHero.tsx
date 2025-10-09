@@ -16,6 +16,8 @@ const JournalHero = memo(({ title, subtitle, imageSrc, imageAlt }: JournalHeroPr
       <figure className="relative h-[48vh] min-h-[280px] w-full overflow-hidden sm:h-[52vh]">
         <img src={imageSrc} alt={imageAlt} className="h-full w-full object-cover" loading="lazy" />
         <div className="absolute inset-0" style={{ background: overlayGradient }} aria-hidden />
+
+        {/* Desktop text overlay */}
         <figcaption className="pointer-events-none absolute inset-0 hidden items-end sm:flex">
           <div className="mx-auto w-full max-w-[1120px] px-12 pb-14">
             <div className="max-w-xl text-left text-[#fafaf7]">
@@ -35,22 +37,26 @@ const JournalHero = memo(({ title, subtitle, imageSrc, imageAlt }: JournalHeroPr
             </div>
           </div>
         </figcaption>
+
+        {/* Mobile text overlay - now inside figure with absolute positioning */}
+        <figcaption className="pointer-events-none absolute inset-0 flex items-end sm:hidden">
+          <div className="w-full px-8 pb-10">
+            <p
+              className="mb-2 text-xs font-light uppercase tracking-[0.12em] text-[#f2f2ee]/75"
+              style={{ letterSpacing: "0.12em" }}
+            >
+              THE HIGH-END EDITION
+            </p>
+            <h1
+              className="text-[32px] font-extralight leading-[1.15] tracking-[-0.02em] text-[#fafaf7]"
+              style={{ fontWeight: 200 }}
+            >
+              {title}
+            </h1>
+            <p className="mt-4 text-sm font-light leading-[1.8] text-[#f5f4f0]/85">{subtitle}</p>
+          </div>
+        </figcaption>
       </figure>
-      <div className="mx-auto w-full max-w-[640px] px-8 py-10 text-left sm:hidden">
-        <p
-          className="mb-2 text-xs font-light uppercase tracking-[0.12em] text-[#4a4a4a]"
-          style={{ letterSpacing: "0.12em" }}
-        >
-          THE HIGH-END EDITION
-        </p>
-        <h1
-          className="text-[32px] font-extralight leading-[1.15] tracking-[-0.02em] text-[#1a1a1a]"
-          style={{ fontWeight: 200 }}
-        >
-          {title}
-        </h1>
-        <p className="mt-4 text-sm font-light leading-[1.8] text-[#4a4a4a]">{subtitle}</p>
-      </div>
     </section>
   );
 });
