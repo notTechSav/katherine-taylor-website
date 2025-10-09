@@ -4,6 +4,7 @@
  */
 
 import { RequestHandler } from 'express';
+import Anthropic from '@anthropic-ai/sdk';
 import {
   generateServiceDescription,
   batchGenerateDescriptions,
@@ -48,8 +49,7 @@ export const handleGenerateContent: RequestHandler = async (req, res) => {
 
       console.log(`Generating content from generic prompt (${prompt.substring(0, 50)}...)`);
 
-      // Import Anthropic SDK for direct API call
-      const Anthropic = require('@anthropic-ai/sdk');
+      // Use Anthropic SDK for direct API call
       const anthropic = new Anthropic({
         apiKey: process.env.ANTHROPIC_API_KEY,
       });
