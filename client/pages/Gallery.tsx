@@ -6,105 +6,38 @@ import { X, ChevronLeft, ChevronRight, Filter } from "lucide-react";
 
 interface GalleryImage {
   src: string;
-  collection: "september" | "october" | "november" | "all";
-  aspectRatio: number;
+  collection: "september" | "october" | "november";
 }
 
-// Generate image list from your actual photos
-const generateImageList = (): GalleryImage[] => {
-  const september = [
-    "07E9A486-7181-4B03-883D-70ABE83536A4_1_201_a-min-1125x1536.jpeg.jpeg",
-    "0F8B1850-8CEA-4F9F-BB0C-1E4F3A6F2339-min-1024x1536.jpeg.jpeg",
-    "1CA72454-1E5B-4AD2-8704-DEE0D30C9139-1024x1536.jpeg.jpeg",
-    "340CB14F-D012-40A0-8644-7928C205C337-1024x1536.jpeg.jpeg",
-    "34E15453-C3C6-43A9-9F09-1B393326A503-1024x1536.jpeg.jpeg",
-    "3EE7AF93-6754-42E8-BA73-0DD6861C2DCA-min-1024x1536.jpeg.jpeg",
-    "45621B08-EC99-41C6-BB68-5C21E14C3E15-min-1366x2048.jpeg.jpeg",
-    "5131CDA7-003C-408E-A16E-152471F897C5-min-1024x1536.jpeg.jpeg",
-    "53ABCECB-5A5B-455A-BA16-B048EA52675A-min-1365x2048.jpeg.jpeg",
-    "5E31700D-65AA-48E6-A2AD-621330224F1C-1024x1536.jpeg.jpeg",
-    "70C00768-4908-4B32-822D-DFC11359553B-min-1-2048x1366.jpeg.jpeg",
-    "747793C5-79E3-41D5-B1A8-BCEFDE448537-min-1024x1536.jpeg.jpeg",
-    "769E797F-26DF-444B-9621-1F3633F1CDEC-min-1366x2048.jpeg.jpeg",
-    "80C5738F-B77B-420F-9E23-B0B9CCAF4B372-min-1536x1024.jpeg.jpeg",
-    "86186649-3656-4891-B026-CF89AAD42882-min-1024x1536.jpeg.jpeg",
-    "877F634C-3596-4BC8-998E-4325E2027EED-min-1366x2048.jpeg.jpeg",
-    "93355EC9-560E-4CD5-8B4D-89055E98BC37-1024x1536.jpeg.jpeg",
-    "B7624A51-E11F-44C7-81B4-78E8930388C4-min-1365x2048.jpeg.jpeg",
-    "BD318A36-5D58-4052-8342-F9213E36A07E-min-1024x1536.jpeg.jpeg",
-    "CE282613-EEA4-4A9C-BFB0-7DF37A398669-min-1024x1536.jpeg.jpeg",
-    "E2F3183E-3A2D-4A28-ABE5-7E6D24CF086B-min-1365x2048.jpeg.jpeg",
-    "E9B60B18-B0DC-4A4E-8141-7BA81C0B4AA9-min-1365x2048.jpeg.jpeg",
-    "F37E0445-8D5A-4479-93AC-2948F12F4117-min-1365x2048.jpeg.jpeg",
-    "FBA9C3EE-279D-49AD-A5A2-702403E09F61-min-1365x2048.jpeg.jpeg",
-    "Kat-Taylor1-scaled.jpeg",
-    "Kat-Taylor10-1365x2048.jpeg",
-    "Kat-Taylor11-1365x2048.jpeg",
-    "Kat-Taylor12-scaled-600x900.jpeg",
-    "Kat-Taylor13-1365x2048.jpeg",
-    "Kat-Taylor14-1365x2048.jpeg",
-    "Kat-Taylor16-1024x1536.jpeg",
-    "Kat-Taylor17-1024x1536.jpeg",
-    "Kat-Taylor18-1365x2048.jpeg",
-    "Kat-Taylor19-1024x1536.jpeg",
-    "Kat-Taylor2-1024x683.jpeg",
-    "Kat-Taylor20-1365x2048.jpeg",
-    "Kat-Taylor21-1024x1536.jpeg",
-    "Kat-Taylor22-1365x2048.jpeg",
-    "Kat-Taylor24-683x1024.jpeg",
-    "Kat-Taylor25-scaled-600x900.jpeg",
-    "Kat-Taylor26-700x700.jpeg",
-    "Kat-Taylor3-683x1024.jpeg",
-    "Kat-Taylor4-1024x683.jpeg",
-    "Kat-Taylor5-1024x683.jpeg",
-    "Kat-Taylor6-1365x2048.jpeg",
-    "Kat-Taylor7-scaled-600x900.jpeg",
-    "Kat-Taylor8-1024x683.jpeg",
-    "Kat-Taylor9-1024x1536.jpeg"
-  ].map(name => ({
-    src: `/gallery/september-2025/${name}`,
-    collection: "september" as const,
-    aspectRatio: name.includes("1536x1024") || name.includes("2048x1366") || name.includes("683x1024") || name.includes("1024x683") ? 3/2 : 2/3
-  }));
+// Dynamically generate image paths - includes ALL files
+const generateImagePaths = (): GalleryImage[] => {
+  const images: GalleryImage[] = [];
 
-  const october = [
-    "MayaGala0527202440596-1024x1536.jpg.jpeg",
-    "MayaGala0527202440631-scaled.jpg.jpeg",
-    "MayaGala0527202440689-1024x1536.jpg.jpeg",
-    "MayaGala0527202440739-1366x2048.jpg.jpeg",
-    "MayaGala0527202441004-1024x1536.jpg.jpeg",
-    "MayaGala0527202441102-1024x1536.jpg.jpeg",
-    "MayaGala0527202441132-1365x2048.jpg.jpeg",
-    "MayaGala0527202441156-1024x1536.jpg.jpeg",
-    "MayaGala0527202441169-1024x1536.jpg.jpeg",
-    "MayaGala0527202441215-1024x1536.jpg.jpeg",
-    "MayaGala0527202441245-1024x1536.jpg.jpeg",
-    "MayaGala0527202441311-1024x1536.jpg.jpeg",
-    "MayaGala0527202441348-683x1024.jpg.jpeg",
-    "MayaGala0527202441387-1024x1536.jpg.jpeg",
-    "MayaGala0527202441414-1024x1536.jpg.jpeg",
-    "MayaGala0527202441445-scaled.jpg.jpeg",
-    "MayaGala0527202441506-scaled.jpg.jpeg"
-  ].map(name => ({
-    src: `/gallery/october-2025/${name}`,
-    collection: "october" as const,
-    aspectRatio: name.includes("683x1024") ? 3/2 : 2/3
-  }));
+  // Generate all september images (1-231)
+  for (let i = 1; i <= 231; i++) {
+    images.push({
+      src: `/gallery/september-2025/image-${i}.jpeg`,
+      collection: "september"
+    });
+  }
 
-  const november = [
-    "Kat-Taylor15.jpeg",
-    "Kat-Taylor16.jpeg",
-    "Kat-Taylor17.jpeg",
-    "Kat-Taylor18.jpeg",
-    "Kat-Taylor19.jpeg",
-    "Kat-Taylor21.jpeg"
-  ].map(name => ({
-    src: `/gallery/november-2023/${name}`,
-    collection: "november" as const,
-    aspectRatio: 2/3
-  }));
+  // Generate all october images (1-51)
+  for (let i = 1; i <= 51; i++) {
+    images.push({
+      src: `/gallery/october-2025/image-${i}.jpeg`,
+      collection: "october"
+    });
+  }
 
-  return [...september, ...october, ...november];
+  // Generate all november images (1-6)
+  for (let i = 1; i <= 6; i++) {
+    images.push({
+      src: `/gallery/november-2023/image-${i}.jpeg`,
+      collection: "november"
+    });
+  }
+
+  return images;
 };
 
 const Gallery = () => {
@@ -112,17 +45,44 @@ const Gallery = () => {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState(0);
+  const [imageFiles, setImageFiles] = useState<GalleryImage[]>([]);
 
-  const allImages = useMemo(() => generateImageList(), []);
-
-  const filteredImages = useMemo(() => {
-    if (selectedFilter === "all") return allImages;
-    return allImages.filter(img => img.collection === selectedFilter);
-  }, [allImages, selectedFilter]);
-
+  // Load actual image files dynamically
   useEffect(() => {
+    const loadImages = async () => {
+      try {
+        const response = await fetch('/gallery/gallery-manifest.json');
+        const manifest = await response.json();
+
+        const allImages: GalleryImage[] = [
+          ...(manifest.september || []).map((file: string) => ({
+            src: `/gallery/september-2025/${file}`,
+            collection: "september" as const
+          })),
+          ...(manifest.october || []).map((file: string) => ({
+            src: `/gallery/october-2025/${file}`,
+            collection: "october" as const
+          })),
+          ...(manifest.november || []).map((file: string) => ({
+            src: `/gallery/november-2023/${file}`,
+            collection: "november" as const
+          }))
+        ];
+
+        setImageFiles(allImages);
+      } catch (error) {
+        console.error('Failed to load gallery manifest:', error);
+      }
+    };
+
+    loadImages();
     document.title = "Gallery | Katherine Taylor";
   }, []);
+
+  const filteredImages = useMemo(() => {
+    if (selectedFilter === "all") return imageFiles;
+    return imageFiles.filter(img => img.collection === selectedFilter);
+  }, [imageFiles, selectedFilter]);
 
   const openLightbox = useCallback((index: number) => {
     setCurrentImageIndex(index);
@@ -154,6 +114,17 @@ const Gallery = () => {
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [isLightboxOpen, closeLightbox, showNextImage, showPreviousImage]);
+
+  if (imageFiles.length === 0) {
+    return (
+      <div className="min-h-screen bg-[#fafaf7] flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-[#1a1a1a] border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-[#737373] font-light">Loading gallery...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#fafaf7]">
@@ -226,7 +197,7 @@ const Gallery = () => {
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.95 }}
-                  transition={{ duration: 0.3, delay: index * 0.02 }}
+                  transition={{ duration: 0.3, delay: Math.min(index * 0.01, 0.5) }}
                   className="break-inside-avoid mb-6"
                 >
                   <div
@@ -239,6 +210,10 @@ const Gallery = () => {
                       className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
                       loading="lazy"
                       onLoad={() => setImagesLoaded(prev => prev + 1)}
+                      onError={(e) => {
+                        // Hide broken images
+                        (e.target as HTMLImageElement).style.display = 'none';
+                      }}
                       style={{ display: 'block' }}
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -325,7 +300,7 @@ const Gallery = () => {
       </AnimatePresence>
 
       {/* Loading Indicator */}
-      {imagesLoaded < filteredImages.length && (
+      {imagesLoaded < filteredImages.length && imagesLoaded > 0 && (
         <div className="fixed bottom-6 right-6 bg-white px-4 py-2 rounded-full shadow-lg text-sm font-light text-[#737373]">
           Loading {imagesLoaded} / {filteredImages.length}
         </div>
