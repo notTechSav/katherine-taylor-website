@@ -12,6 +12,7 @@ const routePrefetchMap: Record<string, () => Promise<any>> = {
   '/rates': () => import('@/pages/Rates'),
   '/faq': () => import('@/pages/FAQ'),
   '/inquire': () => import('@/pages/Inquire'),
+  '/inquire-luxury': () => import('@/pages/InquireLuxury'),
 };
 
 const navigationLinks = [
@@ -22,7 +23,7 @@ const navigationLinks = [
   { label: "Journal", href: "/journal" },
   { label: "Rates", href: "/rates" },
   { label: "FAQ", href: "/faq" },
-  { label: "Inquire", href: "/inquire" },
+  { label: "Inquire", href: "/inquire-luxury" },
 ];
 
 const Navigation = () => {

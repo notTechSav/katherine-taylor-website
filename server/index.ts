@@ -8,6 +8,7 @@ import {
   handleSeasonalRefresh,
   handleHealthCheck,
 } from "./routes/content-ai";
+import luxuryInquiryRouter from "./routes/luxury-inquiry";
 
 export function createServer() {
   const app = express();
@@ -30,6 +31,9 @@ export function createServer() {
   app.post("/api/content/generate", handleGenerateContent);
   app.post("/api/content/batch-generate", handleBatchGenerate);
   app.post("/api/content/refresh-seasonal", handleSeasonalRefresh);
+
+  // Luxury Inquiry routes
+  app.use(luxuryInquiryRouter);
 
   return app;
 }
