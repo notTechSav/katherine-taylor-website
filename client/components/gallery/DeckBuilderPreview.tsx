@@ -306,15 +306,23 @@ function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (
                 className="aspect-[4/5] overflow-hidden"
                 style={{ boxShadow: "var(--shadow-elevation-md)" }}
               >
-                <img
-                  src={heroSrc(c)}
-                  srcSet={heroSrcSet(c)}
-                  sizes={heroSizes}
-                  alt={c.hero?.alt ?? `${c.title} hero`}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-full w-full object-cover"
-                />
+                {(() => {
+                  const src = heroSrc(c);
+                  if (!src) {
+                    return <div className="flex h-full w-full items-center justify-center bg-neutral-200 text-xs uppercase tracking-[0.18em] text-neutral-500">Image coming soon</div>;
+                  }
+                  return (
+                    <img
+                      src={src}
+                      srcSet={heroSrcSet(c)}
+                      sizes={heroSizes}
+                      alt={c.hero?.alt ?? `${c.title} hero`}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover"
+                    />
+                  );
+                })()}
               </div>
               <div className="mt-5 space-y-2">
                 <h2 className="text-xl sm:text-2xl md:text-[28px] font-extralight tracking-[-0.02em]">
