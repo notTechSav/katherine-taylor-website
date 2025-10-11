@@ -288,7 +288,7 @@ function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (
         <h2 className="sr-only">Katherine Taylor escort</h2>
         <h2 className="sr-only">Sacramento escort · Bay Area escort</h2>
         <p className="mt-4 max-w-[36ch] text-sm sm:text-base font-light leading-[1.75] text-neutral-600">
-          Three rooms, three stories. Choose where to begin — each collection opens into its own space.
+          Three rooms, three stories. Choose where to begin �� each collection opens into its own space.
         </p>
       </header>
       <div className="grid grid-cols-1 justify-items-start gap-y-16 sm:grid-cols-2 sm:gap-x-16 lg:grid-cols-3 lg:gap-x-20 lg:gap-y-20">
@@ -399,30 +399,42 @@ function CollectionHeader({ c, onOpen, onBack }: { c: Collection; onOpen: () => 
 }
 
 function FrameGrid({ c, onOpen }: { c: Collection; onOpen: (index: number) => void }) {
+  const total = frameCount(c);
+  const items = Array.from({ length: total }, (_, idx) => {
+    const index = idx + 1;
+    const src = frameSrc(c, index);
+    if (!src) return null;
+    const srcSet = frameSrcSet(c, index);
+    const alt = frameAlt(c, index);
+    return (
+      <button
+        key={index}
+        onClick={() => onOpen(index)}
+        className="block text-left focus:outline-none"
+        aria-label={`Open ${alt} full screen`}
+      >
+        <figure className="aspect-[4/5] overflow-hidden" style={{ boxShadow: "var(--shadow-elevation-sm)" }}>
+          <img
+            src={src}
+            srcSet={srcSet}
+            sizes={frameSizes}
+            alt={alt}
+            loading={index === 1 ? "eager" : "lazy"}
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
+        </figure>
+      </button>
+    );
+  }).filter(Boolean) as JSX.Element[];
+
+  if (!items.length) {
+    return null;
+  }
+
   return (
     <section className="mx-auto max-w-[1120px] px-4 sm:px-6 md:px-12 pb-24 md:pb-32">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
-        {Array.from({ length: c.count }).map((_, idx) => (
-          <button
-            key={idx}
-            onClick={() => onOpen(idx + 1)}
-            className="block text-left focus:outline-none"
-            aria-label={`Open ${frameAlt(c, idx + 1)} full screen`}
-          >
-            <figure className="aspect-[4/5] overflow-hidden" style={{ boxShadow: "var(--shadow-elevation-sm)" }}>
-              <img
-                src={frameSrc(c, idx + 1)}
-                srcSet={frameSrcSet(c, idx + 1)}
-                sizes={frameSizes}
-                alt={frameAlt(c, idx + 1)}
-                loading={idx === 0 ? "eager" : "lazy"}
-                decoding="async"
-                className="h-full w-full object-cover"
-              />
-            </figure>
-          </button>
-        ))}
-      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">{items}</div>
     </section>
   );
 }
