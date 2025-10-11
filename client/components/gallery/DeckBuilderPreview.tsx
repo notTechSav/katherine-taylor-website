@@ -274,6 +274,14 @@ const DATA: Collection[] = [
       },
     ],
   },
+  {
+    slug: "photos-3",
+    dir: "/gallery/photos-3",
+    title: "Golden Hour — Studio, 2024",
+    statement: "Warm light; intimate moments; natural elegance.",
+    cta: "inquire",
+    count: 25,
+  },
 ];
 
 const pad3 = (n: number) => String(n).padStart(3, "0");
@@ -286,7 +294,7 @@ const heroSrc = (c: Collection): string | undefined => {
     return c.hero.src;
   }
   if (c.dir) {
-    return enc(`${c.dir}/hero.avif`);
+    return enc(`${c.dir}/hero.jpeg`);
   }
   return undefined;
 };
@@ -296,9 +304,8 @@ const heroSrcSet = (c: Collection): string | undefined => {
     return c.hero.srcSet;
   }
   if (c.dir) {
-    return [800, 1200, 1600, 2000]
-      .map((w) => `${enc(`${c.dir}/hero-${w}.avif`)} ${w}w`)
-      .join(", ");
+    // For local images, just use the single hero.jpeg file
+    return undefined;
   }
   return undefined;
 };
@@ -313,7 +320,7 @@ const frameSrc = (c: Collection, i: number): string | undefined => {
     return `${asset.base}?format=webp&width=${largest}`;
   }
   if (c.dir) {
-    return enc(`${c.dir}/images/${pad3(i)}.avif`);
+    return enc(`${c.dir}/images/${pad3(i)}.jpeg`);
   }
   return undefined;
 };
@@ -324,9 +331,8 @@ const frameSrcSet = (c: Collection, i: number): string | undefined => {
     return createBuilderSrcSet(asset.base, asset.widths ?? builderFrameWidths);
   }
   if (c.dir) {
-    return [800, 1200, 1600, 2000, 2400]
-      .map((w) => `${enc(`${c.dir}/images/${pad3(i)}-${w}.avif`)} ${w}w`)
-      .join(", ");
+    // For local images, just use the single .jpeg file
+    return undefined;
   }
   return undefined;
 };
