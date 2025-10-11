@@ -796,7 +796,7 @@ export default function DeckBuilderPreview() {
           <FrameGrid c={current} onOpen={(i) => setViewerIdx(i)} />
         </>
       )}
-      {open && <DeckBuilder c={current} onClose={() => setOpen(false)} />}
+      {open && frameCount(current) > 0 && <DeckBuilder c={current} onClose={() => setOpen(false)} />}
       {viewerIdx !== null && (
         <ImageViewer
           c={current}
