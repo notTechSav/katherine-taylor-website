@@ -376,17 +376,23 @@ function CollectionHeader({ c, onOpen, onBack }: { c: Collection; onOpen: () => 
             </SecondaryButton>
           </div>
         </div>
-        <figure className="hidden lg:block aspect-[4/5] overflow-hidden" style={{ boxShadow: "var(--shadow-elevation-md)" }}>
-          <img
-            src={heroSrc(c)}
-            srcSet={heroSrcSet(c)}
-            sizes="(min-width: 1280px) 360px, 30vw"
-            alt={c.hero?.alt ?? `${c.title} hero frame`}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover"
-          />
-        </figure>
+        {(() => {
+          const src = heroSrc(c);
+          if (!src) return null;
+          return (
+            <figure className="hidden lg:block aspect-[4/5] overflow-hidden" style={{ boxShadow: "var(--shadow-elevation-md)" }}>
+              <img
+                src={src}
+                srcSet={heroSrcSet(c)}
+                sizes="(min-width: 1280px) 360px, 30vw"
+                alt={c.hero?.alt ?? `${c.title} hero frame`}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover"
+              />
+            </figure>
+          );
+        })()}
       </div>
     </section>
   );
