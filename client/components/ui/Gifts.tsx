@@ -25,7 +25,7 @@ const Gifts = () => {
   );
 
   return (
-    <div className="bg-[#f5f3f0] text-[#1a1a1a]">
+    <div className="bg-luxury-white text-luxury-black">
       <section className="relative isolate min-h-[60vh]">
         <div
           className="absolute inset-0 -z-20"
@@ -50,25 +50,23 @@ const Gifts = () => {
           <div className="flex flex-col px-10 pb-[60px] pt-[120px] sm:px-12">
             <header className="mb-8">
               <h1
-                className="font-light"
+                className="font-light text-luxury-gray-800"
                 style={{
                   fontWeight: 200,
                   fontSize: "48px",
                   letterSpacing: "-0.02em",
                   lineHeight: 1.1,
-                  color: "#262626",
                   marginBottom: "16px",
                 }}
               >
                 Gifts
               </h1>
               <p
-                className="font-light"
+                className="font-light text-luxury-black/70"
                 style={{
                   fontSize: "16px",
                   letterSpacing: "0.01em",
                   lineHeight: 1.6,
-                  color: "rgba(26, 26, 26, 0.72)",
                   marginBottom: "32px",
                 }}
               >
@@ -82,7 +80,7 @@ const Gifts = () => {
                 onClick={toggleGuidance}
                 aria-expanded={isExpanded}
                 aria-controls="gifts-guidance"
-                className="inline-flex items-center justify-center border border-[rgba(26,26,26,0.2)] bg-transparent px-7 py-3 text-[14px] font-light tracking-[0.02em] text-[#1a1a1a] transition-all duration-[480ms] ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-[1px] hover:border-[rgba(26,26,26,0.4)] hover:bg-[rgba(26,26,26,0.02)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(26,26,26,0.32)]"
+                className="inline-flex items-center justify-center border border-[rgba(26,26,26,0.2)] bg-transparent px-7 py-3 text-[14px] font-light tracking-[0.02em] text-luxury-black transition-all duration-[480ms] ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-[1px] hover:border-[rgba(26,26,26,0.4)] hover:bg-[rgba(26,26,26,0.02)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[rgba(26,26,26,0.32)]"
               >
                 {revealButtonLabel}
               </button>
@@ -111,7 +109,7 @@ const Gifts = () => {
                     fontSize: "17px",
                     letterSpacing: "0.008em",
                     lineHeight: 1.85,
-                    color: "#404040",
+                    color: "var(--gray-600)",
                   }}
                 >
                   {paragraph}
