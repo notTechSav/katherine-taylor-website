@@ -7,30 +7,30 @@ const RatesPage = () => {
   const [isRevealed, setIsRevealed] = useState(false);
 
   return (
-    <div className="bg-[#fafaf7] text-[#1a1a1a]">
+    <div className="bg-luxury-white text-luxury-black">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 bg-[#fafaf7]">
+      <section className="relative py-20 md:py-32 bg-luxury-white">
         <div className="container mx-auto px-6 md:px-8">
           <div className="text-center mb-16 md:mb-20">
             <div className="inline-flex items-center gap-4 mb-8">
-              <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent to-stone-400"></div>
-              <div className="w-1.5 h-1.5 bg-stone-400 rotate-45"></div>
-              <div className="w-12 md:w-16 h-px bg-gradient-to-r from-stone-400 to-transparent"></div>
+              <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent to-gray-400"></div>
+              <div className="w-1.5 h-1.5 bg-gray-400 rotate-45"></div>
+              <div className="w-12 md:w-16 h-px bg-gradient-to-r from-gray-400 to-transparent"></div>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-extralight tracking-[0.05em] text-stone-900 mb-6" style={{ fontWeight: 200 }}>
+            <h1 className="text-4xl md:text-5xl font-extralight tracking-[0.05em] text-luxury-black mb-6" style={{ fontWeight: 200 }}>
               Rates
             </h1>
-            <p className="text-lg md:text-xl text-stone-600 tracking-[0.02em] font-light leading-[1.8] max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-600 tracking-[0.02em] font-light leading-[1.8] max-w-3xl mx-auto">
               Every figure on this page exists to protect one idea: you never have to explain yourself twice.
             </p>
           </div>
 
           <div className="max-w-2xl mx-auto space-y-6">
-            <p className="text-base md:text-lg text-stone-700 font-light leading-[1.8] tracking-[0.01em]">
+            <p className="text-base md:text-lg text-gray-700 font-light leading-[1.8] tracking-[0.01em]">
               My work is cumulative, not transactional. Each engagement carries forward the full history of your context—professional, personal, logistical—so nothing resets.
             </p>
-            <p className="text-base md:text-lg text-stone-700 font-light leading-[1.8] tracking-[0.01em]">
+            <p className="text-base md:text-lg text-gray-700 font-light leading-[1.8] tracking-[0.01em]">
               The premium reflects continuity, discretion, and the scarcity discipline required to deliver them without compromise.
             </p>
           </div>
@@ -39,7 +39,7 @@ const RatesPage = () => {
           <div className="text-center mt-12">
             <button
               onClick={() => setIsRevealed(!isRevealed)}
-              className="group inline-flex items-center gap-3 px-8 py-4 border border-stone-300 hover:border-stone-400 text-stone-700 hover:text-stone-900 font-medium tracking-[0.1em] transition-all duration-300 hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)] transform hover:-translate-y-0.5 text-sm"
+              className="group inline-flex items-center gap-3 px-8 py-4 border border-gray-300 hover:border-stone-400 text-gray-700 hover:text-luxury-black font-medium tracking-[0.1em] transition-all duration-300 hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)] transform hover:-translate-y-0.5 text-sm"
               style={{ fontWeight: 300 }}
             >
               <span>{isRevealed ? 'CONCEAL STRUCTURE' : 'SHOW CURRENT STRUCTURE'}</span>
@@ -58,163 +58,163 @@ const RatesPage = () => {
         }`}
       >
         {/* Tier One */}
-        <section className="border-t border-stone-200 py-16 md:py-20 bg-[#fafaf7]">
+        <section className="border-t border-gray-200 py-16 md:py-20 bg-luxury-white">
           <div className="container mx-auto px-6 md:px-8 max-w-2xl">
-            <p className="mb-3 text-xs font-light uppercase tracking-[0.12em] text-stone-500" style={{ fontWeight: 200 }}>
+            <p className="mb-3 text-xs font-light uppercase tracking-[0.12em] text-gray-500" style={{ fontWeight: 200 }}>
               TIER ONE
             </p>
-            <h2 className="mb-4 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-stone-900" style={{ fontWeight: 200 }}>
+            <h2 className="mb-4 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black" style={{ fontWeight: 200 }}>
               New Clients
             </h2>
-            <p className="text-sm font-light italic text-stone-600 mb-8">
+            <p className="text-sm font-light italic text-gray-600 mb-8">
               For first meetings and compatibility evaluations.
             </p>
 
             <div className="space-y-4 mb-8">
-              <div className="flex items-baseline justify-between border-b border-stone-200 pb-3">
-                <span className="text-base font-light text-stone-700">Overnight (up to 14 hours)</span>
-                <span className="text-lg font-light text-stone-900">$25,000</span>
+              <div className="flex items-baseline justify-between border-b border-gray-200 pb-3">
+                <span className="text-base font-light text-gray-700">Overnight (up to 14 hours)</span>
+                <span className="text-lg font-light text-luxury-black">$25,000</span>
               </div>
-              <div className="flex items-baseline justify-between border-b border-stone-200 pb-3">
-                <span className="text-base font-light text-stone-700">24 Hours</span>
-                <span className="text-lg font-light text-stone-900">$45,000</span>
+              <div className="flex items-baseline justify-between border-b border-gray-200 pb-3">
+                <span className="text-base font-light text-gray-700">24 Hours</span>
+                <span className="text-lg font-light text-luxury-black">$45,000</span>
               </div>
-              <div className="flex items-baseline justify-between border-b border-stone-200 pb-3">
-                <span className="text-base font-light text-stone-700">48 Hours</span>
-                <span className="text-lg font-light text-stone-900">$75,000</span>
+              <div className="flex items-baseline justify-between border-b border-gray-200 pb-3">
+                <span className="text-base font-light text-gray-700">48 Hours</span>
+                <span className="text-lg font-light text-luxury-black">$75,000</span>
               </div>
             </div>
 
-            <p className="text-base font-light leading-[1.8] text-stone-700 mb-4">
+            <p className="text-base font-light leading-[1.8] text-gray-700 mb-4">
               At this stage, I'm mapping how you think—your cadence, your thresholds, the specific decisions that keep you awake. These hours are as much reconnaissance as experience.
             </p>
-            <p className="text-sm font-light italic text-stone-600">
+            <p className="text-sm font-light italic text-gray-600">
               New partnerships open twice per quarter and are limited to a small number of invitations.
             </p>
           </div>
         </section>
 
         {/* Tier Two */}
-        <section className="border-t border-stone-200 py-16 md:py-20 bg-stone-50/30">
+        <section className="border-t border-gray-200 py-16 md:py-20 bg-luxury-gray-50">
           <div className="container mx-auto px-6 md:px-8 max-w-2xl">
-            <p className="mb-3 text-xs font-light uppercase tracking-[0.12em] text-stone-500" style={{ fontWeight: 200 }}>
+            <p className="mb-3 text-xs font-light uppercase tracking-[0.12em] text-gray-500" style={{ fontWeight: 200 }}>
               TIER TWO
             </p>
-            <h2 className="mb-4 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-stone-900" style={{ fontWeight: 200 }}>
+            <h2 className="mb-4 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black" style={{ fontWeight: 200 }}>
               Established Clients
             </h2>
-            <p className="text-sm font-light italic text-stone-600 mb-8">
+            <p className="text-sm font-light italic text-gray-600 mb-8">
               For clients with at least four engagements or six months of continuity.
             </p>
 
             <div className="space-y-4 mb-8">
-              <div className="flex items-baseline justify-between border-b border-stone-200 pb-3">
-                <span className="text-base font-light text-stone-700">Overnight (up to 14 hours)</span>
-                <span className="text-lg font-light text-stone-900">$28,000</span>
+              <div className="flex items-baseline justify-between border-b border-gray-200 pb-3">
+                <span className="text-base font-light text-gray-700">Overnight (up to 14 hours)</span>
+                <span className="text-lg font-light text-luxury-black">$28,000</span>
               </div>
-              <div className="flex items-baseline justify-between border-b border-stone-200 pb-3">
-                <span className="text-base font-light text-stone-700">24 Hours</span>
-                <span className="text-lg font-light text-stone-900">$50,000</span>
+              <div className="flex items-baseline justify-between border-b border-gray-200 pb-3">
+                <span className="text-base font-light text-gray-700">24 Hours</span>
+                <span className="text-lg font-light text-luxury-black">$50,000</span>
               </div>
-              <div className="flex items-baseline justify-between border-b border-stone-200 pb-3">
-                <span className="text-base font-light text-stone-700">48 Hours</span>
-                <span className="text-lg font-light text-stone-900">$80,000</span>
+              <div className="flex items-baseline justify-between border-b border-gray-200 pb-3">
+                <span className="text-base font-light text-gray-700">48 Hours</span>
+                <span className="text-lg font-light text-luxury-black">$80,000</span>
               </div>
             </div>
 
-            <p className="text-base font-light leading-[1.8] text-stone-700">
+            <p className="text-base font-light leading-[1.8] text-gray-700">
               By now, context is embedded. I arrive briefed on your current landscape. You no longer waste time reintroducing yourself. The conversation starts where the last one ended.
             </p>
           </div>
         </section>
 
         {/* Tier Three */}
-        <section className="border-t border-stone-200 py-16 md:py-20 bg-[#fafaf7]">
+        <section className="border-t border-gray-200 py-16 md:py-20 bg-luxury-white">
           <div className="container mx-auto px-6 md:px-8 max-w-2xl">
-            <p className="mb-3 text-xs font-light uppercase tracking-[0.12em] text-stone-500" style={{ fontWeight: 200 }}>
+            <p className="mb-3 text-xs font-light uppercase tracking-[0.12em] text-gray-500" style={{ fontWeight: 200 }}>
               TIER THREE
             </p>
-            <h2 className="mb-4 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-stone-900" style={{ fontWeight: 200 }}>
+            <h2 className="mb-4 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black" style={{ fontWeight: 200 }}>
               Strategic Partnerships
             </h2>
-            <p className="text-sm font-light italic text-stone-600 mb-8">Annual Retainer</p>
+            <p className="text-sm font-light italic text-gray-600 mb-8">Annual Retainer</p>
 
-            <div className="mb-8 border-b border-stone-300 pb-6">
-              <p className="text-2xl font-light text-stone-900">
-                $240,000 <span className="text-base text-stone-600">annually</span>
+            <div className="mb-8 border-b border-gray-300 pb-6">
+              <p className="text-2xl font-light text-luxury-black">
+                $240,000 <span className="text-base text-gray-600">annually</span>
               </p>
             </div>
 
-            <p className="mb-4 text-sm font-light uppercase tracking-[0.08em] text-stone-600">INCLUDES</p>
-            <ul className="space-y-3 text-base font-light leading-[1.8] text-stone-700 mb-8">
-              <li className="border-l-2 border-stone-300 pl-4">Four 48-hour engagements annually (priority scheduling)</li>
-              <li className="border-l-2 border-stone-300 pl-4">Unlimited strategic dialogue between meetings</li>
-              <li className="border-l-2 border-stone-300 pl-4">Anticipatory preparation for each engagement</li>
-              <li className="border-l-2 border-stone-300 pl-4">Discretionary outreach when developments arise</li>
+            <p className="mb-4 text-sm font-light uppercase tracking-[0.08em] text-gray-600">INCLUDES</p>
+            <ul className="space-y-3 text-base font-light leading-[1.8] text-gray-700 mb-8">
+              <li className="border-l-2 border-gray-300 pl-4">Four 48-hour engagements annually (priority scheduling)</li>
+              <li className="border-l-2 border-gray-300 pl-4">Unlimited strategic dialogue between meetings</li>
+              <li className="border-l-2 border-gray-300 pl-4">Anticipatory preparation for each engagement</li>
+              <li className="border-l-2 border-gray-300 pl-4">Discretionary outreach when developments arise</li>
             </ul>
 
-            <p className="text-base font-light leading-[1.8] text-stone-700">
+            <p className="text-base font-light leading-[1.8] text-gray-700">
               This tier formalizes what many of my long-term clients already practice. I maintain no more than twenty active partnerships at a time.
             </p>
           </div>
         </section>
 
         {/* Travel */}
-        <section className="border-t border-stone-200 py-16 md:py-20 bg-stone-50/30">
+        <section className="border-t border-gray-200 py-16 md:py-20 bg-luxury-gray-50">
           <div className="container mx-auto px-6 md:px-8 max-w-2xl">
-            <h2 className="mb-8 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-stone-900" style={{ fontWeight: 200 }}>
+            <h2 className="mb-8 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black" style={{ fontWeight: 200 }}>
               Travel
             </h2>
 
             <div className="space-y-6">
-              <div className="border-b border-stone-200 pb-4">
-                <p className="mb-2 text-base font-light text-stone-900">Bay Area / Northern California</p>
-                <p className="text-sm font-light text-stone-600">No fee.</p>
+              <div className="border-b border-gray-200 pb-4">
+                <p className="mb-2 text-base font-light text-luxury-black">Bay Area / Northern California</p>
+                <p className="text-sm font-light text-gray-600">No fee.</p>
               </div>
-              <div className="border-b border-stone-200 pb-4">
-                <p className="mb-2 text-base font-light text-stone-900">West Coast</p>
-                <p className="text-sm font-light text-stone-700">
+              <div className="border-b border-gray-200 pb-4">
+                <p className="mb-2 text-base font-light text-luxury-black">West Coast</p>
+                <p className="text-sm font-light text-gray-700">
                   Overnight $28,000 / 24 hours $50,000 + first-class travel
                 </p>
               </div>
-              <div className="border-b border-stone-200 pb-4">
-                <p className="mb-2 text-base font-light text-stone-900">National</p>
-                <p className="text-sm font-light text-stone-700">
+              <div className="border-b border-gray-200 pb-4">
+                <p className="mb-2 text-base font-light text-luxury-black">National</p>
+                <p className="text-sm font-light text-gray-700">
                   24 hours $55,000 / 48 hours $80,000 + first-class travel
                 </p>
               </div>
               <div className="pb-4">
-                <p className="mb-2 text-base font-light text-stone-900">International</p>
-                <p className="text-sm font-light text-stone-600">By arrangement.</p>
+                <p className="mb-2 text-base font-light text-luxury-black">International</p>
+                <p className="text-sm font-light text-gray-600">By arrangement.</p>
               </div>
             </div>
 
-            <p className="mt-8 text-sm font-light italic text-stone-700">
+            <p className="mt-8 text-sm font-light italic text-gray-700">
               Discretion is embedded, not billed.
             </p>
           </div>
         </section>
 
         {/* Payment */}
-        <section className="border-t border-stone-200 py-16 md:py-20 bg-[#fafaf7]">
+        <section className="border-t border-gray-200 py-16 md:py-20 bg-luxury-white">
           <div className="container mx-auto px-6 md:px-8 max-w-2xl">
-            <h2 className="mb-8 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-stone-900" style={{ fontWeight: 200 }}>
+            <h2 className="mb-8 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black" style={{ fontWeight: 200 }}>
               Payment
             </h2>
 
             <div className="space-y-4">
-              <p className="text-base font-light leading-[1.8] text-stone-700">
+              <p className="text-base font-light leading-[1.8] text-gray-700">
                 A 50% deposit secures preparation time; the balance is due in advance.
               </p>
-              <p className="text-base font-light leading-[1.8] text-stone-700">
+              <p className="text-base font-light leading-[1.8] text-gray-700">
                 I accept bank transfer, Zelle, PayPal, Visa, and MasterCard.
               </p>
-              <div className="border-l-2 border-stone-300 pl-4 py-2">
-                <p className="text-sm font-light text-stone-600">
+              <div className="border-l-2 border-gray-300 pl-4 py-2">
+                <p className="text-sm font-light text-gray-600">
                   Amex: 3% processing fee applies for transactions exceeding $10,000.
                 </p>
               </div>
-              <p className="text-sm font-light text-stone-600">
+              <p className="text-sm font-light text-gray-600">
                 Cancellations are non-refundable but can be rescheduled within ninety days.
               </p>
             </div>
@@ -223,25 +223,25 @@ const RatesPage = () => {
       </div>
 
       {/* Closing Statement */}
-      <section className="border-t border-stone-200 py-20 bg-[#fafaf7]">
+      <section className="border-t border-gray-200 py-20 bg-luxury-white">
         <div className="container mx-auto px-6 md:px-8 max-w-2xl text-center">
-          <p className="text-xl md:text-2xl font-extralight leading-[1.5] text-stone-900 mb-4" style={{ fontWeight: 200 }}>
+          <p className="text-xl md:text-2xl font-extralight leading-[1.5] text-luxury-black mb-4" style={{ fontWeight: 200 }}>
             I don't sell time.
           </p>
-          <p className="text-xl md:text-2xl font-extralight leading-[1.5] text-stone-700" style={{ fontWeight: 200 }}>
+          <p className="text-xl md:text-2xl font-extralight leading-[1.5] text-gray-700" style={{ fontWeight: 200 }}>
             I reserve attention, continuity, and discretion for the few who understand their value.
           </p>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-stone-200 bg-[#fafaf7] px-6 py-16">
+      <footer className="border-t border-gray-200 bg-luxury-white px-6 py-16">
         <div className="mx-auto max-w-[620px] space-y-4 text-left">
-          <p className="text-[14px] font-light leading-[1.7] text-stone-600">
+          <p className="text-[14px] font-light leading-[1.7] text-gray-600">
             Among San Francisco escorts and Sacramento escorts, these rates reflect a decade of refinement.
             For those searching "escorts near me" with serious intent, this structure ensures quality over volume.
           </p>
-          <nav className="flex flex-wrap gap-3 text-[14px] font-light text-stone-900">
+          <nav className="flex flex-wrap gap-3 text-[14px] font-light text-luxury-black">
             <a href="/inquire" className="underline-offset-[4px] transition-colors duration-300 hover:underline">
               Inquire
             </a>
