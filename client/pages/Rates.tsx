@@ -11,17 +11,11 @@ const RatesPage = () => {
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 bg-luxury-white">
         <div className="container mx-auto px-6 md:px-8">
-          <div className="text-center mb-16 md:mb-20">
-            <div className="inline-flex items-center gap-4 mb-8">
-              <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent to-gray-400"></div>
-              <div className="w-1.5 h-1.5 bg-gray-400 rotate-45"></div>
-              <div className="w-12 md:w-16 h-px bg-gradient-to-r from-gray-400 to-transparent"></div>
-            </div>
-
-            <h1 className="text-4xl md:text-5xl font-extralight tracking-[0.05em] text-luxury-black mb-6" style={{ fontWeight: 200 }}>
+          <div className="mb-16 text-center md:mb-20">
+            <h1 className="mb-6 font-serif text-4xl font-extralight tracking-display text-luxury-black md:text-5xl" style={{ fontWeight: 200 }}>
               Rates
             </h1>
-            <p className="text-lg md:text-xl text-gray-600 tracking-[0.02em] font-light leading-[1.8] max-w-3xl mx-auto">
+            <p className="mx-auto max-w-3xl text-lg font-light leading-[1.8] tracking-[0.02em] text-gray-600 md:text-xl">
               Every figure on this page exists to protect one idea: you never have to explain yourself twice.
             </p>
           </div>
