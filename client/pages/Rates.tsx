@@ -3,53 +3,77 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
+const heroImage = {
+  src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fce3b4217758a4479b50998005555bb44?format=webp&width=800",
+  alt: "Sealed envelope beside a glass vase holding an olive branch on a linen-covered table in afternoon light",
+};
+
+const overlayGradient =
+  "linear-gradient(180deg, rgba(26,26,26,0.08) 0%, rgba(26,26,26,0.55) 100%)";
+
 const RatesPage = () => {
   const [isRevealed, setIsRevealed] = useState(false);
 
   return (
     <div className="bg-luxury-white text-luxury-black">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 bg-luxury-white">
+      <section className="relative bg-luxury-white">
+        <figure className="relative h-[48vh] min-h-[280px] w-full overflow-hidden sm:h-[52vh]">
+          <img
+            src={heroImage.src}
+            alt={heroImage.alt}
+            className="h-full w-full object-cover"
+            loading="lazy"
+          />
+          <div
+            className="absolute inset-0"
+            style={{ background: overlayGradient }}
+            aria-hidden
+          />
+        </figure>
+
         <div className="container mx-auto px-6 md:px-8">
-          <div className="mb-16 text-center md:mb-20">
-            <h1
-              className="mb-6 font-serif text-4xl font-extralight tracking-display text-luxury-black md:text-5xl"
-              style={{ fontWeight: 200 }}
-            >
-              Rates
-            </h1>
-            <p className="mx-auto max-w-3xl text-lg font-light leading-[1.8] tracking-[0.02em] text-gray-600 md:text-xl">
-              Every figure on this page exists to protect one idea: you never
-              have to explain yourself twice.
-            </p>
-          </div>
+          <div className="py-16 md:py-24">
+            <div className="mb-16 text-center md:mb-20">
+              <h1
+                className="mb-6 font-serif text-4xl font-extralight tracking-display text-luxury-black md:text-5xl"
+                style={{ fontWeight: 200 }}
+              >
+                Rates
+              </h1>
+              <p className="mx-auto max-w-3xl text-lg font-light leading-[1.8] tracking-[0.02em] text-gray-600 md:text-xl">
+                Every figure on this page exists to protect one idea: you never
+                have to explain yourself twice.
+              </p>
+            </div>
 
-          <div className="max-w-2xl mx-auto space-y-6">
-            <p className="text-base md:text-lg text-gray-700 font-light leading-[1.8] tracking-[0.01em]">
-              My work is cumulative, not transactional. Each engagement carries
-              forward the full history of your context—professional, personal,
-              logistical—so nothing resets.
-            </p>
-            <p className="text-base md:text-lg text-gray-700 font-light leading-[1.8] tracking-[0.01em]">
-              The premium reflects continuity, discretion, and the scarcity
-              discipline required to deliver them without compromise.
-            </p>
-          </div>
+            <div className="mx-auto max-w-2xl space-y-6">
+              <p className="text-base font-light leading-[1.8] tracking-[0.01em] text-gray-700 md:text-lg">
+                My work is cumulative, not transactional. Each engagement carries
+                forward the full history of your context—professional, personal,
+                logistical—so nothing resets.
+              </p>
+              <p className="text-base font-light leading-[1.8] tracking-[0.01em] text-gray-700 md:text-lg">
+                The premium reflects continuity, discretion, and the scarcity
+                discipline required to deliver them without compromise.
+              </p>
+            </div>
 
-          {/* Show Structure Button */}
-          <div className="text-center mt-12">
-            <button
-              onClick={() => setIsRevealed(!isRevealed)}
-              className="group inline-flex items-center gap-3 border border-gray-300 px-8 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
-              style={{ fontWeight: 300 }}
-            >
-              <span>
-                {isRevealed ? "CONCEAL STRUCTURE" : "SHOW CURRENT STRUCTURE"}
-              </span>
-              <ChevronDown
-                className={`w-4 h-4 transition-all duration-300 ${isRevealed ? "rotate-180" : ""}`}
-              />
-            </button>
+            {/* Show Structure Button */}
+            <div className="mt-12 text-center">
+              <button
+                onClick={() => setIsRevealed(!isRevealed)}
+                className="group inline-flex items-center gap-3 border border-gray-300 px-8 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
+                style={{ fontWeight: 300 }}
+              >
+                <span>
+                  {isRevealed ? "CONCEAL STRUCTURE" : "SHOW CURRENT STRUCTURE"}
+                </span>
+                <ChevronDown
+                  className={`h-4 w-4 transition-all duration-300 ${isRevealed ? "rotate-180" : ""}`}
+                />
+              </button>
+            </div>
           </div>
         </div>
       </section>
