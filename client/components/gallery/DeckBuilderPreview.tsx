@@ -21,6 +21,12 @@ const Tokens = () => (
 );
 
 type CTA = "private-access" | "conversation" | "inquire";
+type FrameAsset = {
+  base: string;
+  widths?: number[];
+  alt?: string;
+};
+
 type Collection = {
   slug: string;
   dir?: string;
@@ -34,6 +40,7 @@ type Collection = {
     srcSet?: string;
     alt?: string;
   };
+  frames?: FrameAsset[];
 };
 
 type FrameMeta = {
@@ -51,6 +58,8 @@ type CollectionMeta = Record<string, FrameMeta>;
 
 const createBuilderSrcSet = (base: string, widths: number[]) =>
   widths.map((width) => `${base}?format=webp&width=${width} ${width}w`).join(", ");
+
+const builderFrameWidths = [640, 960, 1200, 1600];
 
 const silkAndStoneHeroBase = "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe754cc1d8e334af9a33739cb169d8cce";
 const silkAndStoneHeroWidths = [640, 960, 1200, 1600];
