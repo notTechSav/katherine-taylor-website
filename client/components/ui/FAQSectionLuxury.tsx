@@ -141,23 +141,23 @@ const FAQSectionLuxury = () => {
   const FAQItem = ({ item, isOpen }: { item: FaqItem; isOpen: boolean }) => (
     <article
       id={item.id}
-      className="group border border-stone-200/50 bg-white overflow-hidden transition-all duration-300 hover:shadow-[0_1px_1px_rgba(0,0,0,0.12),0_2px_2px_rgba(0,0,0,0.12),0_4px_4px_rgba(0,0,0,0.12),0_8px_8px_rgba(0,0,0,0.12)] hover:border-stone-300/60"
+      className="group overflow-hidden border border-gray-200 bg-luxury-white transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-300 hover:shadow-luxury-sm"
     >
       <button
         onClick={() => handleToggle(item.id)}
-        className="w-full px-6 md:px-8 py-6 md:py-8 text-left flex items-center justify-between hover:bg-gradient-to-r hover:from-stone-50/50 hover:to-stone-50/30 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-stone-300 focus:ring-offset-2"
+        className="flex w-full items-center justify-between px-6 py-6 text-left transition-all duration-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:px-8 md:py-8"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${item.id}`}
         ref={(el) => {
           faqRefs.current[item.id] = el;
         }}
       >
-        <h3 className="text-lg md:text-xl font-light text-stone-900 tracking-[0.05em] pr-4 group-hover:text-stone-600 transition-colors duration-300">
+        <h3 className="pr-4 text-lg font-light tracking-luxury text-luxury-black transition-colors duration-300 group-hover:text-gray-600 md:text-xl">
           {item.question}
         </h3>
         <ChevronDown
           className={cn(
-            "w-5 h-5 md:w-6 md:h-6 text-stone-400 transition-all duration-300",
+            "h-5 w-5 text-gray-400 transition-all duration-300 md:h-6 md:w-6",
             isOpen ? "rotate-180 scale-110" : "group-hover:scale-110"
           )}
         />
@@ -170,10 +170,10 @@ const FAQSectionLuxury = () => {
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <div className="px-6 md:px-8 pb-6 md:pb-8">
-          <div className="w-16 h-px bg-gradient-to-r from-stone-400 to-transparent mb-4 md:mb-6" />
+        <div className="px-6 pb-6 md:px-8 md:pb-8">
+          <div className="mb-4 h-px w-16 bg-gradient-to-r from-gray-300 to-transparent md:mb-6" />
 
-          <p className="text-base md:text-lg text-stone-700 leading-[1.8] mb-4 md:mb-6 font-light tracking-[0.01em] max-w-[65ch]">
+          <p className="mb-4 max-w-[65ch] text-base font-light leading-[1.8] tracking-[0.01em] text-gray-700 md:mb-6 md:text-lg">
             {item.answer}
           </p>
 
@@ -182,7 +182,7 @@ const FAQSectionLuxury = () => {
               <a
                 key={linkIndex}
                 href={link.url}
-                className="group inline-flex items-center gap-2 px-4 md:px-6 py-2.5 md:py-3 bg-stone-100 hover:bg-stone-200 text-stone-800 hover:text-stone-900 text-xs md:text-sm font-medium tracking-[0.08em] transition-all duration-300 hover:shadow-[0_2px_4px_rgba(0,0,0,0.1)] hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2 bg-gray-100 px-4 py-2.5 text-xs font-medium tracking-[0.08em] text-gray-800 transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-200 hover:text-luxury-black hover:shadow-[0_2px_4px_rgba(0,0,0,0.1)] md:px-6 md:py-3 md:text-sm"
               >
                 <span>{link.text}</span>
                 <ExternalLink className="w-3 h-3 md:w-4 md:h-4 transition-transform group-hover:translate-x-0.5" />
