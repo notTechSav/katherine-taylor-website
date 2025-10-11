@@ -21,7 +21,7 @@ const RatesPage = () => {
         eyebrow="Rate Structure"
         imageSrc={heroImage.src}
         imageAlt={heroImage.alt}
-        alignment="right"
+        alignment="left"
       />
 
       <section className="bg-luxury-white">
