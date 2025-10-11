@@ -42,7 +42,7 @@ const PageHeroOverlay = memo(
           }
         : { background: verticalGradient };
 
-    const desktopAlignment = alignment === "right" ? "items-end" : "items-start";
+    const desktopAlignment = "items-end";
     const desktopJustify = alignment === "right" ? "justify-end" : "justify-start";
     const textAlignment = alignment === "right" ? "text-right" : "text-left";
 
@@ -71,7 +71,7 @@ const PageHeroOverlay = memo(
                   desktopJustify,
                 )}
               >
-                <div className={cn("max-w-xl pb-14 text-luxury-white", textAlignment)}>
+                <div className={cn("max-w-xl pb-8 text-luxury-white lg:pb-10", textAlignment)}>
                   {eyebrow ? (
                     <p
                       className="mb-3 text-xs font-light uppercase tracking-[0.12em] text-luxury-white/75"
