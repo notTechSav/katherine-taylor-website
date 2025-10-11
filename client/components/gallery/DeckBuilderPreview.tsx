@@ -57,13 +57,17 @@ type FrameMeta = {
 type CollectionMeta = Record<string, FrameMeta>;
 
 const createBuilderSrcSet = (base: string, widths: number[]) =>
-  widths.map((width) => `${base}?format=webp&width=${width} ${width}w`).join(", ");
+  widths
+    .map((width) => `${base}?format=webp&width=${width} ${width}w`)
+    .join(", ");
 
 const builderFrameWidths = [640, 960, 1200, 1600];
 const heroWidths = [640, 960, 1200, 1600];
 
-const silkAndStoneHeroBase = "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fa934f5793f2643c8a8d61ddd67c1c96d";
-const colorfieldHeroBase = "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6b131e52db7143258955bb96ca138636";
+const silkAndStoneHeroBase =
+  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fa934f5793f2643c8a8d61ddd67c1c96d";
+const colorfieldHeroBase =
+  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6b131e52db7143258955bb96ca138636";
 
 const DATA: Collection[] = [
   {
@@ -327,7 +331,8 @@ const frameSrcSet = (c: Collection, i: number): string | undefined => {
   return undefined;
 };
 
-const frameAlt = (c: Collection, index: number) => getFrameAsset(c, index)?.alt ?? `${c.title} — frame ${pad3(index)}`;
+const frameAlt = (c: Collection, index: number) =>
+  getFrameAsset(c, index)?.alt ?? `${c.title} — frame ${pad3(index)}`;
 
 const frameCount = (c: Collection) => c.frames?.length ?? (c.dir ? c.count : 0);
 
@@ -402,14 +407,28 @@ function summarizeMeta(m?: FrameMeta): string {
   return parts.join(" · ") || "—";
 }
 
-function RadioCard({ label, checked, onChange }: { label: string; checked: boolean; onChange: () => void }) {
+function RadioCard({
+  label,
+  checked,
+  onChange,
+}: {
+  label: string;
+  checked: boolean;
+  onChange: () => void;
+}) {
   return (
     <label
       className={`border border-neutral-300 px-4 py-3 text-sm font-light rounded-none cursor-pointer ${
         checked ? "bg-neutral-900 text-white" : ""
       }`}
     >
-      <input type="radio" name="layout" className="sr-only" checked={checked} onChange={onChange} />
+      <input
+        type="radio"
+        name="layout"
+        className="sr-only"
+        checked={checked}
+        onChange={onChange}
+      />
       {label}
     </label>
   );
@@ -472,7 +491,13 @@ function SecondaryButton({
   );
 }
 
-function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (slug: string) => void }) {
+function Hub({
+  onOpen,
+  onIntent,
+}: {
+  onOpen: (slug: string) => void;
+  onIntent: (slug: string) => void;
+}) {
   return (
     <section className="mx-auto max-w-[1180px] px-6 md:px-12 py-24 md:py-40">
       <header className="mx-auto mb-16 max-w-[720px] md:mb-20">
@@ -482,7 +507,8 @@ function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (
         <h2 className="sr-only">Katherine Taylor escort</h2>
         <h2 className="sr-only">Sacramento escort · Bay Area escort</h2>
         <p className="mt-4 max-w-[36ch] text-sm sm:text-base font-light leading-[1.75] text-neutral-600">
-          Three rooms, three stories. Choose where to begin �� each collection opens into its own space.
+          Three rooms, three stories. Choose where to begin �� each collection
+          opens into its own space.
         </p>
       </header>
       <div className="grid grid-cols-1 justify-items-start gap-y-16 sm:grid-cols-2 sm:gap-x-16 lg:grid-cols-3 lg:gap-x-20 lg:gap-y-20">
@@ -522,7 +548,10 @@ function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (
                 <h2 className="text-xl sm:text-2xl md:text-[28px] font-extralight tracking-[-0.02em]">
                   {c.title}
                 </h2>
-                <p id={`${c.slug}-desc`} className="text-xs sm:text-sm font-light text-neutral-600">
+                <p
+                  id={`${c.slug}-desc`}
+                  className="text-xs sm:text-sm font-light text-neutral-600"
+                >
                   {c.statement}
                 </p>
                 <span className="inline-block text-[11px] sm:text-xs tracking-[0.18em] uppercase">
@@ -537,7 +566,15 @@ function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (
   );
 }
 
-function CollectionHeader({ c, onOpen, onBack }: { c: Collection; onOpen: () => void; onBack: () => void }) {
+function CollectionHeader({
+  c,
+  onOpen,
+  onBack,
+}: {
+  c: Collection;
+  onOpen: () => void;
+  onBack: () => void;
+}) {
   const totalFrames = frameCount(c);
   return (
     <section className="mx-auto max-w-[1180px] px-6 md:px-12 py-24 md:py-36">
@@ -561,7 +598,10 @@ function CollectionHeader({ c, onOpen, onBack }: { c: Collection; onOpen: () => 
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <PrimaryButton className="w-full sm:w-auto" ariaLabel={`${c.title}: primary inquiry`}>
+            <PrimaryButton
+              className="w-full sm:w-auto"
+              ariaLabel={`${c.title}: primary inquiry`}
+            >
               {c.cta === "private-access" && "Request Private Access"}
               {c.cta === "conversation" && "Book a Private Conversation"}
               {c.cta === "inquire" && "Inquire"}
@@ -580,7 +620,10 @@ function CollectionHeader({ c, onOpen, onBack }: { c: Collection; onOpen: () => 
           const src = heroSrc(c);
           if (!src) return null;
           return (
-            <figure className="hidden lg:block aspect-[4/5] overflow-hidden" style={{ boxShadow: "var(--shadow-elevation-md)" }}>
+            <figure
+              className="hidden lg:block aspect-[4/5] overflow-hidden"
+              style={{ boxShadow: "var(--shadow-elevation-md)" }}
+            >
               <img
                 src={src}
                 srcSet={heroSrcSet(c)}
@@ -598,7 +641,13 @@ function CollectionHeader({ c, onOpen, onBack }: { c: Collection; onOpen: () => 
   );
 }
 
-function FrameGrid({ c, onOpen }: { c: Collection; onOpen: (index: number) => void }) {
+function FrameGrid({
+  c,
+  onOpen,
+}: {
+  c: Collection;
+  onOpen: (index: number) => void;
+}) {
   const total = frameCount(c);
   const items = Array.from({ length: total }, (_, idx) => {
     const index = idx + 1;
@@ -613,7 +662,10 @@ function FrameGrid({ c, onOpen }: { c: Collection; onOpen: (index: number) => vo
         className="block text-left focus:outline-none"
         aria-label={`Open ${alt} full screen`}
       >
-        <figure className="aspect-[4/5] overflow-hidden" style={{ boxShadow: "var(--shadow-elevation-sm)" }}>
+        <figure
+          className="aspect-[4/5] overflow-hidden"
+          style={{ boxShadow: "var(--shadow-elevation-sm)" }}
+        >
           <img
             src={src}
             srcSet={srcSet}
@@ -634,7 +686,9 @@ function FrameGrid({ c, onOpen }: { c: Collection; onOpen: (index: number) => vo
 
   return (
     <section className="mx-auto max-w-[1120px] px-4 sm:px-6 md:px-12 pb-24 md:pb-32">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">{items}</div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+        {items}
+      </div>
     </section>
   );
 }
@@ -642,11 +696,15 @@ function FrameGrid({ c, onOpen }: { c: Collection; onOpen: (index: number) => vo
 function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
   const totalFrames = frameCount(c);
   const [layout, setLayout] = useState<"one" | "four" | "sheet">("one");
-  const [selected, setSelected] = useState(() => new Set<number>(Array.from({ length: totalFrames }, (_, i) => i + 1)));
+  const [selected, setSelected] = useState(
+    () => new Set<number>(Array.from({ length: totalFrames }, (_, i) => i + 1)),
+  );
   const [email, setEmail] = useState("");
   const [includeWatermark, setIncludeWatermark] = useState(false);
   const [building, setBuilding] = useState(false);
-  const [result, setResult] = useState<{ url: string; expires: string } | null>(null);
+  const [result, setResult] = useState<{ url: string; expires: string } | null>(
+    null,
+  );
   const closeRef = useRef<HTMLButtonElement>(null);
   const liveRef = useRef<HTMLDivElement>(null);
   const [announce, setAnnounce] = useState<string | null>(null);
@@ -673,7 +731,10 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
     setSelected(next);
   };
 
-  const frames = useMemo(() => Array.from({ length: totalFrames }, (_, i) => i + 1), [totalFrames]);
+  const frames = useMemo(
+    () => Array.from({ length: totalFrames }, (_, i) => i + 1),
+    [totalFrames],
+  );
   const selectedCount = selected.size;
   const allSelected = selectedCount === totalFrames;
 
@@ -693,7 +754,9 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
     setTimeout(() => {
       const token = Math.random().toString(36).slice(2, 10);
       const url = `/decks/${token}/deck.pdf`;
-      const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString();
+      const expires = new Date(
+        Date.now() + 7 * 24 * 60 * 60 * 1000,
+      ).toISOString();
       console.log({ includeWatermark });
       setResult({ url, expires });
       setBuilding(false);
@@ -702,16 +765,30 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
   }
 
   return (
-    <div className="fixed inset-0 bg-black/30" role="dialog" aria-modal="true" aria-labelledby="deck-title" aria-describedby="deck-desc">
+    <div
+      className="fixed inset-0 bg-black/30"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="deck-title"
+      aria-describedby="deck-desc"
+    >
       <div
         className="absolute right-0 top-0 h-full w-full md:max-w-[560px] bg-white p-6 sm:p-8 pb-[calc(1rem+var(--safe-bottom))] overflow-y-auto"
         style={{ boxShadow: "var(--shadow-elevation-lg)" }}
       >
         <div className="flex items-start justify-between gap-6">
-          <h2 id="deck-title" className="text-xl sm:text-2xl font-extralight tracking-[-0.02em]">
+          <h2
+            id="deck-title"
+            className="text-xl sm:text-2xl font-extralight tracking-[-0.02em]"
+          >
             Build Private Deck
           </h2>
-          <button ref={closeRef} onClick={onClose} className="text-sm uppercase tracking-[0.15em]" aria-label="Close deck builder">
+          <button
+            ref={closeRef}
+            onClick={onClose}
+            className="text-sm uppercase tracking-[0.15em]"
+            aria-label="Close deck builder"
+          >
             Close
           </button>
         </div>
@@ -722,30 +799,58 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
         <hr className="my-6 border-neutral-200" />
 
         <div role="group" aria-labelledby="layout-label">
-          <h3 id="layout-label" className="text-xs sm:text-sm uppercase tracking-[0.15em]">
+          <h3
+            id="layout-label"
+            className="text-xs sm:text-sm uppercase tracking-[0.15em]"
+          >
             Layout
           </h3>
-          <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3" role="radiogroup" aria-label="Deck layout">
-            <RadioCard label="One per page" checked={layout === "one"} onChange={() => setLayout("one")} />
-            <RadioCard label="Four per page" checked={layout === "four"} onChange={() => setLayout("four")} />
-            <RadioCard label="Contact sheet" checked={layout === "sheet"} onChange={() => setLayout("sheet")} />
+          <div
+            className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3"
+            role="radiogroup"
+            aria-label="Deck layout"
+          >
+            <RadioCard
+              label="One per page"
+              checked={layout === "one"}
+              onChange={() => setLayout("one")}
+            />
+            <RadioCard
+              label="Four per page"
+              checked={layout === "four"}
+              onChange={() => setLayout("four")}
+            />
+            <RadioCard
+              label="Contact sheet"
+              checked={layout === "sheet"}
+              onChange={() => setLayout("sheet")}
+            />
           </div>
         </div>
 
         <div className="mt-8" role="group" aria-labelledby="frames-label">
           <div className="flex items-center justify-between gap-3 flex-wrap">
             <div className="flex items-center gap-3">
-              <h3 id="frames-label" className="text-xs sm:text-sm uppercase tracking-[0.15em]">
+              <h3
+                id="frames-label"
+                className="text-xs sm:text-sm uppercase tracking-[0.15em]"
+              >
                 Frames
               </h3>
-              <span className="text-xs text-neutral-600">{selectedCount}/{totalFrames} selected</span>
+              <span className="text-xs text-neutral-600">
+                {selectedCount}/{totalFrames} selected
+              </span>
             </div>
             <button
               className={`text-[11px] sm:text-xs uppercase tracking-[0.15em] underline underline-offset-4 duration-250 ease-out ${
-                allSelected ? "decoration-neutral-900/80" : "decoration-neutral-900/60"
+                allSelected
+                  ? "decoration-neutral-900/80"
+                  : "decoration-neutral-900/60"
               } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300/60`}
               onClick={onSelectAll}
-              aria-label={allSelected ? "Clear all frames" : "Select all frames"}
+              aria-label={
+                allSelected ? "Clear all frames" : "Select all frames"
+              }
               aria-pressed={allSelected}
             >
               {allSelected ? "Clear all" : "Select all"}
@@ -759,7 +864,9 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
                 role="checkbox"
                 aria-checked={selected.has(n)}
                 className={`h-9 sm:h-10 text-[11px] sm:text-xs font-light border border-neutral-300 ${
-                  selected.has(n) ? "bg-neutral-900 text-white" : "text-neutral-900"
+                  selected.has(n)
+                    ? "bg-neutral-900 text-white"
+                    : "text-neutral-900"
                 } rounded-none duration-250`}
               >
                 {pad3(n)}
@@ -772,7 +879,10 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
         </div>
 
         <div className="mt-8" role="group" aria-labelledby="delivery-label">
-          <h3 id="delivery-label" className="text-xs sm:text-sm uppercase tracking-[0.15em]">
+          <h3
+            id="delivery-label"
+            className="text-xs sm:text-sm uppercase tracking-[0.15em]"
+          >
             Delivery
           </h3>
           <div className="mt-3 grid gap-3">
@@ -805,14 +915,26 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
               {building ? "Creating…" : "Create Deck"}
             </PrimaryButton>
             {result && (
-              <div ref={liveRef} tabIndex={-1} aria-live="polite" className="mt-3 text-sm font-light">
+              <div
+                ref={liveRef}
+                tabIndex={-1}
+                aria-live="polite"
+                className="mt-3 text-sm font-light"
+              >
                 <div>Your private deck is ready. Link expires in 7 days.</div>
                 <div className="mt-1">
-                  <a className="underline" href={result.url} target="_blank" rel="noreferrer">
+                  <a
+                    className="underline"
+                    href={result.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {result.url}
                   </a>
                 </div>
-                <div className="mt-1 text-neutral-600">Expires: {new Date(result.expires).toLocaleString()}</div>
+                <div className="mt-1 text-neutral-600">
+                  Expires: {new Date(result.expires).toLocaleString()}
+                </div>
               </div>
             )}
           </div>
@@ -822,7 +944,10 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
 
         <ul className="text-[11px] sm:text-xs text-neutral-600 leading-relaxed">
           <li>Cover: {c.title} — From the archive.</li>
-          <li>Footer: By-appointment only · Private social escort & strategic presence.</li>
+          <li>
+            Footer: By-appointment only · Private social escort & strategic
+            presence.
+          </li>
           <li>Watermark: off by default (toggle above if needed).</li>
           <li>Noindex / nofollow for share links; 7-day expiry.</li>
         </ul>
@@ -878,7 +1003,12 @@ function ImageViewer({
   const notes = m?.notes ?? "—";
 
   return (
-    <div className="fixed inset-0 bg-black/90 text-white" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <div
+      className="fixed inset-0 bg-black/90 text-white"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Image viewer"
+    >
       <div className="absolute top-0 left-0 right-0 px-4 sm:px-6 md:px-8 pt-[calc(16px+var(--safe-top))] pb-4 flex items-center justify-between gap-3">
         <button
           onClick={onClose}
@@ -924,7 +1054,9 @@ function ImageViewer({
       <div className="absolute left-0 right-0 bottom-0 px-4 sm:px-6 md:px-8 pb-[calc(16px+var(--safe-bottom))] pt-4 text-[12px] sm:text-sm font-light text-white/85">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
-            <div className="uppercase tracking-[0.15em] text-[11px] sm:text-xs opacity-80">Title</div>
+            <div className="uppercase tracking-[0.15em] text-[11px] sm:text-xs opacity-80">
+              Title
+            </div>
             <div>{title}</div>
           </div>
           <div className="flex items-center gap-4">
@@ -938,17 +1070,26 @@ function ImageViewer({
           </div>
         </div>
         {showDetails && (
-          <div id="viewer-details" className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-6 opacity-90">
+          <div
+            id="viewer-details"
+            className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-6 opacity-90"
+          >
             <div>
-              <div className="uppercase tracking-[0.15em] text-[11px] sm:text-xs opacity-80">Specs</div>
+              <div className="uppercase tracking-[0.15em] text-[11px] sm:text-xs opacity-80">
+                Specs
+              </div>
               <div>{specsSummary}</div>
             </div>
             <div>
-              <div className="uppercase tracking-[0.15em] text-[11px] sm:text-xs opacity-80">Capture</div>
+              <div className="uppercase tracking-[0.15em] text-[11px] sm:text-xs opacity-80">
+                Capture
+              </div>
               <div>{capture}</div>
             </div>
             <div>
-              <div className="uppercase tracking-[0.15em] text-[11px] sm:text-xs opacity-80">Notes</div>
+              <div className="uppercase tracking-[0.15em] text-[11px] sm:text-xs opacity-80">
+                Notes
+              </div>
               <div>{notes}</div>
             </div>
           </div>
@@ -963,7 +1104,10 @@ export default function DeckBuilderPreview() {
   const [slug, setSlug] = useState<string>(DATA[0].slug);
   const [open, setOpen] = useState(false);
   const [viewerIdx, setViewerIdx] = useState<number | null>(null);
-  const current = useMemo(() => DATA.find((d) => d.slug === slug) ?? DATA[0], [slug]);
+  const current = useMemo(
+    () => DATA.find((d) => d.slug === slug) ?? DATA[0],
+    [slug],
+  );
   const meta = useCollectionMeta(current);
   const currentFrameCount = frameCount(current);
 
@@ -1000,7 +1144,9 @@ export default function DeckBuilderPreview() {
               return;
             }
             const n = Math.min(6, total);
-            prefetchImages(Array.from({ length: n }, (_, i) => frameSrc(c, i + 1)));
+            prefetchImages(
+              Array.from({ length: n }, (_, i) => frameSrc(c, i + 1)),
+            );
             prefetched.add(c.slug);
           }}
         />
@@ -1014,7 +1160,9 @@ export default function DeckBuilderPreview() {
           <FrameGrid c={current} onOpen={(i) => setViewerIdx(i)} />
         </>
       )}
-      {open && frameCount(current) > 0 && <DeckBuilder c={current} onClose={() => setOpen(false)} />}
+      {open && frameCount(current) > 0 && (
+        <DeckBuilder c={current} onClose={() => setOpen(false)} />
+      )}
       {viewerIdx !== null && currentFrameCount > 0 && (
         <ImageViewer
           c={current}
