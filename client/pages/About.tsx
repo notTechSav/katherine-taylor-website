@@ -79,7 +79,7 @@ const About = () => {
               <AspectRatio ratio={16 / 9}>
                 <img
                   src={ABOUT_SECONDARY_IMAGE}
-                  alt="Light spilling through a doorway onto parquet floors"
+                  alt="Hardcover journal with pencil and card in warm window light"
                   className="h-full w-full object-cover"
                   loading="lazy"
                 />
