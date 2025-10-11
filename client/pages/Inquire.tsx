@@ -32,7 +32,9 @@ const Inquire = () => {
           {/* Introduction */}
           <div className="space-y-6">
             <p className="text-[16px] font-light leading-[1.75] text-gray-600">
-              If you're seeking a San Francisco or Sacramento engagement that values depth over volume, this is where we begin. The more context you share, the better I can prepare.
+              If you're seeking a San Francisco or Sacramento engagement that
+              values depth over volume, this is where we begin. The more context
+              you share, the better I can prepare.
             </p>
           </div>
 
