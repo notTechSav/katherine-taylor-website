@@ -655,7 +655,7 @@ function ImageViewer({
   onPrev: () => void;
   onNext: () => void;
 }) {
-  const total = c.count;
+  const total = frameCount(c);
   const title = frameAlt(c, index);
   const imgRef = useRef<HTMLImageElement>(null);
   const [showDetails, setShowDetails] = useState(false);
