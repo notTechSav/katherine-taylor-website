@@ -61,10 +61,6 @@ const createBuilderSrcSet = (base: string, widths: number[]) =>
 
 const builderFrameWidths = [640, 960, 1200, 1600];
 
-const silkAndStoneHeroBase = "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe754cc1d8e334af9a33739cb169d8cce";
-const silkAndStoneHeroWidths = [640, 960, 1200, 1600];
-const silkAndStoneHeroSrcSet = createBuilderSrcSet(silkAndStoneHeroBase, silkAndStoneHeroWidths);
-
 const DATA: Collection[] = [
   {
     slug: "photos-1",
@@ -72,11 +68,6 @@ const DATA: Collection[] = [
     statement: "Matte textures; afternoon shadow; breath held.",
     cta: "private-access",
     count: 0,
-    hero: {
-      src: `${silkAndStoneHeroBase}?format=webp&width=1200`,
-      srcSet: silkAndStoneHeroSrcSet,
-      alt: "Silk & Stone collection hero featuring Katherine Taylor in white lingerie beside a sunlit window",
-    },
     frames: [],
   },
 ];
@@ -312,7 +303,7 @@ function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (
                 {(() => {
                   const src = heroSrc(c);
                   if (!src) {
-                    return <div className="flex h-full w-full items-center justify-center bg-neutral-200 text-xs uppercase tracking-[0.18em] text-neutral-500">Image coming soon</div>;
+                    return null;
                   }
                   return (
                     <img
