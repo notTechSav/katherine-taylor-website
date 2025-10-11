@@ -792,7 +792,12 @@ export default function DeckBuilderPreview() {
           onIntent={(s) => {
             const c = DATA.find((d) => d.slug === s);
             if (!c || prefetched.has(c.slug)) return;
-            const n = Math.min(6, c.count);
+            const total = frameCount(c);
+            if (total === 0) {
+              prefetched.add(c.slug);
+              return;
+            }
+            const n = Math.min(6, total);
             prefetchImages(Array.from({ length: n }, (_, i) => frameSrc(c, i + 1)));
             prefetched.add(c.slug);
           }}
