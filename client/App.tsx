@@ -23,6 +23,7 @@ import Index from "./pages/Index";
 const About = lazy(() => import("./pages/About"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Gifts = lazy(() => import("./pages/Gifts"));
+const Gallery = lazy(() => import("./pages/Gallery"));
 const Inquire = lazy(() => import("./pages/Inquire"));
 const InquireLuxury = lazy(() => import("./pages/InquireLuxury"));
 const InquiryConfirmed = lazy(() => import("./pages/InquiryConfirmed"));
