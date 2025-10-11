@@ -42,7 +42,7 @@ const About = () => {
         imageAlt="Sunlit doorway opening onto herringbone floors beside linen curtains"
         alignment="left"
       />
-      <div className="mx-auto max-w-[680px] px-6 py-24 md:py-28">
+      <div className="mx-auto max-w-[680px] px-6 pb-24 pt-16 md:px-8 md:pb-28 md:pt-20">
         <header
           data-animate
           className="space-y-6 opacity-0 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100 data-[visible=true]:delay-100"
