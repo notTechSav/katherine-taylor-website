@@ -39,7 +39,7 @@ const RatesPage = () => {
           <div className="text-center mt-12">
             <button
               onClick={() => setIsRevealed(!isRevealed)}
-              className="group inline-flex items-center gap-3 px-8 py-4 border border-gray-300 hover:border-stone-400 text-gray-700 hover:text-luxury-black font-medium tracking-[0.1em] transition-all duration-300 hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)] transform hover:-translate-y-0.5 text-sm"
+              className="group inline-flex items-center gap-3 border border-gray-300 px-8 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
               style={{ fontWeight: 300 }}
             >
               <span>{isRevealed ? 'CONCEAL STRUCTURE' : 'SHOW CURRENT STRUCTURE'}</span>
