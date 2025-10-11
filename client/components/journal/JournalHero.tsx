@@ -12,7 +12,7 @@ const overlayGradient =
 
 const JournalHero = memo(({ title, subtitle, imageSrc, imageAlt }: JournalHeroProps) => {
   return (
-    <section className="relative bg-[#fafaf7]">
+    <section className="relative bg-luxury-white">
       <figure className="relative h-[48vh] min-h-[280px] w-full overflow-hidden sm:h-[52vh]">
         <img src={imageSrc} alt={imageAlt} className="h-full w-full object-cover" loading="lazy" />
         <div className="absolute inset-0" style={{ background: overlayGradient }} aria-hidden />
