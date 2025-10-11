@@ -242,13 +242,13 @@ const RatesPage = () => {
             For those searching "escorts near me" with serious intent, this structure ensures quality over volume.
           </p>
           <nav className="flex flex-wrap gap-3 text-[14px] font-light text-luxury-black">
-            <a href="/inquire" className="underline-offset-[4px] transition-colors duration-300 hover:underline">
+            <a href="/inquire" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
               Inquire
             </a>
-            <a href="/faq" className="underline-offset-[4px] transition-colors duration-300 hover:underline">
+            <a href="/faq" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
               FAQ
             </a>
-            <a href="/about" className="underline-offset-[4px] transition-colors duration-300 hover:underline">
+            <a href="/about" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
               About
             </a>
           </nav>
