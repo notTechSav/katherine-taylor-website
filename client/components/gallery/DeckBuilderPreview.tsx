@@ -190,6 +190,8 @@ const frameSrcSet = (c: Collection, i: number) => {
     .join(", ");
 };
 
+const frameAlt = (c: Collection, index: number) => getFrameAsset(c, index)?.alt ?? `${c.title} — frame ${pad3(index)}`;
+
 const frameSizes = "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw";
 
 function canHover() {
