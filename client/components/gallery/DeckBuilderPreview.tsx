@@ -162,6 +162,12 @@ const heroSrcSet = (c: Collection) => {
 const heroSizes = "(min-width: 1024px) 560px, (min-width: 640px) 50vw, 100vw";
 
 const frameSrc = (c: Collection, i: number) => {
+  const asset = getFrameAsset(c, i);
+  if (asset) {
+    const widths = asset.widths ?? builderFrameWidths;
+    const largest = widths[widths.length - 1];
+    return `${asset.base}?format=webp&width=${largest}`;
+  }
   if (c.dir) {
     return enc(`${c.dir}/images/${pad3(i)}.avif`);
   }
@@ -169,6 +175,10 @@ const frameSrc = (c: Collection, i: number) => {
 };
 
 const frameSrcSet = (c: Collection, i: number) => {
+  const asset = getFrameAsset(c, i);
+  if (asset) {
+    return createBuilderSrcSet(asset.base, asset.widths ?? builderFrameWidths);
+  }
   if (c.dir) {
     return [800, 1200, 1600, 2000, 2400]
       .map((w) => `${enc(`${c.dir}/images/${pad3(i)}-${w}.avif`)} ${w}w`)
