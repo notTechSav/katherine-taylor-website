@@ -4,8 +4,8 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 const heroImage = {
-  src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fce3b4217758a4479b50998005555bb44?format=webp&width=800",
-  alt: "Sealed envelope beside a glass vase holding an olive branch on a linen-covered table in afternoon light",
+  src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F0f2f86b6352f4300ade98b6ec95f0d9c?format=webp&width=800",
+  alt: "Olive branch in a glass vase beside an open stationery card resting on a linen-covered table in afternoon light",
 };
 
 const overlayGradient =
