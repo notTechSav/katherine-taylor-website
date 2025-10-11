@@ -4,16 +4,22 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 const Tokens = () => (
   <style>{`
     :root{
-      --shadow-elevation-sm: 0 1px 2px rgba(0,0,0,0.06);
-      --shadow-elevation-md: 0 4px 10px rgba(0,0,0,0.07);
-      --shadow-elevation-lg: 0 12px 24px rgba(0,0,0,0.09);
+      --shadow-elevation-sm: 0 1px 3px rgba(26,26,26,0.04);
+      --shadow-elevation-md: 0 4px 12px rgba(26,26,26,0.06);
+      --shadow-elevation-lg: 0 12px 28px rgba(26,26,26,0.08);
       --safe-top: env(safe-area-inset-top);
       --safe-bottom: env(safe-area-inset-bottom);
       --color-ink:#1a1a1a;
-      --color-paper:#fafafa;
+      --color-paper:#fafaf7;
+      --color-stone:#6B5D54;
     }
     .duration-250{ transition-duration:250ms; }
     .duration-400{ transition-duration:400ms; }
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .animate-fade-in { animation: fade-in 400ms ease-out; }
     @media (prefers-reduced-motion: reduce){
       *{ transition-duration: 0.01ms !important; animation-duration:0.01ms !important; animation-iteration-count:1 !important; }
     }
@@ -73,7 +79,7 @@ const DATA: Collection[] = [
   {
     slug: "photos-1",
     title: "Silk & Stone — Los Angeles, 2025",
-    statement: "Matte textures; afternoon shadow; breath held.",
+    statement: "Matte textures, afternoon shadow, breath held. Northern California, 2025.",
     cta: "private-access",
     count: 23,
     hero: {
@@ -179,7 +185,7 @@ const DATA: Collection[] = [
   {
     slug: "photos-2",
     title: "Colorfield — Malibu, 2024",
-    statement: "Color-forward frames; salt air; saturated dusk.",
+    statement: "Color-forward frames, salt air, saturated dusk. Southern California coast.",
     cta: "conversation",
     count: 21,
     hero: {
@@ -278,7 +284,7 @@ const DATA: Collection[] = [
     slug: "photos-3",
     dir: "/gallery/photos-3",
     title: "Golden Hour — Studio, 2024",
-    statement: "Warm light; intimate moments; natural elegance.",
+    statement: "Available light, clean lines, city exhales. San Francisco intimate moments.",
     cta: "inquire",
     count: 25,
   },
