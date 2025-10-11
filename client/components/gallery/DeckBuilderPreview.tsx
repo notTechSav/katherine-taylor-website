@@ -69,6 +69,21 @@ const colorfieldHeroBase = "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53
 const colorfieldHeroWidths = [640, 960, 1200, 1600];
 const colorfieldHeroSrcSet = createBuilderSrcSet(colorfieldHeroBase, colorfieldHeroWidths);
 
+const colorfieldFrames: FrameAsset[] = [
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F7ba0efdf8ee44976a2e7d51f3cb4d16e" },
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F431d6329cad9417a9f76f7d9bdebe43f" },
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fb4956c55954d44228eec66095dde601a" },
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F182f93d6680a4a82b3cfa6062d07f06d" },
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6f8c111b560b4b868216c98bee87a70a" },
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F0cc9ec32e7e040dcbf4d6e8db3ad8153" },
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F7829412e0736471fb1dbb3391fadbff0" },
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6d40ac3634bc46b683dee48620fe4942" },
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fcb21a696f3dd438aa2662cc720021bcb" },
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F67eee88856784da89d3db986bdcb79d4" },
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Ffe5ad4a5aeaa4aa4b8206baf8ac2c448" },
+  { base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F3772caebc35147b0b078f2c6d3681452" },
+];
+
 const DATA: Collection[] = [
   {
     slug: "photos-1",
