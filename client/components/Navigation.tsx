@@ -107,7 +107,7 @@ const Navigation = () => {
                 <a
                   href={link.href}
                   onClick={handleLinkClick}
-                  className="block py-4 text-base font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                  className="block py-4 text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
                 >
                   {link.label}
                 </a>
