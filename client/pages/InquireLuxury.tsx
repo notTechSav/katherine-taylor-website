@@ -607,10 +607,7 @@ const InquireLuxury = () => {
             {currentStep === 5 && (
               <motion.div
                 key="step5"
-                initial={{ opacity: 0, x: 96 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -96 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+                {...STEP_MOTION_PROPS}
                 className="space-y-10"
               >
                 <div>
