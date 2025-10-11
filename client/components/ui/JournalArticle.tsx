@@ -108,8 +108,8 @@ const JournalArticle = () => {
   const paragraphs = essay.body.split(/\n\n+/g).map((paragraph) => paragraph.trim());
 
   return (
-    <div className="bg-[#fafaf7] text-[#1a1a1a]">
-      <section className="relative overflow-hidden bg-[#fafaf7]">
+    <div className="bg-luxury-white text-luxury-black">
+      <section className="relative overflow-hidden bg-luxury-white">
         <div className="relative h-[48vh] min-h-[260px] w-full sm:h-[52vh]">
           <img
             src={heroImage.src}
@@ -124,8 +124,8 @@ const JournalArticle = () => {
           />
           <div className="absolute inset-0 flex items-end">
             <div className="mx-auto w-full max-w-[1120px] px-8 pb-16 sm:px-12">
-              <div className="max-w-2xl space-y-3 text-[#fafaf7]">
-                <p className="text-xs font-light uppercase tracking-[0.12em] text-[#f5f4f0]/80">
+              <div className="max-w-2xl space-y-3 text-luxury-white">
+                <p className="text-xs font-light uppercase tracking-[0.12em] text-luxury-white/80">
                   {formattedPublishedDate}
                 </p>
                 <h1
@@ -142,15 +142,15 @@ const JournalArticle = () => {
 
       <section className="px-6 py-16 sm:px-10">
         <div className="mx-auto max-w-[620px] space-y-8 text-left">
-          <p className="text-sm font-light tracking-[0.12em] text-[#4a4a4a]">
+          <p className="text-sm font-light tracking-[0.12em] text-gray-600">
             {journalDisplay.subtitle}
           </p>
-          <div className="space-y-6 text-[18px] font-light leading-[1.75] text-[#1a1a1a]">
+          <div className="space-y-6 text-[18px] font-light leading-[1.75] text-luxury-black">
             {paragraphs.map((paragraph, index) => (
               <p key={`${essay.slug}-paragraph-${index}`}>{paragraph}</p>
             ))}
           </div>
-          <div className="flex justify-between pt-8 text-sm font-light text-[#1a1a1a]">
+          <div className="flex justify-between pt-8 text-sm font-light text-luxury-black">
             <button
               type="button"
               onClick={() => {
@@ -160,14 +160,14 @@ const JournalArticle = () => {
                   navigate("/journal", { replace: true });
                 }
               }}
-              className="underline-offset-[6px] transition-colors duration-300 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-[#1a1a1a]/40 focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf7]"
+              className="underline-offset-[6px] transition-colors duration-300 hover:text-gray-600 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-luxury-black/40 focus-visible:ring-offset-4 focus-visible:ring-offset-luxury-white"
             >
               {journalDisplay.closeLabel}
             </button>
             {readNextEssay ? (
               <Link
                 to={`/journal/${readNextEssay.slug}`}
-                className="underline-offset-[6px] transition-colors duration-300 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-[#1a1a1a]/40 focus-visible:ring-offset-4 focus-visible:ring-offset-[#fafaf7]"
+                className="underline-offset-[6px] transition-colors duration-300 hover:text-gray-600 hover:underline focus:outline-none focus-visible:ring-1 focus-visible:ring-luxury-black/40 focus-visible:ring-offset-4 focus-visible:ring-offset-luxury-white"
               >
                 {journalDisplay.readNextPrefix} {readNextEssay.title}
               </Link>
