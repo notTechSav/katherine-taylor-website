@@ -66,8 +66,8 @@ const hiddenFaqs: FaqItem[] = [
 ];
 
 const FAQ_HERO_IMAGE = {
-  src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F4f874c986e7e48508dfa961b7493df10?format=webp&width=1200",
-  alt: "Glass hourglass catching warm afternoon light on linen table",
+  src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F5fb6a13b3046474da37f8a9e02340d6b?format=webp&width=1200",
+  alt: "Glass hourglass resting on a linen-covered table in golden light",
 };
 
 const FAQSectionLuxury = () => {
