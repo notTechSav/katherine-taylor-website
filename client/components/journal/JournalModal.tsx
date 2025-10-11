@@ -16,7 +16,7 @@ const overlayClassName =
   "fixed inset-0 z-[70] bg-[rgba(0,0,0,0.08)] transition-opacity duration-[350ms] ease-in-out data-[state=open]:opacity-100 data-[state=closed]:opacity-0";
 
 const contentClassName =
-  "fixed left-1/2 top-1/2 z-[80] w-full max-w-[640px] -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-[#fafaf7] px-8 py-12 shadow-[0_32px_80px_rgba(0,0,0,0.14)] outline-none transition-opacity duration-[350ms] ease-in-out data-[state=open]:opacity-100 data-[state=closed]:opacity-0 sm:rounded-none";
+  "fixed left-1/2 top-1/2 z-[80] w-full max-w-[640px] -translate-x-1/2 -translate-y-1/2 overflow-hidden bg-luxury-white px-8 py-12 shadow-[0_32px_80px_rgba(0,0,0,0.14)] outline-none transition-opacity duration-[350ms] ease-in-out data-[state=open]:opacity-100 data-[state=closed]:opacity-0 sm:rounded-none";
 
 const innerScrollClassName =
   "max-h-[84vh] overflow-y-auto pr-2 pt-6 sm:pr-3 sm:pt-8";
