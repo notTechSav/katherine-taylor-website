@@ -444,14 +444,14 @@ function FrameGrid({ c, onOpen }: { c: Collection; onOpen: (index: number) => vo
             key={idx}
             onClick={() => onOpen(idx + 1)}
             className="block text-left focus:outline-none"
-            aria-label={`Open ${c.title} — frame ${pad3(idx + 1)} full screen`}
+            aria-label={`Open ${frameAlt(c, idx + 1)} full screen`}
           >
             <figure className="aspect-[4/5] overflow-hidden" style={{ boxShadow: "var(--shadow-elevation-sm)" }}>
               <img
                 src={frameSrc(c, idx + 1)}
                 srcSet={frameSrcSet(c, idx + 1)}
                 sizes={frameSizes}
-                alt={`${c.title} — frame ${pad3(idx + 1)}`}
+                alt={frameAlt(c, idx + 1)}
                 loading={idx === 0 ? "eager" : "lazy"}
                 decoding="async"
                 className="h-full w-full object-cover"
