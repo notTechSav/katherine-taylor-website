@@ -117,7 +117,7 @@ const heroSrcSet = (c: Collection): string | undefined => {
 
 const heroSizes = "(min-width: 1024px) 560px, (min-width: 640px) 50vw, 100vw";
 
-const frameSrc = (c: Collection, i: number) => {
+const frameSrc = (c: Collection, i: number): string | undefined => {
   const asset = getFrameAsset(c, i);
   if (asset) {
     const widths = asset.widths ?? builderFrameWidths;
@@ -127,10 +127,10 @@ const frameSrc = (c: Collection, i: number) => {
   if (c.dir) {
     return enc(`${c.dir}/images/${pad3(i)}.avif`);
   }
-  return placeholderFrame(c.placeholderSeed ?? c.slug, i, 1200);
+  return undefined;
 };
 
-const frameSrcSet = (c: Collection, i: number) => {
+const frameSrcSet = (c: Collection, i: number): string | undefined => {
   const asset = getFrameAsset(c, i);
   if (asset) {
     return createBuilderSrcSet(asset.base, asset.widths ?? builderFrameWidths);
@@ -140,10 +140,7 @@ const frameSrcSet = (c: Collection, i: number) => {
       .map((w) => `${enc(`${c.dir}/images/${pad3(i)}-${w}.avif`)} ${w}w`)
       .join(", ");
   }
-  const seed = c.placeholderSeed ?? c.slug;
-  return [800, 1200, 1600, 2000, 2400]
-    .map((w) => `${placeholderFrame(seed, i, w)} ${w}w`)
-    .join(", ");
+  return undefined;
 };
 
 const frameAlt = (c: Collection, index: number) => getFrameAsset(c, index)?.alt ?? `${c.title} — frame ${pad3(index)}`;
