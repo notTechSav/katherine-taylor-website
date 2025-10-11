@@ -60,6 +60,13 @@ const TIMELINE_OPTIONS = [
   { value: "planning", label: "Planning" },
 ] as const;
 
+const STEP_MOTION_PROPS = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+  transition: { duration: 0.4, ease: "easeOut" as const },
+};
+
 const OUTCOME_OPTIONS = [
   "Brand Enhancement",
   "Thought Leadership",
@@ -81,7 +88,7 @@ const REFERRAL_OPTIONS = [
 ] as const;
 
 const TIME_SLOTS = [
-  { value: "morning", label: "Morning (9AM – 12PM)" },
+  { value: "morning", label: "Morning (9AM �� 12PM)" },
   { value: "afternoon", label: "Afternoon (12PM – 5PM)" },
   { value: "evening", label: "Evening (5PM – 8PM)" },
   { value: "flexible", label: "Flexible" },
