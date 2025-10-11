@@ -19,7 +19,7 @@ const DesignInMotionSection = () => {
             These are the signatures that define my experiences.
           </p>
           <Button asChild variant="ctaSecondary">
-            <a href="/gallery">Take a Glimpse</a>
+            <a href="/about">Take a Glimpse</a>
           </Button>
         </div>
         <div className="relative h-full w-full overflow-hidden border border-gray-200 bg-muted/40">

@@ -16,7 +16,6 @@ import Index from "./pages/Index";
 // Lazy load all other routes (code splitting for better performance)
 const About = lazy(() => import("./pages/About"));
 const FAQ = lazy(() => import("./pages/FAQ"));
-const Gallery = lazy(() => import("./pages/Gallery"));
 const Gifts = lazy(() => import("./pages/Gifts"));
 const Inquire = lazy(() => import("./pages/Inquire"));
 const InquireLuxury = lazy(() => import("./pages/InquireLuxury"));
@@ -63,14 +62,6 @@ const AppRoutes = () => {
             element={
               <SiteLayout>
                 <About />
-              </SiteLayout>
-            }
-          />
-          <Route
-            path="/gallery"
-            element={
-              <SiteLayout>
-                <Gallery />
               </SiteLayout>
             }
           />
