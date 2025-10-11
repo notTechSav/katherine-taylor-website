@@ -219,56 +219,64 @@ const FAQSectionLuxury = () => {
 
       <section className="relative bg-luxury-white py-24 md:py-32">
         <div className="container mx-auto px-6 md:px-8">
-        <div className="mb-16 text-center md:mb-20">
-          <h2 className="mb-6 font-serif text-4xl font-extralight tracking-display text-luxury-black md:text-5xl">
-            FAQ
-          </h2>
-          <p className="mx-auto max-w-3xl text-lg font-light leading-[1.8] tracking-[0.02em] text-gray-600 md:text-xl">
-            What is an escort? How much do escorts cost? After over a decade in
-            San Francisco, Katherine Taylor escorts You, If You Will, Through
-            Escort Culture as your personal tour guide through San Francisco,
-            Sacramento, and the Bay Area.
-          </p>
-        </div>
-
-        <div className="max-w-4xl mx-auto">
-          {/* Featured FAQs (always visible) */}
-          <div className="space-y-4 mb-6">
-            {featuredFaqs.map((item) => (
-              <FAQItem key={item.id} item={item} isOpen={openFaq === item.id} />
-            ))}
+          <div className="mb-16 text-center md:mb-20">
+            <h2 className="mb-6 font-serif text-4xl font-extralight tracking-display text-luxury-black md:text-5xl">
+              FAQ
+            </h2>
+            <p className="mx-auto max-w-3xl text-lg font-light leading-[1.8] tracking-[0.02em] text-gray-600 md:text-xl">
+              What is an escort? How much do escorts cost? After over a decade
+              in San Francisco, Katherine Taylor escorts You, If You Will,
+              Through Escort Culture as your personal tour guide through San
+              Francisco, Sacramento, and the Bay Area.
+            </p>
           </div>
 
-          {/* Hidden FAQs (expandable) */}
-          <div
-            className={cn(
-              "space-y-4 transition-all duration-700 ease-in-out overflow-hidden",
-              showHidden ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0",
-            )}
-          >
-            {hiddenFaqs.map((item) => (
-              <FAQItem key={item.id} item={item} isOpen={openFaq === item.id} />
-            ))}
-          </div>
+          <div className="max-w-4xl mx-auto">
+            {/* Featured FAQs (always visible) */}
+            <div className="space-y-4 mb-6">
+              {featuredFaqs.map((item) => (
+                <FAQItem
+                  key={item.id}
+                  item={item}
+                  isOpen={openFaq === item.id}
+                />
+              ))}
+            </div>
 
-          {/* Show More/Less Toggle */}
-          <div className="text-center mt-8">
-            <button
-              onClick={() => setShowHidden((prev) => !prev)}
-              className="group inline-flex items-center gap-3 border border-gray-300 px-8 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
-              aria-expanded={showHidden}
+            {/* Hidden FAQs (expandable) */}
+            <div
+              className={cn(
+                "space-y-4 transition-all duration-700 ease-in-out overflow-hidden",
+                showHidden ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0",
+              )}
             >
-              <span>{showHidden ? "SHOW FEWER" : "STEP FURTHER"}</span>
-              <ChevronDown
-                className={cn(
-                  "w-4 h-4 transition-all duration-300",
-                  showHidden && "rotate-180",
-                )}
-              />
-            </button>
+              {hiddenFaqs.map((item) => (
+                <FAQItem
+                  key={item.id}
+                  item={item}
+                  isOpen={openFaq === item.id}
+                />
+              ))}
+            </div>
+
+            {/* Show More/Less Toggle */}
+            <div className="text-center mt-8">
+              <button
+                onClick={() => setShowHidden((prev) => !prev)}
+                className="group inline-flex items-center gap-3 border border-gray-300 px-8 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
+                aria-expanded={showHidden}
+              >
+                <span>{showHidden ? "SHOW FEWER" : "STEP FURTHER"}</span>
+                <ChevronDown
+                  className={cn(
+                    "w-4 h-4 transition-all duration-300",
+                    showHidden && "rotate-180",
+                  )}
+                />
+              </button>
+            </div>
           </div>
         </div>
-      </div>
       </section>
     </div>
   );

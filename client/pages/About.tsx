@@ -49,7 +49,11 @@ const About = () => {
           className="space-y-6 opacity-0 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100 data-[visible=true]:delay-100"
         >
           <p className="text-[17px] leading-[1.9] text-[#1a1a1a]">
-            The conversation never resets. I carry forward everything—your M&amp;A timeline, your board anxieties, your daughter’s college decision, the trip to Patagonia you’ve been planning. Not because I take notes, but because I’ve built a decade of pattern libraries that let me read what you don’t say.
+            The conversation never resets. I carry forward everything—your
+            M&amp;A timeline, your board anxieties, your daughter’s college
+            decision, the trip to Patagonia you’ve been planning. Not because I
+            take notes, but because I’ve built a decade of pattern libraries
+            that let me read what you don’t say.
           </p>
         </header>
 
@@ -63,14 +67,14 @@ const About = () => {
             className="space-y-7 opacity-0 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100"
           >
             <p>
-              A client once sent two lines: in-suite only, three hours, no celebrity
-              talk. Most people would see red flags. I saw the date—Gateway
-              Conference, same week last year at the Four Seasons. I saw the
-              precision—three hours meant no dinner break. I saw the
-              subtext—he’d had a bad experience and wanted efficiency, privacy, and
-              a conversation with substance. I arrived discreetly at seven, no
-              instructions needed. That’s what institutional memory looks like when
-              it’s in practice.
+              A client once sent two lines: in-suite only, three hours, no
+              celebrity talk. Most people would see red flags. I saw the
+              date—Gateway Conference, same week last year at the Four Seasons.
+              I saw the precision—three hours meant no dinner break. I saw the
+              subtext—he’d had a bad experience and wanted efficiency, privacy,
+              and a conversation with substance. I arrived discreetly at seven,
+              no instructions needed. That’s what institutional memory looks
+              like when it’s in practice.
             </p>
             <div
               data-animate
@@ -89,27 +93,27 @@ const About = () => {
               My work sits at the intersection of strategic counsel and personal
               continuity. Half of what I do is high-level thinking—pattern
               recognition, operational clarity, risk sorting. The other half is
-              presence—listening until I can hear the sentence you didn’t finish.
-              The outcome is relief: you don’t have to explain yourself to be
-              understood.
+              presence—listening until I can hear the sentence you didn’t
+              finish. The outcome is relief: you don’t have to explain yourself
+              to be understood.
             </p>
             <p>
-              I keep a small roster so every relationship stays alive in my head.
-              Each engagement builds on the last; by the third, we’re operating at
-              full depth. Decisions move faster, and the conversations reach a level
-              most people never get to have.
+              I keep a small roster so every relationship stays alive in my
+              head. Each engagement builds on the last; by the third, we’re
+              operating at full depth. Decisions move faster, and the
+              conversations reach a level most people never get to have.
             </p>
             <p>
               I work with C-suite executives, IPO founders, and family-office
               principals who already have brilliant advisors but no one who
-              remembers the whole picture—the professional, the personal, and the
-              quiet space in between. That’s the gap I fill.
+              remembers the whole picture—the professional, the personal, and
+              the quiet space in between. That’s the gap I fill.
             </p>
             <p>
-              I don’t advertise availability because capacity is limited by design.
-              When I reach twenty active partnerships, I raise rates rather than add
-              more names. If continuity matters to you, reach out before the next
-              review window.
+              I don’t advertise availability because capacity is limited by
+              design. When I reach twenty active partnerships, I raise rates
+              rather than add more names. If continuity matters to you, reach
+              out before the next review window.
             </p>
           </section>
         </main>

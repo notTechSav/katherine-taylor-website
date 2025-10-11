@@ -15,7 +15,8 @@ type PageHeroOverlayProps = {
 
 const horizontalGradients = {
   left: "linear-gradient(90deg, rgba(17,17,17,0.75) 0%, rgba(17,17,17,0.5) 35%, rgba(17,17,17,0.1) 70%, rgba(17,17,17,0) 100%)",
-  right: "linear-gradient(270deg, rgba(17,17,17,0.75) 0%, rgba(17,17,17,0.5) 35%, rgba(17,17,17,0.1) 70%, rgba(17,17,17,0) 100%)",
+  right:
+    "linear-gradient(270deg, rgba(17,17,17,0.75) 0%, rgba(17,17,17,0.5) 35%, rgba(17,17,17,0.1) 70%, rgba(17,17,17,0) 100%)",
 };
 
 const verticalGradient =
@@ -43,9 +44,11 @@ const PageHeroOverlay = memo(
         : { background: verticalGradient };
 
     const desktopAlignment = "items-end";
-    const desktopJustify = alignment === "right" ? "justify-end" : "justify-start";
+    const desktopJustify =
+      alignment === "right" ? "justify-end" : "justify-start";
     const textAlignment = alignment === "right" ? "text-right" : "text-left";
-    const containerAlignment = alignment === "right" ? "ml-auto mr-0" : "mr-auto ml-0";
+    const containerAlignment =
+      alignment === "right" ? "ml-auto mr-0" : "mr-auto ml-0";
 
     return (
       <section className={cn("relative bg-luxury-white", className)}>
@@ -71,13 +74,13 @@ const PageHeroOverlay = memo(
                 containerAlignment,
               )}
             >
-              <div
-                className={cn(
-                  "flex w-full",
-                  desktopJustify,
-                )}
-              >
-                <div className={cn("max-w-xl pb-8 text-luxury-white lg:pb-10", textAlignment)}>
+              <div className={cn("flex w-full", desktopJustify)}>
+                <div
+                  className={cn(
+                    "max-w-xl pb-8 text-luxury-white lg:pb-10",
+                    textAlignment,
+                  )}
+                >
                   {eyebrow ? (
                     <p
                       className="mb-3 text-xs font-light uppercase tracking-[0.12em] text-luxury-white/75"

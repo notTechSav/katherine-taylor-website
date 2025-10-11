@@ -28,10 +28,13 @@ const RatesPage = () => {
         <div className="container mx-auto px-6 pb-20 pt-16 md:px-8 md:pt-20">
           <div className="mx-auto max-w-2xl space-y-6 text-center">
             <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700 md:text-lg">
-              My work is cumulative, not transactional. Each engagement carries forward the full history of your context—professional, personal, logistical—so nothing resets.
+              My work is cumulative, not transactional. Each engagement carries
+              forward the full history of your context—professional, personal,
+              logistical—so nothing resets.
             </p>
             <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700 md:text-lg">
-              The premium reflects continuity, discretion, and the scarcity discipline required to deliver them without compromise.
+              The premium reflects continuity, discretion, and the scarcity
+              discipline required to deliver them without compromise.
             </p>
           </div>
 

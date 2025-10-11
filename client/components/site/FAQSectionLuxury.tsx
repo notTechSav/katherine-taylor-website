@@ -184,13 +184,18 @@ const FAQSectionLuxury = () => {
       <section className="relative bg-luxury-white py-24 md:py-32 lg:py-40">
         <div className="mx-auto max-w-luxury px-8 md:px-12">
           <div className="mx-auto mb-20 max-w-[65ch] text-center text-base font-light leading-relaxed tracking-luxury text-gray-600 md:mb-24">
-            The following answers distill the questions I receive most often from clients balancing public visibility with private lives.
+            The following answers distill the questions I receive most often
+            from clients balancing public visibility with private lives.
           </div>
 
           <div className="mx-auto max-w-4xl">
             <div>
               {featuredFaqs.map((item) => (
-                <FAQItem key={item.id} item={item} isOpen={openFaq === item.id} />
+                <FAQItem
+                  key={item.id}
+                  item={item}
+                  isOpen={openFaq === item.id}
+                />
               ))}
 
               {showHidden &&
