@@ -196,7 +196,7 @@ const FAQSectionLuxury = () => {
                 />
               ))}
 
-            <div className="border-t border-stone-200" />
+            <div className="border-t border-gray-200" />
           </div>
 
           <div className="mt-12 text-center">
