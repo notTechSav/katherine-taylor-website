@@ -11,11 +11,11 @@ interface JournalGridProps {
 
 const JournalGrid = memo(({ entries, microline, onOpen, ctaLabel }: JournalGridProps) => {
   return (
-    <section className="bg-[#fafaf7] px-6 pb-24 pt-16 text-[#1a1a1a] sm:px-10">
+    <section className="bg-luxury-white px-6 pb-24 pt-16 text-luxury-black sm:px-10">
       <div className="mx-auto flex max-w-[680px] flex-col gap-16 sm:gap-20">
         {microline ? (
           <p
-            className="text-center text-[12px] font-light uppercase tracking-[0.16em] text-[#4a4a4a]"
+            className="text-center text-[12px] font-light uppercase tracking-[0.16em] text-gray-600"
             style={{ letterSpacing: "0.16em" }}
           >
             {microline}
