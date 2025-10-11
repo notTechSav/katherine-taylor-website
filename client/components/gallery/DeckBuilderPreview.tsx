@@ -260,18 +260,20 @@ function SecondaryButton({
 
 function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (slug: string) => void }) {
   return (
-    <section className="mx-auto max-w-[1120px] px-4 sm:px-6 md:px-12 py-24 md:py-32">
-      <header className="mb-10 sm:mb-16">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extralight tracking-[-0.02em] leading-[1.1]">Gallery</h1>
+    <section className="mx-auto max-w-[1180px] px-6 md:px-12 py-24 md:py-40">
+      <header className="mx-auto mb-16 max-w-[720px] md:mb-20">
+        <h1 className="text-4xl sm:text-5xl md:text-[58px] font-extralight tracking-[-0.03em] leading-[1.05]">
+          Private Collections
+        </h1>
         <h2 className="sr-only">Katherine Taylor escort</h2>
         <h2 className="sr-only">Sacramento escort · Bay Area escort</h2>
-        <p className="mt-3 sm:mt-4 max-w-prose text-sm sm:text-base font-light leading-[1.75] text-neutral-700">
-          From the archive — three rooms, three stories. Enter and take your time.
+        <p className="mt-4 max-w-[36ch] text-sm sm:text-base font-light leading-[1.75] text-neutral-600">
+          Three rooms, three stories. Choose where to begin — each collection opens into its own space.
         </p>
       </header>
-      <div className="grid gap-y-12 sm:gap-y-20 gap-x-8 sm:gap-x-16 grid-cols-1 sm:grid-cols-2">
+      <div className="grid grid-cols-1 justify-items-start gap-y-16 sm:grid-cols-2 sm:gap-x-16 lg:grid-cols-3 lg:gap-x-20 lg:gap-y-20">
         {DATA.map((c) => (
-          <article key={c.slug} className="group">
+          <article key={c.slug} className="group w-full max-w-[360px]">
             <button
               onMouseEnter={() => onIntent(c.slug)}
               onFocus={() => onIntent(c.slug)}
@@ -280,7 +282,10 @@ function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (
               aria-label={`Enter collection ${c.title}`}
               aria-describedby={`${c.slug}-desc`}
             >
-              <div className="aspect-[4/5] overflow-hidden" style={{ boxShadow: "var(--shadow-elevation-md)" }}>
+              <div
+                className="aspect-[4/5] overflow-hidden"
+                style={{ boxShadow: "var(--shadow-elevation-md)" }}
+              >
                 <img
                   src={heroSrc(c)}
                   srcSet={heroSrcSet(c)}
@@ -291,15 +296,17 @@ function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (
                   className="h-full w-full object-cover"
                 />
               </div>
-              <h2 className="mt-4 sm:mt-6 text-xl sm:text-2xl md:text-3xl font-extralight tracking-[-0.02em]">
-                {c.title}
-              </h2>
-              <p id={`${c.slug}-desc`} className="mt-1 text-xs sm:text-sm font-light text-neutral-600">
-                From the archive
-              </p>
-              <span className="mt-3 sm:mt-4 inline-block text-[11px] sm:text-xs tracking-[0.15em] uppercase">
-                Enter Collection
-              </span>
+              <div className="mt-5 space-y-2">
+                <h2 className="text-xl sm:text-2xl md:text-[28px] font-extralight tracking-[-0.02em]">
+                  {c.title}
+                </h2>
+                <p id={`${c.slug}-desc`} className="text-xs sm:text-sm font-light text-neutral-600">
+                  {c.statement}
+                </p>
+                <span className="inline-block text-[11px] sm:text-xs tracking-[0.18em] uppercase">
+                  View Collection
+                </span>
+              </div>
             </button>
           </article>
         ))}
