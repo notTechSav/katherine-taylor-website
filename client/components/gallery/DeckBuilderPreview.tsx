@@ -67,8 +67,109 @@ const DATA: Collection[] = [
     title: "Silk & Stone — Los Angeles, 2025",
     statement: "Matte textures; afternoon shadow; breath held.",
     cta: "private-access",
-    count: 0,
-    frames: [],
+    count: 23,
+    hero: {
+      src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fa934f5793f2643c8a8d61ddd67c1c96d?format=webp&width=1200",
+      srcSet: createBuilderSrcSet(
+        "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fa934f5793f2643c8a8d61ddd67c1c96d",
+        [640, 960, 1200, 1600],
+      ),
+      alt: "Katherine Taylor leaning against a paneled doorway wearing white lingerie and a fur coat",
+    },
+    frames: [
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fa934f5793f2643c8a8d61ddd67c1c96d",
+        alt: "Katherine Taylor leaning against a paneled doorway wearing white lingerie and a fur coat",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6cc130799bdb41ebb55b586dc283e151",
+        alt: "Katherine Taylor facing forward in white lingerie and a fur coat in front of sunlit shutters",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F0b7729fae0ee4a699fa1cfd03de590f9",
+        alt: "Katherine Taylor in sheer nude and pink lingerie leaning over a bathroom sink",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F21e68133549a4cfe8796dbc06d58414d",
+        alt: "Katherine Taylor seated in a floral chair wearing sheer pink-trimmed lingerie and an open white shirt",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe162ebd2316b43788931185980f4100c",
+        alt: "Katherine Taylor posing topless before a bathroom mirror while holding pink lingerie",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F16e1c1c67e6945349334456c5bbf6ce4",
+        alt: "Katherine Taylor standing in a white shirt with suspenders and pinstripe trousers by open French doors",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F9d474aecdb0d4b4398faba902149ec88",
+        alt: "Katherine Taylor reclining against a doorway in a white shirt, suspenders, and pinstripe trousers",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F8ea57fb0ccb34a35950da1fa95c54bf8",
+        alt: "Katherine Taylor leaning on a doorway wearing a white shirt and pinstripe trousers",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F87466c182406412bbbb8452539a4e563",
+        alt: "Katherine Taylor seated on a doorstep in a white shirt with pinstripe trousers",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F8f4562142c37463687bb11cfbeb96401",
+        alt: "Katherine Taylor in a flowing black robe beside a sunlit pool",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fd627b42a90eb4b058bfb9d586c7955fc",
+        alt: "Katherine Taylor reclining beside the pool in black swimwear and pearls",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fc23626474d1d414487ea408c3d9084fd",
+        alt: "Katherine Taylor topless wearing a black sheer robe in a golden room",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F70b7da9c15b14cf58443d06a71c289ad",
+        alt: "Katherine Taylor reclining on a tiled floor in a black gown near a staircase",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6e0bfa795b3449e78b25958c61f8c37e",
+        alt: "Katherine Taylor stretched along a staircase in a red gown",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F09131f26ab7c4e74a266ba9ad0065336",
+        alt: "Katherine Taylor topless in a doorway draped in a black leather coat",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fc5904f093b734758b5d94729fb21bda9",
+        alt: "Katherine Taylor stepping through French doors in a white bra with a fur coat",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6a7de7a219214d1190b93b759877ff79",
+        alt: "Katherine Taylor lounging on a bed in white lingerie and a fur coat",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F46cb0724bfde4c47bfb415c4de0743d7",
+        alt: "Katherine Taylor standing in a bathroom wearing sheer pink-trimmed lingerie",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Feb0036e1f99b48859ce3a59b29ce325f",
+        alt: "Katherine Taylor reflected in a bathroom mirror holding pink lingerie",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F387f56336a1142549f62919149507e2e",
+        alt: "Katherine Taylor in a black wrap dress spreading the skirt beside a swimming pool",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fab84a453e59340cca4af82e5aace3fbe",
+        alt: "Katherine Taylor sunbathing by the pool in black swimwear",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Ff5188eaa737849c28a91a5e755d1b150",
+        alt: "Katherine Taylor posing nude against a golden paneled wall",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6694f20d884445e18feb4200cda5c5db",
+        alt: "Katherine Taylor standing nude by a sunlit window with golden paneling",
+      },
+    ],
   },
 ];
 
