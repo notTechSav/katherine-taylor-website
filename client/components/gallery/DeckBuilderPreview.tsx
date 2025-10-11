@@ -51,9 +51,11 @@ type CollectionMeta = Record<string, FrameMeta>;
 
 const silkAndStoneHeroBase = "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe754cc1d8e334af9a33739cb169d8cce";
 const silkAndStoneHeroWidths = [640, 960, 1200, 1600];
-const silkAndStoneHeroSrcSet = silkAndStoneHeroWidths
-  .map((width) => `${silkAndStoneHeroBase}?format=webp&width=${width} ${width}w`)
-  .join(", ");
+const silkAndStoneHeroSrcSet = createBuilderSrcSet(silkAndStoneHeroBase, silkAndStoneHeroWidths);
+
+const colorfieldHeroBase = "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F04f2637fa3b446bbbe4ca2c92bcd37bb";
+const colorfieldHeroWidths = [640, 960, 1200, 1600];
+const colorfieldHeroSrcSet = createBuilderSrcSet(colorfieldHeroBase, colorfieldHeroWidths);
 
 const DATA: Collection[] = [
   {
@@ -76,6 +78,11 @@ const DATA: Collection[] = [
     statement: "Color-forward frames; salt air; saturated dusk.",
     cta: "conversation",
     count: 12,
+    hero: {
+      src: `${colorfieldHeroBase}?format=webp&width=1200`,
+      srcSet: colorfieldHeroSrcSet,
+      alt: "Colorfield collection hero featuring Katherine Taylor in a corset within a gilt salon",
+    },
   },
   {
     slug: "photos-3",
@@ -96,6 +103,9 @@ const placeholderHero = (seed: string, width: number) =>
 
 const placeholderFrame = (seed: string, index: number, width: number) =>
   `https://picsum.photos/seed/${encodeURIComponent(`${seed}-${index}`)}${width > 0 ? `/${width}/${aspectHeight(width)}` : ""}`;
+
+const createBuilderSrcSet = (base: string, widths: number[]) =>
+  widths.map((width) => `${base}?format=webp&width=${width} ${width}w`).join(", ");
 
 const heroSrc = (c: Collection) => {
   if (c.hero?.src) {
