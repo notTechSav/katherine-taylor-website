@@ -375,7 +375,12 @@ function CollectionHeader({ c, onOpen, onBack }: { c: Collection; onOpen: () => 
               {c.cta === "conversation" && "Book a Private Conversation"}
               {c.cta === "inquire" && "Inquire"}
             </PrimaryButton>
-            <SecondaryButton className="w-full sm:w-auto" onClick={onOpen} ariaLabel={`Build Private Deck for ${c.title}`}>
+            <SecondaryButton
+              className="w-full sm:w-auto"
+              onClick={onOpen}
+              ariaLabel={`Build Private Deck for ${c.title}`}
+              disabled={totalFrames === 0}
+            >
               Build Private Deck
             </SecondaryButton>
           </div>
