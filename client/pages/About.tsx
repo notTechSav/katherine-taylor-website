@@ -35,16 +35,14 @@ const About = () => {
 
   return (
     <div className="bg-[#fafaf9] text-[#4a4a4a]">
-      <div className="relative">
-        <AspectRatio ratio={16 / 9}>
-          <img
-            src={ABOUT_HERO_IMAGE}
-            alt="Sunlit doorway opening onto herringbone floors beside linen curtains"
-            className="h-full w-full object-cover"
-            loading="lazy"
-          />
-        </AspectRatio>
-      </div>
+      <PageHeroOverlay
+        title="About Me"
+        subtitle="The conversation never resets. I carry forward your context—professional, personal, and everything unsaid—so we move without rehearsal."
+        eyebrow="Katherine Taylor"
+        imageSrc={ABOUT_HERO_IMAGE}
+        imageAlt="Sunlit doorway opening onto herringbone floors beside linen curtains"
+        alignment="left"
+      />
       <div className="mx-auto max-w-[680px] px-6 py-24 md:py-28">
         <header
           data-animate
