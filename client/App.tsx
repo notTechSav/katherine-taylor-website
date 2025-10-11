@@ -105,6 +105,14 @@ const AppRoutes = () => {
             }
           />
           <Route
+            path="/gallery"
+            element={
+              <SiteLayout>
+                <Gallery />
+              </SiteLayout>
+            }
+          />
+          <Route
             path="/faq"
             element={
               <SiteLayout>
