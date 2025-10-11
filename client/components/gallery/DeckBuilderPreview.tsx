@@ -259,17 +259,20 @@ function SecondaryButton({
   onClick,
   className,
   ariaLabel,
+  disabled,
 }: {
   children: React.ReactNode;
   onClick?: () => void;
   className?: string;
   ariaLabel?: string;
+  disabled?: boolean;
 }) {
   return (
     <button
       onClick={onClick}
       aria-label={ariaLabel}
-      className={`inline-flex items-center justify-center uppercase tracking-[0.15em] text-[13px] sm:text-[14px] font-light px-10 sm:px-12 py-4 sm:py-5 border border-[var(--color-ink)] text-[color:var(--color-ink)] rounded-none duration-250 ease-out hover:bg-[var(--color-ink)] hover:text-[color:var(--color-paper)] ${
+      disabled={disabled}
+      className={`inline-flex items-center justify-center uppercase tracking-[0.15em] text-[13px] sm:text-[14px] font-light px-10 sm:px-12 py-4 sm:py-5 border border-[var(--color-ink)] text-[color:var(--color-ink)] rounded-none duration-250 ease-out hover:bg-[var(--color-ink)] hover:text-[color:var(--color-paper)] disabled:opacity-60 ${
         className ?? ""
       }`}
     >
