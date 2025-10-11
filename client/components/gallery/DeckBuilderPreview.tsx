@@ -67,7 +67,7 @@ const DATA: Collection[] = [
     title: "Silk & Stone — Los Angeles, 2025",
     statement: "Matte textures; afternoon shadow; breath held.",
     cta: "private-access",
-    count: 23,
+    count: 44,
     hero: {
       src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fa934f5793f2643c8a8d61ddd67c1c96d?format=webp&width=1200",
       srcSet: createBuilderSrcSet(
@@ -168,6 +168,90 @@ const DATA: Collection[] = [
       {
         base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6694f20d884445e18feb4200cda5c5db",
         alt: "Katherine Taylor standing nude by a sunlit window with golden paneling",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6b131e52db7143258955bb96ca138636",
+        alt: "Katherine Taylor posing topless in a black corset and gloves before a gilded mirror",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fef0b91a737df4720abb1f2e4d28b9655",
+        alt: "Katherine Taylor captured in monochrome wearing a black corset and gloves",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F0f82bbdec51645009d1346e7fd0a4629",
+        alt: "Katherine Taylor in a golden satin gown leaning against a doorway with floral wallpaper",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fbb3ddc4b602b42078087a3a1b73ff2d8",
+        alt: "Katherine Taylor standing in a red salon wearing black lingerie, pearls, and a fur coat",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F8ef7f271ddd94fec916179201b989ed1",
+        alt: "Katherine Taylor holding embellished lingerie while wearing a cream blazer",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fbbe1a11ee3074f899df49c7ca666a1a5",
+        alt: "Katherine Taylor reclining on a blush sofa in white lace lingerie and a cropped jacket",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Ffb2cf5fff75647458f7caebc7082df6c",
+        alt: "Katherine Taylor turning away in white lingerie and a cream jacket with soft sunlight",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F9468728d90e5435284ce7521d34b7ceb",
+        alt: "Katherine Taylor adjusting her white corset and garter set in a pink parlor",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F91ceaee4c34545939e14d03a8d519493",
+        alt: "Katherine Taylor draped over a velvet sofa in white stockings and bodysuit",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Ffa4fcffb62854789b654692b8899a3a2",
+        alt: "Katherine Taylor wearing black lingerie and pearls beside a sunlit window",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fdff986e3b073408ba1b5ec63272f87c1",
+        alt: "Katherine Taylor standing confidently in a fur coat, black lingerie, and metallic trousers",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fa0ce398651ea42dea386206926fb9470",
+        alt: "Katherine Taylor seated in a plush chair wearing a fur coat and layered pearls",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F0b1643b8c8844da3818f8111e0e4fc2b",
+        alt: "Close-up of Katherine Taylor's profile with cascading hair and a black lace bra",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F56d69304a03d4d32bd019929afc36e64",
+        alt: "Katherine Taylor in a sequined gown posed beside opulent drapery",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F4ec835fa2516418cac84ce8c58f93b86",
+        alt: "Katherine Taylor leaning against a mirrored screen in a silver embellished gown",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F121c1d7f001d4a1e8253a961c1be1ccf",
+        alt: "Katherine Taylor in a black trench coat standing by a vintage vanity",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F1a35f2cf6e36489d9d863cae3350c83a",
+        alt: "Golden close-up of Katherine Taylor's face and shoulders with soft lens flare",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F9cfddf218a99426c84c0be88461337a0",
+        alt: "Katherine Taylor wearing a yellow satin gown framed by an ornate gold mirror",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F61cf02067b384546b6aaf1ecc382df17",
+        alt: "Katherine Taylor seated in a pink corner wearing a white blazer and heels",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fb3fb3c4844d744a4a7b5f57c7662d300",
+        alt: "Katherine Taylor adjusting a yellow satin gown while draped in a dark coat",
+      },
+      {
+        base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fedcf74ee700c43a1875c8d425d42229d",
+        alt: "Katherine Taylor seated against a pink wall wearing a white blazer and beaded lingerie",
       },
     ],
   },
