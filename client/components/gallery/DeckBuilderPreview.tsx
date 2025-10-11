@@ -60,6 +60,10 @@ const createBuilderSrcSet = (base: string, widths: number[]) =>
   widths.map((width) => `${base}?format=webp&width=${width} ${width}w`).join(", ");
 
 const builderFrameWidths = [640, 960, 1200, 1600];
+const heroWidths = [640, 960, 1200, 1600];
+
+const silkAndStoneHeroBase = "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fa934f5793f2643c8a8d61ddd67c1c96d";
+const colorfieldHeroBase = "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6b131e52db7143258955bb96ca138636";
 
 const DATA: Collection[] = [
   {
@@ -67,13 +71,10 @@ const DATA: Collection[] = [
     title: "Silk & Stone — Los Angeles, 2025",
     statement: "Matte textures; afternoon shadow; breath held.",
     cta: "private-access",
-    count: 44,
+    count: 23,
     hero: {
-      src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fa934f5793f2643c8a8d61ddd67c1c96d?format=webp&width=1200",
-      srcSet: createBuilderSrcSet(
-        "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fa934f5793f2643c8a8d61ddd67c1c96d",
-        [640, 960, 1200, 1600],
-      ),
+      src: `${silkAndStoneHeroBase}?format=webp&width=1200`,
+      srcSet: createBuilderSrcSet(silkAndStoneHeroBase, heroWidths),
       alt: "Katherine Taylor leaning against a paneled doorway wearing white lingerie and a fur coat",
     },
     frames: [
@@ -169,6 +170,20 @@ const DATA: Collection[] = [
         base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6694f20d884445e18feb4200cda5c5db",
         alt: "Katherine Taylor standing nude by a sunlit window with golden paneling",
       },
+    ],
+  },
+  {
+    slug: "photos-2",
+    title: "Colorfield — Malibu, 2024",
+    statement: "Color-forward frames; salt air; saturated dusk.",
+    cta: "conversation",
+    count: 21,
+    hero: {
+      src: `${colorfieldHeroBase}?format=webp&width=1200`,
+      srcSet: createBuilderSrcSet(colorfieldHeroBase, heroWidths),
+      alt: "Katherine Taylor posing topless in a black corset and gloves before a gilded mirror",
+    },
+    frames: [
       {
         base: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F6b131e52db7143258955bb96ca138636",
         alt: "Katherine Taylor posing topless in a black corset and gloves before a gilded mirror",
