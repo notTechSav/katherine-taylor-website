@@ -347,6 +347,7 @@ function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (
 }
 
 function CollectionHeader({ c, onOpen, onBack }: { c: Collection; onOpen: () => void; onBack: () => void }) {
+  const totalFrames = frameCount(c);
   return (
     <section className="mx-auto max-w-[1180px] px-6 md:px-12 py-24 md:py-36">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(320px,360px)] lg:items-start">
