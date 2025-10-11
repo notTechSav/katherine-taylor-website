@@ -449,8 +449,9 @@ function FrameGrid({ c, onOpen }: { c: Collection; onOpen: (index: number) => vo
 }
 
 function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
+  const totalFrames = frameCount(c);
   const [layout, setLayout] = useState<"one" | "four" | "sheet">("one");
-  const [selected, setSelected] = useState(() => new Set<number>(Array.from({ length: c.count }, (_, i) => i + 1)));
+  const [selected, setSelected] = useState(() => new Set<number>(Array.from({ length: totalFrames }, (_, i) => i + 1)));
   const [email, setEmail] = useState("");
   const [includeWatermark, setIncludeWatermark] = useState(false);
   const [building, setBuilding] = useState(false);
@@ -471,15 +472,19 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  useEffect(() => {
+    setSelected(new Set(Array.from({ length: totalFrames }, (_, i) => i + 1)));
+  }, [totalFrames]);
+
   const toggle = (n: number) => {
     const next = new Set(selected);
     next.has(n) ? next.delete(n) : next.add(n);
     setSelected(next);
   };
 
-  const frames = useMemo(() => Array.from({ length: c.count }, (_, i) => i + 1), [c.count]);
+  const frames = useMemo(() => Array.from({ length: totalFrames }, (_, i) => i + 1), [totalFrames]);
   const selectedCount = selected.size;
-  const allSelected = selectedCount === c.count;
+  const allSelected = selectedCount === totalFrames;
 
   function onSelectAll() {
     if (allSelected) {
@@ -542,7 +547,7 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
               <h3 id="frames-label" className="text-xs sm:text-sm uppercase tracking-[0.15em]">
                 Frames
               </h3>
-              <span className="text-xs text-neutral-600">{selectedCount}/{c.count} selected</span>
+              <span className="text-xs text-neutral-600">{selectedCount}/{totalFrames} selected</span>
             </div>
             <button
               className={`text-[11px] sm:text-xs uppercase tracking-[0.15em] underline underline-offset-4 duration-250 ease-out ${
@@ -599,7 +604,13 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
               />
               Include subtle watermark in deck (optional)
             </label>
-            <PrimaryButton onClick={build} disabled={building} className="w-full md:w-auto" ariaLabel="Create deck" ariaBusy={building}>
+            <PrimaryButton
+              onClick={build}
+              disabled={building || frames.length === 0}
+              className="w-full md:w-auto"
+              ariaLabel="Create deck"
+              ariaBusy={building}
+            >
               {building ? "Creating…" : "Create Deck"}
             </PrimaryButton>
             {result && (
