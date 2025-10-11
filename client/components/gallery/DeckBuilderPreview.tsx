@@ -511,7 +511,7 @@ function Hub({
   onIntent: (slug: string) => void;
 }) {
   return (
-    <section className="mx-auto max-w-[1180px] px-6 md:px-12 py-32 md:py-48">
+    <section className="mx-auto max-w-[1180px] px-6 md:px-12 pt-32 pb-32 md:pt-40 md:pb-48">
       <header className="mx-auto mb-14 max-w-[720px] sm:mb-24">
         <h1 className="text-[56px] sm:text-[68px] md:text-[84px] font-extralight tracking-[-0.03em] leading-[0.95]">
           Private Collections
@@ -589,16 +589,16 @@ function CollectionHeader({
 }) {
   const totalFrames = frameCount(c);
   return (
-    <section className="mx-auto max-w-[1180px] px-6 md:px-12 py-24 md:py-36">
+    <section className="mx-auto max-w-[1180px] px-6 md:px-12 pt-32 pb-24 md:pt-40 md:pb-36">
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(320px,360px)] lg:items-start">
         <div className="space-y-8">
           <button
             onClick={onBack}
-            className="inline-flex h-10 items-center text-xs uppercase tracking-[0.15em] text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300/60"
+            className="inline-flex h-11 items-center gap-2 text-xs uppercase tracking-[0.15em] text-[var(--color-stone)] duration-250 hover:text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-stone)]/40"
             aria-label="Back to Gallery"
             title="Back to Gallery"
           >
-            Back to Collections
+            <span className="text-base">←</span> Back to Collections
           </button>
           <div className="space-y-4">
             <h1 className="text-3xl sm:text-4xl md:text-[48px] font-extralight tracking-[-0.025em] leading-[1.05]">
