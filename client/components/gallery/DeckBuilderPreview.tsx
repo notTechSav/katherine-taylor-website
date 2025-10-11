@@ -781,6 +781,12 @@ export default function DeckBuilderPreview() {
     };
   }, [viewerIdx]);
 
+  useEffect(() => {
+    if (currentFrameCount === 0 && viewerIdx !== null) {
+      setViewerIdx(null);
+    }
+  }, [currentFrameCount, viewerIdx]);
+
   return (
     <div className="text-neutral-900">
       <Tokens />
@@ -814,14 +820,24 @@ export default function DeckBuilderPreview() {
         </>
       )}
       {open && frameCount(current) > 0 && <DeckBuilder c={current} onClose={() => setOpen(false)} />}
-      {viewerIdx !== null && (
+      {viewerIdx !== null && currentFrameCount > 0 && (
         <ImageViewer
           c={current}
           meta={meta}
           index={viewerIdx}
           onClose={() => setViewerIdx(null)}
-          onPrev={() => setViewerIdx((i) => (i! <= 1 ? current.count : i! - 1))}
-          onNext={() => setViewerIdx((i) => (i! >= current.count ? 1 : i! + 1))}
+          onPrev={() =>
+            setViewerIdx((i) => {
+              if (i == null || currentFrameCount === 0) return null;
+              return i <= 1 ? currentFrameCount : i - 1;
+            })
+          }
+          onNext={() =>
+            setViewerIdx((i) => {
+              if (i == null || currentFrameCount === 0) return null;
+              return i >= currentFrameCount ? 1 : i + 1;
+            })
+          }
         />
       )}
     </div>
