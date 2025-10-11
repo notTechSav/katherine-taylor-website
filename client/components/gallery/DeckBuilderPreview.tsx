@@ -104,12 +104,13 @@ const DATA: Collection[] = [
     title: "Colorfield — Malibu, 2024",
     statement: "Color-forward frames; salt air; saturated dusk.",
     cta: "conversation",
-    count: 12,
+    count: colorfieldFrames.length,
     hero: {
       src: `${colorfieldHeroBase}?format=webp&width=1200`,
       srcSet: colorfieldHeroSrcSet,
       alt: "Colorfield collection hero featuring Katherine Taylor in a corset within a gilt salon",
     },
+    frames: colorfieldFrames,
   },
   {
     slug: "photos-3",
