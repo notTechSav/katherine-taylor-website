@@ -676,7 +676,7 @@ function ImageViewer({
 }
 
 export default function DeckBuilderPreview() {
-  const [view, setView] = useState<"hub" | "collection">("collection");
+  const [view, setView] = useState<"hub" | "collection">("hub");
   const [slug, setSlug] = useState<string>(DATA[0].slug);
   const [open, setOpen] = useState(false);
   const [viewerIdx, setViewerIdx] = useState<number | null>(null);
