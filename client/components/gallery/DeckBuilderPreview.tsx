@@ -93,17 +93,17 @@ const placeholderFrame = (seed: string, index: number, width: number) =>
 
 const getFrameAsset = (c: Collection, index: number) => c.frames?.[index - 1];
 
-const heroSrc = (c: Collection) => {
+const heroSrc = (c: Collection): string | undefined => {
   if (c.hero?.src) {
     return c.hero.src;
   }
   if (c.dir) {
     return enc(`${c.dir}/hero.avif`);
   }
-  return placeholderHero(c.placeholderSeed ?? c.slug, 1200);
+  return undefined;
 };
 
-const heroSrcSet = (c: Collection) => {
+const heroSrcSet = (c: Collection): string | undefined => {
   if (c.hero?.srcSet) {
     return c.hero.srcSet;
   }
@@ -112,10 +112,7 @@ const heroSrcSet = (c: Collection) => {
       .map((w) => `${enc(`${c.dir}/hero-${w}.avif`)} ${w}w`)
       .join(", ");
   }
-  const seed = c.placeholderSeed ?? c.slug;
-  return [800, 1200, 1600, 2000]
-    .map((w) => `${placeholderHero(seed, w)} ${w}w`)
-    .join(", ");
+  return undefined;
 };
 
 const heroSizes = "(min-width: 1024px) 560px, (min-width: 640px) 50vw, 100vw";
