@@ -111,7 +111,7 @@ const Gifts = () => {
               <button
                 type="button"
                 onClick={toggleGuidance}
-                className="inline-flex items-center text-[14px] font-light tracking-[0.01em] text-luxury-black transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-[#1a1a1a]/40 focus-visible:ring-offset-4 focus-visible:ring-offset-luxury-white"
+                className="inline-flex items-center text-[14px] font-light tracking-[0.01em] text-luxury-black transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-luxury-black/40 focus-visible:ring-offset-4 focus-visible:ring-offset-luxury-white"
                 style={{
                   transitionDuration: "350ms",
                   letterSpacing: "0.01em"
