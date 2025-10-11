@@ -1,4 +1,4 @@
-import FAQSectionLuxury from '@/components/ui/FAQSectionLuxury';
+import FAQSectionLuxury from "@/components/ui/FAQSectionLuxury";
 
 const FAQ = () => {
   return (

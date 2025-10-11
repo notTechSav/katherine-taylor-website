@@ -11,7 +11,10 @@ const LegendReinventedSection = () => {
         className="relative flex min-h-[520px] w-full items-center justify-start bg-cover bg-center px-8 py-24 sm:min-h-[640px] md:py-32 lg:py-40"
         style={{ backgroundImage: `url(${backgroundImage})` }}
       >
-        <div className="absolute inset-0 bg-luxury-black/60" aria-hidden="true" />
+        <div
+          className="absolute inset-0 bg-luxury-black/60"
+          aria-hidden="true"
+        />
         <div className="relative z-10 max-w-[560px] space-y-8 text-left text-luxury-white">
           <H2 as="p" className="mb-0 text-luxury-white">
             Katherine Taylor — Elegant San Francisco & Sacramento Escort

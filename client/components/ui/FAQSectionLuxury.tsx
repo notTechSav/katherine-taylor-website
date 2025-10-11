@@ -1,8 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ChevronDown, ExternalLink } from 'lucide-react';
+import { ChevronDown, ExternalLink } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-
 
 type FaqItem = {
   id: string;
@@ -16,77 +15,85 @@ const faqData: FaqItem[] = [
   {
     id: "what-is-escort",
     question: "What is an escort?",
-    answer: "A refined companion. As Katherine Taylor escort, I offer cultured company—elegant, confidential, and beautifully timed—what discerning sf escorts aspire to.",
+    answer:
+      "A refined companion. As Katherine Taylor escort, I offer cultured company—elegant, confidential, and beautifully timed—what discerning sf escorts aspire to.",
     seoLinks: [
       { text: "About Companionship", url: "/companion-services" },
-      { text: "Etiquette Guide", url: "/escort-etiquette" }
+      { text: "Etiquette Guide", url: "/escort-etiquette" },
     ],
-    featured: true
+    featured: true,
   },
   {
     id: "how-much-do-escorts-cost",
     question: "How much do escorts cost?",
-    answer: "After over a decade as an escort in San Francisco, I've observed that rates vary significantly based on experience, location, and service quality. My current rates are transparently detailed on my rates page, reflecting the caliber of companionship I provide.",
+    answer:
+      "After over a decade as an escort in San Francisco, I've observed that rates vary significantly based on experience, location, and service quality. My current rates are transparently detailed on my rates page, reflecting the caliber of companionship I provide.",
     seoLinks: [
       { text: "View Rates", url: "/escort-rates-sf" },
-      { text: "Premium Services", url: "/luxury-escort-services" }
+      { text: "Premium Services", url: "/luxury-escort-services" },
     ],
-    featured: true
+    featured: true,
   },
   {
     id: "katherine-taylor-different",
     question: "What Sets Katherine Taylor Apart from Other Escorts Near Me?",
-    answer: "Among San Francisco escorts and Bay Area escorts, I keep encounters bespoke: limited bookings, immaculate preparation, and chemistry that feels effortless.",
+    answer:
+      "Among San Francisco escorts and Bay Area escorts, I keep encounters bespoke: limited bookings, immaculate preparation, and chemistry that feels effortless.",
     seoLinks: [
       { text: "Exclusive Services", url: "/premium-escort-experience" },
-      { text: "San Francisco Portfolio", url: "/sf-escort-gallery" }
+      { text: "San Francisco Portfolio", url: "/sf-escort-gallery" },
     ],
-    featured: true
+    featured: true,
   },
   {
     id: "escorting-legal",
     question: "Is escorting legal?",
-    answer: "Yes and no; when meeting San Francisco escorts, Sacramento escorts, or Bay Area escorts, try to keep to etiquette and the law tends favor you for being respectful.",
+    answer:
+      "Yes and no; when meeting San Francisco escorts, Sacramento escorts, or Bay Area escorts, try to keep to etiquette and the law tends favor you for being respectful.",
     seoLinks: [
       { text: "Legal Information", url: "/escort-laws-california" },
-      { text: "Safety Guidelines", url: "/escort-safety-tips" }
+      { text: "Safety Guidelines", url: "/escort-safety-tips" },
     ],
-    featured: false
+    featured: false,
   },
   {
     id: "how-to-find-escort",
     question: "How to find an escort?",
-    answer: "Introduce yourself with date, time, and city—San Francisco, Sacramento, or elsewhere in the Bay Area. My escort rates in San Francisco are shared upon confirmation—clear, tasteful, and simple.",
+    answer:
+      "Introduce yourself with date, time, and city—San Francisco, Sacramento, or elsewhere in the Bay Area. My escort rates in San Francisco are shared upon confirmation—clear, tasteful, and simple.",
     seoLinks: [
       { text: "Booking Process", url: "/how-to-book" },
-      { text: "Contact Guidelines", url: "/escort-contact-etiquette" }
+      { text: "Contact Guidelines", url: "/escort-contact-etiquette" },
     ],
-    featured: false
+    featured: false,
   },
   {
     id: "are-escorts-safe",
     question: "Are escorts safe?",
-    answer: "Safety in escorting depends on thorough screening, clear communication, and professional boundaries. In my decade-plus experience, I maintain strict screening protocols and always prioritize mutual safety and respect.",
+    answer:
+      "Safety in escorting depends on thorough screening, clear communication, and professional boundaries. In my decade-plus experience, I maintain strict screening protocols and always prioritize mutual safety and respect.",
     seoLinks: [
       { text: "Safety Protocols", url: "/escort-safety-screening" },
-      { text: "Professional Standards", url: "/escort-safety-guidelines" }
+      { text: "Professional Standards", url: "/escort-safety-guidelines" },
     ],
-    featured: false
+    featured: false,
   },
   {
     id: "escorts-near-me",
-    question: "What if you're nowhere near me when I search \"escorts near me\"?",
-    answer: "I tour and host across the Bay Area—most often as a San Francisco escort—and I indulge in being one of the Sacramento escorts. Fly-me-to-you is available; distance is merely an invitation.",
+    question:
+      'What if you\'re nowhere near me when I search "escorts near me"?',
+    answer:
+      "I tour and host across the Bay Area—most often as a San Francisco escort—and I indulge in being one of the Sacramento escorts. Fly-me-to-you is available; distance is merely an invitation.",
     seoLinks: [
       { text: "Bay Area Services", url: "/bay-area-escort-services" },
-      { text: "Travel Arrangements", url: "/escort-travel-booking" }
+      { text: "Travel Arrangements", url: "/escort-travel-booking" },
     ],
-    featured: false
-  }
+    featured: false,
+  },
 ];
 
-const featuredFaqs = faqData.filter(item => item.featured);
-const hiddenFaqs = faqData.filter(item => !item.featured);
+const featuredFaqs = faqData.filter((item) => item.featured);
+const hiddenFaqs = faqData.filter((item) => !item.featured);
 
 const FAQSectionLuxury = () => {
   const [openFaq, setOpenFaq] = useState<string | null>(null);
@@ -157,7 +164,7 @@ const FAQSectionLuxury = () => {
         <ChevronDown
           className={cn(
             "h-5 w-5 text-gray-400 transition-all duration-300 md:h-6 md:w-6",
-            isOpen ? "rotate-180 scale-110" : "group-hover:scale-110"
+            isOpen ? "rotate-180 scale-110" : "group-hover:scale-110",
           )}
         />
       </button>
@@ -166,7 +173,7 @@ const FAQSectionLuxury = () => {
         id={`faq-answer-${item.id}`}
         className={cn(
           "transition-all duration-500 ease-out overflow-hidden",
-          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
         )}
       >
         <div className="px-6 pb-6 md:px-8 md:pb-8">
@@ -196,18 +203,19 @@ const FAQSectionLuxury = () => {
   return (
     <section className="relative bg-luxury-white py-24 md:py-32" id="faq">
       <div className="container mx-auto px-6 md:px-8">
-
         <div className="mb-16 text-center md:mb-20">
           <h2 className="mb-6 font-serif text-4xl font-extralight tracking-display text-luxury-black md:text-5xl">
             FAQ
           </h2>
           <p className="mx-auto max-w-3xl text-lg font-light leading-[1.8] tracking-[0.02em] text-gray-600 md:text-xl">
-            What is an escort? How much do escorts cost? After over a decade in San Francisco, Katherine Taylor escorts You, If You Will, Through Escort Culture as your personal tour guide through San Francisco, Sacramento, and the Bay Area.
+            What is an escort? How much do escorts cost? After over a decade in
+            San Francisco, Katherine Taylor escorts You, If You Will, Through
+            Escort Culture as your personal tour guide through San Francisco,
+            Sacramento, and the Bay Area.
           </p>
         </div>
 
         <div className="max-w-4xl mx-auto">
-
           {/* Featured FAQs (always visible) */}
           <div className="space-y-4 mb-6">
             {featuredFaqs.map((item) => (
@@ -216,16 +224,14 @@ const FAQSectionLuxury = () => {
           </div>
 
           {/* Hidden FAQs (expandable) */}
-          <div className={cn(
-            "space-y-4 transition-all duration-700 ease-in-out overflow-hidden",
-            showHidden ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
-          )}>
+          <div
+            className={cn(
+              "space-y-4 transition-all duration-700 ease-in-out overflow-hidden",
+              showHidden ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0",
+            )}
+          >
             {hiddenFaqs.map((item) => (
-              <FAQItem
-                key={item.id}
-                item={item}
-                isOpen={openFaq === item.id}
-              />
+              <FAQItem key={item.id} item={item} isOpen={openFaq === item.id} />
             ))}
           </div>
 
@@ -236,11 +242,11 @@ const FAQSectionLuxury = () => {
               className="group inline-flex items-center gap-3 border border-gray-300 px-8 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
               aria-expanded={showHidden}
             >
-              <span>{showHidden ? 'SHOW FEWER' : 'STEP FURTHER'}</span>
+              <span>{showHidden ? "SHOW FEWER" : "STEP FURTHER"}</span>
               <ChevronDown
                 className={cn(
                   "w-4 h-4 transition-all duration-300",
-                  showHidden && "rotate-180"
+                  showHidden && "rotate-180",
                 )}
               />
             </button>

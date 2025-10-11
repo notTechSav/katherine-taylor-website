@@ -4,14 +4,32 @@ import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { addDays, format } from "date-fns";
-import { Check, ChevronLeft, ChevronRight, Shield, Sparkles } from "lucide-react";
+import {
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  Shield,
+  Sparkles,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 const inquirySchema = z.object({
-  serviceType: z.enum(["consultation", "keynote", "advisory", "partnership", "custom"]),
-  projectBudget: z.enum(["under100k", "100k-250k", "250k-500k", "500k-1m", "above1m"]),
+  serviceType: z.enum([
+    "consultation",
+    "keynote",
+    "advisory",
+    "partnership",
+    "custom",
+  ]),
+  projectBudget: z.enum([
+    "under100k",
+    "100k-250k",
+    "250k-500k",
+    "500k-1m",
+    "above1m",
+  ]),
   timeline: z.enum(["immediate", "1month", "3months", "6months", "planning"]),
   firstName: z.string().min(2, "First name required"),
   lastName: z.string().min(2, "Last name required"),
@@ -22,14 +40,29 @@ const inquirySchema = z.object({
   website: z.string().url("Valid URL required").optional().or(z.literal("")),
   projectDescription: z.string().min(100, "Minimum 100 characters required"),
   desiredOutcomes: z.array(z.string()).min(1, "Select at least one outcome"),
-  referralSource: z.enum(["search", "referral", "social", "press", "event", "other"]),
+  referralSource: z.enum([
+    "search",
+    "referral",
+    "social",
+    "press",
+    "event",
+    "other",
+  ]),
   referralDetails: z.string().optional(),
   preferredDates: z.array(z.string()).min(1, "Select at least one date"),
   preferredTimeSlot: z.enum(["morning", "afternoon", "evening", "flexible"]),
-  meetingType: z.enum(["inperson-sf", "inperson-sac", "inperson-other", "virtual", "hybrid"]),
+  meetingType: z.enum([
+    "inperson-sf",
+    "inperson-sac",
+    "inperson-other",
+    "virtual",
+    "hybrid",
+  ]),
   linkedinProfile: z.string().url("Valid LinkedIn URL required"),
   ndaRequired: z.boolean(),
-  termsAccepted: z.boolean().refine(val => val === true, "Terms must be accepted"),
+  termsAccepted: z
+    .boolean()
+    .refine((val) => val === true, "Terms must be accepted"),
 });
 
 type FormData = z.infer<typeof inquirySchema>;
@@ -102,7 +135,8 @@ const MEETING_TYPES = [
   { value: "hybrid", label: "Hybrid (In-Person + Virtual)" },
 ] as const;
 
-const labelClass = "text-xs font-light uppercase tracking-uppercase text-gray-600";
+const labelClass =
+  "text-xs font-light uppercase tracking-uppercase text-gray-600";
 const inputClass =
   "w-full rounded-[2px] border border-gray-200 bg-white px-6 py-4 text-base font-light tracking-luxury text-gray-700 placeholder:text-gray-400 transition-colors duration-250 ease-out focus:border-gray-400 focus:outline-none";
 const textareaClass = cn(inputClass, "min-h-[192px] resize-none");
@@ -115,8 +149,10 @@ const tagBase =
 const errorClass = "text-xs font-light text-destructive";
 const checkboxWrapper =
   "flex items-center gap-3 rounded-[2px] border border-gray-200 px-6 py-4 transition-colors duration-250 ease-out hover:border-gray-400";
-const sectionHeadingClass = "mb-3 text-5xl font-extralight tracking-display leading-[1.1] text-luxury-black";
-const sectionBodyClass = "text-base font-light leading-relaxed tracking-luxury text-gray-600";
+const sectionHeadingClass =
+  "mb-3 text-5xl font-extralight tracking-display leading-[1.1] text-luxury-black";
+const sectionBodyClass =
+  "text-base font-light leading-relaxed tracking-luxury text-gray-600";
 
 const InquireLuxury = () => {
   const [currentStep, setCurrentStep] = useState(1);
@@ -164,7 +200,7 @@ const InquireLuxury = () => {
   const toggleOutcome = (outcome: string) => {
     const current = getValues("desiredOutcomes") || [];
     const updated = current.includes(outcome)
-      ? current.filter(item => item !== outcome)
+      ? current.filter((item) => item !== outcome)
       : [...current, outcome];
     setValue("desiredOutcomes", updated, { shouldValidate: true });
   };
@@ -172,7 +208,7 @@ const InquireLuxury = () => {
   const toggleDate = (date: string) => {
     const current = getValues("preferredDates") || [];
     const updated = current.includes(date)
-      ? current.filter(d => d !== date)
+      ? current.filter((d) => d !== date)
       : [...current, date];
     setValue("preferredDates", updated, { shouldValidate: true });
   };
@@ -182,9 +218,20 @@ const InquireLuxury = () => {
       case 1:
         return trigger(["serviceType", "projectBudget", "timeline"]);
       case 2:
-        return trigger(["firstName", "lastName", "email", "phone", "company", "position"]);
+        return trigger([
+          "firstName",
+          "lastName",
+          "email",
+          "phone",
+          "company",
+          "position",
+        ]);
       case 3:
-        return trigger(["projectDescription", "desiredOutcomes", "referralSource"]);
+        return trigger([
+          "projectDescription",
+          "desiredOutcomes",
+          "referralSource",
+        ]);
       case 4:
         return trigger(["preferredDates", "preferredTimeSlot", "meetingType"]);
       case 5:
@@ -233,7 +280,7 @@ const InquireLuxury = () => {
       <div className="mx-auto max-w-3xl px-8 py-24 md:py-32">
         <div className="mb-12">
           <div className="mb-4 flex justify-between">
-            {PROGRESS_STEPS.map(step => {
+            {PROGRESS_STEPS.map((step) => {
               const isActive = currentStep >= step;
               return (
                 <div
@@ -254,7 +301,9 @@ const InquireLuxury = () => {
             <motion.div
               className="h-full bg-luxury-black"
               initial={{ width: "0%" }}
-              animate={{ width: `${(currentStep / PROGRESS_STEPS.length) * 100}%` }}
+              animate={{
+                width: `${(currentStep / PROGRESS_STEPS.length) * 100}%`,
+              }}
               transition={{ duration: 0.4, ease: "easeOut" }}
             />
           </div>
@@ -270,7 +319,9 @@ const InquireLuxury = () => {
               >
                 <div>
                   <h1 className={sectionHeadingClass}>Begin Your Journey</h1>
-                  <p className={sectionBodyClass}>Tell us about your engagement needs.</p>
+                  <p className={sectionBodyClass}>
+                    Tell us about your engagement needs.
+                  </p>
                 </div>
 
                 <div className="space-y-4">
@@ -280,14 +331,17 @@ const InquireLuxury = () => {
                     control={control}
                     render={({ field }) => (
                       <div className="grid grid-cols-2 gap-4">
-                        {SERVICE_OPTIONS.map(option => {
+                        {SERVICE_OPTIONS.map((option) => {
                           const isActive = field.value === option.value;
                           return (
                             <button
                               key={option.value}
                               type="button"
                               onClick={() => field.onChange(option.value)}
-                              className={cn(selectionBase, isActive ? selectionActive : selectionPassive)}
+                              className={cn(
+                                selectionBase,
+                                isActive ? selectionActive : selectionPassive,
+                              )}
                               aria-pressed={isActive}
                             >
                               {option.label}
@@ -297,7 +351,9 @@ const InquireLuxury = () => {
                       </div>
                     )}
                   />
-                  {errors.serviceType && <p className={errorClass}>{errors.serviceType.message}</p>}
+                  {errors.serviceType && (
+                    <p className={errorClass}>{errors.serviceType.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-4">
@@ -307,14 +363,17 @@ const InquireLuxury = () => {
                     control={control}
                     render={({ field }) => (
                       <div className="space-y-3">
-                        {BUDGET_OPTIONS.map(option => {
+                        {BUDGET_OPTIONS.map((option) => {
                           const isActive = field.value === option.value;
                           return (
                             <button
                               key={option.value}
                               type="button"
                               onClick={() => field.onChange(option.value)}
-                              className={cn(selectionBase, isActive ? selectionActive : selectionPassive)}
+                              className={cn(
+                                selectionBase,
+                                isActive ? selectionActive : selectionPassive,
+                              )}
                               aria-pressed={isActive}
                             >
                               {option.label}
@@ -324,7 +383,9 @@ const InquireLuxury = () => {
                       </div>
                     )}
                   />
-                  {errors.projectBudget && <p className={errorClass}>{errors.projectBudget.message}</p>}
+                  {errors.projectBudget && (
+                    <p className={errorClass}>{errors.projectBudget.message}</p>
+                  )}
                 </div>
 
                 <div className="space-y-4">
@@ -334,7 +395,7 @@ const InquireLuxury = () => {
                     control={control}
                     render={({ field }) => (
                       <div className="flex flex-wrap gap-4">
-                        {TIMELINE_OPTIONS.map(option => {
+                        {TIMELINE_OPTIONS.map((option) => {
                           const isActive = field.value === option.value;
                           return (
                             <button
@@ -355,7 +416,9 @@ const InquireLuxury = () => {
                       </div>
                     )}
                   />
-                  {errors.timeline && <p className={errorClass}>{errors.timeline.message}</p>}
+                  {errors.timeline && (
+                    <p className={errorClass}>{errors.timeline.message}</p>
+                  )}
                 </div>
               </motion.div>
             )}
@@ -374,13 +437,27 @@ const InquireLuxury = () => {
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-2">
                     <label className={labelClass}>First Name</label>
-                    <input {...register("firstName") } className={inputClass} placeholder="John" autoComplete="given-name" />
-                    {errors.firstName && <p className={errorClass}>{errors.firstName.message}</p>}
+                    <input
+                      {...register("firstName")}
+                      className={inputClass}
+                      placeholder="John"
+                      autoComplete="given-name"
+                    />
+                    {errors.firstName && (
+                      <p className={errorClass}>{errors.firstName.message}</p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <label className={labelClass}>Last Name</label>
-                    <input {...register("lastName") } className={inputClass} placeholder="Doe" autoComplete="family-name" />
-                    {errors.lastName && <p className={errorClass}>{errors.lastName.message}</p>}
+                    <input
+                      {...register("lastName")}
+                      className={inputClass}
+                      placeholder="Doe"
+                      autoComplete="family-name"
+                    />
+                    {errors.lastName && (
+                      <p className={errorClass}>{errors.lastName.message}</p>
+                    )}
                   </div>
                 </div>
 
@@ -394,7 +471,9 @@ const InquireLuxury = () => {
                       placeholder="john@company.com"
                       autoComplete="email"
                     />
-                    {errors.email && <p className={errorClass}>{errors.email.message}</p>}
+                    {errors.email && (
+                      <p className={errorClass}>{errors.email.message}</p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <label className={labelClass}>Phone</label>
@@ -405,20 +484,34 @@ const InquireLuxury = () => {
                       placeholder="+1 (555) 123-4567"
                       autoComplete="tel"
                     />
-                    {errors.phone && <p className={errorClass}>{errors.phone.message}</p>}
+                    {errors.phone && (
+                      <p className={errorClass}>{errors.phone.message}</p>
+                    )}
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                   <div className="space-y-2">
                     <label className={labelClass}>Company</label>
-                    <input {...register("company") } className={inputClass} placeholder="Katherine Taylor Group" />
-                    {errors.company && <p className={errorClass}>{errors.company.message}</p>}
+                    <input
+                      {...register("company")}
+                      className={inputClass}
+                      placeholder="Katherine Taylor Group"
+                    />
+                    {errors.company && (
+                      <p className={errorClass}>{errors.company.message}</p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <label className={labelClass}>Position</label>
-                    <input {...register("position") } className={inputClass} placeholder="CEO, Director, etc." />
-                    {errors.position && <p className={errorClass}>{errors.position.message}</p>}
+                    <input
+                      {...register("position")}
+                      className={inputClass}
+                      placeholder="CEO, Director, etc."
+                    />
+                    {errors.position && (
+                      <p className={errorClass}>{errors.position.message}</p>
+                    )}
                   </div>
                 </div>
 
@@ -430,7 +523,9 @@ const InquireLuxury = () => {
                     className={inputClass}
                     placeholder="https://company.com"
                   />
-                  {errors.website && <p className={errorClass}>{errors.website.message}</p>}
+                  {errors.website && (
+                    <p className={errorClass}>{errors.website.message}</p>
+                  )}
                 </div>
               </motion.div>
             )}
@@ -443,7 +538,9 @@ const InquireLuxury = () => {
               >
                 <div>
                   <h1 className={sectionHeadingClass}>Project Details</h1>
-                  <p className={sectionBodyClass}>Describe what you hope to achieve.</p>
+                  <p className={sectionBodyClass}>
+                    Describe what you hope to achieve.
+                  </p>
                 </div>
 
                 <div className="space-y-2">
@@ -454,20 +551,28 @@ const InquireLuxury = () => {
                     className={textareaClass}
                     placeholder="Tell us about your project, goals, and what you hope to achieve... (minimum 100 characters)"
                   />
-                  {errors.projectDescription && <p className={errorClass}>{errors.projectDescription.message}</p>}
+                  {errors.projectDescription && (
+                    <p className={errorClass}>
+                      {errors.projectDescription.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-4">
                   <label className={labelClass}>Desired Outcomes</label>
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                    {OUTCOME_OPTIONS.map(outcome => {
+                    {OUTCOME_OPTIONS.map((outcome) => {
                       const isActive = selectedOutcomes.includes(outcome);
                       return (
                         <button
                           key={outcome}
                           type="button"
                           onClick={() => toggleOutcome(outcome)}
-                          className={cn(tagBase, "text-left", isActive ? selectionActive : selectionPassive)}
+                          className={cn(
+                            tagBase,
+                            "text-left",
+                            isActive ? selectionActive : selectionPassive,
+                          )}
                           aria-pressed={isActive}
                         >
                           {outcome}
@@ -475,24 +580,33 @@ const InquireLuxury = () => {
                       );
                     })}
                   </div>
-                  {errors.desiredOutcomes && <p className={errorClass}>{errors.desiredOutcomes.message}</p>}
+                  {errors.desiredOutcomes && (
+                    <p className={errorClass}>
+                      {errors.desiredOutcomes.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-4">
-                  <label className={labelClass}>How Did You Hear About Us?</label>
+                  <label className={labelClass}>
+                    How Did You Hear About Us?
+                  </label>
                   <Controller
                     name="referralSource"
                     control={control}
                     render={({ field }) => (
                       <div className="space-y-3">
-                        {REFERRAL_OPTIONS.map(option => {
+                        {REFERRAL_OPTIONS.map((option) => {
                           const isActive = field.value === option.value;
                           return (
                             <button
                               key={option.value}
                               type="button"
                               onClick={() => field.onChange(option.value)}
-                              className={cn(selectionBase, isActive ? selectionActive : selectionPassive)}
+                              className={cn(
+                                selectionBase,
+                                isActive ? selectionActive : selectionPassive,
+                              )}
                               aria-pressed={isActive}
                             >
                               {option.label}
@@ -502,11 +616,17 @@ const InquireLuxury = () => {
                       </div>
                     )}
                   />
-                  {errors.referralSource && <p className={errorClass}>{errors.referralSource.message}</p>}
+                  {errors.referralSource && (
+                    <p className={errorClass}>
+                      {errors.referralSource.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
-                  <label className={labelClass}>Additional Details (Optional)</label>
+                  <label className={labelClass}>
+                    Additional Details (Optional)
+                  </label>
                   <input
                     {...register("referralDetails")}
                     className={inputClass}
@@ -524,20 +644,26 @@ const InquireLuxury = () => {
               >
                 <div>
                   <h1 className={sectionHeadingClass}>Scheduling</h1>
-                  <p className={sectionBodyClass}>Choose your preferred meeting times.</p>
+                  <p className={sectionBodyClass}>
+                    Choose your preferred meeting times.
+                  </p>
                 </div>
 
                 <div className="space-y-4">
                   <label className={labelClass}>Preferred Dates</label>
                   <div className="grid max-h-64 grid-cols-3 gap-3 overflow-y-auto rounded-[2px] border border-gray-200 bg-white p-4">
-                    {availableDates.map(date => {
+                    {availableDates.map((date) => {
                       const isActive = selectedDates.includes(date);
                       return (
                         <button
                           key={date}
                           type="button"
                           onClick={() => toggleDate(date)}
-                          className={cn(tagBase, "text-center", isActive ? selectionActive : selectionPassive)}
+                          className={cn(
+                            tagBase,
+                            "text-center",
+                            isActive ? selectionActive : selectionPassive,
+                          )}
                           aria-pressed={isActive}
                         >
                           {format(new Date(date), "MMM dd")}
@@ -545,7 +671,11 @@ const InquireLuxury = () => {
                       );
                     })}
                   </div>
-                  {errors.preferredDates && <p className={errorClass}>{errors.preferredDates.message}</p>}
+                  {errors.preferredDates && (
+                    <p className={errorClass}>
+                      {errors.preferredDates.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-4">
@@ -555,14 +685,18 @@ const InquireLuxury = () => {
                     control={control}
                     render={({ field }) => (
                       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        {TIME_SLOTS.map(option => {
+                        {TIME_SLOTS.map((option) => {
                           const isActive = field.value === option.value;
                           return (
                             <button
                               key={option.value}
                               type="button"
                               onClick={() => field.onChange(option.value)}
-                              className={cn(tagBase, "text-left", isActive ? selectionActive : selectionPassive)}
+                              className={cn(
+                                tagBase,
+                                "text-left",
+                                isActive ? selectionActive : selectionPassive,
+                              )}
                               aria-pressed={isActive}
                             >
                               {option.label}
@@ -572,7 +706,11 @@ const InquireLuxury = () => {
                       </div>
                     )}
                   />
-                  {errors.preferredTimeSlot && <p className={errorClass}>{errors.preferredTimeSlot.message}</p>}
+                  {errors.preferredTimeSlot && (
+                    <p className={errorClass}>
+                      {errors.preferredTimeSlot.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-4">
@@ -582,14 +720,17 @@ const InquireLuxury = () => {
                     control={control}
                     render={({ field }) => (
                       <div className="space-y-3">
-                        {MEETING_TYPES.map(option => {
+                        {MEETING_TYPES.map((option) => {
                           const isActive = field.value === option.value;
                           return (
                             <button
                               key={option.value}
                               type="button"
                               onClick={() => field.onChange(option.value)}
-                              className={cn(selectionBase, isActive ? selectionActive : selectionPassive)}
+                              className={cn(
+                                selectionBase,
+                                isActive ? selectionActive : selectionPassive,
+                              )}
                               aria-pressed={isActive}
                             >
                               {option.label}
@@ -599,7 +740,9 @@ const InquireLuxury = () => {
                       </div>
                     )}
                   />
-                  {errors.meetingType && <p className={errorClass}>{errors.meetingType.message}</p>}
+                  {errors.meetingType && (
+                    <p className={errorClass}>{errors.meetingType.message}</p>
+                  )}
                 </div>
               </motion.div>
             )}
@@ -612,7 +755,9 @@ const InquireLuxury = () => {
               >
                 <div>
                   <h1 className={sectionHeadingClass}>Verification</h1>
-                  <p className={sectionBodyClass}>Final details for your inquiry.</p>
+                  <p className={sectionBodyClass}>
+                    Final details for your inquiry.
+                  </p>
                 </div>
 
                 <div className="space-y-2">
@@ -623,11 +768,17 @@ const InquireLuxury = () => {
                     className={inputClass}
                     placeholder="https://linkedin.com/in/yourprofile"
                   />
-                  {errors.linkedinProfile && <p className={errorClass}>{errors.linkedinProfile.message}</p>}
+                  {errors.linkedinProfile && (
+                    <p className={errorClass}>
+                      {errors.linkedinProfile.message}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-3">
-                  <label className={cn(labelClass, "sr-only")}>NDA Requirement</label>
+                  <label className={cn(labelClass, "sr-only")}>
+                    NDA Requirement
+                  </label>
                   <label className={checkboxWrapper}>
                     <input
                       {...register("ndaRequired")}
@@ -646,10 +797,19 @@ const InquireLuxury = () => {
                       className="h-4 w-4 border-gray-300 text-luxury-black focus:ring-gray-400 accent-luxury-black"
                     />
                     <span className="text-sm font-light leading-relaxed tracking-luxury text-gray-700">
-                      I agree to the <a href="/terms" className="underline">Terms of Service</a> and <a href="/privacy" className="underline">Privacy Policy</a>
+                      I agree to the{" "}
+                      <a href="/terms" className="underline">
+                        Terms of Service
+                      </a>{" "}
+                      and{" "}
+                      <a href="/privacy" className="underline">
+                        Privacy Policy
+                      </a>
                     </span>
                   </label>
-                  {errors.termsAccepted && <p className={errorClass}>{errors.termsAccepted.message}</p>}
+                  {errors.termsAccepted && (
+                    <p className={errorClass}>{errors.termsAccepted.message}</p>
+                  )}
                 </div>
 
                 <div className="rounded-[2px] border border-gray-200 bg-gray-50 px-6 py-6">
@@ -660,7 +820,9 @@ const InquireLuxury = () => {
                   <ul className="space-y-3 text-sm font-light leading-relaxed tracking-luxury text-gray-600">
                     <li className="flex items-start gap-2">
                       <Check className="mt-1 h-4 w-4 text-luxury-black" />
-                      <span>Immediate confirmation email with inquiry number</span>
+                      <span>
+                        Immediate confirmation email with inquiry number
+                      </span>
                     </li>
                     <li className="flex items-start gap-2">
                       <Check className="mt-1 h-4 w-4 text-luxury-black" />

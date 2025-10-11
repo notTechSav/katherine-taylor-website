@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useCallback, useMemo, useState } from "react";
 
@@ -42,7 +42,8 @@ const Gifts = () => {
           className="absolute inset-0 -z-10"
           aria-hidden
           style={{
-            background: "linear-gradient(180deg, rgba(245, 243, 240, 0.4) 0%, rgba(245, 243, 240, 0.2) 100%)",
+            background:
+              "linear-gradient(180deg, rgba(245, 243, 240, 0.4) 0%, rgba(245, 243, 240, 0.2) 100%)",
           }}
         />
 

@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -12,7 +12,13 @@ import {
   journalFooter,
   journalMetadata,
 } from "@/lib/journal-content";
-import { injectJsonLd, removeJsonLd, setLinkTag, setNamedMeta, setPropertyMeta } from "@/lib/seo-helpers";
+import {
+  injectJsonLd,
+  removeJsonLd,
+  setLinkTag,
+  setNamedMeta,
+  setPropertyMeta,
+} from "@/lib/seo-helpers";
 
 const Journal = () => {
   const navigate = useNavigate();
@@ -28,13 +34,15 @@ const Journal = () => {
     setNamedMeta("geo.position", "37.7749;-122.4194");
     setNamedMeta("ICBM", "37.7749, -122.4194");
 
-    const canonicalUrl = typeof window !== "undefined"
-      ? `${window.location.origin}/journal`
-      : "/journal";
+    const canonicalUrl =
+      typeof window !== "undefined"
+        ? `${window.location.origin}/journal`
+        : "/journal";
 
-    const heroImageUrl = typeof window !== "undefined"
-      ? new URL(heroImage.src, window.location.origin).toString()
-      : heroImage.src;
+    const heroImageUrl =
+      typeof window !== "undefined"
+        ? new URL(heroImage.src, window.location.origin).toString()
+        : heroImage.src;
 
     setLinkTag("canonical", canonicalUrl);
     setPropertyMeta("og:type", "website");

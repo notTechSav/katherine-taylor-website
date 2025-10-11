@@ -46,8 +46,7 @@ const DEFAULT_SUBTITLE =
 
 const overlayClasses: Record<OverlayVariant, string> = {
   dark: "bg-gradient-to-b from-black/20 via-black/45 to-black/75",
-  sepia:
-    "bg-gradient-to-b from-[#3a2414]/20 via-[#4a2d18]/55 to-[#2b1a10]/80",
+  sepia: "bg-gradient-to-b from-[#3a2414]/20 via-[#4a2d18]/55 to-[#2b1a10]/80",
 };
 
 const captionTextClasses: Record<OverlayVariant, string> = {
@@ -81,7 +80,9 @@ const ImageMosaicSection = ({
           {displayTiles.map((tile) => {
             const overlayKey =
               tile.overlay ??
-              (withOverlay || tile.heading || tile.subheading ? "dark" : undefined);
+              (withOverlay || tile.heading || tile.subheading
+                ? "dark"
+                : undefined);
             const captionTone: OverlayVariant = overlayKey ?? "dark";
 
             return (

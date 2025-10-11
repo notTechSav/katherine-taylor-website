@@ -19,7 +19,11 @@ const EmailSignupSection = () => {
             autoComplete="email"
             className="w-full flex-1 border border-gray-200 bg-white px-6 py-4 text-base font-light tracking-luxury text-gray-700 placeholder:text-gray-400 transition-colors duration-250 ease-out focus:border-gray-400 focus:outline-none"
           />
-          <Button type="submit" variant="ctaPrimary" className="w-full sm:w-auto">
+          <Button
+            type="submit"
+            variant="ctaPrimary"
+            className="w-full sm:w-auto"
+          >
             Sign Up
           </Button>
         </form>

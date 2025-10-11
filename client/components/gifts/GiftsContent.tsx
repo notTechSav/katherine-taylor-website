@@ -11,7 +11,11 @@ interface GiftsContentProps {
   ctaLabelExpanded: string;
 }
 
-const GiftsContent = ({ paragraphs, ctaLabel, ctaLabelExpanded }: GiftsContentProps) => {
+const GiftsContent = ({
+  paragraphs,
+  ctaLabel,
+  ctaLabelExpanded,
+}: GiftsContentProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleGuidance = useCallback(() => {
@@ -20,7 +24,7 @@ const GiftsContent = ({ paragraphs, ctaLabel, ctaLabelExpanded }: GiftsContentPr
 
   const buttonLabel = useMemo(
     () => (isExpanded ? ctaLabelExpanded : ctaLabel),
-    [isExpanded, ctaLabel, ctaLabelExpanded]
+    [isExpanded, ctaLabel, ctaLabelExpanded],
   );
 
   return (

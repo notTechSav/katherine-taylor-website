@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -57,15 +57,17 @@ const JournalArticle = () => {
     setNamedMeta("geo.position", "37.7749;-122.4194");
     setNamedMeta("ICBM", "37.7749, -122.4194");
 
-    const canonicalUrl = typeof window !== "undefined"
-      ? `${window.location.origin}/journal/${essay.slug}`
-      : `/journal/${essay.slug}`;
+    const canonicalUrl =
+      typeof window !== "undefined"
+        ? `${window.location.origin}/journal/${essay.slug}`
+        : `/journal/${essay.slug}`;
 
     setLinkTag("canonical", canonicalUrl);
 
-    const heroImageUrl = typeof window !== "undefined"
-      ? new URL(heroImage.src, window.location.origin).toString()
-      : heroImage.src;
+    const heroImageUrl =
+      typeof window !== "undefined"
+        ? new URL(heroImage.src, window.location.origin).toString()
+        : heroImage.src;
 
     setPropertyMeta("og:type", "article");
     setPropertyMeta("og:title", essay.title);
@@ -105,7 +107,9 @@ const JournalArticle = () => {
     return <NotFound />;
   }
 
-  const paragraphs = essay.body.split(/\n\n+/g).map((paragraph) => paragraph.trim());
+  const paragraphs = essay.body
+    .split(/\n\n+/g)
+    .map((paragraph) => paragraph.trim());
 
   return (
     <div className="bg-luxury-white text-luxury-black">
@@ -119,7 +123,10 @@ const JournalArticle = () => {
           />
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.65) 100%)" }}
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.65) 100%)",
+            }}
             aria-hidden
           />
           <div className="absolute inset-0 flex items-end">

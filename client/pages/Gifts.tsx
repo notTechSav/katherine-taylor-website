@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect, useState, useCallback } from "react";
 
@@ -6,17 +6,18 @@ const Gifts = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleGuidance = useCallback(() => {
-    setIsExpanded(prev => !prev);
+    setIsExpanded((prev) => !prev);
   }, []);
 
   useEffect(() => {
-    document.title = "Gifts | Katherine Taylor Escort - San Francisco & Sacramento";
+    document.title =
+      "Gifts | Katherine Taylor Escort - San Francisco & Sacramento";
   }, []);
 
   const guidance = [
     "The most meaningful ones usually reflect the texture of what we've talked about: a book that deepened a conversation, a bottle tied to a story, a small object that travels well, or an experience that creates calm.",
     "I don't accept extravagant or public gifts. The intention matters more than the scale, and privacy always comes first. If you're uncertain, ask — I'll answer honestly.",
-    "The best gift, though, is time well spent. Continuity itself — the ongoing conversation, the trust that builds when you realize I remember the details you didn't need to repeat — that's the one that stays."
+    "The best gift, though, is time well spent. Continuity itself — the ongoing conversation, the trust that builds when you realize I remember the details you didn't need to repeat — that's the one that stays.",
   ];
 
   return (
@@ -32,7 +33,10 @@ const Gifts = () => {
           />
           <div
             className="absolute inset-0"
-            style={{ background: "linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.65) 100%)" }}
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.65) 100%)",
+            }}
             aria-hidden
           />
 
@@ -105,8 +109,8 @@ const Gifts = () => {
                 </h2>
               </header>
               <p className="max-w-[62ch] text-[18px] font-light leading-[1.75] text-gray-600">
-                When they happen, they feel like punctuation — a quiet thank-you,
-                a gesture that marks continuity, not transaction.
+                When they happen, they feel like punctuation — a quiet
+                thank-you, a gesture that marks continuity, not transaction.
               </p>
               <button
                 type="button"
@@ -114,7 +118,7 @@ const Gifts = () => {
                 className="inline-flex items-center text-[14px] font-light tracking-[0.01em] text-luxury-black transition-all focus:outline-none focus-visible:ring-1 focus-visible:ring-luxury-black/40 focus-visible:ring-offset-4 focus-visible:ring-offset-luxury-white"
                 style={{
                   transitionDuration: "350ms",
-                  letterSpacing: "0.01em"
+                  letterSpacing: "0.01em",
                 }}
               >
                 <span
@@ -150,17 +154,26 @@ const Gifts = () => {
       <footer className="border-t border-gray-200 bg-luxury-white px-6 py-16 sm:py-20">
         <div className="mx-auto max-w-[620px] space-y-4 text-left">
           <p className="text-[14px] font-light leading-[1.7] text-gray-600">
-            This page exists by request. Not expectation, not protocol — just quiet consideration
-            for those who asked.
+            This page exists by request. Not expectation, not protocol — just
+            quiet consideration for those who asked.
           </p>
           <nav className="flex flex-wrap gap-3 text-[14px] font-light text-luxury-black">
-            <a href="/journal" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
+            <a
+              href="/journal"
+              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+            >
               The High-End Edition
             </a>
-            <a href="/rates" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
+            <a
+              href="/rates"
+              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+            >
               Rates & Registry
             </a>
-            <a href="/about" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
+            <a
+              href="/about"
+              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+            >
               About
             </a>
           </nav>

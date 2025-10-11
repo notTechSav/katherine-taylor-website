@@ -10,7 +10,10 @@ const BoutiqueAppointmentSection = () => {
         className="relative flex min-h-[480px] w-full items-center bg-cover bg-center px-8 py-24 sm:min-h-[560px] md:py-32 lg:py-40"
         style={{ backgroundImage: `url(${boutiqueImage})` }}
       >
-        <div className="absolute inset-0 bg-luxury-black/60" aria-hidden="true" />
+        <div
+          className="absolute inset-0 bg-luxury-black/60"
+          aria-hidden="true"
+        />
         <div className="relative z-10 max-w-[440px] space-y-8 text-luxury-white">
           <span className="text-xs font-light uppercase tracking-uppercase text-white/70">
             Your Love Story Awaits

@@ -1,10 +1,11 @@
-'use client';
+"use client";
 
 import { useEffect } from "react";
 
 const Inquire = () => {
   useEffect(() => {
-    document.title = "Inquire | Katherine Taylor Escort - San Francisco & Sacramento";
+    document.title =
+      "Inquire | Katherine Taylor Escort - San Francisco & Sacramento";
   }, []);
 
   return (
@@ -35,8 +36,10 @@ const Inquire = () => {
           {/* Introduction */}
           <div className="space-y-6">
             <p className="text-[16px] font-light leading-[1.75] text-gray-600">
-              I keep a limited calendar—typically 3-4 bookings monthly—to ensure each encounter receives the attention it deserves.
-              If you're seeking a San Francisco escort or Sacramento escort who prioritizes depth over volume, this is how we begin.
+              I keep a limited calendar—typically 3-4 bookings monthly—to ensure
+              each encounter receives the attention it deserves. If you're
+              seeking a San Francisco escort or Sacramento escort who
+              prioritizes depth over volume, this is how we begin.
             </p>
           </div>
 
@@ -69,8 +72,10 @@ const Inquire = () => {
                   When You Write
                 </h3>
                 <p className="text-[16px] font-light leading-[1.75] text-gray-600">
-                  Include your name, date, time, duration, and city (San Francisco, Sacramento, or elsewhere in the Bay Area).
-                  Screening is required—references from established escorts near me or professional LinkedIn verification.
+                  Include your name, date, time, duration, and city (San
+                  Francisco, Sacramento, or elsewhere in the Bay Area).
+                  Screening is required—references from established escorts near
+                  me or professional LinkedIn verification.
                 </p>
               </div>
 
@@ -79,8 +84,9 @@ const Inquire = () => {
                   Response Time
                 </h3>
                 <p className="text-[16px] font-light leading-[1.75] text-gray-600">
-                  I respond within 24-48 hours. Last-minute requests rarely work with my calendar, but advance planning—ideally
-                  a week or more—ensures we can create something memorable.
+                  I respond within 24-48 hours. Last-minute requests rarely work
+                  with my calendar, but advance planning—ideally a week or
+                  more—ensures we can create something memorable.
                 </p>
               </div>
             </div>
@@ -99,12 +105,15 @@ const Inquire = () => {
 
             <div className="space-y-4">
               <p className="text-[16px] font-light leading-[1.75] text-gray-600">
-                Among San Francisco escorts and Bay Area escorts, I maintain thorough screening protocols. This protects both
-                of us and ensures mutual respect from first contact.
+                Among San Francisco escorts and Bay Area escorts, I maintain
+                thorough screening protocols. This protects both of us and
+                ensures mutual respect from first contact.
               </p>
               <p className="text-[16px] font-light leading-[1.75] text-gray-600">
-                Once confirmed, I'll share details about our appointment—location recommendations if hosting, preparation
-                suggestions, and any questions you might have. Discretion is default, never negotiable.
+                Once confirmed, I'll share details about our
+                appointment—location recommendations if hosting, preparation
+                suggestions, and any questions you might have. Discretion is
+                default, never negotiable.
               </p>
             </div>
           </article>
@@ -112,8 +121,10 @@ const Inquire = () => {
           {/* Note */}
           <div className="rounded border border-gray-200 bg-luxury-gray-50 p-6 sm:p-8">
             <p className="text-[14px] font-light italic leading-[1.7] text-gray-500">
-              For those searching "escorts near me" or seeking "San Francisco escorts" with substance: this page exists to
-              begin conversations that lead somewhere meaningful. Not every inquiry becomes a booking, and that's by design.
+              For those searching "escorts near me" or seeking "San Francisco
+              escorts" with substance: this page exists to begin conversations
+              that lead somewhere meaningful. Not every inquiry becomes a
+              booking, and that's by design.
             </p>
           </div>
         </div>
@@ -123,19 +134,32 @@ const Inquire = () => {
       <footer className="border-t border-gray-200 bg-luxury-white px-6 py-16 sm:py-20">
         <div className="mx-auto max-w-[620px] space-y-4 text-left">
           <p className="text-[14px] font-light leading-[1.7] text-gray-600">
-            Questions about process, rates, or availability? Most answers live in the FAQ or on my rates page.
+            Questions about process, rates, or availability? Most answers live
+            in the FAQ or on my rates page.
           </p>
           <nav className="flex flex-wrap gap-3 text-[14px] font-light text-luxury-black">
-            <a href="/faq" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
+            <a
+              href="/faq"
+              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+            >
               FAQ
             </a>
-            <a href="/rates" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
+            <a
+              href="/rates"
+              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+            >
               Rates & Registry
             </a>
-            <a href="/about" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
+            <a
+              href="/about"
+              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+            >
               About
             </a>
-            <a href="/journal" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
+            <a
+              href="/journal"
+              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+            >
               The High-End Edition
             </a>
           </nav>
