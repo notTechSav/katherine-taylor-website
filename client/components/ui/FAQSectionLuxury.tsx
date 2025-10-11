@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ChevronDown, ExternalLink } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 
 type FaqItem = {
   id: string;
@@ -94,6 +96,11 @@ const faqData: FaqItem[] = [
 
 const featuredFaqs = faqData.filter((item) => item.featured);
 const hiddenFaqs = faqData.filter((item) => !item.featured);
+
+const FAQ_HERO_IMAGE = {
+  src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F5fb6a13b3046474da37f8a9e02340d6b?format=webp&width=1200",
+  alt: "Glass hourglass resting on a linen-covered table in golden light",
+};
 
 const FAQSectionLuxury = () => {
   const [openFaq, setOpenFaq] = useState<string | null>(null);
@@ -201,8 +208,18 @@ const FAQSectionLuxury = () => {
   );
 
   return (
-    <section className="relative bg-luxury-white py-24 md:py-32" id="faq">
-      <div className="container mx-auto px-6 md:px-8">
+    <div className="bg-luxury-white" id="faq">
+      <PageHeroOverlay
+        title="Frequently Asked Questions"
+        subtitle="After more than a decade in this practice, I answer what quick searches never cover—standards, discretion, and how engagements actually unfold."
+        eyebrow="Insights & Guidance"
+        imageSrc={FAQ_HERO_IMAGE.src}
+        imageAlt={FAQ_HERO_IMAGE.alt}
+        alignment="left"
+      />
+
+      <section className="relative bg-luxury-white py-24 md:py-32">
+        <div className="container mx-auto px-6 md:px-8">
         <div className="mb-16 text-center md:mb-20">
           <h2 className="mb-6 font-serif text-4xl font-extralight tracking-display text-luxury-black md:text-5xl">
             FAQ
@@ -253,7 +270,8 @@ const FAQSectionLuxury = () => {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
