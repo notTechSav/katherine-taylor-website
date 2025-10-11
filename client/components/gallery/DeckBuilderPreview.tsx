@@ -317,33 +317,48 @@ function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (
 
 function CollectionHeader({ c, onOpen, onBack }: { c: Collection; onOpen: () => void; onBack: () => void }) {
   return (
-    <section className="mx-auto max-w-[1120px] px-4 sm:px-6 md:px-12 py-24 md:py-32">
-      <div className="mb-8 md:mb-10 flex flex-col md:flex-row items-start md:items-start justify-between gap-6 md:gap-8">
-        <div className="w-full">
+    <section className="mx-auto max-w-[1180px] px-6 md:px-12 py-24 md:py-36">
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(320px,360px)] lg:items-start">
+        <div className="space-y-8">
           <button
             onClick={onBack}
             className="inline-flex h-10 items-center text-xs uppercase tracking-[0.15em] text-neutral-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300/60"
             aria-label="Back to Gallery"
             title="Back to Gallery"
           >
-            Back to Gallery
+            Back to Collections
           </button>
-          <h1 className="mt-2 md:mt-3 text-3xl sm:text-4xl md:text-5xl font-extralight tracking-[-0.02em] leading-[1.1]">
-            {c.title}
-          </h1>
-          <h2 className="sr-only">{c.title} — Katherine Taylor escort</h2>
-          <p className="mt-2 max-w-prose text-sm font-light text-neutral-700">{c.statement}</p>
+          <div className="space-y-4">
+            <h1 className="text-3xl sm:text-4xl md:text-[48px] font-extralight tracking-[-0.025em] leading-[1.05]">
+              {c.title}
+            </h1>
+            <h2 className="sr-only">{c.title} — Katherine Taylor escort</h2>
+            <p className="max-w-[48ch] text-sm sm:text-base font-light leading-[1.75] text-neutral-700">
+              {c.statement}
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
+            <PrimaryButton className="w-full sm:w-auto" ariaLabel={`${c.title}: primary inquiry`}>
+              {c.cta === "private-access" && "Request Private Access"}
+              {c.cta === "conversation" && "Book a Private Conversation"}
+              {c.cta === "inquire" && "Inquire"}
+            </PrimaryButton>
+            <SecondaryButton className="w-full sm:w-auto" onClick={onOpen} ariaLabel={`Build Private Deck for ${c.title}`}>
+              Build Private Deck
+            </SecondaryButton>
+          </div>
         </div>
-        <div className="w-full md:w-auto shrink-0 flex flex-col md:flex-row items-stretch md:items-center gap-3 md:gap-4">
-          <PrimaryButton className="w-full md:w-auto" ariaLabel={`${c.title}: primary inquiry`}>
-            {c.cta === "private-access" && "Request Private Access"}
-            {c.cta === "conversation" && "Book a Private Conversation"}
-            {c.cta === "inquire" && "Inquire"}
-          </PrimaryButton>
-          <SecondaryButton className="w-full md:w-auto" onClick={onOpen} ariaLabel={`Build Private Deck for ${c.title}`}>
-            Build Private Deck
-          </SecondaryButton>
-        </div>
+        <figure className="hidden lg:block aspect-[4/5] overflow-hidden" style={{ boxShadow: "var(--shadow-elevation-md)" }}>
+          <img
+            src={heroSrc(c)}
+            srcSet={heroSrcSet(c)}
+            sizes="(min-width: 1280px) 360px, 30vw"
+            alt={`${c.title} hero frame`}
+            loading="lazy"
+            decoding="async"
+            className="h-full w-full object-cover"
+          />
+        </figure>
       </div>
     </section>
   );
