@@ -126,16 +126,16 @@ const Inquire = () => {
             Questions about process, rates, or availability? Most answers live in the FAQ or on my rates page.
           </p>
           <nav className="flex flex-wrap gap-3 text-[14px] font-light text-luxury-black">
-            <a href="/faq" className="underline-offset-[4px] transition-colors duration-300 hover:underline">
+            <a href="/faq" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
               FAQ
             </a>
-            <a href="/rates" className="underline-offset-[4px] transition-colors duration-300 hover:underline">
+            <a href="/rates" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
               Rates & Registry
             </a>
-            <a href="/about" className="underline-offset-[4px] transition-colors duration-300 hover:underline">
+            <a href="/about" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
               About
             </a>
-            <a href="/journal" className="underline-offset-[4px] transition-colors duration-300 hover:underline">
+            <a href="/journal" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
               The High-End Edition
             </a>
           </nav>
