@@ -49,12 +49,12 @@ const PageHeroOverlay = memo(
 
     return (
       <section className={cn("relative bg-luxury-white", className)}>
-        <figure className="relative h-[48vh] min-h-[300px] w-full overflow-hidden sm:h-[56vh]">
+        <figure className="relative h-[48vh] min-h-[320px] w-full overflow-hidden bg-[#d6cdc1] sm:h-[56vh]">
           <img
             src={imageSrc}
             alt={imageAlt}
             className="h-full w-full object-cover"
-            loading="lazy"
+            loading="eager"
           />
           <div className="absolute inset-0" style={gradientStyle} aria-hidden />
 
