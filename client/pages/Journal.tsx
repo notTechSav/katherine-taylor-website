@@ -70,7 +70,7 @@ const Journal = () => {
   };
 
   return (
-    <div className="bg-[#fafaf7] text-[#1a1a1a]">
+    <div className="bg-luxury-white text-luxury-black">
       <JournalHero
         title={journalDisplay.pageTitle}
         subtitle={journalDisplay.subtitle}
