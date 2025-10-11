@@ -5,8 +5,8 @@ import { useEffect } from "react";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 
 const INQUIRE_HERO_IMAGE = {
-  src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fce3b4217758a4479b50998005555bb44?format=webp&width=1200",
-  alt: "Sealed envelope resting beside an olive branch in a glass vase under warm afternoon light",
+  src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F3421a1dc239145b8a286313100a81833?format=webp&width=1200",
+  alt: "White ranunculus in glass bud vase with satin ribbon on linen table",
 };
 
 const Inquire = () => {
