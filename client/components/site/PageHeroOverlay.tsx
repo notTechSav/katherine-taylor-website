@@ -45,6 +45,7 @@ const PageHeroOverlay = memo(
     const desktopAlignment = "items-end";
     const desktopJustify = alignment === "right" ? "justify-end" : "justify-start";
     const textAlignment = alignment === "right" ? "text-right" : "text-left";
+    const containerAlignment = alignment === "right" ? "ml-auto mr-0" : "mr-auto ml-0";
 
     return (
       <section className={cn("relative bg-luxury-white", className)}>
@@ -64,7 +65,12 @@ const PageHeroOverlay = memo(
               desktopAlignment,
             )}
           >
-            <div className="mx-auto w-full max-w-[1120px] px-6 sm:px-12 lg:px-16">
+            <div
+              className={cn(
+                "w-full max-w-[1120px] px-6 sm:px-12 lg:px-16",
+                containerAlignment,
+              )}
+            >
               <div
                 className={cn(
                   "flex w-full",
