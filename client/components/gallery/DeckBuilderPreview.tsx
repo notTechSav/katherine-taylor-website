@@ -672,10 +672,14 @@ function ImageViewer({
   }, [onClose, onPrev, onNext]);
 
   useEffect(() => {
+    if (total === 0) {
+      onClose();
+      return;
+    }
     const prev = index <= 1 ? total : index - 1;
     const next = index >= total ? 1 : index + 1;
     prefetchImages([frameSrc(c, prev), frameSrc(c, next)]);
-  }, [c, index, total]);
+  }, [c, index, total, onClose]);
 
   const m: FrameMeta | undefined = meta?.[pad3(index)];
   const specsSummary = summarizeMeta(m);
