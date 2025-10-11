@@ -234,7 +234,7 @@ const FAQSectionLuxury = () => {
           <div className="text-center mt-8">
             <button
               onClick={() => setShowHidden((prev) => !prev)}
-              className="group inline-flex items-center gap-3 px-8 py-4 border border-stone-300 hover:border-stone-400 text-stone-700 hover:text-stone-900 font-medium tracking-[0.1em] transition-all duration-300 hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)] transform hover:-translate-y-0.5 text-sm"
+              className="group inline-flex items-center gap-3 border border-gray-300 px-8 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
               aria-expanded={showHidden}
             >
               <span>{showHidden ? 'SHOW FEWER' : 'STEP FURTHER'}</span>
