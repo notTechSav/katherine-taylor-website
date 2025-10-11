@@ -195,20 +195,14 @@ const FAQSectionLuxury = () => {
   );
 
   return (
-    <section className="relative py-20 md:py-32 bg-white" id="faq">
+    <section className="relative bg-luxury-white py-24 md:py-32" id="faq">
       <div className="container mx-auto px-6 md:px-8">
 
-        <div className="text-center mb-16 md:mb-20">
-          <div className="inline-flex items-center gap-4 mb-8">
-            <div className="w-12 md:w-16 h-px bg-gradient-to-r from-transparent to-stone-400"></div>
-            <div className="w-1.5 h-1.5 bg-stone-400 rotate-45"></div>
-            <div className="w-12 md:w-16 h-px bg-gradient-to-r from-stone-400 to-transparent"></div>
-          </div>
-
-          <h2 className="text-4xl md:text-5xl font-extralight tracking-[0.05em] text-stone-900 mb-6">
+        <div className="mb-16 text-center md:mb-20">
+          <h2 className="mb-6 font-serif text-4xl font-extralight tracking-display text-luxury-black md:text-5xl">
             FAQ
           </h2>
-          <p className="text-lg md:text-xl text-stone-600 tracking-[0.02em] font-light leading-[1.8] max-w-3xl mx-auto">
+          <p className="mx-auto max-w-3xl text-lg font-light leading-[1.8] tracking-[0.02em] text-gray-600 md:text-xl">
             What is an escort? How much do escorts cost? After over a decade in San Francisco, Katherine Taylor escorts You, If You Will, Through Escort Culture as your personal tour guide through San Francisco, Sacramento, and the Bay Area.
           </p>
         </div>
