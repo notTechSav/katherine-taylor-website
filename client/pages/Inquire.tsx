@@ -17,25 +17,14 @@ const Inquire = () => {
 
   return (
     <div className="bg-luxury-white text-luxury-black">
-      {/* Hero Section - matching journal/gifts aesthetic */}
-      <section className="relative bg-luxury-white">
-        <div className="mx-auto max-w-[680px] px-6 py-24 sm:px-10 sm:py-32">
-          <header className="text-center">
-            <p
-              className="mb-3 text-xs font-light uppercase tracking-[0.12em] text-gray-600"
-              style={{ letterSpacing: "0.12em", fontWeight: 200 }}
-            >
-              CONNECT WITH KATHERINE TAYLOR
-            </p>
-            <h1
-              className="text-4xl font-extralight leading-[1.1] tracking-[-0.02em] text-luxury-black sm:text-[50px]"
-              style={{ fontWeight: 200 }}
-            >
-              Inquire
-            </h1>
-          </header>
-        </div>
-      </section>
+      <PageHeroOverlay
+        title="Inquire"
+        subtitle="I keep a limited calendar—typically three to four engagements each month—so every meeting receives the preparation it deserves."
+        eyebrow="Connect with Katherine Taylor"
+        imageSrc={INQUIRE_HERO_IMAGE.src}
+        imageAlt={INQUIRE_HERO_IMAGE.alt}
+        alignment="right"
+      />
 
       {/* Content Section */}
       <section className="bg-luxury-white px-6 pb-24 pt-8 text-luxury-black sm:px-10">
