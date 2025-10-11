@@ -360,7 +360,6 @@ function FrameGrid({ c, onOpen }: { c: Collection; onOpen: (index: number) => vo
                 sizes={frameSizes}
                 alt={`${c.title} — frame ${pad3(idx + 1)}`}
                 loading={idx === 0 ? "eager" : "lazy"}
-                fetchPriority={idx === 0 ? ("high" as any) : undefined}
                 decoding="async"
                 className="h-full w-full object-cover"
               />
