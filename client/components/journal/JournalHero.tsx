@@ -28,12 +28,12 @@ const JournalHero = memo(({ title, subtitle, imageSrc, imageAlt }: JournalHeroPr
                 THE HIGH-END EDITION
               </p>
               <h1
-                className="text-4xl font-extralight leading-[1.1] tracking-[-0.02em] sm:text-[50px]"
+                className="text-4xl font-extralight leading-[1.1] tracking-[-0.02em] text-luxury-white sm:text-[50px]"
                 style={{ fontWeight: 200 }}
               >
                 {title}
               </h1>
-              <p className="mt-5 text-base font-light text-[#f5f4f0]/85">{subtitle}</p>
+              <p className="mt-5 text-base font-light text-luxury-white/80">{subtitle}</p>
             </div>
           </div>
         </figcaption>
