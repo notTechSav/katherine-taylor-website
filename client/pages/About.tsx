@@ -48,10 +48,7 @@ const About = () => {
           className="space-y-6 opacity-0 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100 data-[visible=true]:delay-100"
         >
           <p className="text-[17px] leading-[1.9] text-[#1a1a1a]">
-            Institutional memory is my medium. I keep the architecture of your world close enough that nothing requires translation.
-          </p>
-          <p className="text-[17px] leading-[1.9]">
-            Boardrooms, negotiations, family milestones—the cadence is catalogued, not recorded. It lets us move at full depth without rehearsal.
+            The conversation never resets. I carry forward everything—your M&amp;A timeline, your board anxieties, your daughter’s college decision, the trip to Patagonia you’ve been planning. Not because I take notes, but because I’ve built a decade of pattern libraries that let me read what you don’t say.
           </p>
         </header>
 
