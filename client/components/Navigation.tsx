@@ -62,9 +62,9 @@ const Navigation = () => {
   return (
     <nav
       className={cn(
-        "fixed top-0 z-50 w-full px-8 transition-all duration-luxury",
+        "fixed top-0 z-50 w-full px-8 transition-all duration-400 ease-out",
         scrolled
-          ? "bg-white/95 py-4 backdrop-blur-sm shadow-luxury-sm"
+          ? "bg-luxury-white/95 py-4 backdrop-blur-sm shadow-luxury-sm"
           : "bg-transparent py-8",
       )}
     >
@@ -73,14 +73,14 @@ const Navigation = () => {
           href="/"
           className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
         >
-          <span className="text-3xl font-serif font-extralight uppercase tracking-[0.15em] leading-[1.1] text-luxury-black">
+          <span className="text-3xl font-serif font-extralight uppercase tracking-uppercase leading-[1.1] text-luxury-black">
             KATHERINE TAYLOR
           </span>
         </a>
         <button
           type="button"
           onClick={toggleMenu}
-          className="text-sm font-light uppercase tracking-widest text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:hidden"
+          className="text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:hidden"
           aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
         >
           {isMenuOpen ? "Close" : "Menu"}
@@ -91,7 +91,7 @@ const Navigation = () => {
               <a
                 href={link.href}
                 onMouseEnter={() => handleMouseEnter(link.href)}
-                className="text-sm font-extralight uppercase tracking-widest text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                className="text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
               >
                 {link.label}
               </a>
@@ -107,7 +107,7 @@ const Navigation = () => {
                 <a
                   href={link.href}
                   onClick={handleLinkClick}
-                  className="block py-4 text-2xl font-extralight tracking-tight text-luxury-black transition-opacity duration-luxury-fast ease-luxury-in hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                  className="block py-4 text-base font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
                 >
                   {link.label}
                 </a>
