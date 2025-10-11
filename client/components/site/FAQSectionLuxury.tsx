@@ -114,25 +114,25 @@ const FAQSectionLuxury = () => {
   };
 
   const FAQItem = ({ item, isOpen }: { item: FaqItem; isOpen: boolean }) => (
-    <div className="border-t border-stone-200">
+    <div className="border-t border-gray-200">
       <button
         onClick={() => handleToggle(item.id)}
-        className="group flex w-full items-start justify-between py-8 transition-all duration-luxury-fast ease-luxury-in focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:py-10"
+        className="group flex w-full items-start justify-between py-8 transition-all duration-250 ease-out focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:py-10"
         aria-expanded={isOpen}
         aria-controls={`faq-answer-${item.id}`}
         ref={(el) => {
           faqRefs.current[item.id] = el;
         }}
       >
-        <h3 className="pr-8 text-left text-[0.9rem] font-light tracking-[0.05em] text-stone-900 transition-colors duration-300 group-hover:text-stone-600 sm:text-base">
+        <h3 className="pr-8 text-left text-base font-light tracking-luxury text-luxury-black transition-colors duration-250 ease-out group-hover:text-gray-600">
           {item.question}
         </h3>
         <div className="mt-1">
           <span
             aria-hidden="true"
             className={cn(
-              "inline-block text-base leading-none text-stone-400 transition-colors",
-              isOpen && "group-hover:text-stone-600",
+              "inline-block text-base leading-none text-gray-400 transition-colors duration-250 ease-out",
+              isOpen && "text-gray-600",
             )}
           >
             {isOpen ? "–" : "+"}
@@ -142,19 +142,19 @@ const FAQSectionLuxury = () => {
 
       <div
         id={`faq-answer-${item.id}`}
-        className={`overflow-hidden transition-all duration-500 ${
+        className={`overflow-hidden transition-all duration-400 ease-out ${
           isOpen ? "max-h-96 pb-8" : "max-h-0"
         }`}
       >
         <div className="pr-12 md:pr-24">
-          <p className="max-w-[65ch] text-[0.82rem] font-light leading-7 tracking-wide text-stone-600/90 sm:text-sm">
+          <p className="max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-gray-600">
             {item.answer}
           </p>
 
           <div className="mt-6">
             <a
               href="/booking"
-              className="inline-block border-b border-stone-900 pb-1 text-[0.68rem] uppercase tracking-[0.38em] text-stone-900 transition-all duration-luxury-fast ease-luxury-in hover:border-stone-600 hover:text-stone-600"
+              className="inline-flex items-center text-xs font-light uppercase tracking-uppercase text-gray-800 underline underline-offset-4 transition-opacity duration-250 ease-out hover:opacity-70"
             >
               Learn More
             </a>
@@ -168,14 +168,14 @@ const FAQSectionLuxury = () => {
     <section className="relative bg-luxury-white py-24 md:py-32 lg:py-40">
       <div className="mx-auto max-w-luxury px-8 md:px-12">
         <div className="mb-20 text-center md:mb-28">
-          <span className="mb-4 block text-[0.78rem] uppercase tracking-[0.4em] text-stone-500">
+          <span className="mb-4 block text-xs font-light uppercase tracking-uppercase text-gray-600">
             Insights & Guidance
           </span>
-          <h2 className="mb-6 font-serif text-4xl tracking-[0.04em] text-stone-900 md:text-5xl">
+          <h2 className="mb-6 font-serif text-4xl font-extralight tracking-display text-luxury-black md:text-5xl">
             Frequently Asked Questions
           </h2>
-          <div className="mx-auto mb-6 h-px w-24 bg-stone-300" />
-          <p className="mx-auto max-w-[65ch] text-[0.82rem] leading-7 text-stone-600/90 sm:text-sm">
+          <div className="mx-auto mb-6 h-px w-24 bg-gray-200" />
+          <p className="mx-auto max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-gray-600">
             After over a decade as Katherine Taylor escort in San Francisco and
             Sacramento, I answer what "escorts near me" searches won't tell you.
           </p>
