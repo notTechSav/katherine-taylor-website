@@ -3,8 +3,7 @@ import { useEffect } from "react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 
-const ABOUT_HERO_IMAGE =
-  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F544eebd3dfb24d86b1212878113625c0?format=webp&width=1600";
+const ABOUT_HERO_IMAGE = "/rose-hero.png";
 const ABOUT_SECONDARY_IMAGE =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fc52c5d671db044f38e0442b59a54c778?format=webp&width=1200";
 
@@ -40,7 +39,7 @@ const About = () => {
         subtitle="The conversation never resets. I carry forward your context—professional, personal, and everything unsaid—so we move without rehearsal."
         eyebrow="Katherine Taylor"
         imageSrc={ABOUT_HERO_IMAGE}
-        imageAlt="Sunlit doorway opening onto herringbone floors beside linen curtains"
+        imageAlt="Cream-colored rose with flowing ribbon on linen fabric in warm afternoon light"
         alignment="left"
       />
       <div className="mx-auto max-w-[680px] px-6 pb-24 pt-16 md:px-8 md:pb-28 md:pt-20">
