@@ -21,6 +21,7 @@ const navigationLinks = [
   { label: "Gifts", href: "/gifts" },
   { label: "Journal", href: "/journal" },
   { label: "Rates", href: "/rates" },
+  { label: "Gallery", href: "/gallery" },
   { label: "FAQ", href: "/faq" },
   { label: "Inquire", href: "/inquire-luxury" },
 ];
