@@ -48,15 +48,11 @@ const About = () => {
           data-animate
           className="space-y-6 opacity-0 transition-all duration-[900ms] ease-[cubic-bezier(0.16,1,0.3,1)] data-[visible=true]:translate-y-0 data-[visible=true]:opacity-100 data-[visible=true]:delay-100"
         >
-          <h1 className="font-serif text-4xl font-light tracking-[-0.01em] text-[#1a1a1a] md:text-[48px]">
-            About Me
-          </h1>
+          <p className="text-[17px] leading-[1.9] text-[#1a1a1a]">
+            Institutional memory is my medium. I keep the architecture of your world close enough that nothing requires translation.
+          </p>
           <p className="text-[17px] leading-[1.9]">
-            The conversation never resets. I carry forward everything—your M&amp;A
-            timeline, your board anxieties, your daughter’s college decision, the
-            trip to Patagonia you’ve been planning. Not because I take notes, but
-            because I’ve built a decade of pattern libraries that let me read what
-            you don’t say.
+            Boardrooms, negotiations, family milestones—the cadence is catalogued, not recorded. It lets us move at full depth without rehearsal.
           </p>
         </header>
 
