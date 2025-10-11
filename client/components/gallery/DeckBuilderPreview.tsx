@@ -152,9 +152,10 @@ function saveData() {
   return (navigator as any)?.connection?.saveData === true;
 }
 
-function prefetchImages(urls: string[]) {
+function prefetchImages(urls: (string | undefined)[]) {
   if (saveData() || !canHover()) return;
   urls.forEach((u) => {
+    if (!u) return;
     const img = new Image();
     (img as any).decoding = "async";
     img.src = u;
