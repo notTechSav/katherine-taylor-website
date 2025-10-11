@@ -15,64 +15,39 @@ const RatesPage = () => {
 
   return (
     <div className="bg-luxury-white text-luxury-black">
-      {/* Hero Section */}
-      <section className="relative bg-luxury-white">
-        <figure className="relative h-[48vh] min-h-[280px] w-full overflow-hidden sm:h-[52vh]">
-          <img
-            src={heroImage.src}
-            alt={heroImage.alt}
-            className="h-full w-full object-cover"
-            loading="lazy"
-          />
-          <div
-            className="absolute inset-0"
-            style={{ background: overlayGradient }}
-            aria-hidden
-          />
-        </figure>
+      <PageHeroOverlay
+        title="Rates"
+        subtitle="Every figure on this page exists to protect one idea: you never have to explain yourself twice."
+        eyebrow="Rate Structure"
+        imageSrc={heroImage.src}
+        imageAlt={heroImage.alt}
+        alignment="right"
+      />
 
-        <div className="container mx-auto px-6 md:px-8">
-          <div className="py-16 md:py-24">
-            <div className="mb-16 text-center md:mb-20">
-              <h1
-                className="mb-6 font-serif text-4xl font-extralight tracking-display text-luxury-black md:text-5xl"
-                style={{ fontWeight: 200 }}
-              >
-                Rates
-              </h1>
-              <p className="mx-auto max-w-3xl text-lg font-light leading-[1.8] tracking-[0.02em] text-gray-600 md:text-xl">
-                Every figure on this page exists to protect one idea: you never
-                have to explain yourself twice.
-              </p>
-            </div>
+      <section className="bg-luxury-white">
+        <div className="container mx-auto px-6 pb-20 pt-16 md:px-8 md:pt-20">
+          <div className="mx-auto max-w-2xl space-y-6 text-center">
+            <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700 md:text-lg">
+              My work is cumulative, not transactional. Each engagement carries forward the full history of your context—professional, personal, logistical—so nothing resets.
+            </p>
+            <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700 md:text-lg">
+              The premium reflects continuity, discretion, and the scarcity discipline required to deliver them without compromise.
+            </p>
+          </div>
 
-            <div className="mx-auto max-w-2xl space-y-6">
-              <p className="text-base font-light leading-[1.8] tracking-[0.01em] text-gray-700 md:text-lg">
-                My work is cumulative, not transactional. Each engagement carries
-                forward the full history of your context—professional, personal,
-                logistical—so nothing resets.
-              </p>
-              <p className="text-base font-light leading-[1.8] tracking-[0.01em] text-gray-700 md:text-lg">
-                The premium reflects continuity, discretion, and the scarcity
-                discipline required to deliver them without compromise.
-              </p>
-            </div>
-
-            {/* Show Structure Button */}
-            <div className="mt-12 text-center">
-              <button
-                onClick={() => setIsRevealed(!isRevealed)}
-                className="group inline-flex items-center gap-3 border border-gray-300 px-8 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
-                style={{ fontWeight: 300 }}
-              >
-                <span>
-                  {isRevealed ? "CONCEAL STRUCTURE" : "SHOW CURRENT STRUCTURE"}
-                </span>
-                <ChevronDown
-                  className={`h-4 w-4 transition-all duration-300 ${isRevealed ? "rotate-180" : ""}`}
-                />
-              </button>
-            </div>
+          <div className="mt-12 text-center">
+            <button
+              onClick={() => setIsRevealed(!isRevealed)}
+              className="group inline-flex items-center gap-3 border border-gray-300 px-8 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
+              style={{ fontWeight: 300 }}
+            >
+              <span>
+                {isRevealed ? "CONCEAL STRUCTURE" : "SHOW CURRENT STRUCTURE"}
+              </span>
+              <ChevronDown
+                className={`h-4 w-4 transition-all duration-300 ${isRevealed ? "rotate-180" : ""}`}
+              />
+            </button>
           </div>
         </div>
       </section>
