@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
+import PageHeroOverlay from "@/components/site/PageHeroOverlay";
+
 const heroImage = {
   src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fff453c7ff48442fc8efd2f475a954ade?format=webp&width=800",
   alt: "Warm afternoon light casting shadows over a solitary wooden knight chess piece on linen",
