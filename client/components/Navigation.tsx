@@ -65,7 +65,7 @@ const Navigation = () => {
         "fixed top-0 z-50 w-full px-8 transition-all duration-400 ease-out",
         scrolled
           ? "bg-luxury-white/95 py-4 backdrop-blur-sm shadow-luxury-sm"
-          : "bg-transparent py-8",
+          : "bg-luxury-white/80 py-8 backdrop-blur-sm",
       )}
     >
       <div className="mx-auto flex max-w-luxury items-center justify-between">
