@@ -129,7 +129,7 @@ const JournalArticle = () => {
                   {formattedPublishedDate}
                 </p>
                 <h1
-                  className="text-[40px] font-extralight leading-[1.1] sm:text-[48px]"
+                  className="text-[40px] font-extralight leading-[1.1] text-luxury-white sm:text-[48px]"
                   style={headingLetterSpacing}
                 >
                   {essay.title}
