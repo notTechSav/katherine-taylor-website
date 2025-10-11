@@ -58,7 +58,7 @@ const Inquire = () => {
                 </h3>
                 <a
                   href="mailto:inquiries@katherinetaylor.com"
-                  className="text-[18px] font-light text-luxury-black underline-offset-[4px] transition-colors duration-300 hover:underline"
+                  className="text-[18px] font-light text-luxury-black underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
                 >
                   inquiries@katherinetaylor.com
                 </a>
