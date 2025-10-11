@@ -20,7 +20,7 @@ const JournalHero = memo(({ title, subtitle, imageSrc, imageAlt }: JournalHeroPr
         {/* Desktop text overlay */}
         <figcaption className="pointer-events-none absolute inset-0 hidden items-end sm:flex">
           <div className="mx-auto w-full max-w-[1120px] px-12 pb-14">
-            <div className="max-w-xl text-left text-[#fafaf7]">
+            <div className="max-w-xl text-left text-luxury-white">
               <p
                 className="mb-3 text-sm font-light uppercase tracking-[0.12em] text-[#f2f2ee]/75"
                 style={{ letterSpacing: "0.12em" }}
