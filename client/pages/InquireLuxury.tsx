@@ -88,7 +88,7 @@ const REFERRAL_OPTIONS = [
 ] as const;
 
 const TIME_SLOTS = [
-  { value: "morning", label: "Morning (9AM �� 12PM)" },
+  { value: "morning", label: "Morning (9AM – 12PM)" },
   { value: "afternoon", label: "Afternoon (12PM – 5PM)" },
   { value: "evening", label: "Evening (5PM – 8PM)" },
   { value: "flexible", label: "Flexible" },
@@ -265,10 +265,7 @@ const InquireLuxury = () => {
             {currentStep === 1 && (
               <motion.div
                 key="step1"
-                initial={{ opacity: 0, x: 96 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -96 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
+                {...STEP_MOTION_PROPS}
                 className="space-y-10"
               >
                 <div>
