@@ -40,7 +40,6 @@ const About = () => {
             className="h-full w-full object-cover"
             loading="lazy"
           />
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#fafaf9] via-transparent to-transparent" />
         </AspectRatio>
       </div>
       <div className="mx-auto max-w-[680px] px-6 py-24 md:py-28">
@@ -90,7 +89,6 @@ const About = () => {
                   className="h-full w-full object-cover"
                   loading="lazy"
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#fafaf9]/80 via-transparent to-transparent" />
               </AspectRatio>
             </div>
             <p>
