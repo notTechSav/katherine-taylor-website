@@ -29,6 +29,11 @@ type Collection = {
   statement: string;
   cta: CTA;
   count: number;
+  hero?: {
+    src: string;
+    srcSet?: string;
+    alt?: string;
+  };
 };
 
 type FrameMeta = {
@@ -44,6 +49,12 @@ type FrameMeta = {
 
 type CollectionMeta = Record<string, FrameMeta>;
 
+const silkAndStoneHeroBase = "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe754cc1d8e334af9a33739cb169d8cce";
+const silkAndStoneHeroWidths = [640, 960, 1200, 1600];
+const silkAndStoneHeroSrcSet = silkAndStoneHeroWidths
+  .map((width) => `${silkAndStoneHeroBase}?format=webp&width=${width} ${width}w`)
+  .join(", ");
+
 const DATA: Collection[] = [
   {
     slug: "photos-1",
@@ -52,6 +63,11 @@ const DATA: Collection[] = [
     statement: "Matte textures; afternoon shadow; breath held.",
     cta: "private-access",
     count: 12,
+    hero: {
+      src: `${silkAndStoneHeroBase}?format=webp&width=1200`,
+      srcSet: silkAndStoneHeroSrcSet,
+      alt: "Silk & Stone collection hero featuring Katherine Taylor in white lingerie beside a sunlit window",
+    },
   },
   {
     slug: "photos-2",
@@ -82,6 +98,9 @@ const placeholderFrame = (seed: string, index: number, width: number) =>
   `https://picsum.photos/seed/${encodeURIComponent(`${seed}-${index}`)}${width > 0 ? `/${width}/${aspectHeight(width)}` : ""}`;
 
 const heroSrc = (c: Collection) => {
+  if (c.hero?.src) {
+    return c.hero.src;
+  }
   if (c.dir) {
     return enc(`${c.dir}/hero.avif`);
   }
@@ -89,6 +108,9 @@ const heroSrc = (c: Collection) => {
 };
 
 const heroSrcSet = (c: Collection) => {
+  if (c.hero?.srcSet) {
+    return c.hero.srcSet;
+  }
   if (c.dir) {
     return [800, 1200, 1600, 2000]
       .map((w) => `${enc(`${c.dir}/hero-${w}.avif`)} ${w}w`)
@@ -290,7 +312,7 @@ function Hub({ onOpen, onIntent }: { onOpen: (slug: string) => void; onIntent: (
                   src={heroSrc(c)}
                   srcSet={heroSrcSet(c)}
                   sizes={heroSizes}
-                  alt={`${c.title} hero`}
+                  alt={c.hero?.alt ?? `${c.title} hero`}
                   loading="lazy"
                   decoding="async"
                   className="h-full w-full object-cover"
@@ -353,7 +375,7 @@ function CollectionHeader({ c, onOpen, onBack }: { c: Collection; onOpen: () => 
             src={heroSrc(c)}
             srcSet={heroSrcSet(c)}
             sizes="(min-width: 1280px) 360px, 30vw"
-            alt={`${c.title} hero frame`}
+            alt={c.hero?.alt ?? `${c.title} hero frame`}
             loading="lazy"
             decoding="async"
             className="h-full w-full object-cover"
