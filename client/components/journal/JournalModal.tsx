@@ -27,7 +27,7 @@ const transitionStyle: CSSProperties = {
 };
 
 const linenWashStyle: CSSProperties = {
-  backgroundColor: "#fafaf7",
+  backgroundColor: "var(--luxury-white)",
   backgroundImage:
     "linear-gradient(135deg, rgba(250,247,238,0.12) 0%, rgba(237,234,224,0.12) 100%), radial-gradient(rgba(26,26,26,0.05) 1px, transparent 1px)",
   backgroundSize: "100% 100%, 14px 14px",
