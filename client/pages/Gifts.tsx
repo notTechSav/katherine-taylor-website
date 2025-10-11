@@ -154,13 +154,13 @@ const Gifts = () => {
             for those who asked.
           </p>
           <nav className="flex flex-wrap gap-3 text-[14px] font-light text-luxury-black">
-            <a href="/journal" className="underline-offset-[4px] transition-colors duration-300 hover:underline">
+            <a href="/journal" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
               The High-End Edition
             </a>
-            <a href="/rates" className="underline-offset-[4px] transition-colors duration-300 hover:underline">
+            <a href="/rates" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
               Rates & Registry
             </a>
-            <a href="/about" className="underline-offset-[4px] transition-colors duration-300 hover:underline">
+            <a href="/about" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">
               About
             </a>
           </nav>
