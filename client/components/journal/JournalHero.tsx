@@ -22,7 +22,7 @@ const JournalHero = memo(({ title, subtitle, imageSrc, imageAlt }: JournalHeroPr
           <div className="mx-auto w-full max-w-[1120px] px-12 pb-14">
             <div className="max-w-xl text-left text-luxury-white">
               <p
-                className="mb-3 text-sm font-light uppercase tracking-[0.12em] text-[#f2f2ee]/75"
+                className="mb-3 text-sm font-light uppercase tracking-[0.12em] text-luxury-white/75"
                 style={{ letterSpacing: "0.12em" }}
               >
                 THE HIGH-END EDITION
