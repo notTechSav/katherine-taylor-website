@@ -205,6 +205,7 @@ const FAQSectionLuxury = () => {
               type="button"
               onClick={() => setShowHidden((prev) => !prev)}
               aria-expanded={showHidden}
+              className="w-full sm:w-auto"
             >
               {showHidden ? "Show Less" : "View All Questions"}
             </Button>
