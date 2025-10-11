@@ -51,7 +51,7 @@ const GiftsHero = ({ title, subtitle, imageSrc, imageAlt }: GiftsHeroProps) => {
           <header className="mb-8">
             {/* Title - Ultra-thin font weight 200, tight letter-spacing */}
             <h1
-              className="mb-4 font-light text-[#262626]"
+              className="mb-4 font-light text-luxury-gray-800"
               style={{
                 fontWeight: 200,
                 fontSize: "48px",
@@ -64,12 +64,11 @@ const GiftsHero = ({ title, subtitle, imageSrc, imageAlt }: GiftsHeroProps) => {
 
             {/* Subtitle - Font weight 300, refined spacing */}
             <p
-              className="font-light"
+              className="font-light text-luxury-black/70"
               style={{
                 fontSize: "16px",
                 letterSpacing: "0.01em",
                 lineHeight: 1.6,
-                color: "rgba(26, 26, 26, 0.72)",
               }}
             >
               {subtitle}
