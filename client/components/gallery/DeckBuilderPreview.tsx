@@ -83,13 +83,6 @@ const DATA: Collection[] = [
 
 const pad3 = (n: number) => String(n).padStart(3, "0");
 const enc = (s: string) => encodeURI(s);
-const aspectHeight = (width: number) => Math.round((width * 5) / 4);
-
-const placeholderHero = (seed: string, width: number) =>
-  `https://picsum.photos/seed/${encodeURIComponent(`${seed}-hero`)}${width > 0 ? `/${width}/${aspectHeight(width)}` : ""}`;
-
-const placeholderFrame = (seed: string, index: number, width: number) =>
-  `https://picsum.photos/seed/${encodeURIComponent(`${seed}-${index}`)}${width > 0 ? `/${width}/${aspectHeight(width)}` : ""}`;
 
 const getFrameAsset = (c: Collection, index: number) => c.frames?.[index - 1];
 
