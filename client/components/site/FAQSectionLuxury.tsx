@@ -171,54 +171,55 @@ const FAQSectionLuxury = () => {
   );
 
   return (
-    <section className="relative bg-luxury-white py-24 md:py-32 lg:py-40">
-      <div className="mx-auto max-w-luxury px-8 md:px-12">
-        <div className="mb-20 text-center md:mb-28">
-          <span className="mb-4 block text-xs font-light uppercase tracking-uppercase text-gray-600">
-            Insights & Guidance
-          </span>
-          <h2 className="mb-6 font-serif text-4xl font-extralight tracking-display text-luxury-black md:text-5xl">
-            Frequently Asked Questions
-          </h2>
-          <div className="mx-auto mb-6 h-px w-24 bg-gray-200" />
-          <p className="mx-auto max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-gray-600">
-            After over a decade as Katherine Taylor escort in San Francisco and
-            Sacramento, I answer what "escorts near me" searches won't tell you.
-          </p>
-        </div>
+    <div className="bg-luxury-white">
+      <PageHeroOverlay
+        title="Frequently Asked Questions"
+        subtitle="After more than a decade in this practice, I answer what quick searches never cover—standards, discretion, and how engagements actually unfold."
+        eyebrow="Insights & Guidance"
+        imageSrc={FAQ_HERO_IMAGE.src}
+        imageAlt={FAQ_HERO_IMAGE.alt}
+        alignment="left"
+      />
 
-        <div className="mx-auto max-w-4xl">
-          <div>
-            {featuredFaqs.map((item) => (
-              <FAQItem key={item.id} item={item} isOpen={openFaq === item.id} />
-            ))}
+      <section className="relative bg-luxury-white py-24 md:py-32 lg:py-40">
+        <div className="mx-auto max-w-luxury px-8 md:px-12">
+          <div className="mx-auto mb-20 max-w-[65ch] text-center text-base font-light leading-relaxed tracking-luxury text-gray-600 md:mb-24">
+            The following answers distill the questions I receive most often from clients balancing public visibility with private lives.
+          </div>
 
-            {showHidden &&
-              hiddenFaqs.map((item) => (
-                <FAQItem
-                  key={item.id}
-                  item={item}
-                  isOpen={openFaq === item.id}
-                />
+          <div className="mx-auto max-w-4xl">
+            <div>
+              {featuredFaqs.map((item) => (
+                <FAQItem key={item.id} item={item} isOpen={openFaq === item.id} />
               ))}
 
-            <div className="border-t border-gray-200" />
-          </div>
+              {showHidden &&
+                hiddenFaqs.map((item) => (
+                  <FAQItem
+                    key={item.id}
+                    item={item}
+                    isOpen={openFaq === item.id}
+                  />
+                ))}
 
-          <div className="mt-12 text-center">
-            <Button
-              variant="ctaSecondary"
-              type="button"
-              onClick={() => setShowHidden((prev) => !prev)}
-              aria-expanded={showHidden}
-              className="w-full sm:w-auto"
-            >
-              {showHidden ? "Show Less" : "View All Questions"}
-            </Button>
+              <div className="border-t border-gray-200" />
+            </div>
+
+            <div className="mt-12 text-center">
+              <Button
+                variant="ctaSecondary"
+                type="button"
+                onClick={() => setShowHidden((prev) => !prev)}
+                aria-expanded={showHidden}
+                className="w-full sm:w-auto"
+              >
+                {showHidden ? "Show Less" : "View All Questions"}
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
 
