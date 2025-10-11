@@ -38,7 +38,7 @@ const About = () => {
         <AspectRatio ratio={16 / 9}>
           <img
             src={ABOUT_HERO_IMAGE}
-            alt="Katherine Taylor reclining beside a sunlit pool"
+            alt="Sunlit doorway opening onto herringbone floors beside linen curtains"
             className="h-full w-full object-cover"
             loading="lazy"
           />
