@@ -110,7 +110,7 @@ const Inquire = () => {
           </article>
 
           {/* Note */}
-          <div className="rounded border border-gray-200 bg-white p-6 sm:p-8">
+          <div className="rounded border border-gray-200 bg-luxury-gray-50 p-6 sm:p-8">
             <p className="text-[14px] font-light italic leading-[1.7] text-gray-500">
               For those searching "escorts near me" or seeking "San Francisco escorts" with substance: this page exists to
               begin conversations that lead somewhere meaningful. Not every inquiry becomes a booking, and that's by design.
