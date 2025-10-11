@@ -770,6 +770,7 @@ export default function DeckBuilderPreview() {
   const [viewerIdx, setViewerIdx] = useState<number | null>(null);
   const current = useMemo(() => DATA.find((d) => d.slug === slug) ?? DATA[0], [slug]);
   const meta = useCollectionMeta(current);
+  const currentFrameCount = frameCount(current);
 
   useEffect(() => {
     const el = document.documentElement;
