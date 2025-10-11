@@ -909,14 +909,6 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
               placeholder="Optional email for share link"
               className="w-full border border-neutral-300 px-4 py-3 text-sm font-light rounded-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300/60"
             />
-            <label className="inline-flex items-center gap-2 text-xs font-light text-neutral-700">
-              <input
-                type="checkbox"
-                checked={includeWatermark}
-                onChange={(e) => setIncludeWatermark(e.target.checked)}
-              />
-              Include subtle watermark in deck (optional)
-            </label>
             <PrimaryButton
               onClick={build}
               disabled={building || frames.length === 0}
@@ -1122,6 +1114,11 @@ export default function DeckBuilderPreview() {
   );
   const meta = useCollectionMeta(current);
   const currentFrameCount = frameCount(current);
+
+  // Scroll to top when view changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [view]);
 
   useEffect(() => {
     const el = document.documentElement;
