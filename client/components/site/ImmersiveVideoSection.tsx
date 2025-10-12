@@ -11,9 +11,11 @@ const VIDEO_MOBILE =
 
 const ImmersiveVideoSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [showText, setShowText] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
+  const [hasPlayed, setHasPlayed] = useState(false);
 
   // Detect mobile device
   useEffect(() => {
@@ -28,6 +30,29 @@ const ImmersiveVideoSection = () => {
   }, []);
 
   const videoSrc = isMobile ? VIDEO_MOBILE : VIDEO_DESKTOP;
+
+  // Intersection Observer to play video when in viewport
+  useEffect(() => {
+    const video = videoRef.current;
+    const section = sectionRef.current;
+    if (!video || !section) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasPlayed) {
+            void video.play();
+            setHasPlayed(true);
+          }
+        });
+      },
+      { threshold: 0.5 } // Play when 50% visible
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [hasPlayed]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -67,12 +92,11 @@ const ImmersiveVideoSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-luxury-black">
+    <section ref={sectionRef} className="relative min-h-screen w-full overflow-hidden bg-luxury-black">
       <video
         ref={videoRef}
         key={videoSrc}
         className="absolute inset-0 h-full w-full object-cover"
-        autoPlay
         loop
         muted={isMuted}
         playsInline
