@@ -12,18 +12,23 @@
 - ✅ Local dev server running correct code from `~/cardier-insprired-site`
 - ✅ Old folder deleted, junk files cleaned up
 
-### ⏳ What You Need to Do:
+### ✅ Builder.io is Now the Source of Truth
 
-#### 1. Connect Builder.io to Your GitHub Branch
-In Builder.io Dashboard:
-1. Go to https://builder.io
-2. Navigate to: **Settings** → **Integrations** → **GitHub**
-   (or **Models** → **Page** → **Code/Components**)
-3. Configure:
-   - Repository: `notTechSav/Cartier-20Inspired-20Homepage`
-   - **Branch: `ai_main_45c6cae39678`** ⬅️ CRITICAL!
-4. Click **"Sync"** or **"Refresh Components"**
-5. Verify you see your components listed
+**IMPORTANT:** Builder.io syncs from `main` branch and is the source of truth for this project.
+
+#### Current Configuration:
+- **Repository:** `notTechSav/Cartier-20Inspired-20Homepage`
+- **Branch:** `main` ⬅️ Builder.io syncs from here
+- **Status:** ✅ Connected and syncing
+- **Last Update:** October 11, 2024 (force-pushed working code to main)
+
+#### Workflow:
+- ✅ Make all edits in Builder.io visual editor
+- ✅ Builder.io auto-commits to `main`
+- ✅ Vercel auto-deploys from `main`
+- ❌ **Do NOT use CLI to commit code** (causes conflicts)
+
+See `WORKFLOW.md` for complete workflow documentation.
 
 #### 2. Add API Key to Vercel
 In Vercel Dashboard:
