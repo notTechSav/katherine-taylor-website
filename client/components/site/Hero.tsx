@@ -2,13 +2,33 @@ import { Button } from "@/components/ui/button";
 import { H2, H3 } from "@/components/ui/luxury-typography";
 import { useEffect, useRef, useState } from "react";
 
-const HERO_VIDEO_SRC =
+// Desktop: High quality (q_80) - fast WiFi, large screen, worth it
+const HERO_VIDEO_DESKTOP =
   "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_80,f_auto/v1760237084/MAYA_2_cnpwna.mp4";
+
+// Mobile: Optimized quality (q_auto) - slower connections, smaller screen
+const HERO_VIDEO_MOBILE =
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto,f_auto/v1760237084/MAYA_2_cnpwna.mp4";
 
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [showText, setShowText] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const videoSrc = isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
 
   useEffect(() => {
     const element = videoRef.current;
@@ -57,6 +77,7 @@ const Hero = () => {
     <section className="relative isolate flex min-h-screen w-full overflow-hidden bg-luxury-black">
       <video
         ref={videoRef}
+        key={videoSrc}
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
         loop
@@ -65,7 +86,7 @@ const Hero = () => {
         preload="metadata"
         poster="https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/q_80,f_auto/v1760237084/MAYA_2_cnpwna.jpg"
       >
-        <source src={HERO_VIDEO_SRC} type="video/mp4" />
+        <source src={videoSrc} type="video/mp4" />
       </video>
       <div className="pointer-events-none absolute inset-0 bg-luxury-black/60" />
 

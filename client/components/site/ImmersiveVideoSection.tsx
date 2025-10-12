@@ -1,13 +1,33 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-const VIDEO_SRC =
+// Desktop: High quality (q_70) - good balance for this video
+const VIDEO_DESKTOP =
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_70,f_auto/v1760237961/Maya_3_iyvftk.mp4";
+
+// Mobile: Optimized quality (q_auto) - fast load, smaller screen
+const VIDEO_MOBILE =
   "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto,f_auto/v1760237961/Maya_3_iyvftk.mp4";
 
 const ImmersiveVideoSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [showText, setShowText] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile device
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const videoSrc = isMobile ? VIDEO_MOBILE : VIDEO_DESKTOP;
 
   useEffect(() => {
     const video = videoRef.current;
@@ -50,6 +70,7 @@ const ImmersiveVideoSection = () => {
     <section className="relative min-h-screen w-full overflow-hidden bg-luxury-black">
       <video
         ref={videoRef}
+        key={videoSrc}
         className="absolute inset-0 h-full w-full object-cover"
         autoPlay
         loop
@@ -59,7 +80,7 @@ const ImmersiveVideoSection = () => {
         loading="lazy"
         poster="https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/q_auto,f_auto/v1760237961/Maya_3_iyvftk.jpg"
       >
-        <source src={VIDEO_SRC} type="video/mp4" />
+        <source src={videoSrc} type="video/mp4" />
       </video>
       <div className="absolute inset-0 bg-luxury-black/55" />
 
