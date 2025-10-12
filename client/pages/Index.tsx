@@ -2,6 +2,7 @@ import BoutiqueAppointmentSection from "@/components/site/BoutiqueAppointmentSec
 import FAQSectionLuxury from "@/components/site/FAQSectionLuxury";
 import Hero from "@/components/site/Hero";
 import ImageMosaicSection from "@/components/site/ImageMosaicSection";
+import ImmersiveVideoSection from "@/components/site/ImmersiveVideoSection";
 import LimitedAvailabilitySection from "@/components/site/LimitedAvailabilitySection";
 import LoveStorySection from "@/components/site/LoveStorySection";
 import EmailSignupSection from "@/components/site/EmailSignupSection";
@@ -16,6 +17,8 @@ const Index = () => {
       <BoutiqueAppointmentSection />
       {/* Gallery Preview Section */}
       <ImageMosaicSection />
+      {/* Rates Section - Immersive Video */}
+      <ImmersiveVideoSection />
       {/* Gifts Section */}
       <ImageMosaicSection
         title="Gifts – What to Give an Escort?"

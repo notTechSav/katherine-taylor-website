@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 const VIDEO_SRC =
   "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/v1760237961/Maya_3_iyvftk.mp4";
@@ -69,7 +70,10 @@ const ImmersiveVideoSection = () => {
             timeless brilliance of every piece as the city awakens to golden
             light.
           </p>
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-4">
+            <Button variant="ctaPrimary" asChild>
+              <a href="/rates">View Investment Details</a>
+            </Button>
             <button
               type="button"
               onClick={togglePlay}
