@@ -5,7 +5,7 @@ const EmailSignupSection = () => {
     <section className="bg-luxury-white py-24 md:py-32">
       <div className="mx-auto flex max-w-luxury flex-col items-center px-8 text-center">
         <h2 className="text-sm font-light uppercase tracking-uppercase text-gray-700">
-          Latest from Tiffany
+          Latest from Katherine
         </h2>
         <form className="mt-12 flex w-full max-w-2xl flex-col gap-4 sm:flex-row sm:items-center">
           <label htmlFor="email-signup" className="sr-only">
