@@ -52,13 +52,21 @@ const PageHeroOverlay = memo(
 
     return (
       <section className={cn("relative bg-luxury-white", className)}>
-        <figure className="relative h-[48vh] min-h-[320px] w-full overflow-hidden bg-[#d6cdc1] sm:h-[56vh]">
-          <img
-            src={imageSrc}
-            alt={imageAlt}
-            className="h-full w-full object-cover object-left sm:object-center"
-            loading="eager"
-          />
+        <figure className="relative h-[48vh] min-h-[320px] w-full overflow-hidden bg-luxury-black sm:h-[56vh]">
+          <picture>
+            {/* Mobile: smaller, optimized image with width=800 */}
+            <source
+              media="(max-width: 767px)"
+              srcSet={`${imageSrc.replace(/width=\d+/, 'width=800')}`}
+            />
+            {/* Desktop: full quality image (original or width=1600) */}
+            <img
+              src={imageSrc}
+              alt={imageAlt}
+              className="h-full w-full object-cover object-left sm:object-center"
+              loading="eager"
+            />
+          </picture>
           <div className="absolute inset-0" style={gradientStyle} aria-hidden />
 
           {/* Desktop overlay */}
