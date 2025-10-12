@@ -3,7 +3,7 @@ import { H2, H3 } from "@/components/ui/luxury-typography";
 import { useEffect, useRef, useState } from "react";
 
 const HERO_VIDEO_SRC =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/v1760237084/MAYA_2_cnpwna.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto,f_auto/v1760237084/MAYA_2_cnpwna.mp4";
 
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -62,8 +62,8 @@ const Hero = () => {
         loop
         muted={isMuted}
         playsInline
-        preload="auto"
-        poster="https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/v1760237084/MAYA_2_cnpwna.jpg"
+        preload="metadata"
+        poster="https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/q_auto,f_auto/v1760237084/MAYA_2_cnpwna.jpg"
       >
         <source src={HERO_VIDEO_SRC} type="video/mp4" />
       </video>

@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 const VIDEO_SRC =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/v1760237961/Maya_3_iyvftk.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto,f_auto/v1760237961/Maya_3_iyvftk.mp4";
 
 const ImmersiveVideoSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -55,8 +55,9 @@ const ImmersiveVideoSection = () => {
         loop
         muted={isMuted}
         playsInline
-        preload="auto"
-        poster="https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/v1760237961/Maya_3_iyvftk.jpg"
+        preload="none"
+        loading="lazy"
+        poster="https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/q_auto,f_auto/v1760237961/Maya_3_iyvftk.jpg"
       >
         <source src={VIDEO_SRC} type="video/mp4" />
       </video>
