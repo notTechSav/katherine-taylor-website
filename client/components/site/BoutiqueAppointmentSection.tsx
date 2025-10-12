@@ -14,15 +14,16 @@ const BoutiqueAppointmentSection = () => {
           className="absolute inset-0 bg-luxury-black/60"
           aria-hidden="true"
         />
-        <div className="relative z-10 max-w-[440px] space-y-8 text-luxury-white">
+        <div className="relative z-10 max-w-[540px] space-y-8 text-luxury-white">
           <span className="text-xs font-light uppercase tracking-uppercase text-white/70">
-            Your Love Story Awaits
+            Continuity as Craft
           </span>
           <p className="max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-white/85">
-            Take a closer look at the latest LOVE creations with a private
-            appointment at your preferred boutique.
+            The conversation never resets. I remember your M&A timeline, your board anxieties, the trip you've been planning. Not because I take notes—because I've built a decade of pattern libraries that let me read what you don't say.
           </p>
-          <Button variant="ctaPrimary">Book an Appointment</Button>
+          <Button variant="ctaPrimary" asChild>
+            <a href="/journal">Read The Journal</a>
+          </Button>
         </div>
       </div>
     </section>

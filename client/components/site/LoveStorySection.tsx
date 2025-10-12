@@ -12,21 +12,19 @@ const LoveStorySection = () => {
             className="aspect-[4/5] w-full bg-cover bg-center"
             style={{ backgroundImage: `url(${braceletImage})` }}
             role="img"
-            aria-label="Cartier Love bracelets against Brooklyn Bridge"
+            aria-label="Elegant moment of connection and refined presence"
           />
         </div>
         <div className="space-y-8 text-left">
           <span className="text-xs font-light uppercase tracking-uppercase text-gray-600">
-            A Love Story Without Limits
+            Strategic Counsel Meets Personal Continuity
           </span>
           <p className="max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-gray-700">
-            A true feat of innovation, the bracelet is the result of over one
-            hundred trials and prototypes by the Manufacture and the
-            Maison&apos;s design studios. Radiant as one or linked to another
-            bracelet: its special clasp can connect, making a pair, or an
-            endless amount.
+            I work with C-suite executives, IPO founders, and family-office principals who already have brilliant advisors but no one who remembers the whole picture—the professional, the personal, and the quiet space in between. By the third engagement, we're operating at full depth. Decisions move faster, and conversations reach a level most people never get to have.
           </p>
-          <Button variant="ctaSecondary">Shop Love Bracelets</Button>
+          <Button variant="ctaSecondary" asChild>
+            <a href="/about">Learn More About My Practice</a>
+          </Button>
         </div>
       </div>
     </section>
