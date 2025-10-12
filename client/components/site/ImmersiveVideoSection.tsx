@@ -7,16 +7,15 @@ const VIDEO_SRC =
 const ImmersiveVideoSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isMuted, setIsMuted] = useState(true);
-  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
     video.muted = isMuted;
-    if (!isPaused && video.paused) {
+    if (video.paused) {
       void video.play();
     }
-  }, [isMuted, isPaused]);
+  }, [isMuted]);
 
   const toggleMute = () => {
     const video = videoRef.current;
@@ -25,21 +24,8 @@ const ImmersiveVideoSection = () => {
     video.muted = nextMuted;
     if (video.paused) {
       void video.play();
-      setIsPaused(false);
     }
     setIsMuted(nextMuted);
-  };
-
-  const togglePlay = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (video.paused) {
-      void video.play();
-      setIsPaused(false);
-    } else {
-      video.pause();
-      setIsPaused(true);
-    }
   };
 
   return (
@@ -66,24 +52,12 @@ const ImmersiveVideoSection = () => {
             The Story Continues
           </h2>
           <p className="max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-white/85">
-            Experience the LOVE collection in motion. Let the skyline mirror the
-            timeless brilliance of every piece as the city awakens to golden
-            light.
+            Each engagement carries forward the full history of your context—professional, personal, logistical—so nothing resets.
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <Button variant="ctaPrimary" asChild>
-              <a href="/rates">View Investment Details</a>
+              <a href="/rates">View Rates</a>
             </Button>
-            <button
-              type="button"
-              onClick={togglePlay}
-              aria-label={
-                isPaused ? "Play immersive video" : "Pause immersive video"
-              }
-              className="inline-flex items-center justify-center rounded-[2px] border border-white/50 bg-white/10 px-6 py-3 text-xs font-light uppercase tracking-uppercase text-luxury-white transition-all duration-250 ease-out hover:border-white hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
-            >
-              {isPaused ? "Play" : "Pause"}
-            </button>
             <button
               type="button"
               onClick={toggleMute}
