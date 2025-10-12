@@ -3,11 +3,11 @@ import { Button } from "@/components/ui/button";
 
 // Desktop: High quality (q_70) - good balance for this video
 const VIDEO_DESKTOP =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_70,f_auto/v1760237961/Maya_3_iyvftk.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_70,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
 
 // Mobile: Medium quality (q_55) - no pixelation, still fast
 const VIDEO_MOBILE =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_55,f_auto/v1760237961/Maya_3_iyvftk.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_55,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
 
 const ImmersiveVideoSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -78,7 +78,7 @@ const ImmersiveVideoSection = () => {
         playsInline
         preload="none"
         loading="lazy"
-        poster="https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/q_auto,f_auto/v1760237961/Maya_3_iyvftk.jpg"
+        poster="https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/q_auto,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.jpg"
       >
         <source src={videoSrc} type="video/mp4" />
       </video>

@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from "react";
 
 // Desktop: High quality (q_80) - fast WiFi, large screen, worth it
 const HERO_VIDEO_DESKTOP =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_80,f_auto/v1760237084/MAYA_2_cnpwna.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_80,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
 
 // Mobile: Medium-high quality (q_60) - good balance, no pixelation
 const HERO_VIDEO_MOBILE =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_60,f_auto/v1760237084/MAYA_2_cnpwna.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_60,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
 
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -84,7 +84,7 @@ const Hero = () => {
         muted={isMuted}
         playsInline
         preload="metadata"
-        poster="https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/q_80,f_auto/v1760237084/MAYA_2_cnpwna.jpg"
+        poster="https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/q_80,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.jpg"
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
