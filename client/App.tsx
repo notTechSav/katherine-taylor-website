@@ -25,8 +25,6 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const Gifts = lazy(() => import("./pages/Gifts"));
 const Gallery = lazy(() => import("./pages/Gallery"));
 const Inquire = lazy(() => import("./pages/Inquire"));
-const InquireLuxury = lazy(() => import("./pages/InquireLuxury"));
-const InquiryConfirmed = lazy(() => import("./pages/InquiryConfirmed"));
 const Journal = lazy(() => import("./pages/Journal"));
 const JournalArticle = lazy(() => import("./pages/JournalArticle"));
 const Maison = lazy(() => import("./pages/Maison"));
@@ -126,22 +124,6 @@ const AppRoutes = () => {
             element={
               <SiteLayout>
                 <Inquire />
-              </SiteLayout>
-            }
-          />
-          <Route
-            path="/inquire-luxury"
-            element={
-              <SiteLayout>
-                <InquireLuxury />
-              </SiteLayout>
-            }
-          />
-          <Route
-            path="/inquiry-confirmed"
-            element={
-              <SiteLayout>
-                <InquiryConfirmed />
               </SiteLayout>
             }
           />
