@@ -6,9 +6,9 @@ import { useEffect, useRef, useState } from "react";
 const HERO_VIDEO_DESKTOP =
   "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_80,f_auto/v1760237084/MAYA_2_cnpwna.mp4";
 
-// Mobile: Optimized quality (q_auto) - slower connections, smaller screen
+// Mobile: Medium-high quality (q_60) - good balance, no pixelation
 const HERO_VIDEO_MOBILE =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto,f_auto/v1760237084/MAYA_2_cnpwna.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_60,f_auto/v1760237084/MAYA_2_cnpwna.mp4";
 
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -115,7 +115,7 @@ const Hero = () => {
         onClick={toggleMute}
         aria-pressed={!isMuted}
         aria-label={isMuted ? "Unmute hero video" : "Mute hero video"}
-        className="absolute bottom-8 right-8 z-20 inline-flex items-center justify-center gap-2 rounded-[2px] border border-white/30 bg-white/10 px-5 py-3 text-xs font-light uppercase tracking-uppercase text-luxury-white backdrop-blur-sm transition-all duration-250 ease-out hover:border-white/50 hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/40 focus:ring-offset-2"
+        className="absolute bottom-8 right-8 z-20 inline-flex items-center justify-center gap-2 rounded-[2px] bg-white/10 px-5 py-3 text-xs font-light uppercase tracking-uppercase text-luxury-white backdrop-blur-sm transition-all duration-250 ease-out hover:bg-white/20 focus:outline-none"
       >
         <span>{isMuted ? "Unmute" : "Mute"}</span>
       </button>
