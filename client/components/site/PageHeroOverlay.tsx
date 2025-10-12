@@ -56,7 +56,7 @@ const PageHeroOverlay = memo(
           <img
             src={imageSrc}
             alt={imageAlt}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-cover object-left sm:object-center"
             loading="eager"
           />
           <div className="absolute inset-0" style={gradientStyle} aria-hidden />

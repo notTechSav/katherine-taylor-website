@@ -1,31 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
-// LWS utility CSS (tokens + durations) — keep inline for the preview
-const Tokens = () => (
-  <style>{`
-    :root{
-      --shadow-elevation-sm: 0 1px 3px rgba(26,26,26,0.04);
-      --shadow-elevation-md: 0 4px 12px rgba(26,26,26,0.06);
-      --shadow-elevation-lg: 0 12px 28px rgba(26,26,26,0.08);
-      --safe-top: env(safe-area-inset-top);
-      --safe-bottom: env(safe-area-inset-bottom);
-      --color-ink:#1a1a1a;
-      --color-paper:#fafaf7;
-      --color-stone:#6B5D54;
-    }
-    .duration-250{ transition-duration:250ms; }
-    .duration-400{ transition-duration:400ms; }
-    @keyframes fade-in {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    .animate-fade-in { animation: fade-in 400ms ease-out; }
-    @media (prefers-reduced-motion: reduce){
-      *{ transition-duration: 0.01ms !important; animation-duration:0.01ms !important; animation-iteration-count:1 !important; }
-    }
-  `}</style>
-);
-
 type CTA = "private-access" | "conversation" | "inquire";
 type FrameAsset = {
   base: string;
@@ -78,8 +52,8 @@ const colorfieldHeroBase =
 const DATA: Collection[] = [
   {
     slug: "photos-1",
-    title: "Silk & Stone — Los Angeles, 2025",
-    statement: "Matte textures, afternoon shadow, breath held. Northern California, 2025.",
+    title: "Los Angeles",
+    statement: "What I wore when the light was soft. Fur coats, afternoon.",
     cta: "private-access",
     count: 23,
     hero: {
@@ -184,8 +158,8 @@ const DATA: Collection[] = [
   },
   {
     slug: "photos-2",
-    title: "Colorfield — Malibu, 2024",
-    statement: "Color-forward frames, salt air, saturated dusk. Southern California coast.",
+    title: "The Coast",
+    statement: "Gold gowns and saturated rooms. The day asked for color.",
     cta: "conversation",
     count: 21,
     hero: {
@@ -283,8 +257,8 @@ const DATA: Collection[] = [
   {
     slug: "photos-3",
     dir: "/gallery/photos-3",
-    title: "Golden Hour — Studio, 2024",
-    statement: "Available light, clean lines, city exhales. San Francisco intimate moments.",
+    title: "San Francisco",
+    statement: "Studio work. Clean light, no story—just presence.",
     cta: "inquire",
     count: 25,
   },
@@ -431,7 +405,7 @@ function RadioCard({
   return (
     <label
       className={`border border-neutral-300 px-4 py-3 text-sm font-light rounded-none cursor-pointer ${
-        checked ? "bg-neutral-900 text-white" : ""
+        checked ? "bg-luxury-black text-luxury-white" : ""
       }`}
     >
       <input
@@ -467,7 +441,7 @@ function PrimaryButton({
       disabled={disabled}
       aria-label={ariaLabel}
       aria-busy={ariaBusy}
-      className={`inline-flex items-center justify-center uppercase tracking-[0.15em] text-[13px] sm:text-[14px] font-light px-12 sm:px-14 py-5 sm:py-6 bg-[var(--color-ink)] text-white rounded-none duration-250 ease-out hover:opacity-90 hover:scale-[1.01] hover:shadow-[var(--shadow-elevation-md)] disabled:opacity-60 ${
+      className={`inline-flex items-center justify-center uppercase tracking-[0.15em] text-[13px] sm:text-[14px] font-light px-12 sm:px-14 py-5 sm:py-6 bg-luxury-black text-luxury-white rounded-none transition-all duration-[250ms] ease-out hover:opacity-90 hover:scale-[1.01] hover:shadow-md disabled:opacity-60 ${
         className ?? ""
       }`}
     >
@@ -494,7 +468,7 @@ function SecondaryButton({
       onClick={onClick}
       aria-label={ariaLabel}
       disabled={disabled}
-      className={`inline-flex items-center justify-center uppercase tracking-[0.15em] text-[13px] sm:text-[14px] font-light px-12 sm:px-14 py-5 sm:py-6 border border-[var(--color-ink)] text-[color:var(--color-ink)] rounded-none duration-250 ease-out hover:bg-[var(--color-ink)] hover:text-[color:var(--color-paper)] hover:scale-[1.01] hover:shadow-[var(--shadow-elevation-md)] disabled:opacity-60 ${
+      className={`inline-flex items-center justify-center uppercase tracking-[0.15em] text-[13px] sm:text-[14px] font-light px-12 sm:px-14 py-5 sm:py-6 border border-luxury-black text-luxury-black rounded-none transition-all duration-[250ms] ease-out hover:bg-luxury-black hover:text-luxury-white hover:scale-[1.01] hover:shadow-md disabled:opacity-60 ${
         className ?? ""
       }`}
     >
@@ -516,11 +490,8 @@ function Hub({
         <h1 className="text-[56px] sm:text-[68px] md:text-[84px] font-extralight tracking-[-0.03em] leading-[0.95]">
           Private Collections
         </h1>
-        <h2 className="sr-only">Katherine Taylor escort</h2>
-        <h2 className="sr-only">Sacramento escort · Bay Area escort</h2>
-        <h2 className="sr-only">High-end escorts near me · Private companionship Northern California</h2>
         <p className="mt-3 sm:mt-4 max-w-prose text-sm sm:text-base font-light leading-[1.75] text-neutral-700">
-          Intimate documentation from Northern California to Los Angeles — three collections, three moments in time. Each room holds its own story, from available light in San Francisco to saturated dusk on the coast.
+          Three collections from Los Angeles to Northern California. Some rooms hold stillness, others hold saturation. Each set is its own moment—what I wore, where the light fell, what the day asked for.
         </p>
       </header>
       <div className="grid grid-cols-1 md:grid-cols-3 justify-items-start gap-y-16 sm:gap-y-24 gap-x-12 md:gap-x-16">
@@ -535,8 +506,7 @@ function Hub({
               aria-describedby={`${c.slug}-desc`}
             >
               <div
-                className="aspect-[4/5] overflow-hidden duration-400 ease-out group-hover:scale-[1.02]"
-                style={{ boxShadow: "var(--shadow-elevation-md)" }}
+                className="aspect-[4/5] overflow-hidden transition-all duration-[400ms] ease-out group-hover:scale-[1.02] shadow-md"
               >
                 {(() => {
                   const src = heroSrc(c);
@@ -551,13 +521,13 @@ function Hub({
                       alt={c.hero?.alt ?? `${c.title} hero`}
                       loading="lazy"
                       decoding="async"
-                      className="h-full w-full object-cover duration-400 ease-out group-hover:scale-105"
+                      className="h-full w-full object-cover transition-all duration-[400ms] ease-out group-hover:scale-105"
                     />
                   );
                 })()}
               </div>
               <div className="mt-5 space-y-2">
-                <h2 className="text-[22px] sm:text-[26px] md:text-[32px] font-extralight tracking-[-0.02em] leading-[1.15] duration-250 group-hover:text-[var(--color-stone)]">
+                <h2 className="text-[22px] sm:text-[26px] md:text-[32px] font-extralight tracking-[-0.02em] leading-[1.15] transition-colors duration-[250ms] group-hover:text-[#6B5D54]">
                   {c.title}
                 </h2>
                 <p
@@ -566,7 +536,7 @@ function Hub({
                 >
                   {c.statement}
                 </p>
-                <span className="inline-block text-[10px] sm:text-[11px] tracking-[0.18em] uppercase duration-250 group-hover:text-[var(--color-stone)]">
+                <span className="inline-block text-[10px] sm:text-[11px] tracking-[0.18em] uppercase transition-colors duration-[250ms] group-hover:text-[#6B5D54]">
                   View Collection
                 </span>
               </div>
@@ -594,7 +564,7 @@ function CollectionHeader({
         <div className="space-y-8">
           <button
             onClick={onBack}
-            className="inline-flex h-11 items-center gap-2 text-xs uppercase tracking-[0.15em] text-[var(--color-stone)] duration-250 hover:text-[var(--color-ink)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-stone)]/40"
+            className="inline-flex h-11 items-center gap-2 text-xs uppercase tracking-[0.15em] text-[#6B5D54] transition-colors duration-[250ms] hover:text-luxury-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B5D54]/40"
             aria-label="Back to Gallery"
             title="Back to Gallery"
           >
@@ -633,8 +603,7 @@ function CollectionHeader({
           if (!src) return null;
           return (
             <figure
-              className="hidden lg:block aspect-[4/5] overflow-hidden"
-              style={{ boxShadow: "var(--shadow-elevation-md)" }}
+              className="hidden lg:block aspect-[4/5] overflow-hidden shadow-md"
             >
               <img
                 src={src}
@@ -675,8 +644,7 @@ function FrameGrid({
         aria-label={`Open ${alt} full screen`}
       >
         <figure
-          className="aspect-[4/5] overflow-hidden"
-          style={{ boxShadow: "var(--shadow-elevation-sm)" }}
+          className="overflow-hidden shadow-sm"
         >
           <img
             src={src}
@@ -685,7 +653,7 @@ function FrameGrid({
             alt={alt}
             loading={index === 1 ? "eager" : "lazy"}
             decoding="async"
-            className="h-full w-full object-cover"
+            className="w-full h-auto object-contain"
           />
         </figure>
       </button>
@@ -785,8 +753,7 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
       aria-describedby="deck-desc"
     >
       <div
-        className="absolute right-0 top-0 h-full w-full md:max-w-[560px] bg-white p-6 sm:p-8 pb-[calc(1rem+var(--safe-bottom))] overflow-y-auto"
-        style={{ boxShadow: "var(--shadow-elevation-lg)" }}
+        className="absolute right-0 top-0 h-full w-full md:max-w-[560px] bg-luxury-white p-6 sm:p-8 pb-[calc(1rem+env(safe-area-inset-bottom))] overflow-y-auto shadow-lg"
       >
         <div className="flex items-start justify-between gap-6">
           <h2
@@ -854,10 +821,10 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
               </span>
             </div>
             <button
-              className={`text-[11px] sm:text-xs uppercase tracking-[0.15em] underline underline-offset-4 duration-250 ease-out ${
+              className={`text-[11px] sm:text-xs uppercase tracking-[0.15em] underline underline-offset-4 transition-all duration-[250ms] ease-out ${
                 allSelected
-                  ? "decoration-neutral-900/80"
-                  : "decoration-neutral-900/60"
+                  ? "decoration-luxury-black/80"
+                  : "decoration-luxury-black/60"
               } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300/60`}
               onClick={onSelectAll}
               aria-label={
@@ -877,9 +844,9 @@ function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
                 aria-checked={selected.has(n)}
                 className={`h-9 sm:h-10 text-[11px] sm:text-xs font-light border border-neutral-300 ${
                   selected.has(n)
-                    ? "bg-neutral-900 text-white"
-                    : "text-neutral-900"
-                } rounded-none duration-250`}
+                    ? "bg-luxury-black text-luxury-white"
+                    : "text-luxury-black"
+                } rounded-none transition-all duration-[250ms]`}
               >
                 {pad3(n)}
               </button>
@@ -1013,7 +980,7 @@ function ImageViewer({
       aria-modal="true"
       aria-label="Image viewer"
     >
-      <div className="absolute top-0 left-0 right-0 px-4 sm:px-6 md:px-8 pt-[calc(16px+var(--safe-top))] pb-4 flex items-center justify-between gap-3">
+      <div className="absolute top-0 left-0 right-0 px-4 sm:px-6 md:px-8 pt-[calc(16px+env(safe-area-inset-top))] pb-4 flex items-center justify-between gap-3">
         <button
           onClick={onClose}
           className="text-xs uppercase tracking-[0.15em] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300/60"
@@ -1042,20 +1009,20 @@ function ImageViewer({
         <button
           onClick={onPrev}
           aria-label="Previous image"
-          className="h-12 w-12 rounded-none border border-white/40 text-white/80 duration-250 ease-out hover:text-white hover:border-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+          className="h-12 w-12 rounded-none border border-white/40 text-white/80 transition-all duration-[250ms] ease-out hover:text-white hover:border-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
         >
           ‹
         </button>
         <button
           onClick={onNext}
           aria-label="Next image"
-          className="h-12 w-12 rounded-none border border-white/40 text-white/80 duration-250 ease-out hover:text-white hover:border-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+          className="h-12 w-12 rounded-none border border-white/40 text-white/80 transition-all duration-[250ms] ease-out hover:text-white hover:border-white/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
         >
           ›
         </button>
       </div>
 
-      <div className="absolute left-0 right-0 bottom-0 px-4 sm:px-6 md:px-8 pb-[calc(16px+var(--safe-bottom))] pt-4 text-[12px] sm:text-sm font-light text-white/85">
+      <div className="absolute left-0 right-0 bottom-0 px-4 sm:px-6 md:px-8 pb-[calc(16px+env(safe-area-inset-bottom))] pt-4 text-[12px] sm:text-sm font-light text-white/85">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <div>
             <div className="uppercase tracking-[0.15em] text-[11px] sm:text-xs opacity-80">
@@ -1136,8 +1103,7 @@ export default function DeckBuilderPreview() {
   }, [currentFrameCount, viewerIdx]);
 
   return (
-    <div className="text-neutral-900">
-      <Tokens />
+    <div className="text-luxury-black">
       {view === "hub" ? (
         <Hub
           onOpen={(s) => {
