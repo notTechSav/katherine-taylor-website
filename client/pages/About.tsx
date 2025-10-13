@@ -1,5 +1,6 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
+import NextSectionCTA from "@/components/site/NextSectionCTA";
 import { useEffect } from "react";
 
 const ABOUT_HERO_IMAGE =
@@ -95,6 +96,11 @@ const About = () => {
             </section>
           </main>
         </div>
+        <NextSectionCTA
+          eyebrow="Next"
+          label="Explore Services"
+          href="/services"
+        />
       </div>
   );
 };
