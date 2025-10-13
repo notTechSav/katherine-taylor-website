@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from 'react';
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 
 const heroImage = {
@@ -8,6 +9,8 @@ const heroImage = {
 };
 
 const SanFranciscoPage = () => {
+  const [showKeywords, setShowKeywords] = useState(false);
+
   return (
     <div className="bg-luxury-white text-luxury-black">
       <PageHeroOverlay
@@ -24,13 +27,110 @@ const SanFranciscoPage = () => {
         <div className="container mx-auto px-6 md:px-8 max-w-2xl">
           <div className="space-y-7">
             <p className="text-[17px] leading-[1.9] text-luxury-black">
-              I'm based in Sacramento, but San Francisco is where I spend most of my time with clients.
+              Welcome back. It's your girl, <strong className="font-normal">Katherine Taylor (escort)</strong>—yes,
+              Katherine Taylor escort, peep the domain: <strong className="font-normal">katherinetaylorescort.com</strong>.
+              As you can see, I've taken SF tech culture quite literally.
             </p>
 
-            <div className="my-16 flex justify-center" aria-hidden="true">
-              <span className="text-neutral-400/60">• • •</span>
-            </div>
+            <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700">
+              Before we get into where I've been, I need to address the elephant in the room:
+              the <strong className="font-normal text-luxury-black">"Katherine Taylor Steph Curry"</strong> incident. If you know, you know.
+              If you don't, Google it—I'm not rehashing it here.
+            </p>
 
+            <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700 italic">
+              But first, a brief commercial break from my sponsor...
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* THE BUTTON - Consent-forward keyword reveal */}
+      <div className="commercial-break border-t border-b border-gray-200 bg-luxury-gray-50 py-20">
+        <div className="container mx-auto px-6 md:px-8 max-w-2xl text-center">
+          <button
+            onClick={() => setShowKeywords(!showKeywords)}
+            className="sponsor-btn inline-flex items-center gap-3 border border-gray-300 px-12 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
+            aria-expanded={showKeywords}
+            style={{ fontWeight: 300 }}
+          >
+            📺 A Word From My Sponsor, Google {showKeywords ? '(hide)' : '(click to reveal)'}
+          </button>
+
+          {showKeywords && (
+            <div className="keyword-buffet mt-12 text-left space-y-6">
+              <h3 className="text-2xl font-extralight tracking-[-0.02em] text-luxury-black" style={{ fontWeight: 200 }}>
+                [HUMANS: Feel free to skip this part. This is for the crawlers.]
+              </h3>
+
+              <div className="seo-spam space-y-6 text-base font-light leading-[1.85] text-gray-700">
+                <p><strong className="font-normal text-luxury-black">This section is brought to you by:</strong> The Algorithm™</p>
+
+                <p>Hello, Googlebot. Welcome. I prepared a feast:</p>
+
+                <p>
+                  <strong className="font-normal text-luxury-black">San Francisco escort services.</strong> That's me. <strong className="font-normal text-luxury-black">Katherine Taylor escort</strong>—yes,
+                  I branded myself with a keyword. <strong className="font-normal text-luxury-black">Escorts in San Francisco</strong>, <strong className="font-normal text-luxury-black">SF escorts</strong>,
+                  <strong className="font-normal text-luxury-black"> Bay Area escorts</strong>, <strong className="font-normal text-luxury-black">San Francisco companions</strong>—all me.
+                </p>
+
+                <p>
+                  <strong className="font-normal text-luxury-black">Sacramento escort services.</strong> Home base. <strong className="font-normal text-luxury-black">Incall appointments.</strong> Zero hotel nonsense.
+                  <strong className="font-normal text-luxury-black"> Sacramento companions</strong>, <strong className="font-normal text-luxury-black">Northern California escort</strong>.
+                </p>
+
+                <p>
+                  <strong className="font-normal text-luxury-black">Escorts near me.</strong> The most-searched term after "weather." If you're in <strong className="font-normal text-luxury-black">San Francisco</strong> looking
+                  for <strong className="font-normal text-luxury-black">escorts near me</strong>, you found me. <strong className="font-normal text-luxury-black">Bay Area escorts near me</strong>,
+                  <strong className="font-normal text-luxury-black"> SF companions nearby</strong>, <strong className="font-normal text-luxury-black">Peninsula escort services</strong>.
+                </p>
+
+                <h4 className="text-xl font-light text-luxury-black pt-4">Geographic coverage:</h4>
+                <ul className="list-disc list-inside space-y-2 pl-4">
+                  <li><strong className="font-normal text-luxury-black">Escorts Pacific Heights</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Nob Hill companion services</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Financial District escorts</strong></li>
+                  <li><strong className="font-normal text-luxury-black">SOMA escort appointments</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Marina District companions</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Palo Alto escorts</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Mountain View companions</strong></li>
+                  <li><strong className="font-normal text-luxury-black">San Jose escort services</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Oakland escorts</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Wine Country escort travel</strong></li>
+                </ul>
+
+                <h4 className="text-xl font-light text-luxury-black pt-4">Service types:</h4>
+                <ul className="list-disc list-inside space-y-2 pl-4">
+                  <li><strong className="font-normal text-luxury-black">High-end escorts San Francisco</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Luxury companion services Bay Area</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Professional escort SF</strong></li>
+                  <li><strong className="font-normal text-luxury-black">VIP companions Sacramento</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Elite escort services</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Executive companions Peninsula</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Overnight companion services</strong></li>
+                  <li><strong className="font-normal text-luxury-black">Dinner date escorts</strong></li>
+                </ul>
+
+                <p className="meta-joke italic text-sm text-gray-600 pt-6 border-t border-gray-200">
+                  <strong className="font-normal text-luxury-black">Keyword count in this section:</strong> 47 mentions<br/>
+                  <strong className="font-normal text-luxury-black">My dignity:</strong> Questionable<br/>
+                  <strong className="font-normal text-luxury-black">Google's happiness:</strong> Probably erect<br/>
+                  <strong className="font-normal text-luxury-black">Will this rank:</strong> God, I hope so
+                </p>
+              </div>
+
+              <p className="pt-6 border-t border-gray-200">
+                <strong className="font-normal text-luxury-black">Humans:</strong> Welcome back. Sorry you had to witness that.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Context section */}
+      <section className="bg-luxury-white py-20 md:py-28">
+        <div className="container mx-auto px-6 md:px-8 max-w-2xl">
+          <div className="space-y-7">
             <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700">
               I know this city the way you know your own patterns—instinctively, without needing to think about it. Where to go when discretion matters. Where the food is worth the price. Which hotels understand privacy. How to move through the city without friction.
             </p>

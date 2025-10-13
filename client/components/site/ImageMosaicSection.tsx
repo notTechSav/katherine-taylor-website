@@ -141,6 +141,20 @@ const ImageMosaicSection = ({
               </article>
             );
           })}
+          {/* Mobile-only additional image (glam2) */}
+          <article className="group md:hidden">
+            <div className="relative aspect-[4/5] overflow-hidden">
+              <img
+                src="/glam2.jpeg"
+                alt="Katherine Taylor glamour portrait"
+                width={800}
+                height={1000}
+                loading="lazy"
+                decoding="async"
+                className="h-full w-full object-cover transition-transform duration-400 ease-out group-hover:scale-105 object-[50%_95%]"
+              />
+            </div>
+          </article>
         </div>
         {footerHeading || (footerLinkHref && footerLinkLabel) ? (
           <div className="pt-8 text-left px-12 md:px-16 lg:px-20">

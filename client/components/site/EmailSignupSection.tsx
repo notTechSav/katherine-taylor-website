@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 
 const EmailSignupSection = () => {
   return (
-    <section className="bg-luxury-white py-24 md:py-32">
+    <section className="bg-luxury-white py-12 md:py-32">
       <div className="mx-auto flex max-w-luxury flex-col items-center px-8 text-center">
         <h2 className="text-sm font-light uppercase tracking-uppercase text-gray-700">
           Latest from Katherine

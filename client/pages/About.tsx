@@ -98,8 +98,8 @@ const About = () => {
         </div>
         <NextSectionCTA
           eyebrow="Next"
-          label="Explore Services"
-          href="/services"
+          label="Explore Gallery"
+          href="/gallery"
         />
       </div>
   );
