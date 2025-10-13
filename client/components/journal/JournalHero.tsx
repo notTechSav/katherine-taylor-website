@@ -8,13 +8,13 @@ interface JournalHeroProps {
 }
 
 const overlayGradient =
-  "linear-gradient(180deg, rgba(26,26,26,0.05) 0%, rgba(26,26,26,0.65) 100%)";
+  "linear-gradient(180deg, rgba(17,17,17,0.1) 0%, rgba(17,17,17,0.65) 100%)";
 
 const JournalHero = memo(
   ({ title, subtitle, imageSrc, imageAlt }: JournalHeroProps) => {
     return (
-      <section className="relative bg-luxury-white">
-        <figure className="relative h-[48vh] min-h-[280px] w-full overflow-hidden sm:h-[52vh]">
+      <section className="relative bg-luxury-black">
+        <figure className="relative h-[48vh] min-h-[280px] w-full overflow-hidden bg-luxury-black sm:h-[52vh]">
           <img
             src={imageSrc}
             alt={imageAlt}
