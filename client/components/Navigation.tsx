@@ -65,30 +65,30 @@ const Navigation = () => {
   return (
     <nav
       className={cn(
-        "fixed top-0 z-50 w-full px-8 transition-all duration-400 ease-out",
+        "fixed top-0 z-50 w-full pl-2 pr-8 transition-all duration-400 ease-out md:pl-4",
         scrolled
           ? "bg-luxury-white/95 py-4 backdrop-blur-sm shadow-luxury-sm"
           : "bg-luxury-white/80 py-8 backdrop-blur-sm",
       )}
     >
-      <div className="mx-auto flex max-w-luxury items-center justify-between">
+      <div className="flex w-full items-center justify-between">
         <a
           href="/"
           className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
         >
-          <span className="text-3xl font-serif font-extralight uppercase tracking-uppercase leading-[1.1] text-luxury-black">
+          <span className="whitespace-nowrap text-3xl font-serif font-extralight uppercase tracking-display leading-[1.1] text-luxury-black">
             KATHERINE TAYLOR
           </span>
         </a>
         <button
           type="button"
           onClick={toggleMenu}
-          className="text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:hidden"
+          className="text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 lg:hidden"
           aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
         >
           {isMenuOpen ? "Close" : "Menu"}
         </button>
-        <ul className="hidden items-center gap-12 md:flex">
+        <ul className="hidden items-center gap-8 lg:flex">
           {navigationLinks.map((link) => (
             <li key={link.label}>
               <a
