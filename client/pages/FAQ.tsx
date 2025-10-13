@@ -4,6 +4,7 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
+import NextSectionCTA from "@/components/site/NextSectionCTA";
 
 const heroImage = {
   src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fff453c7ff48442fc8efd2f475a954ade?format=webp&width=800",
@@ -984,34 +985,11 @@ const FAQPage = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-200 bg-luxury-white px-6 py-16">
-        <div className="mx-auto max-w-[620px] space-y-6 text-left">
-          <nav className="flex flex-wrap gap-3 text-[14px] font-light text-luxury-black">
-            <a
-              href="/rates"
-              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
-            >
-              Rates
-            </a>
-            <a
-              href="/inquire"
-              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
-            >
-              Inquire
-            </a>
-            <a
-              href="/about"
-              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
-            >
-              About
-            </a>
-          </nav>
-          <p className="text-xs font-light text-gray-400 tracking-[0.08em]">
-            © 2025 Katherine Taylor
-          </p>
-        </div>
-      </footer>
+      <NextSectionCTA
+        eyebrow="Next"
+        label="Get in Touch"
+        href="/inquire"
+      />
     </div>
   );
 };

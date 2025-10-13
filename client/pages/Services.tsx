@@ -1,4 +1,5 @@
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
+import NextSectionCTA from "@/components/site/NextSectionCTA";
 
 const heroImage = {
   src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F544eebd3dfb24d86b1212878113625c0?format=webp&width=1600",
@@ -30,6 +31,11 @@ const Services = () => {
           </ul>
         </header>
       </div>
+      <NextSectionCTA
+        eyebrow="Next"
+        label="Read The Journal"
+        href="/journal"
+      />
     </div>
   );
 };

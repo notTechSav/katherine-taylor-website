@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import JournalFooter from "@/components/journal/JournalFooter";
 import JournalGrid from "@/components/journal/JournalGrid";
 import JournalHero from "@/components/journal/JournalHero";
+import NextSectionCTA from "@/components/site/NextSectionCTA";
 import {
   essays,
   heroImage,
@@ -92,6 +93,11 @@ const Journal = () => {
         ctaLabel={journalDisplay.ctaLabel}
       />
       <JournalFooter intro={journalFooter.intro} links={journalFooter.links} />
+      <NextSectionCTA
+        eyebrow="Next"
+        label="Browse Gallery"
+        href="/gallery"
+      />
     </div>
   );
 };

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import NextSectionCTA from "@/components/site/NextSectionCTA";
 
 const Gifts = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -150,35 +151,11 @@ const Gifts = () => {
         </div>
       </section>
 
-      {/* Footer - matching journal footer exactly */}
-      <footer className="border-t border-gray-200 bg-luxury-white px-6 py-16 sm:py-20">
-        <div className="mx-auto max-w-[620px] space-y-4 text-left">
-          <p className="text-[14px] font-light leading-[1.7] text-gray-600">
-            This page exists by request. Not expectation, not protocol — just
-            quiet consideration for those who asked.
-          </p>
-          <nav className="flex flex-wrap gap-3 text-[14px] font-light text-luxury-black">
-            <a
-              href="/journal"
-              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
-            >
-              The High-End Edition
-            </a>
-            <a
-              href="/rates"
-              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
-            >
-              Rates & Registry
-            </a>
-            <a
-              href="/about"
-              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
-            >
-              About
-            </a>
-          </nav>
-        </div>
-      </footer>
+      <NextSectionCTA
+        eyebrow="Next"
+        label="Frequently Asked Questions"
+        href="/faq"
+      />
     </div>
   );
 };

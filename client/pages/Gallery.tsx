@@ -1,5 +1,6 @@
 import DeckBuilderPreview from "@/components/gallery/DeckBuilderPreview";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
+import NextSectionCTA from "@/components/site/NextSectionCTA";
 import { useEffect } from "react";
 
 const GALLERY_HERO_IMAGE = "/rose-hero.png";
@@ -27,6 +28,11 @@ const Gallery = () => {
         alignment="left"
       />
       <DeckBuilderPreview />
+      <NextSectionCTA
+        eyebrow="Next"
+        label="View Rates"
+        href="/rates"
+      />
     </div>
   );
 };
