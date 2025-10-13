@@ -580,14 +580,15 @@ function CollectionHeader({
             </p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <PrimaryButton
-              className="w-full sm:w-auto"
-              ariaLabel={`${c.title}: primary inquiry`}
+            <a
+              href="/inquire"
+              className="inline-flex items-center justify-center uppercase tracking-[0.15em] text-[13px] sm:text-[14px] font-light px-12 sm:px-14 py-5 sm:py-6 bg-luxury-black text-luxury-white rounded-none transition-all duration-[250ms] ease-out hover:opacity-90 hover:scale-[1.01] hover:shadow-md w-full sm:w-auto"
+              aria-label={`${c.title}: Reserve privately`}
             >
-              {c.cta === "private-access" && "Request Private Access"}
-              {c.cta === "conversation" && "Book a Private Conversation"}
-              {c.cta === "inquire" && "Inquire"}
-            </PrimaryButton>
+              {c.cta === "private-access" && "Reserve Privately"}
+              {c.cta === "conversation" && "Book in Privacy"}
+              {c.cta === "inquire" && "Privately Reserve"}
+            </a>
             <SecondaryButton
               className="w-full sm:w-auto"
               onClick={onOpen}
