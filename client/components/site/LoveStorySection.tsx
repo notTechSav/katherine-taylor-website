@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-const braceletImage =
-  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F3787c432450b4b348ab6d2d5752be09d?format=webp&width=1600";
+const braceletImage = "/about-me-hero.jpeg";
 
 const LoveStorySection = () => {
   return (

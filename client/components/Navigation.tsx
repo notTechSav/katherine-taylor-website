@@ -6,24 +6,24 @@ import { cn } from "@/lib/utils";
 // Route prefetch mapping for lazy-loaded pages
 const routePrefetchMap: Record<string, () => Promise<any>> = {
   "/about": () => import("@/pages/About"),
-  "/services": () => import("@/pages/Services"),
   "/journal": () => import("@/pages/Journal"),
   "/gallery": () => import("@/pages/Gallery"),
   "/rates": () => import("@/pages/Rates"),
   "/gifts": () => import("@/pages/Gifts"),
   "/faq": () => import("@/pages/FAQ"),
+  "/san-francisco": () => import("@/pages/SanFrancisco"),
   "/inquire": () => import("@/pages/Inquire"),
 };
 
 const navigationLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
   { label: "Journal", href: "/journal" },
   { label: "Gallery", href: "/gallery" },
   { label: "Rates", href: "/rates" },
   { label: "Gifts", href: "/gifts" },
   { label: "FAQ", href: "/faq" },
+  { label: "San Francisco", href: "/san-francisco" },
   { label: "Inquire", href: "/inquire" },
 ];
 

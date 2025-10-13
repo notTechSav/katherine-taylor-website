@@ -26,16 +26,12 @@ const defaultTiles: ImageTile[] = [
     alt: "Portrait of Katherine Taylor in tailored attire",
   },
   {
-    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fd3ec1e31a22847378a6aaa373933f6b7?format=webp&width=800",
-    alt: "Overhead view of a white luxury car",
+    src: "/gallery-third.png",
+    alt: "Katherine Taylor in elegant red evening gown",
   },
   {
-    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F2eeac4f0544d4ec5952dafcbdbce130b?format=webp&width=800",
-    alt: "Katherine Taylor wearing a fur coat",
-  },
-  {
-    src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F49821e94c0e742a6afe147811dfebac6?format=webp&width=800",
-    alt: "Katherine Taylor posing on a staircase",
+    src: "/katherinewindow.png",
+    alt: "Katherine Taylor in elegant white shirt and black attire",
   },
 ];
 
@@ -67,8 +63,8 @@ const ImageMosaicSection = ({
 
   return (
     <section className="bg-luxury-white py-24 md:py-32 lg:py-40">
-      <div className="mx-auto flex max-w-luxury flex-col gap-12 px-8">
-        <div className="space-y-4 text-center">
+      <div className="mx-auto flex flex-col gap-12">
+        <div className="space-y-4 text-center px-8">
           <h1 className="text-xs font-light uppercase tracking-uppercase text-gray-600">
             {title}
           </h1>
@@ -76,8 +72,8 @@ const ImageMosaicSection = ({
             {subtitle}
           </h2>
         </div>
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:gap-12 lg:grid-cols-4 lg:gap-16">
-          {displayTiles.map((tile) => {
+        <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 gap-16 px-12 md:grid-cols-2 md:gap-12 md:px-16 lg:grid-cols-3 lg:gap-24 lg:px-20">
+          {displayTiles.map((tile, index) => {
             const overlayKey =
               tile.overlay ??
               (withOverlay || tile.heading || tile.subheading
@@ -85,12 +81,23 @@ const ImageMosaicSection = ({
                 : undefined);
             const captionTone: OverlayVariant = overlayKey ?? "dark";
 
+            // Mobile: show only 1st image (window shot)
+            // Tablet (md): show first 2 in row
+            // Desktop (lg): show all 3 in row
+            const hiddenClasses =
+              index === 0 ? "" : // Always show first (window shot)
+              index === 1 ? "hidden md:block" : // Hide on mobile, show on tablet+
+              "hidden lg:block"; // Hide on mobile+tablet, show on desktop
+
             return (
               <article
                 key={tile.src}
-                className="group bg-luxury-white p-8 shadow-luxury-md transition-shadow duration-400 ease-out md:p-10 lg:p-12 hover:shadow-luxury-lg"
+                className={cn(
+                  "group",
+                  hiddenClasses
+                )}
               >
-                <div className="relative mb-6 aspect-[4/5] overflow-hidden">
+                <div className="relative aspect-[4/5] overflow-hidden">
                   <img
                     src={tile.src}
                     alt={tile.alt}
@@ -98,7 +105,10 @@ const ImageMosaicSection = ({
                     height={1000}
                     loading="lazy"
                     decoding="async"
-                    className="h-full w-full object-cover transition-transform duration-400 ease-out group-hover:scale-105"
+                    className={cn(
+                      "h-full w-full object-cover transition-transform duration-400 ease-out group-hover:scale-105",
+                      index === 1 ? "object-[50%_95%]" : "object-[50%_5%]"
+                    )}
                   />
                   {overlayKey ? (
                     <div
@@ -133,8 +143,8 @@ const ImageMosaicSection = ({
           })}
         </div>
         {footerHeading || (footerLinkHref && footerLinkLabel) ? (
-          <div className="border-t border-gray-100 pt-8 text-left">
-            <div className="flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="pt-8 text-left px-12 md:px-16 lg:px-20">
+            <div className="mx-auto max-w-[1600px] flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
               {footerHeading ? (
                 <span className="text-xs font-light uppercase tracking-uppercase text-gray-600">
                   {footerHeading}

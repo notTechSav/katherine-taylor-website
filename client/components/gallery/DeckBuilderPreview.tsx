@@ -52,8 +52,8 @@ const colorfieldHeroBase =
 const DATA: Collection[] = [
   {
     slug: "photos-1",
-    title: "Los Angeles",
-    statement: "What I wore when the light was soft. Fur coats, afternoon.",
+    title: "Silk and Stone",
+    statement: "Kept close. Defines what softness means to you.",
     cta: "private-access",
     count: 23,
     hero: {
@@ -158,8 +158,8 @@ const DATA: Collection[] = [
   },
   {
     slug: "photos-2",
-    title: "The Coast",
-    statement: "Gold gowns and saturated rooms. The day asked for color.",
+    title: "Gold and Radiance",
+    statement: "Worn boldly. Defines the moments not meant to be dimmed.",
     cta: "conversation",
     count: 21,
     hero: {
@@ -257,8 +257,8 @@ const DATA: Collection[] = [
   {
     slug: "photos-3",
     dir: "/gallery/photos-3",
-    title: "San Francisco",
-    statement: "Studio work. Clean light, no story—just presence.",
+    title: "Bare Light",
+    statement: "Clean light—no story. Just presence.",
     cta: "inquire",
     count: 25,
   },
@@ -491,7 +491,7 @@ function Hub({
           Private Collections
         </h1>
         <p className="mt-3 sm:mt-4 max-w-prose text-sm sm:text-base font-light leading-[1.75] text-neutral-700">
-          Three collections from Los Angeles to Northern California. Some rooms hold stillness, others hold saturation. Each set is its own moment—what I wore, where the light fell, what the day asked for.
+          Three collections I'm sharing with you. Take your time.
         </p>
       </header>
       <div className="grid grid-cols-1 md:grid-cols-3 justify-items-start gap-y-16 sm:gap-y-24 gap-x-12 md:gap-x-16">
