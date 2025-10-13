@@ -91,18 +91,18 @@ const ImmersiveVideoSection = () => {
             showText ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <span className="text-xs font-light uppercase tracking-uppercase text-white/70">
-            An Immersive Viewpoint
-          </span>
           <h2 className="font-serif text-5xl font-extralight tracking-display leading-[1.1]">
             The Story Continues
           </h2>
           <p className="max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-white/85">
             Each engagement carries forward the full history of your context—professional, personal, logistical—so nothing resets.
           </p>
-          <Button variant="ctaPrimary" asChild>
-            <a href="/rates">View Rates</a>
-          </Button>
+          <a
+            href="/rates"
+            className="text-sm font-light uppercase tracking-uppercase text-luxury-white underline decoration-1 underline-offset-4 transition-opacity duration-250 hover:opacity-70"
+          >
+            View Rates
+          </a>
         </div>
       </div>
 

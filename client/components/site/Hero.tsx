@@ -103,9 +103,12 @@ const Hero = () => {
           <H2 as="p" aria-hidden="true" className="text-luxury-white">
             An Experience That Reflects Your Highest Qualities
           </H2>
-          <Button asChild variant="ctaPrimary">
-            <a href="/inquire">Reserve an Evening</a>
-          </Button>
+          <a
+            href="/inquire"
+            className="text-sm font-light uppercase tracking-uppercase text-luxury-white underline decoration-1 underline-offset-4 transition-opacity duration-250 hover:opacity-70"
+          >
+            Reserve an Evening
+          </a>
         </div>
       </div>
 
