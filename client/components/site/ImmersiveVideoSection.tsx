@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-// Maximum quality video URLs for both mobile and desktop
+// Balanced quality for fast loading and good visuals
 const VIDEO_DESKTOP =
   "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_70,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
 
-// Maximum quality on mobile - modern phones can handle it
+// Same quality as desktop for consistency and fast loading
 const VIDEO_MOBILE =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_100,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_70,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
 
 // Poster image (first frame extraction)
 const POSTER_URL =

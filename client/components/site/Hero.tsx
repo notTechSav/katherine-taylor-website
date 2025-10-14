@@ -2,13 +2,13 @@ import { Button } from "@/components/ui/button";
 import { H2, H3 } from "@/components/ui/luxury-typography";
 import { useEffect, useRef, useState } from "react";
 
-// Maximum quality video URLs for both mobile and desktop
+// Balanced quality for fast loading and good visuals
 const HERO_VIDEO_DESKTOP =
   "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_80,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
 
-// Maximum quality on mobile - modern phones can handle it
+// Sweet spot for mobile - good quality, fast loading
 const HERO_VIDEO_MOBILE =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_100,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_80,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
 
 // Poster image (first frame extraction)
 const POSTER_URL =
