@@ -1,14 +1,15 @@
-import BoutiqueAppointmentSection from "@/components/site/BoutiqueAppointmentSection";
-import FAQTeaserSection from "@/components/site/FAQTeaserSection";
 import GiftsBannerSection from "@/components/site/GiftsBannerSection";
 import Hero from "@/components/site/Hero";
 import ImageMosaicSection from "@/components/site/ImageMosaicSection";
 import ImmersiveVideoSection from "@/components/site/ImmersiveVideoSection";
-import LimitedAvailabilitySection from "@/components/site/LimitedAvailabilitySection";
 import LoveStorySection from "@/components/site/LoveStorySection";
 import SanFranciscoTeaserSection from "@/components/site/SanFranciscoTeaserSection";
 import EmailSignupSection from "@/components/site/EmailSignupSection";
 import GoldenHourVideoSection from "@/components/site/GoldenHourVideoSection";
+import TwoColumnTeaserGrid from "@/components/site/TwoColumnTeaserGrid";
+import JournalTeaserCard from "@/components/site/JournalTeaserCard";
+import FAQTeaserCard from "@/components/site/FAQTeaserCard";
+import InquireTeaserCard from "@/components/site/InquireTeaserCard";
 
 const Index = () => {
   return (
@@ -16,8 +17,6 @@ const Index = () => {
       <Hero />
       {/* About Section */}
       <LoveStorySection />
-      {/* Journal Section */}
-      <BoutiqueAppointmentSection />
       {/* Gallery Preview Section */}
       <ImageMosaicSection
         title="Private Collections"
@@ -30,14 +29,16 @@ const Index = () => {
       <ImmersiveVideoSection />
       {/* Gifts Section */}
       <GiftsBannerSection />
+      {/* Journal Section */}
+      <JournalTeaserCard />
       {/* FAQ Section */}
-      <FAQTeaserSection />
+      <FAQTeaserCard />
+      {/* Inquire Section */}
+      <InquireTeaserCard />
       {/* San Francisco Section */}
       <SanFranciscoTeaserSection />
       {/* Golden Hour Video */}
       <GoldenHourVideoSection />
-      {/* Inquire / Limited Availability Section */}
-      <LimitedAvailabilitySection />
       {/* Email Signup */}
       <EmailSignupSection />
     </div>
