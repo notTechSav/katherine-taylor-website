@@ -1,13 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-// Desktop: High quality (q_70) - good balance for this video
-const VIDEO_DESKTOP =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_70,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
-
-// Mobile: Medium quality (q_55) - no pixelation, still fast
+// Responsive video URLs with Cloudinary optimization + bitrate control
 const VIDEO_MOBILE =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_55,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:low,f_auto,w_720,br_1500k/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
+
+const VIDEO_DESKTOP =
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:good,f_auto,w_1920,br_3000k/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
+
+// Poster image (first frame extraction)
+const POSTER_URL =
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/so_0,q_auto:low,f_auto,w_1920/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.jpg";
 
 const ImmersiveVideoSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -28,6 +31,30 @@ const ImmersiveVideoSection = () => {
   }, []);
 
   const videoSrc = isMobile ? VIDEO_MOBILE : VIDEO_DESKTOP;
+
+  // Scroll-triggered playback (plays when 50% visible, pauses when not)
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {
+              // Autoplay blocked, user interaction needed
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.5 } // Play when 50% visible
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -68,20 +95,27 @@ const ImmersiveVideoSection = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-luxury-black">
-      <video
-        ref={videoRef}
-        key={videoSrc}
-        className="absolute inset-0 h-full w-full object-cover"
-        autoPlay
-        loop
-        muted={isMuted}
-        playsInline
-        preload="none"
-        loading="lazy"
-        poster="https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/q_auto,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.jpg"
-      >
-        <source src={videoSrc} type="video/mp4" />
-      </video>
+      {/* Aspect ratio container prevents layout shift */}
+      <div className="absolute inset-0">
+        <video
+          ref={videoRef}
+          key={videoSrc}
+          className="absolute inset-0 h-full w-full object-cover"
+          poster={POSTER_URL}
+          preload="none"
+          autoPlay
+          loop
+          muted={isMuted}
+          playsInline
+          loading="lazy"
+        >
+          <source src={videoSrc} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+      </div>
       <div className="absolute inset-0 bg-luxury-black/55" />
 
       {/* Fading text overlay */}
