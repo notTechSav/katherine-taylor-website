@@ -7,10 +7,6 @@
 
 @layer base {
   :root {
-    /* Easing curves (YSL-inspired) */
-    --ease-luxury: cubic-bezier(0.25, 0.1, 0.25, 1);
-    --ease-luxury-transform: cubic-bezier(0.22, 1, 0.36, 1);
-
     /* Typography weights */
     --font-weight-thin: 100;
     --font-weight-extralight: 200;
@@ -134,36 +130,9 @@
     overscroll-behavior: contain;
   }
 
-  /* Luxury keyframe animations (YSL-style) */
-  @keyframes fadeSlideUp {
-    0% {
-      transform: translateY(50px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeIn {
-    0% {
-      transform: translateY(-30px);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
-  }
-
   a,
   button {
-    transition: all 0.25s var(--ease-luxury);
-  }
-
-  a:hover {
-    opacity: 0.6;
+    transition: all 250ms cubic-bezier(0, 0, 0.58, 1);
   }
 
   button,
@@ -229,31 +198,5 @@
 
   .tracking-uppercase {
     letter-spacing: 0.15em;
-  }
-
-  /* GPU acceleration for smooth scrolling */
-  .gpu-accelerated {
-    transform: translate3d(0, 0, 0);
-  }
-
-  /* Scroll-triggered fade animations (luxury fashion standard) */
-  .animate-fade-slide-up {
-    animation: fadeSlideUp 0.8s var(--ease-luxury-transform) forwards;
-  }
-
-  .animate-fade-in {
-    animation: fadeIn 0.6s var(--ease-luxury) forwards;
-  }
-
-  /* Initially hidden for scroll animations */
-  .fade-in-on-scroll {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s var(--ease-luxury-transform), transform 0.8s var(--ease-luxury-transform);
-  }
-
-  .fade-in-on-scroll.visible {
-    opacity: 1;
-    transform: translateY(0);
   }
 }

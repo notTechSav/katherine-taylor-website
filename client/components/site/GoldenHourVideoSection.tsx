@@ -52,7 +52,7 @@ const GoldenHourVideoSection = () => {
       <div className="absolute inset-0">
         <video
           ref={videoRef}
-          className="absolute inset-0 h-full w-full object-cover gpu-accelerated"
+          className="absolute inset-0 h-full w-full object-cover"
           poster={posterUrl}
           preload="none"
           autoPlay
