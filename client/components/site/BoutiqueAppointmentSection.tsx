@@ -16,18 +16,16 @@ const BoutiqueAppointmentSection = () => {
               aria-label="Journal background"
             />
           </div>
-          <div className="space-y-6 text-center">
+          <div className="space-y-6 text-left">
             <span className="text-xs font-light uppercase tracking-uppercase text-gray-600">
               Continuity as Craft
             </span>
-            <p className="mx-auto max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-gray-700">
+            <p className="max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-gray-700">
               The conversation never resets. I remember your M&A timeline, your board anxieties, the trip you've been planning. Not because I take notes—because I've built a decade of pattern libraries that let me read what you don't say.
             </p>
-            <div className="flex justify-center">
-              <Button variant="ctaSecondary" asChild>
-                <a href="/journal">Read The Journal</a>
-              </Button>
-            </div>
+            <Button variant="ctaSecondary" asChild>
+              <a href="/journal">Read The Journal</a>
+            </Button>
           </div>
         </div>
       </section>
