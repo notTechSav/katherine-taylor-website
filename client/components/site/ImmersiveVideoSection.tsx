@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-// Responsive video URLs with Cloudinary optimization
-// Higher quality settings for better visual appearance
-const VIDEO_MOBILE =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_70,f_auto,w_720/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
+// Original high-quality video URLs (pre-optimization)
 const VIDEO_DESKTOP =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_85,f_auto,w_1920/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_70,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
+
+const VIDEO_MOBILE =
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_55,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
 
 // Poster image (first frame extraction)
 const POSTER_URL =

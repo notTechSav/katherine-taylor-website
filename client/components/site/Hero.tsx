@@ -2,12 +2,12 @@ import { Button } from "@/components/ui/button";
 import { H2, H3 } from "@/components/ui/luxury-typography";
 import { useEffect, useRef, useState } from "react";
 
-// Responsive video URLs with Cloudinary optimization + bitrate control
-// Higher quality settings for better visual appearance
-const HERO_VIDEO_MOBILE =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_80,f_auto,w_720/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
+// Original high-quality video URLs (pre-optimization)
 const HERO_VIDEO_DESKTOP =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_90,f_auto,w_1920/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_80,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
+
+const HERO_VIDEO_MOBILE =
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_60,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
 
 // Poster image (first frame extraction)
 const POSTER_URL =
