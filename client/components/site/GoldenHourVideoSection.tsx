@@ -47,7 +47,7 @@ const GoldenHourVideoSection = () => {
   const videoSrc = isMobile ? mobileVideo : desktopVideo;
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-black">
+    <section className="relative w-full overflow-hidden bg-black" style={{ height: '100vh' }}>
       {/* Aspect ratio container prevents layout shift */}
       <div className="absolute inset-0">
         <video
