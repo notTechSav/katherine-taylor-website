@@ -39,9 +39,9 @@ const GoldenHourVideoSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // High-quality video URLs optimized for mobile and desktop
+  // Maximum quality video URLs for both mobile and desktop
   const desktopVideo = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_80,f_auto/v1760426427/golden_hour_opn5pm.mp4";
-  const mobileVideo = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_75,f_auto/v1760426427/golden_hour_opn5pm.mp4";
+  const mobileVideo = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_100,f_auto/v1760426427/golden_hour_opn5pm.mp4";
   const posterUrl = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/so_0,q_auto:low,f_auto,w_1920/v1760426427/golden_hour_opn5pm.jpg";
 
   const videoSrc = isMobile ? mobileVideo : desktopVideo;
