@@ -1,4 +1,8 @@
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
 const FAQTeaserCard = () => {
+  const animRef = useScrollAnimation();
+
   return (
     <section className="relative bg-luxury-black flex items-center" style={{ height: 'min(100vh, 100dvh)' }}>
       {/* Background Image */}
@@ -12,7 +16,7 @@ const FAQTeaserCard = () => {
         <div className="absolute inset-0 bg-luxury-black/60" aria-hidden="true" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6 md:px-8 max-w-4xl w-full">
+      <div ref={animRef} className="container relative z-10 mx-auto px-6 md:px-8 max-w-4xl w-full fade-in-on-scroll">
         {/* Opening */}
         <div className="text-center mb-16">
           <h2

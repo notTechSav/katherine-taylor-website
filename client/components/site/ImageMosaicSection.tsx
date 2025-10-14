@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 type OverlayVariant = "dark" | "sepia";
 
@@ -60,10 +61,11 @@ const ImageMosaicSection = ({
   footerLinkLabel,
 }: ImageMosaicSectionProps) => {
   const displayTiles = tiles ?? defaultTiles;
+  const animRef = useScrollAnimation();
 
   return (
     <section className="bg-luxury-white flex items-center" style={{ height: 'min(100vh, 100dvh)' }}>
-      <div className="mx-auto flex flex-col gap-12 w-full">
+      <div ref={animRef} className="mx-auto flex flex-col gap-12 w-full fade-in-on-scroll">
         <div className="space-y-4 text-center px-8">
           <h1 className="text-xs font-light uppercase tracking-uppercase text-gray-600">
             {title}
