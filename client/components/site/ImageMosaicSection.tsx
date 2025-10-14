@@ -62,8 +62,8 @@ const ImageMosaicSection = ({
   const displayTiles = tiles ?? defaultTiles;
 
   return (
-    <section className="bg-luxury-white flex items-center" style={{ height: 'min(100vh, 100dvh)' }}>
-      <div className="mx-auto flex flex-col gap-12 w-full">
+    <section className="bg-luxury-white py-24 md:py-32 lg:py-40">
+      <div className="mx-auto flex flex-col gap-12">
         <div className="space-y-4 text-center px-8">
           <h1 className="text-xs font-light uppercase tracking-uppercase text-gray-600">
             {title}

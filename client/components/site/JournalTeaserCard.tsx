@@ -1,6 +1,6 @@
 const JournalTeaserCard = () => {
   return (
-    <section className="relative isolate overflow-hidden bg-luxury-black flex items-center" style={{ height: 'min(100vh, 100dvh)' }}>
+    <section className="relative isolate overflow-hidden bg-luxury-black">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 overflow-hidden">
         <img
@@ -13,7 +13,7 @@ const JournalTeaserCard = () => {
       </div>
 
       {/* Content */}
-      <div className="relative flex w-full items-center px-8">
+      <div className="relative flex min-h-[480px] w-full items-center px-8 py-24 sm:min-h-[560px] md:py-32 lg:py-40">
         <div className="relative z-10 max-w-[540px] space-y-8 text-luxury-white">
           <span className="text-xs font-light uppercase tracking-uppercase text-luxury-white/70">
             Continuity as Craft
