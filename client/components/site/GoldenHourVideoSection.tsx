@@ -40,18 +40,12 @@ const GoldenHourVideoSection = () => {
   }, []);
 
   // Responsive video URLs with Cloudinary optimization
-  // WebM format (30% smaller than MP4, supported by 96% of browsers)
-  const mobileVideoWebM = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:low,f_webm,w_720,br_1500k/v1760426427/golden_hour_opn5pm.webm";
-  const desktopVideoWebM = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:good,f_webm,w_1920,br_3000k/v1760426427/golden_hour_opn5pm.webm";
-
-  // MP4 fallback for Safari/older browsers
-  const mobileVideoMP4 = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:low,f_auto,w_720,br_1500k/v1760426427/golden_hour_opn5pm.mp4";
-  const desktopVideoMP4 = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:good,f_auto,w_1920,br_3000k/v1760426427/golden_hour_opn5pm.mp4";
-
+  // Higher quality settings for better visual appearance
+  const mobileVideo = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_70,f_auto,w_720/v1760426427/golden_hour_opn5pm.mp4";
+  const desktopVideo = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_85,f_auto,w_1920/v1760426427/golden_hour_opn5pm.mp4";
   const posterUrl = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/so_0,q_auto:low,f_auto,w_1920/v1760426427/golden_hour_opn5pm.jpg";
 
-  const videoSrcWebM = isMobile ? mobileVideoWebM : desktopVideoWebM;
-  const videoSrcMP4 = isMobile ? mobileVideoMP4 : desktopVideoMP4;
+  const videoSrc = isMobile ? mobileVideo : desktopVideo;
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-black">
@@ -68,10 +62,7 @@ const GoldenHourVideoSection = () => {
           playsInline
           loading="lazy"
         >
-          {/* WebM first (30% smaller, Chrome/Firefox) */}
-          <source src={videoSrcWebM} type="video/webm" />
-          {/* MP4 fallback (Safari/older browsers) */}
-          <source src={videoSrcMP4} type="video/mp4" />
+          <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 
