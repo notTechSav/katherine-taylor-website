@@ -54,9 +54,9 @@ const GoldenHourVideoSection = () => {
   const videoSrcMP4 = isMobile ? mobileVideoMP4 : desktopVideoMP4;
 
   return (
-    <section className="relative isolate overflow-hidden bg-black">
+    <section className="relative min-h-screen w-full overflow-hidden bg-black">
       {/* Aspect ratio container prevents layout shift */}
-      <div className="relative aspect-[16/9] w-full">
+      <div className="absolute inset-0">
         <video
           ref={videoRef}
           className="absolute inset-0 h-full w-full object-cover"
@@ -75,7 +75,7 @@ const GoldenHourVideoSection = () => {
           Your browser does not support the video tag.
         </video>
 
-        {/* Optional: Subtle gradient overlay for future text */}
+        {/* Subtle gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
       </div>
     </section>
