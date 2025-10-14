@@ -8,6 +8,7 @@ import LimitedAvailabilitySection from "@/components/site/LimitedAvailabilitySec
 import LoveStorySection from "@/components/site/LoveStorySection";
 import SanFranciscoTeaserSection from "@/components/site/SanFranciscoTeaserSection";
 import EmailSignupSection from "@/components/site/EmailSignupSection";
+import GoldenHourVideoSection from "@/components/site/GoldenHourVideoSection";
 
 const Index = () => {
   return (
@@ -33,6 +34,8 @@ const Index = () => {
       <FAQTeaserSection />
       {/* San Francisco Section */}
       <SanFranciscoTeaserSection />
+      {/* Golden Hour Video */}
+      <GoldenHourVideoSection />
       {/* Inquire / Limited Availability Section */}
       <LimitedAvailabilitySection />
       {/* Email Signup */}
