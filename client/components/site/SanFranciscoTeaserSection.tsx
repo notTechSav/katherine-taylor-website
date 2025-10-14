@@ -1,6 +1,6 @@
 const SanFranciscoTeaserSection = () => {
   return (
-    <section className="bg-luxury-white py-12 md:py-32 lg:py-40">
+    <section className="bg-luxury-white flex items-center" style={{ height: 'min(100vh, 100dvh)' }}>
       <div className="mx-auto grid max-w-luxury items-center gap-8 px-8 md:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] md:gap-12 lg:gap-16">
         <div className="relative flex items-center justify-center overflow-hidden border border-gray-200 bg-gray-50 shadow-luxury-md transition-shadow duration-400 ease-out hover:shadow-luxury-lg">
           <div

@@ -1,6 +1,6 @@
 const InquireTeaserCard = () => {
   return (
-    <section className="relative bg-luxury-black py-24 md:py-32 lg:py-40">
+    <section className="relative bg-luxury-black flex items-center justify-center" style={{ height: 'min(100vh, 100dvh)' }}>
       {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden">
         <img
@@ -21,7 +21,7 @@ const InquireTeaserCard = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-luxury px-8 text-center md:px-12">
+      <div className="relative z-10 mx-auto max-w-luxury px-8 text-center md:px-12 w-full">
         <h2 className="mb-4 text-xs font-light uppercase tracking-uppercase text-luxury-white/80">
           Limited Availability
         </h2>

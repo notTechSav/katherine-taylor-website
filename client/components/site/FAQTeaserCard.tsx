@@ -1,6 +1,6 @@
 const FAQTeaserCard = () => {
   return (
-    <section className="relative bg-luxury-black py-20 md:py-28">
+    <section className="relative bg-luxury-black flex items-center" style={{ height: 'min(100vh, 100dvh)' }}>
       {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden">
         <img
@@ -12,7 +12,7 @@ const FAQTeaserCard = () => {
         <div className="absolute inset-0 bg-luxury-black/60" aria-hidden="true" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6 md:px-8 max-w-4xl">
+      <div className="container relative z-10 mx-auto px-6 md:px-8 max-w-4xl w-full">
         {/* Opening */}
         <div className="text-center mb-16">
           <h2
