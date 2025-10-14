@@ -112,9 +112,6 @@ const ImmersiveVideoSection = () => {
           <source src={videoSrc} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
-
-        {/* Subtle gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
       </div>
       <div className="absolute inset-0 bg-luxury-black/55" />
 
