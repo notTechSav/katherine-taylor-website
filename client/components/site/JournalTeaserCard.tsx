@@ -1,4 +1,8 @@
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+
 const JournalTeaserCard = () => {
+  const animRef = useScrollAnimation();
+
   return (
     <section className="relative isolate overflow-hidden bg-luxury-black flex items-center" style={{ height: 'min(100vh, 100dvh)' }}>
       {/* Background Image with Overlay */}
@@ -14,7 +18,7 @@ const JournalTeaserCard = () => {
 
       {/* Content */}
       <div className="relative flex w-full items-center px-8">
-        <div className="relative z-10 max-w-[540px] space-y-8 text-luxury-white">
+        <div ref={animRef} className="relative z-10 max-w-[540px] space-y-8 text-luxury-white fade-in-on-scroll">
           <span className="text-xs font-light uppercase tracking-uppercase text-luxury-white/70">
             Continuity as Craft
           </span>

@@ -101,7 +101,7 @@ const ImmersiveVideoSection = () => {
         <video
           ref={videoRef}
           key={videoSrc}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover gpu-accelerated"
           poster={POSTER_URL}
           preload="none"
           autoPlay
