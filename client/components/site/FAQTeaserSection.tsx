@@ -12,7 +12,7 @@ const FAQTeaserSection = () => {
               aria-label="FAQ background"
             />
           </div>
-          <div className="space-y-6 text-left">
+          <div className="space-y-6 text-center">
             <span className="text-xs font-light uppercase tracking-uppercase text-gray-600">
               Transparency Over Theater
             </span>
@@ -22,24 +22,26 @@ const FAQTeaserSection = () => {
             >
               I answer the questions<br />other providers don't.
             </h2>
-            <p className="max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-gray-700">
+            <p className="mx-auto max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-gray-700">
               After a decade at the highest tier of this industry, I answer what law firm blogs and agency websites won't touch.
             </p>
-            <a
-              href="/faq"
-              className="inline-flex items-center gap-3 text-sm font-light uppercase tracking-uppercase text-luxury-black underline decoration-1 underline-offset-4 transition-opacity duration-250 hover:opacity-70"
-            >
-              <span>View All 26 Questions</span>
-              <svg
-                className="h-4 w-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={1.5}
+            <div className="flex justify-center">
+              <a
+                href="/faq"
+                className="inline-flex items-center gap-3 text-sm font-light uppercase tracking-uppercase text-luxury-black underline decoration-1 underline-offset-4 transition-opacity duration-250 hover:opacity-70"
               >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </a>
+                <span>View All 26 Questions</span>
+                <svg
+                  className="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </section>
