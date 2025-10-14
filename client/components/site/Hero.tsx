@@ -2,13 +2,16 @@ import { Button } from "@/components/ui/button";
 import { H2, H3 } from "@/components/ui/luxury-typography";
 import { useEffect, useRef, useState } from "react";
 
-// Desktop: High quality (q_80) - fast WiFi, large screen, worth it
-const HERO_VIDEO_DESKTOP =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_80,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
-
-// Mobile: Medium-high quality (q_60) - good balance, no pixelation
+// Responsive video URLs with Cloudinary optimization + bitrate control
 const HERO_VIDEO_MOBILE =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_60,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:low,f_auto,w_720,br_1500k/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
+
+const HERO_VIDEO_DESKTOP =
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:good,f_auto,w_1920,br_3000k/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
+
+// Poster image (first frame extraction)
+const POSTER_URL =
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/so_0,q_auto:low,f_auto,w_1920/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.jpg";
 
 const Hero = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -29,6 +32,30 @@ const Hero = () => {
   }, []);
 
   const videoSrc = isMobile ? HERO_VIDEO_MOBILE : HERO_VIDEO_DESKTOP;
+
+  // Scroll-triggered playback (plays when 50% visible, pauses when not)
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {
+              // Autoplay blocked, user interaction needed
+            });
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.5 } // Play when 50% visible
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const element = videoRef.current;
@@ -75,19 +102,27 @@ const Hero = () => {
 
   return (
     <section className="relative isolate flex min-h-screen w-full overflow-hidden bg-luxury-black">
-      <video
-        ref={videoRef}
-        key={videoSrc}
-        className="absolute inset-0 h-full w-full object-cover"
-        autoPlay
-        loop
-        muted={isMuted}
-        playsInline
-        preload="metadata"
-        poster="https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/q_80,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.jpg"
-      >
-        <source src={videoSrc} type="video/mp4" />
-      </video>
+      {/* Aspect ratio container prevents layout shift */}
+      <div className="absolute inset-0">
+        <video
+          ref={videoRef}
+          key={videoSrc}
+          className="absolute inset-0 h-full w-full object-cover"
+          poster={POSTER_URL}
+          preload="none"
+          autoPlay
+          loop
+          muted={isMuted}
+          playsInline
+          loading="lazy"
+        >
+          <source src={videoSrc} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+
+        {/* Subtle gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
+      </div>
       <div className="pointer-events-none absolute inset-0 bg-luxury-black/60" />
 
       {/* Fading text overlay */}
