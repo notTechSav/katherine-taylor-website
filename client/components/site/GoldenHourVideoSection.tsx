@@ -40,11 +40,18 @@ const GoldenHourVideoSection = () => {
   }, []);
 
   // Responsive video URLs with Cloudinary optimization
-  const mobileVideoUrl = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:low,f_auto,w_720,br_1500k/v1760426427/golden_hour_opn5pm.mp4";
-  const desktopVideoUrl = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:good,f_auto,w_1920,br_3000k/v1760426427/golden_hour_opn5pm.mp4";
+  // WebM format (30% smaller than MP4, supported by 96% of browsers)
+  const mobileVideoWebM = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:low,f_webm,w_720,br_1500k/v1760426427/golden_hour_opn5pm.webm";
+  const desktopVideoWebM = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:good,f_webm,w_1920,br_3000k/v1760426427/golden_hour_opn5pm.webm";
+
+  // MP4 fallback for Safari/older browsers
+  const mobileVideoMP4 = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:low,f_auto,w_720,br_1500k/v1760426427/golden_hour_opn5pm.mp4";
+  const desktopVideoMP4 = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:good,f_auto,w_1920,br_3000k/v1760426427/golden_hour_opn5pm.mp4";
+
   const posterUrl = "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/so_0,q_auto:low,f_auto,w_1920/v1760426427/golden_hour_opn5pm.jpg";
 
-  const videoSrc = isMobile ? mobileVideoUrl : desktopVideoUrl;
+  const videoSrcWebM = isMobile ? mobileVideoWebM : desktopVideoWebM;
+  const videoSrcMP4 = isMobile ? mobileVideoMP4 : desktopVideoMP4;
 
   return (
     <section className="relative isolate overflow-hidden bg-black">
@@ -61,7 +68,10 @@ const GoldenHourVideoSection = () => {
           playsInline
           loading="lazy"
         >
-          <source src={videoSrc} type="video/mp4" />
+          {/* WebM first (30% smaller, Chrome/Firefox) */}
+          <source src={videoSrcWebM} type="video/webm" />
+          {/* MP4 fallback (Safari/older browsers) */}
+          <source src={videoSrcMP4} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 

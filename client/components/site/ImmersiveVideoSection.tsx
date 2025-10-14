@@ -2,10 +2,16 @@ import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 // Responsive video URLs with Cloudinary optimization + bitrate control
-const VIDEO_MOBILE =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:low,f_auto,w_720,br_1500k/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
+// WebM format (30% smaller than MP4, supported by 96% of browsers)
+const VIDEO_MOBILE_WEBM =
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:low,f_webm,w_720,br_1500k/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.webm";
+const VIDEO_DESKTOP_WEBM =
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:good,f_webm,w_1920,br_3000k/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.webm";
 
-const VIDEO_DESKTOP =
+// MP4 fallback for Safari/older browsers
+const VIDEO_MOBILE_MP4 =
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:low,f_auto,w_720,br_1500k/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
+const VIDEO_DESKTOP_MP4 =
   "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_auto:good,f_auto,w_1920,br_3000k/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4";
 
 // Poster image (first frame extraction)
@@ -30,7 +36,8 @@ const ImmersiveVideoSection = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  const videoSrc = isMobile ? VIDEO_MOBILE : VIDEO_DESKTOP;
+  const videoSrcWebM = isMobile ? VIDEO_MOBILE_WEBM : VIDEO_DESKTOP_WEBM;
+  const videoSrcMP4 = isMobile ? VIDEO_MOBILE_MP4 : VIDEO_DESKTOP_MP4;
 
   // Scroll-triggered playback (plays when 50% visible, pauses when not)
   useEffect(() => {
@@ -99,7 +106,7 @@ const ImmersiveVideoSection = () => {
       <div className="absolute inset-0">
         <video
           ref={videoRef}
-          key={videoSrc}
+          key={videoSrcWebM}
           className="absolute inset-0 h-full w-full object-cover"
           poster={POSTER_URL}
           preload="none"
@@ -109,7 +116,10 @@ const ImmersiveVideoSection = () => {
           playsInline
           loading="lazy"
         >
-          <source src={videoSrc} type="video/mp4" />
+          {/* WebM first (30% smaller, Chrome/Firefox) */}
+          <source src={videoSrcWebM} type="video/webm" />
+          {/* MP4 fallback (Safari/older browsers) */}
+          <source src={videoSrcMP4} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
 

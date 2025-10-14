@@ -168,6 +168,22 @@
     scrollbar-width: thin;
     scrollbar-color: var(--gray-300) var(--gray-50);
   }
+
+  /* Accessibility: Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    a,
+    button {
+      transition: none;
+    }
+
+    video {
+      animation: none !important;
+    }
+  }
 }
 
 @layer utilities {
