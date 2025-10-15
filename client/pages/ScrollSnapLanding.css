@@ -1,0 +1,52 @@
+/* YSL-Style Homepage - CSS */
+/* SCOPED to landing page only - prevents conflicts with global.css */
+
+/* CSS Variable for iOS viewport height fix */
+:root {
+  --app-height: 100%;
+}
+
+/* SCOPED: Only apply to landing page wrapper */
+.scroll-snap-landing {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* SCOPED: Reset html/body ONLY when landing page is active */
+.scroll-snap-landing ~ html,
+body:has(.scroll-snap-landing) {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  height: 100vh;
+  height: var(--app-height);
+}
+
+/* SCOPED: Section styles only within landing page */
+.scroll-snap-landing section {
+  height: 100vh;
+  height: var(--app-height);
+  min-height: 100vh;
+  min-height: var(--app-height);
+}
+
+/* SCOPED: Prevent scroll behavior only within landing page */
+.scroll-snap-landing * {
+  overscroll-behavior: none;
+}
+
+/* SCOPED: Custom font for serif elements within landing page */
+.scroll-snap-landing .font-serif {
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 300;
+}
+
+/* iOS Safari specific fix */
+html {
+  height: -webkit-fill-available;
+}
