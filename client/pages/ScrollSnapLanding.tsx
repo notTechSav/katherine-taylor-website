@@ -10,7 +10,7 @@ export default function ScrollSnapLanding() {
   useViewportHeight();
 
   return (
-    <>
+    <div className="scroll-snap-landing">
       {/* Sticky Header (OUTSIDE scroll container) */}
       <Header />
 
@@ -40,6 +40,6 @@ export default function ScrollSnapLanding() {
         {/* We'll add more sections one by one */}
 
       </main>
-    </>
+    </div>
   );
 }
