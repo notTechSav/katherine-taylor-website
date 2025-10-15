@@ -1,0 +1,731 @@
+/* ============================================
+   PHASE 2: BASE STYLES
+   YSL-inspired luxury website styling
+   ============================================ */
+
+/* ============================================
+   2.1 RESET AND BASIC RULES
+   ============================================ */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
+  scroll-behavior: smooth; /* smooth scroll for anchor links */
+  background: #000; /* default background black */
+  color: #000; /* default text color */
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* ============================================
+   PHASE 3: SCROLL SNAP BEHAVIOR
+   ============================================ */
+
+/* Enable scroll snapping on the main scroll container */
+html {
+  scroll-snap-type: y mandatory;
+  scroll-padding-top: 70px; /* Account for fixed header height */
+}
+
+body {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  scroll-padding-top: 70px; /* Account for fixed header height */
+  -webkit-overflow-scrolling: touch; /* Smooth momentum scrolling on iOS */
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* ============================================
+   2.2 TYPOGRAPHY
+   ============================================ */
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 700; /* bold headings */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+p {
+  margin: 0;
+  font-weight: 300; /* lighter weight for body text */
+}
+
+a {
+  color: inherit; /* links same color as text by default */
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+/* Specific heading adjustments */
+h1.logo {
+  font-size: 1.25rem; /* slightly larger for logo in header */
+  letter-spacing: 0.1em;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+}
+
+.section-text {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+/* ============================================
+   2.3 LAYOUT AND CONTAINERS
+   ============================================ */
+
+/* Header and Nav */
+.site-header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.8); /* translucent white background */
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+}
+
+.logo a {
+  color: #000;
+  text-decoration: none;
+}
+
+.nav-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 1.5rem;
+  width: 2rem;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  background: #000;
+  margin: 3px 0;
+  transition: transform 0.3s;
+}
+
+/* hamburger toggle transformation when active */
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.cart-icon {
+  display: none; /* hide cart icon by default (could show on desktop) */
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  color: #fff;
+  display: none; /* hidden by default */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.mobile-menu .menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.mobile-menu .menu-list li {
+  margin: 1rem 0;
+}
+
+.mobile-menu .menu-list a {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Show menu when toggled */
+.mobile-menu.open {
+  display: flex;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+.section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  scroll-snap-align: start;
+}
+
+.section-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ============================================
+   SPECIFIC SECTIONS STYLING
+   ============================================ */
+
+/* ============================================
+   YSL BRIGHTCOVE VIDEO STRUCTURE
+   Exact replication of YSL's video implementation
+   ============================================ */
+
+/* Video Wrapper - Full viewport height container */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Video Container - Brightcove loader equivalent */
+.video-container.cloudinary-player-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place behind overlay text */
+}
+
+/* 100vh Spacer Pseudo-element (YSL's technique) */
+.video-container.cloudinary-player-loader::after {
+  content: '';
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* Video Player Element */
+.video-container .video-player,
+.video-container .video-js {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Video Poster (Brightcove's .vjs-poster equivalent) */
+.video-container video::before {
+  background-color: #000; /* Fallback background */
+  background-size: cover;
+}
+
+/* Overlay Text Above Video */
+.video-overlay-text {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+  text-align: center;
+}
+
+/* Hero Section */
+.hero-section {
+  color: #fff;
+  background: #000; /* fallback background */
+}
+
+.hero-section .tagline {
+  font-size: 2rem;
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 1;
+}
+
+/* About Section */
+.about-section {
+  background: #fff;
+  color: #000;
+}
+
+/* Gallery Section */
+.gallery-section {
+  background: #000;
+  color: #fff;
+}
+
+.gallery-slider {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.gallery-slider::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.gallery-slider img {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Video Sections - Using YSL Structure Above */
+.video-section {
+  position: relative;
+  background: #000;
+  color: #fff;
+}
+
+.video-section .section-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* Journal Section */
+.journal-section {
+  background: #fefefe;
+  color: #000;
+}
+
+/* FAQ Section */
+.faq-section {
+  background: #fff;
+  color: #000;
+  text-align: left;
+}
+
+.faq-item {
+  margin-bottom: 1.5rem;
+}
+
+.faq-question {
+  font-weight: 700;
+  margin: 1rem 0 0.25rem;
+}
+
+.faq-answer {
+  margin: 0 0 1rem;
+}
+
+.more-faq {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Gifts Section */
+.gifts-section {
+  background: url('path/to/gifts-bg.jpg') center/cover no-repeat;
+  color: #fff;
+}
+
+.gifts-section .section-container {
+  background: rgba(0,0,0,0.5);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.btn-link {
+  display: inline-block;
+  margin-top: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: underline;
+  color: inherit;
+}
+
+/* San Francisco Section */
+.sf-section {
+  background: url('path/to/sf-bg.jpg') center/cover no-repeat;
+  color: #fff;
+  padding: 2rem;
+}
+
+.sf-section .section-container {
+  background: rgba(0,0,0,0.4);
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+/* Inquire Section */
+.inquire-section {
+  background: #fff;
+  color: #000;
+}
+
+.inquire-form {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5rem;
+  font-family: inherit;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: #000;
+}
+
+.submit-btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.5rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.submit-btn:hover {
+  opacity: 0.8;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+
+.site-footer {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.875rem;
+}
+
+.footer-container p {
+  margin: 0.5rem 0;
+}
+
+.site-footer a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.site-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Hide desktop nav on mobile */
+.desktop-nav {
+  display: none;
+}
+
+/* ============================================
+   PHASE 4: DESKTOP RESPONSIVE ADAPTATIONS
+   ============================================ */
+
+@media (min-width: 768px) {
+  /* ==========================================
+     TYPOGRAPHY - Larger screens
+     ========================================== */
+
+  body {
+    font-size: 18px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+    letter-spacing: 0.1em;
+  }
+
+  .section-text {
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+
+  .hero-section .tagline {
+    font-size: 3rem;
+    letter-spacing: 0.15em;
+  }
+
+  /* ==========================================
+     HEADER - Desktop Navigation
+     ========================================== */
+
+  .header-container {
+    padding: 1rem 2rem;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  /* Hide mobile hamburger */
+  .nav-toggle {
+    display: none;
+  }
+
+  /* Show desktop navigation */
+  .desktop-nav {
+    display: block;
+    margin-left: auto;
+    margin-right: 2rem;
+  }
+
+  .desktop-nav .menu-list {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .desktop-nav .menu-list li {
+    margin: 0;
+  }
+
+  .desktop-nav .menu-list a {
+    font-size: 0.875rem;
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: opacity 0.3s;
+  }
+
+  .desktop-nav .menu-list a:hover {
+    opacity: 0.6;
+    text-decoration: none;
+  }
+
+  /* Show cart icon on desktop */
+  .cart-icon {
+    display: inline-block;
+  }
+
+  /* Hide mobile menu overlay on desktop */
+  nav.mobile-menu {
+    display: none !important;
+  }
+
+  /* ==========================================
+     SECTIONS - Desktop Layout
+     ========================================== */
+
+  .section {
+    min-height: 80vh;
+    padding: 4rem 2rem;
+  }
+
+  .section-container {
+    max-width: 1200px;
+  }
+
+  /* ==========================================
+     ABOUT SECTION - Two Column Layout
+     ========================================== */
+
+  .about-section .section-container {
+    text-align: left;
+    padding: 0 2rem;
+  }
+
+  .about-section .section-text {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* ==========================================
+     GALLERY - Show Multiple Images
+     ========================================== */
+
+  .gallery-slider {
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 1rem 0;
+  }
+
+  .gallery-slider img {
+    flex: 0 0 calc(33.33% - 0.67rem);
+    scroll-snap-align: start;
+    border-radius: 4px;
+    transition: transform 0.3s;
+  }
+
+  .gallery-slider img:hover {
+    transform: scale(1.02);
+  }
+
+  /* ==========================================
+     FAQ SECTION - Two Column Layout
+     ========================================== */
+
+  .faq-section .section-container {
+    columns: 2;
+    column-gap: 3rem;
+    text-align: left;
+  }
+
+  .faq-item {
+    break-inside: avoid;
+    margin-bottom: 2rem;
+  }
+
+  .more-faq {
+    column-span: all;
+  }
+
+  /* ==========================================
+     FORM - Wider on Desktop
+     ========================================== */
+
+  .inquire-form {
+    max-width: 600px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 0.75rem;
+  }
+
+  .submit-btn {
+    padding: 0.75rem 2rem;
+    font-size: 0.875rem;
+  }
+
+  /* ==========================================
+     GIFTS & SF SECTIONS - Larger Overlay
+     ========================================== */
+
+  .gifts-section .section-container,
+  .sf-section .section-container {
+    padding: 3rem;
+    max-width: 800px;
+  }
+
+  /* ==========================================
+     FOOTER
+     ========================================== */
+
+  .site-footer {
+    padding: 2rem;
+  }
+
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-container p {
+    margin: 0;
+  }
+}
+
+/* ============================================
+   LARGE DESKTOP (1024px+)
+   ============================================ */
+
+@media (min-width: 1024px) {
+  body {
+    font-size: 20px;
+  }
+
+  .header-container {
+    padding: 1rem 4rem;
+  }
+
+  .section {
+    padding: 6rem 4rem;
+  }
+
+  .section-container {
+    max-width: 1400px;
+  }
+
+  .hero-section .tagline {
+    font-size: 4rem;
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+  }
+
+  .desktop-nav .menu-list {
+    gap: 3rem;
+  }
+
+  .desktop-nav .menu-list a {
+    font-size: 1rem;
+  }
+
+  /* Gallery shows 4 images on very large screens */
+  .gallery-slider img {
+    flex: 0 0 calc(25% - 0.75rem);
+  }
+}
