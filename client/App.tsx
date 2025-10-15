@@ -17,10 +17,11 @@ import { HelmetProvider } from "react-helmet-async";
 import SiteLayout from "@/components/site/SiteLayout";
 import JournalModalRoute from "@/components/journal/JournalModalRoute";
 
-// Eager load: Index page only (needed immediately)
-import Index from "./pages/Index";
+// Eager load: ScrollSnapLanding (new homepage - needed immediately)
+import ScrollSnapLanding from "./pages/ScrollSnapLanding";
 
 // Lazy load all other routes (code splitting for better performance)
+const Index = lazy(() => import("./pages/Index"));
 const About = lazy(() => import("./pages/About"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const SanFrancisco = lazy(() => import("./pages/SanFrancisco"));
@@ -32,7 +33,6 @@ const JournalArticle = lazy(() => import("./pages/JournalArticle"));
 const Maison = lazy(() => import("./pages/Maison"));
 const Rates = lazy(() => import("./pages/Rates"));
 const ContentGenerator = lazy(() => import("./pages/ContentGenerator"));
-const ScrollSnapLanding = lazy(() => import("./pages/ScrollSnapLanding"));
 const BuilderPage = lazy(() => import("./pages/BuilderPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -60,6 +60,10 @@ const AppRoutes = () => {
         <Routes location={backgroundLocation}>
           <Route
             path="/"
+            element={<ScrollSnapLanding />}
+          />
+          <Route
+            path="/home"
             element={
               <SiteLayout>
                 <Index />
@@ -153,10 +157,6 @@ const AppRoutes = () => {
                 <ContentGenerator />
               </SiteLayout>
             }
-          />
-          <Route
-            path="/landing"
-            element={<ScrollSnapLanding />}
           />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           {/* Builder.io catch-all route - tries to render Builder.io content */}
