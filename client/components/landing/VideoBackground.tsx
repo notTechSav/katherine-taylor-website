@@ -43,8 +43,25 @@ export default function VideoBackground({ src, poster, className = '' }: VideoBa
 
     observer.observe(video);
 
+    // Add event listeners to ensure video keeps looping and playing
+    const handleEnded = () => {
+      console.log('Video ended, restarting...');
+      video.currentTime = 0;
+      video.play().catch((err) => console.error('Play failed:', err));
+    };
+
+    const handleLoadedData = () => {
+      console.log('Video loaded, duration:', video.duration);
+      video.play().catch((err) => console.error('Initial play failed:', err));
+    };
+
+    video.addEventListener('ended', handleEnded);
+    video.addEventListener('loadeddata', handleLoadedData);
+
     return () => {
       observer.disconnect();
+      video.removeEventListener('ended', handleEnded);
+      video.removeEventListener('loadeddata', handleLoadedData);
     };
   }, [isLoaded]);
 
