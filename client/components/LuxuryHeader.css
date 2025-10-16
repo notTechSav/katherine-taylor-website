@@ -1,0 +1,151 @@
+/* LuxuryHeader.css - YSL-Inspired Luxury Navigation */
+
+/* Header: Sticky with Transparent-to-White Scroll Transition */
+header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  z-index: 100;
+  background: transparent;
+  transition: background-color 0.3s ease;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+}
+
+/* Scrolled state: White background */
+header.scrolled {
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Hamburger Button */
+.hamburger {
+  display: none;
+  position: absolute;
+  right: 2rem;
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  z-index: 101;
+}
+
+.hamburger:hover {
+  opacity: 0.6;
+}
+
+/* Desktop Navigation - Refined Typography */
+.desktop-nav {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.desktop-nav a {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: clamp(0.75rem, 1vw, 0.875rem);
+  position: relative;
+  transition: opacity 0.3s ease;
+}
+
+.desktop-nav a:hover {
+  opacity: 0.6;
+}
+
+.desktop-nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #000;
+  transition: width 0.3s ease;
+}
+
+.desktop-nav a:hover::after {
+  width: 100%;
+}
+
+/* Mobile Navigation - Smooth Fade-In Overlay */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.mobile-nav.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.mobile-nav a {
+  font-family: 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1.25rem;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-nav a:hover {
+  opacity: 0.6;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  header,
+  .hamburger,
+  .desktop-nav a,
+  .desktop-nav a::after,
+  .mobile-nav,
+  .mobile-nav a {
+    transition: none;
+  }
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .desktop-nav {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-nav {
+    display: none !important;
+  }
+}
