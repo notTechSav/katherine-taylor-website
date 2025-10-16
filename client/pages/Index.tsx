@@ -42,7 +42,7 @@ const Index = () => {
       </section>
 
       {/* 2-3. About + Gallery Combined (Desktop Only) */}
-      <section id="about-gallery-combined" className="frame" aria-label="About and Gallery">
+      <section id="about-gallery-combined" className="hidden md:flex frame" aria-label="About and Gallery">
         <AboutGalleryCombinedSection />
       </section>
 
