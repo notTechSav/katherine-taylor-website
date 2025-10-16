@@ -1,6 +1,6 @@
 export default function AboutSection() {
   return (
-    <div className="h-full w-full flex items-center justify-center bg-luxury-cream px-6 py-12">
+    <div className="h-full w-full flex flex-col items-center justify-center bg-[#fdfaf6] px-6 py-12">
       <div className="max-w-xl text-center flex flex-col items-center">
         {/* Image placeholder */}
         <img
