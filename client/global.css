@@ -199,3 +199,27 @@
     letter-spacing: 0.15em;
   }
 }
+
+/* YSL-Inspired Scroll Skeleton */
+.scroll-snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+}
+
+.frame {
+  height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.content {
+  z-index: 2;
+  max-width: 1200px;
+  padding: 2rem;
+  width: 100%;
+}

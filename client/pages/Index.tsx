@@ -12,16 +12,16 @@ import NewsletterSection from '@/sections/NewsletterSection';
 
 const Index = () => {
   return (
-    <main>
-      <section id="opening-video" aria-label="Opening Video">
+    <main className="scroll-snap-container">
+      <section id="opening-video" className="frame" aria-label="Opening Video">
         <OpeningVideoSection />
       </section>
 
-      <section id="about" aria-label="About Section">
+      <section id="about" className="frame" aria-label="About Section">
         <AboutSection />
       </section>
 
-      <section id="gallery-preview" aria-label="Gallery Preview">
+      <section id="gallery-preview" className="frame" aria-label="Gallery Preview">
         <GalleryPreviewSection
           title="Private Collections"
           subtitle="Saved for private viewing. Each frame a standard, each collection a retreat."
@@ -31,35 +31,35 @@ const Index = () => {
         />
       </section>
 
-      <section id="rates-video" aria-label="Rates Video">
+      <section id="rates-video" className="frame" aria-label="Rates Video">
         <RatesVideoSection />
       </section>
 
-      <section id="gifts" aria-label="Gifts Section">
+      <section id="gifts" className="frame" aria-label="Gifts Section">
         <GiftsSection />
       </section>
 
-      <section id="blog-teaser" aria-label="Blog Teaser">
+      <section id="blog-teaser" className="frame" aria-label="Blog Teaser">
         <BlogTeaserSection />
       </section>
 
-      <section id="faq-teaser" aria-label="FAQ Teaser">
+      <section id="faq-teaser" className="frame" aria-label="FAQ Teaser">
         <FAQTeaserSection />
       </section>
 
-      <section id="inquiry-teaser" aria-label="Inquiry Teaser">
+      <section id="inquiry-teaser" className="frame" aria-label="Inquiry Teaser">
         <InquiryTeaserSection />
       </section>
 
-      <section id="location" aria-label="San Francisco Location">
+      <section id="location" className="frame" aria-label="San Francisco Location">
         <LocationSection />
       </section>
 
-      <section id="closing-video" aria-label="Closing Video">
+      <section id="closing-video" className="frame" aria-label="Closing Video">
         <ClosingVideoSection />
       </section>
 
-      <section id="newsletter" aria-label="Newsletter Signup">
+      <section id="newsletter" className="frame" aria-label="Newsletter Signup">
         <NewsletterSection />
       </section>
     </main>
