@@ -1,25 +1,14 @@
-// Opening Video Section (formerly Hero)
-import OpeningVideoSection from "@/components/site/Hero";
-// About Section (formerly LoveStorySection)
-import AboutSection from "@/components/site/LoveStorySection";
-// Gallery Preview Section (formerly ImageMosaicSection)
-import GalleryPreviewSection from "@/components/site/ImageMosaicSection";
-// Rates Video Section (formerly ImmersiveVideoSection)
-import RatesVideoSection from "@/components/site/ImmersiveVideoSection";
-// Gifts Section (formerly GiftsBannerSection)
-import GiftsSection from "@/components/site/GiftsBannerSection";
-// Blog Teaser Section (formerly JournalTeaserCard)
-import BlogTeaserSection from "@/components/site/JournalTeaserCard";
-// FAQ Teaser Section (formerly FAQTeaserCard)
-import FAQTeaserSection from "@/components/site/FAQTeaserCard";
-// Inquiry Teaser Section (formerly InquireTeaserCard)
-import InquiryTeaserSection from "@/components/site/InquireTeaserCard";
-// Location Section (formerly SanFranciscoTeaserSection)
-import LocationSection from "@/components/site/SanFranciscoTeaserSection";
-// Closing Video Section (formerly GoldenHourVideoSection)
-import ClosingVideoSection from "@/components/site/GoldenHourVideoSection";
-// Newsletter Section (formerly EmailSignupSection)
-import NewsletterSection from "@/components/site/EmailSignupSection";
+import OpeningVideoSection from '@/sections/OpeningVideoSection';
+import AboutSection from '@/sections/AboutSection';
+import GalleryPreviewSection from '@/sections/GalleryPreviewSection';
+import RatesVideoSection from '@/sections/RatesVideoSection';
+import GiftsSection from '@/sections/GiftsSection';
+import BlogTeaserSection from '@/sections/BlogTeaserSection';
+import FAQTeaserSection from '@/sections/FAQTeaserSection';
+import InquiryTeaserSection from '@/sections/InquiryTeaserSection';
+import LocationSection from '@/sections/LocationSection';
+import ClosingVideoSection from '@/sections/ClosingVideoSection';
+import NewsletterSection from '@/sections/NewsletterSection';
 
 const Index = () => {
   return (
@@ -62,7 +51,7 @@ const Index = () => {
         <InquiryTeaserSection />
       </section>
 
-      <section id="location" aria-label="Location Section">
+      <section id="location" aria-label="San Francisco Location">
         <LocationSection />
       </section>
 
