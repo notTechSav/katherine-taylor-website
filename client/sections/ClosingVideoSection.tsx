@@ -35,14 +35,16 @@ export default function ClosingVideoSection() {
         {isMuted ? "🔇 Unmute" : "🔊 Mute"}
       </button>
 
-      {/* Bottom-aligned text block */}
+      {/* Inquiry text block */}
       <div className="relative z-20 flex h-full w-full items-end px-6 pb-24 text-white">
         <div className="max-w-xl">
           <h2 className="text-2xl sm:text-4xl font-serif uppercase mb-4">
-            Finale
+            Limited Availability
           </h2>
           <p className="text-sm sm:text-base leading-relaxed">
-            A closing moment of elegance and intention.
+            Currently accepting 3–4 bookings monthly. November holds two remaining appointments. December holds four.
+            <br />
+            <strong>Reserve Your Experience</strong>
           </p>
         </div>
       </div>

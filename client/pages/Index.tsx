@@ -6,7 +6,6 @@ import RatesVideoSection from '@/sections/RatesVideoSection';
 import GiftsSection from '@/sections/GiftsSection';
 import BlogTeaserSection from '@/sections/BlogTeaserSection';
 import FAQTeaserSection from '@/sections/FAQTeaserSection';
-import InquiryTeaserSection from '@/sections/InquiryTeaserSection';
 import LocationSection from '@/sections/LocationSection';
 import ClosingVideoSection from '@/sections/ClosingVideoSection';
 import NewsletterSection from '@/sections/NewsletterSection';
@@ -61,22 +60,17 @@ const Index = () => {
         <FAQTeaserSection />
       </section>
 
-      {/* 8. Inquiry Section */}
-      <section id="inquiry-teaser" className="frame bg-luxury-black" aria-label="Inquiry Teaser">
-        <InquiryTeaserSection />
-      </section>
-
-      {/* 9. San Francisco Local Page Teaser */}
-      <section id="location" className="frame bg-luxury-cream" aria-label="San Francisco Location">
+      {/* 8. San Francisco Local Page Teaser */}
+      <section id="location" className="frame bg-luxury-black" aria-label="San Francisco Location">
         <LocationSection />
       </section>
 
-      {/* 10. Final Cinematic Video Section */}
-      <section id="closing-video" className="frame" aria-label="Closing Video">
+      {/* 9. Inquiry Video Section (Limited Availability) */}
+      <section id="closing-video" className="frame" aria-label="Inquiry Video - Limited Availability">
         <ClosingVideoSection />
       </section>
 
-      {/* 11. Email Signup Section */}
+      {/* 10. Email Signup Section */}
       <section id="newsletter" className="frame bg-luxury-cream" aria-label="Newsletter Signup">
         <NewsletterSection />
       </section>
