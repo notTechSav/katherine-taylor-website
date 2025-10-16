@@ -124,7 +124,7 @@ const Hero = () => {
       <div className="pointer-events-none absolute inset-0 bg-luxury-black/60" />
 
       {/* Fading text overlay */}
-      <div className="relative z-10 flex h-full w-full flex-col justify-end px-8 pb-32">
+      <div className="relative z-10 flex h-full w-full flex-col justify-end px-8 pb-20 md:pb-32">
         <div
           className={`mx-auto flex w-full max-w-luxury flex-col items-start gap-8 text-luxury-white transition-opacity duration-1000 ${
             showText ? 'opacity-100' : 'opacity-0'
@@ -151,7 +151,7 @@ const Hero = () => {
         onClick={toggleMute}
         aria-pressed={!isMuted}
         aria-label={isMuted ? "Unmute hero video" : "Mute hero video"}
-        className="absolute bottom-8 right-8 z-20 inline-flex items-center justify-center gap-2 rounded-[2px] bg-white/10 px-5 py-3 text-xs font-light uppercase tracking-uppercase text-luxury-white backdrop-blur-sm transition-all duration-250 ease-out hover:bg-white/20 focus:outline-none"
+        className="absolute bottom-4 right-4 md:bottom-8 md:right-8 z-20 inline-flex items-center justify-center gap-2 rounded-[2px] bg-white/10 px-5 py-3 text-xs font-light uppercase tracking-uppercase text-luxury-white backdrop-blur-sm transition-all duration-250 ease-out hover:bg-white/20 focus:outline-none"
       >
         <span>{isMuted ? "Unmute" : "Mute"}</span>
       </button>

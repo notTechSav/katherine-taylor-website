@@ -117,13 +117,13 @@ const ImmersiveVideoSection = () => {
       <div className="absolute inset-0 bg-luxury-black/55" />
 
       {/* Fading text overlay */}
-      <div className="relative z-10 flex h-full flex-col justify-end px-8 pb-32">
+      <div className="relative z-10 flex h-full flex-col justify-end px-8 pb-20 md:pb-32">
         <div
           className={`mx-auto flex w-full max-w-luxury flex-col items-start gap-8 text-luxury-white transition-opacity duration-1000 ${
             showText ? 'opacity-100' : 'opacity-0'
           }`}
         >
-          <h2 className="font-serif text-5xl font-extralight tracking-display leading-[1.1]">
+          <h2 className="font-serif text-4xl md:text-5xl font-extralight tracking-display leading-[1.1]">
             The Story Continues
           </h2>
           <p className="max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-white/85">
@@ -145,7 +145,7 @@ const ImmersiveVideoSection = () => {
         aria-label={
           isMuted ? "Unmute immersive video" : "Mute immersive video"
         }
-        className="absolute bottom-8 right-8 z-20 inline-flex items-center justify-center gap-2 rounded-[2px] bg-white/10 px-5 py-3 text-xs font-light uppercase tracking-uppercase text-luxury-white backdrop-blur-sm transition-all duration-250 ease-out hover:bg-white/20 focus:outline-none"
+        className="absolute bottom-4 right-4 md:bottom-8 md:right-8 z-20 inline-flex items-center justify-center gap-2 rounded-[2px] bg-white/10 px-5 py-3 text-xs font-light uppercase tracking-uppercase text-luxury-white backdrop-blur-sm transition-all duration-250 ease-out hover:bg-white/20 focus:outline-none"
       >
         {isMuted ? "Unmute" : "Mute"}
       </button>

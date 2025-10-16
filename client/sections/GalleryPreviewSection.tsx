@@ -62,9 +62,9 @@ const ImageMosaicSection = ({
   const displayTiles = tiles ?? defaultTiles;
 
   return (
-    <div className="flex h-full w-full items-center bg-luxury-white px-8 py-12">
-      <div className="mx-auto flex flex-col gap-12">
-        <div className="space-y-4 text-center px-8">
+    <div className="flex h-full w-full items-center bg-luxury-white px-6 py-8 md:py-12">
+      <div className="mx-auto flex flex-col gap-8 md:gap-12">
+        <div className="space-y-4 text-center">
           <h1 className="text-xs font-light uppercase tracking-uppercase text-gray-600">
             {title}
           </h1>
@@ -72,7 +72,7 @@ const ImageMosaicSection = ({
             {subtitle}
           </h2>
         </div>
-        <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 gap-16 px-12 md:grid-cols-2 md:gap-12 md:px-16 lg:grid-cols-3 lg:gap-24 lg:px-20">
+        <div className="mx-auto grid w-full max-w-[1600px] grid-cols-1 gap-12 px-2 md:grid-cols-2 md:gap-12 md:px-8 lg:grid-cols-3 lg:gap-16 lg:px-12">
           {displayTiles.map((tile, index) => {
             const overlayKey =
               tile.overlay ??
@@ -157,7 +157,7 @@ const ImageMosaicSection = ({
           </article>
         </div>
         {footerHeading || (footerLinkHref && footerLinkLabel) ? (
-          <div className="pt-8 text-left px-12 md:px-16 lg:px-20">
+          <div className="pt-4 md:pt-8 text-left px-2 md:px-8 lg:px-12">
             <div className="mx-auto max-w-[1600px] flex flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
               {footerHeading ? (
                 <span className="text-xs font-light uppercase tracking-uppercase text-gray-600">
