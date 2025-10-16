@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './LuxuryHeader.css';
 
 const navItems = [
@@ -15,6 +15,12 @@ const navItems = [
 export default function LuxuryHeader() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const location = useLocation();
+
+  // Close mobile nav on route change
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location]);
 
   // Scroll detection: Add 'scrolled' class when user scrolls down
   useEffect(() => {
@@ -32,7 +38,7 @@ export default function LuxuryHeader() {
   }, [isOpen]);
 
   return (
-    <header className={scrolled ? 'scrolled' : ''}>
+    <header className={`luxury-header ${scrolled ? 'scrolled' : ''}`}>
       <button
         className="hamburger"
         onClick={() => setIsOpen(!isOpen)}
@@ -54,7 +60,7 @@ export default function LuxuryHeader() {
         aria-label="Mobile navigation"
       >
         {navItems.map(({ label, path }) => (
-          <Link key={label} to={path} onClick={() => setIsOpen(false)}>{label}</Link>
+          <Link key={label} to={path}>{label}</Link>
         ))}
       </nav>
     </header>
