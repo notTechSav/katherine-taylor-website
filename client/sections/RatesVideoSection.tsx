@@ -95,7 +95,7 @@ const ImmersiveVideoSection = () => {
   };
 
   return (
-    <div className="relative flex h-full w-full overflow-hidden bg-luxury-black">
+    <div className="relative h-full w-full bg-luxury-black">
       {/* Aspect ratio container prevents layout shift */}
       <div className="absolute inset-0">
         <video
@@ -117,9 +117,9 @@ const ImmersiveVideoSection = () => {
       <div className="absolute inset-0 bg-luxury-black/55" />
 
       {/* Fading text overlay */}
-      <div className="relative z-10 flex h-full flex-col justify-end px-8 pb-20 md:pb-32">
+      <div className="relative z-10 flex h-full w-full items-end px-6 pb-16 md:px-8 md:pb-24">
         <div
-          className={`mx-auto flex w-full max-w-luxury flex-col items-start gap-8 text-luxury-white transition-opacity duration-1000 ${
+          className={`max-w-xl flex flex-col gap-6 md:gap-8 text-luxury-white transition-opacity duration-1000 ${
             showText ? 'opacity-100' : 'opacity-0'
           }`}
         >

@@ -124,9 +124,9 @@ const Hero = () => {
       <div className="pointer-events-none absolute inset-0 bg-luxury-black/60" />
 
       {/* Fading text overlay */}
-      <div className="relative z-10 flex h-full w-full flex-col justify-end px-8 pb-20 md:pb-32">
+      <div className="relative z-10 flex h-full w-full flex-col justify-end px-6 pb-16 md:px-8 md:pb-32">
         <div
-          className={`mx-auto flex w-full max-w-luxury flex-col items-start gap-8 text-luxury-white transition-opacity duration-1000 ${
+          className={`mx-auto flex w-full max-w-luxury flex-col items-start gap-6 md:gap-8 text-luxury-white transition-opacity duration-1000 ${
             showText ? 'opacity-100' : 'opacity-0'
           }`}
         >
