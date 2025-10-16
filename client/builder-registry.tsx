@@ -1,19 +1,19 @@
 import { Builder } from '@builder.io/react';
 
 // Import all your site components
-import Hero from '@/components/site/Hero';
+import OpeningVideoSection from '@/sections/OpeningVideoSection';
 import LegendReinventedSection from '@/components/site/LegendReinventedSection';
-import ImageMosaicSection from '@/components/site/ImageMosaicSection';
-import LoveStorySection from '@/components/site/LoveStorySection';
+import GalleryPreviewSection from '@/sections/GalleryPreviewSection';
+import AboutSection from '@/sections/AboutSection';
 import DesignInMotionSection from '@/components/site/DesignInMotionSection';
 import BoutiqueAppointmentSection from '@/components/site/BoutiqueAppointmentSection';
 import FAQSectionLuxury from '@/components/site/FAQSectionLuxury';
 import GiftsTeaserSection from '@/components/site/GiftsTeaserSection';
-import ImmersiveVideoSection from '@/components/site/ImmersiveVideoSection';
+import RatesVideoSection from '@/sections/RatesVideoSection';
 import LimitedAvailabilitySection from '@/components/site/LimitedAvailabilitySection';
 import LoveUnlimitedSection from '@/components/site/LoveUnlimitedSection';
 import NewLoveCTASection from '@/components/site/NewLoveCTASection';
-import EmailSignupSection from '@/components/site/EmailSignupSection';
+import NewsletterSection from '@/sections/NewsletterSection';
 
 // Import UI components
 import { Button } from '@/components/ui/button';
@@ -24,9 +24,9 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
  * This makes your React components draggable in the Builder.io visual editor
  */
 
-// Register Hero Component
-Builder.registerComponent(Hero, {
-  name: 'Hero',
+// Register Opening Video Section (formerly Hero)
+Builder.registerComponent(OpeningVideoSection, {
+  name: 'Opening Video Section',
   inputs: [
     {
       name: 'backgroundImage',
@@ -53,15 +53,15 @@ Builder.registerComponent(LegendReinventedSection, {
   description: 'Hero section with background image and CTA'
 });
 
-// Register ImageMosaicSection
-Builder.registerComponent(ImageMosaicSection, {
-  name: 'Image Mosaic Section',
+// Register Gallery Preview Section (formerly ImageMosaicSection)
+Builder.registerComponent(GalleryPreviewSection, {
+  name: 'Gallery Preview Section',
   description: 'Gallery mosaic layout section'
 });
 
-// Register LoveStorySection
-Builder.registerComponent(LoveStorySection, {
-  name: 'Love Story Section',
+// Register About Section (formerly LoveStorySection)
+Builder.registerComponent(AboutSection, {
+  name: 'About Section',
   description: 'Story section with imagery'
 });
 
@@ -89,9 +89,9 @@ Builder.registerComponent(GiftsTeaserSection, {
   description: 'Preview section for gift offerings'
 });
 
-// Register ImmersiveVideoSection
-Builder.registerComponent(ImmersiveVideoSection, {
-  name: 'Immersive Video Section',
+// Register Rates Video Section (formerly ImmersiveVideoSection)
+Builder.registerComponent(RatesVideoSection, {
+  name: 'Rates Video Section',
   description: 'Full-width video background section'
 });
 
@@ -113,9 +113,9 @@ Builder.registerComponent(NewLoveCTASection, {
   description: 'Call-to-action section for new connections'
 });
 
-// Register EmailSignupSection
-Builder.registerComponent(EmailSignupSection, {
-  name: 'Email Signup Section',
+// Register Newsletter Section (formerly EmailSignupSection)
+Builder.registerComponent(NewsletterSection, {
+  name: 'Newsletter Section',
   description: 'Newsletter subscription section'
 });
 
