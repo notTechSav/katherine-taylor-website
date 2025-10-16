@@ -10,7 +10,7 @@ export default function AboutSection() {
         />
 
         {/* Heading */}
-        <h2 className="text-3xl sm:text-5xl font-serif uppercase tracking-wide mb-6">
+        <h2 className="text-2xl sm:text-4xl font-serif uppercase tracking-wide mb-6">
           About
         </h2>
 
