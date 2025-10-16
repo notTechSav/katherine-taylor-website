@@ -200,21 +200,25 @@
   }
 }
 
-/* YSL-Inspired Scroll Skeleton */
+/* YSL-Inspired Scroll Skeleton - Mobile-First */
 .scroll-snap-container {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  -webkit-overflow-scrolling: touch;
 }
 
 .frame {
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
   scroll-snap-align: start;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  padding: 2rem;
 }
 
 .content {
@@ -222,4 +226,17 @@
   max-width: 1200px;
   padding: 2rem;
   width: 100%;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .frame {
+    padding: 1rem;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .content {
+    padding: 1rem;
+  }
 }

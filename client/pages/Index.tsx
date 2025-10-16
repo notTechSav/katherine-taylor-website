@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import OpeningVideoSection from '@/sections/OpeningVideoSection';
 import AboutSection from '@/sections/AboutSection';
 import GalleryPreviewSection from '@/sections/GalleryPreviewSection';
@@ -11,6 +12,18 @@ import ClosingVideoSection from '@/sections/ClosingVideoSection';
 import NewsletterSection from '@/sections/NewsletterSection';
 
 const Index = () => {
+  // Fix mobile viewport height bugs (iOS Safari address bar)
+  useEffect(() => {
+    const setVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    setVH();
+    window.addEventListener('resize', setVH);
+    return () => window.removeEventListener('resize', setVH);
+  }, []);
+
   return (
     <main className="scroll-snap-container">
       <section id="opening-video" className="frame" aria-label="Opening Video">
