@@ -41,11 +41,15 @@ export default function ClosingVideoSection() {
           <h2 className="text-2xl sm:text-4xl font-serif uppercase mb-4">
             Limited Availability
           </h2>
-          <p className="text-sm sm:text-base leading-relaxed">
+          <p className="text-sm sm:text-base leading-relaxed mb-6">
             Currently accepting 3–4 bookings monthly. November holds two remaining appointments. December holds four.
-            <br />
-            <strong>Reserve Your Experience</strong>
           </p>
+          <a
+            href="/inquire"
+            className="text-sm font-light uppercase tracking-uppercase text-luxury-white underline decoration-1 underline-offset-4 transition-opacity duration-250 hover:opacity-70"
+          >
+            Inquire
+          </a>
         </div>
       </div>
     </div>
