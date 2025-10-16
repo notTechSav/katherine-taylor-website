@@ -218,6 +218,7 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  isolation: isolate;
 }
 
 .content {
