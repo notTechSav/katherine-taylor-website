@@ -2,12 +2,12 @@ import { Button } from "@/components/ui/button";
 
 const EmailSignupSection = () => {
   return (
-    <div className="flex h-full w-full items-center bg-luxury-white px-8 py-12">
-      <div className="mx-auto flex max-w-luxury flex-col items-center px-8 text-center">
+    <div className="flex h-full w-full items-center bg-luxury-white px-8 py-8 md:py-12">
+      <div className="mx-auto flex max-w-luxury flex-col items-center text-center">
         <h2 className="text-sm font-light uppercase tracking-uppercase text-gray-700">
           Latest from Katherine
         </h2>
-        <form className="mt-12 flex w-full max-w-2xl flex-col gap-4 sm:flex-row sm:items-center">
+        <form className="mt-8 md:mt-12 flex w-full max-w-2xl flex-col gap-4 sm:flex-row sm:items-center">
           <label htmlFor="email-signup" className="sr-only">
             Email address
           </label>

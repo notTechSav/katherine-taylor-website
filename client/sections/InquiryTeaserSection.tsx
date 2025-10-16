@@ -21,11 +21,11 @@ const InquireTeaserCard = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 mx-auto max-w-luxury px-8 text-center md:px-12 flex flex-col justify-center h-full">
+      <div className="relative z-10 mx-auto max-w-luxury px-8 text-center md:px-12 flex flex-col justify-center h-full py-8">
         <h2 className="mb-4 text-xs font-light uppercase tracking-uppercase text-luxury-white/80">
           Limited Availability
         </h2>
-        <p className="mx-auto mb-12 max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-luxury-white/90">
+        <p className="mx-auto mb-8 md:mb-12 max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-luxury-white/90">
           Currently accepting 3–4 bookings monthly. November holds two remaining appointments. December holds four.
         </p>
         <a

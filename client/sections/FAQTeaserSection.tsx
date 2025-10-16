@@ -12,9 +12,9 @@ const FAQTeaserCard = () => {
         <div className="absolute inset-0 bg-luxury-black/60" aria-hidden="true" />
       </div>
 
-      <div className="container relative z-10 mx-auto px-6 md:px-8 max-w-4xl flex flex-col justify-center h-full">
+      <div className="container relative z-10 mx-auto px-6 md:px-8 max-w-4xl flex flex-col justify-center h-full py-8">
         {/* Opening */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8 md:mb-12">
           <h2
             className="text-3xl md:text-5xl font-extralight tracking-[-0.02em] text-luxury-white mb-6 leading-[1.2]"
             style={{ fontWeight: 200 }}
@@ -27,7 +27,7 @@ const FAQTeaserCard = () => {
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mb-8 md:mb-12">
           <div className="group border-b border-luxury-white/30 pb-6 transition-all duration-300 hover:border-luxury-white/50">
             <h3 className="text-lg font-light text-luxury-white mb-3 transition-colors duration-300 group-hover:text-luxury-white/80">
               Why don't you have escort reviews?
