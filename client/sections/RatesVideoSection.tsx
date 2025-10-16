@@ -95,7 +95,7 @@ const ImmersiveVideoSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-luxury-black">
+    <div className="relative flex h-full w-full overflow-hidden bg-luxury-black">
       {/* Aspect ratio container prevents layout shift */}
       <div className="absolute inset-0">
         <video
@@ -117,7 +117,7 @@ const ImmersiveVideoSection = () => {
       <div className="absolute inset-0 bg-luxury-black/55" />
 
       {/* Fading text overlay */}
-      <div className="relative z-10 flex h-full min-h-screen flex-col justify-end px-8 pb-32">
+      <div className="relative z-10 flex h-full flex-col justify-end px-8 pb-32">
         <div
           className={`mx-auto flex w-full max-w-luxury flex-col items-start gap-8 text-luxury-white transition-opacity duration-1000 ${
             showText ? 'opacity-100' : 'opacity-0'
@@ -149,7 +149,7 @@ const ImmersiveVideoSection = () => {
       >
         {isMuted ? "Unmute" : "Mute"}
       </button>
-    </section>
+    </div>
   );
 };
 

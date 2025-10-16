@@ -47,7 +47,7 @@ const GoldenHourVideoSection = () => {
   const videoSrc = isMobile ? mobileVideo : desktopVideo;
 
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-black">
+    <div className="relative flex h-full w-full overflow-hidden bg-black">
       {/* Aspect ratio container prevents layout shift */}
       <div className="absolute inset-0">
         <video
@@ -65,7 +65,7 @@ const GoldenHourVideoSection = () => {
           Your browser does not support the video tag.
         </video>
       </div>
-    </section>
+    </div>
   );
 };
 

@@ -62,7 +62,7 @@ const ImageMosaicSection = ({
   const displayTiles = tiles ?? defaultTiles;
 
   return (
-    <section className="bg-luxury-white py-24 md:py-32 lg:py-40">
+    <div className="flex h-full w-full items-center bg-luxury-white px-8 py-12">
       <div className="mx-auto flex flex-col gap-12">
         <div className="space-y-4 text-center px-8">
           <h1 className="text-xs font-light uppercase tracking-uppercase text-gray-600">
@@ -179,7 +179,7 @@ const ImageMosaicSection = ({
           </div>
         ) : null}
       </div>
-    </section>
+    </div>
   );
 };
 
