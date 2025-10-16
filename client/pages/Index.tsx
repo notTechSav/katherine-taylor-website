@@ -1,7 +1,8 @@
 import { useEffect } from 'react';
 import OpeningVideoSection from '@/sections/OpeningVideoSection';
 import AboutSection from '@/sections/AboutSection';
-import GalleryPreviewSection from '@/sections/GalleryPreviewSection';
+import GallerySection from '@/sections/GallerySection';
+import AboutGalleryCombinedSection from '@/sections/AboutGalleryCombinedSection';
 import RatesVideoSection from '@/sections/RatesVideoSection';
 import GiftsSection from '@/sections/GiftsSection';
 import BlogTeaserSection from '@/sections/BlogTeaserSection';
@@ -30,14 +31,19 @@ const Index = () => {
         <OpeningVideoSection />
       </section>
 
-      {/* 2. About Section */}
-      <section id="about" className="frame bg-luxury-cream" aria-label="About Section">
+      {/* 2. About Section (Mobile Only) */}
+      <section id="about" className="frame md:hidden" aria-label="About Section">
         <AboutSection />
       </section>
 
-      {/* 3. Gallery Preview Section */}
-      <section id="gallery-preview" className="frame bg-luxury-black" aria-label="Gallery Preview">
-        <GalleryPreviewSection />
+      {/* 3. Gallery Section (Mobile Only) */}
+      <section id="gallery" className="frame md:hidden" aria-label="Gallery Section">
+        <GallerySection />
+      </section>
+
+      {/* 2-3. About + Gallery Combined (Desktop Only) */}
+      <section id="about-gallery-combined" className="frame" aria-label="About and Gallery">
+        <AboutGalleryCombinedSection />
       </section>
 
       {/* 4. Rates Video Section */}
