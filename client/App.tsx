@@ -32,7 +32,6 @@ const JournalArticle = lazy(() => import("./pages/JournalArticle"));
 const Maison = lazy(() => import("./pages/Maison"));
 const Rates = lazy(() => import("./pages/Rates"));
 const ContentGenerator = lazy(() => import("./pages/ContentGenerator"));
-const ScrollSnapLanding = lazy(() => import("./pages/ScrollSnapLanding"));
 const BuilderPage = lazy(() => import("./pages/BuilderPage"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -153,10 +152,6 @@ const AppRoutes = () => {
                 <ContentGenerator />
               </SiteLayout>
             }
-          />
-          <Route
-            path="/landing"
-            element={<ScrollSnapLanding />}
           />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           {/* Builder.io catch-all route - tries to render Builder.io content */}
