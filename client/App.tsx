@@ -59,11 +59,7 @@ const AppRoutes = () => {
         <Routes location={backgroundLocation}>
           <Route
             path="/"
-            element={
-              <SiteLayout>
-                <Index />
-              </SiteLayout>
-            }
+            element={<Index />}
           />
           <Route
             path="/about"
