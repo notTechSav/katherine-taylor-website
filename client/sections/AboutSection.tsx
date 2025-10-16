@@ -1,6 +1,6 @@
 export default function AboutSection() {
   return (
-    <div className="flex flex-col items-center justify-center text-center max-w-xl mx-auto px-6">
+    <div className="flex flex-col items-center text-center max-w-xl mx-auto px-6">
       {/* Image */}
       <img
         src="/about-me-hero.jpeg"
@@ -16,7 +16,7 @@ export default function AboutSection() {
       {/* CTA Button */}
       <a
         href="/about"
-        className="text-sm uppercase border border-luxury-black px-4 py-2 mb-6 transition-opacity duration-250 hover:opacity-70"
+        className="text-sm uppercase border border-luxury-black px-4 py-2 transition-opacity duration-250 hover:opacity-70"
       >
         Discover
       </a>

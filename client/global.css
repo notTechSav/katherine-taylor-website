@@ -232,7 +232,7 @@
 @media (max-width: 768px) {
   .frame {
     flex-direction: column;
-    justify-content: flex-start;
+    /* justify-content: center inherited from base .frame styles */
   }
 
   .content {
