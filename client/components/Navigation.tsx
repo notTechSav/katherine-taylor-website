@@ -1,5 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { cn } from "@/lib/utils";
 
@@ -72,14 +73,14 @@ const Navigation = () => {
       )}
     >
       <div className="flex w-full items-center justify-between">
-        <a
-          href="/"
+        <Link
+          to="/"
           className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
         >
           <span className="whitespace-nowrap text-3xl font-serif font-extralight uppercase tracking-display leading-[1.1] text-luxury-black">
             KATHERINE TAYLOR
           </span>
-        </a>
+        </Link>
         <button
           type="button"
           onClick={toggleMenu}
@@ -91,13 +92,13 @@ const Navigation = () => {
         <ul className="hidden items-center gap-8 lg:flex">
           {navigationLinks.map((link) => (
             <li key={link.label}>
-              <a
-                href={link.href}
+              <Link
+                to={link.href}
                 onMouseEnter={() => handleMouseEnter(link.href)}
                 className="text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -107,13 +108,13 @@ const Navigation = () => {
           <ul className="flex flex-col gap-4">
             {navigationLinks.map((link) => (
               <li key={link.label}>
-                <a
-                  href={link.href}
+                <Link
+                  to={link.href}
                   onClick={handleLinkClick}
                   className="block py-4 text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
