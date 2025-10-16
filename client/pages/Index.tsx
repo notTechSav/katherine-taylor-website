@@ -32,12 +32,12 @@ const Index = () => {
       </section>
 
       {/* 2. About Slide (Mobile Only) */}
-      <section id="about-slide" className="frame md:hidden" aria-label="About Section">
+      <section id="about-slide" className="frame md:hidden bg-[#fdfaf6]" aria-label="About Section">
         <AboutSection />
       </section>
 
       {/* 3. Gallery Slide (Mobile Only) */}
-      <section id="gallery-slide" className="frame md:hidden" aria-label="Gallery Section">
+      <section id="gallery-slide" className="frame md:hidden bg-[#fdfaf6]" aria-label="Gallery Section">
         <GallerySection />
       </section>
 
