@@ -1,5 +1,4 @@
 import { useViewportHeight } from '../hooks/useViewportHeight';
-import LuxuryHeader from '@/components/LuxuryHeader';
 import Section from '../components/landing/Section';
 import ScrollLock from '../components/landing/ScrollLock';
 import VideoBackground from '../components/landing/VideoBackground';
@@ -11,9 +10,6 @@ export default function ScrollSnapLanding() {
 
   return (
     <div className="scroll-snap-landing">
-      {/* Sticky Header */}
-      <LuxuryHeader />
-
       {/* Scroll Lock Controller */}
       <ScrollLock />
 
