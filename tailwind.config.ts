@@ -22,6 +22,7 @@ export default {
         luxury: {
           black: "#1a1a1a",
           white: "#fafafa",
+          cream: "#faf7f2",
           gray: {
             50: "#f8f8f8",
             100: "#f0f0f0",

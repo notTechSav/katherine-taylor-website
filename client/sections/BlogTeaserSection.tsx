@@ -1,6 +1,6 @@
 const JournalTeaserCard = () => {
   return (
-    <div className="relative flex h-full w-full isolate overflow-hidden bg-luxury-black">
+    <div className="relative flex h-full w-full isolate overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 overflow-hidden">
         <img

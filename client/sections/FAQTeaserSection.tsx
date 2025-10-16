@@ -1,6 +1,6 @@
 const FAQTeaserCard = () => {
   return (
-    <div className="relative flex h-full w-full bg-luxury-black">
+    <div className="relative flex h-full w-full">
       {/* Background Image */}
       <div className="absolute inset-0 overflow-hidden">
         <img

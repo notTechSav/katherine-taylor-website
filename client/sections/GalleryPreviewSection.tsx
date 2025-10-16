@@ -19,7 +19,7 @@ const galleryImages = [
 
 export default function GalleryPreviewSection() {
   return (
-    <div className="h-full w-full flex items-center justify-center bg-luxury-white px-4 py-8">
+    <div className="h-full w-full flex items-center justify-center px-4 py-8">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 max-w-5xl w-full">
         {galleryImages.map((image, index) => (
           <div key={index} className="aspect-square overflow-hidden">

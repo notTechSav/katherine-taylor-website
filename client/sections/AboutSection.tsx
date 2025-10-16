@@ -1,6 +1,6 @@
 export default function AboutSection() {
   return (
-    <div className="h-full w-full flex items-center justify-center bg-luxury-white px-6 py-12">
+    <div className="h-full w-full flex items-center justify-center px-6 py-12">
       <div className="max-w-xl text-center">
         <h2 className="text-2xl sm:text-3xl font-serif mb-4">
           Strategic Counsel Meets Personal Continuity

@@ -26,53 +26,58 @@ const Index = () => {
 
   return (
     <main className="scroll-snap-container">
+      {/* 1. Hero Video Section */}
       <section id="opening-video" className="frame" aria-label="Opening Video">
         <OpeningVideoSection />
       </section>
 
-      <section id="about" className="frame" aria-label="About Section">
+      {/* 2. About Section */}
+      <section id="about" className="frame bg-luxury-cream" aria-label="About Section">
         <AboutSection />
       </section>
 
-      <section id="gallery-preview" className="frame" aria-label="Gallery Preview">
-        <GalleryPreviewSection
-          title="Private Collections"
-          subtitle="Saved for private viewing. Each frame a standard, each collection a retreat."
-          footerHeading="Three collections for your viewing"
-          footerLinkLabel="Indulge"
-          footerLinkHref="/gallery"
-        />
+      {/* 3. Gallery Preview Section */}
+      <section id="gallery-preview" className="frame bg-luxury-black" aria-label="Gallery Preview">
+        <GalleryPreviewSection />
       </section>
 
+      {/* 4. Rates Video Section */}
       <section id="rates-video" className="frame" aria-label="Rates Video">
         <RatesVideoSection />
       </section>
 
-      <section id="gifts" className="frame" aria-label="Gifts Section">
+      {/* 5. Gifts Section */}
+      <section id="gifts" className="frame bg-luxury-cream" aria-label="Gifts Section">
         <GiftsSection />
       </section>
 
-      <section id="blog-teaser" className="frame" aria-label="Blog Teaser">
+      {/* 6. Blog Teaser Section */}
+      <section id="blog-teaser" className="frame bg-luxury-black" aria-label="Blog Teaser">
         <BlogTeaserSection />
       </section>
 
-      <section id="faq-teaser" className="frame" aria-label="FAQ Teaser">
+      {/* 7. FAQ Section */}
+      <section id="faq-teaser" className="frame bg-luxury-cream" aria-label="FAQ Teaser">
         <FAQTeaserSection />
       </section>
 
-      <section id="inquiry-teaser" className="frame" aria-label="Inquiry Teaser">
+      {/* 8. Inquiry Section */}
+      <section id="inquiry-teaser" className="frame bg-luxury-black" aria-label="Inquiry Teaser">
         <InquiryTeaserSection />
       </section>
 
-      <section id="location" className="frame" aria-label="San Francisco Location">
+      {/* 9. San Francisco Local Page Teaser */}
+      <section id="location" className="frame bg-luxury-cream" aria-label="San Francisco Location">
         <LocationSection />
       </section>
 
+      {/* 10. Final Cinematic Video Section */}
       <section id="closing-video" className="frame" aria-label="Closing Video">
         <ClosingVideoSection />
       </section>
 
-      <section id="newsletter" className="frame" aria-label="Newsletter Signup">
+      {/* 11. Email Signup Section */}
+      <section id="newsletter" className="frame bg-luxury-cream" aria-label="Newsletter Signup">
         <NewsletterSection />
       </section>
     </main>
