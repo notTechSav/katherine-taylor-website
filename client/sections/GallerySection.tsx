@@ -1,8 +1,8 @@
 export default function GallerySection() {
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center bg-[#fdfaf6] px-6 py-12">
-      <div className="max-w-xl text-center flex flex-col items-center">
-        {/* Image placeholder */}
+    <div className="h-full w-full flex flex-col items-center justify-center bg-[#fdfaf6] px-6">
+      <div className="flex flex-col items-center justify-center">
+        {/* Image */}
         <img
           src="/katherinewindow.png"
           alt="Gallery"
@@ -17,7 +17,7 @@ export default function GallerySection() {
         {/* CTA Button */}
         <a
           href="/gallery"
-          className="text-sm uppercase border border-luxury-black px-4 py-2 transition-opacity duration-250 hover:opacity-70"
+          className="text-sm uppercase border border-luxury-black px-4 py-2 mb-6 transition-opacity duration-250 hover:opacity-70"
         >
           Explore
         </a>
