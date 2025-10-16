@@ -4,7 +4,7 @@ export default function AboutSection() {
       <div className="max-w-xl text-center flex flex-col items-center">
         {/* Image placeholder */}
         <img
-          src="/about-image.jpg"
+          src="/about-me-hero.jpeg"
           alt="About"
           className="object-cover max-w-sm w-full mb-6"
         />

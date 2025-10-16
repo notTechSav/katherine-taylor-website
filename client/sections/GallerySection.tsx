@@ -4,7 +4,7 @@ export default function GallerySection() {
       <div className="max-w-xl text-center flex flex-col items-center">
         {/* Image placeholder */}
         <img
-          src="/gallery-image.jpg"
+          src="/katherinewindow.png"
           alt="Gallery"
           className="object-cover max-w-sm w-full mb-6"
         />

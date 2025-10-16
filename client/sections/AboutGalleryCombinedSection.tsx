@@ -6,7 +6,7 @@ export default function AboutGalleryCombinedSection() {
         <div className="max-w-xl text-center flex flex-col items-center">
           {/* Image placeholder */}
           <img
-            src="/about-image.jpg"
+            src="/about-me-hero.jpeg"
             alt="About"
             className="object-cover max-w-sm w-full mb-6"
           />
@@ -31,7 +31,7 @@ export default function AboutGalleryCombinedSection() {
         <div className="max-w-xl text-center flex flex-col items-center">
           {/* Image placeholder */}
           <img
-            src="/gallery-image.jpg"
+            src="/katherinewindow.png"
             alt="Gallery"
             className="object-cover max-w-sm w-full mb-6"
           />
