@@ -3,27 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Katherine Taylor - High-end private companionship. Quiet authority, intentional scarcity, refined experiences." />
+    <meta name="description" content="Katherine Taylor — High-end private companionship. Quiet authority, intentional scarcity, refined experiences." />
     <meta name="theme-color" content="#fafaf7" />
     <title>Katherine Taylor</title>
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
 
-    <!-- Preconnect to external domains for faster resource loading -->
+    <!-- Preconnects for external resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdn.builder.io" />
-
-    <!-- Preconnect to Cloudinary CDN for faster video loading -->
     <link rel="preconnect" href="https://res.cloudinary.com" />
     <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 
-    <!-- Preload critical font -->
+    <!-- Preload Google Fonts stylesheet -->
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" />
+
+    <!-- Preload actual font file (Cormorant Garamond 400) -->
+    <link rel="preload" as="font" type="font/woff2"
+          href="https://fonts.gstatic.com/s/cormorantgaramond/v21/co3bmX5slCNuHLi8bLeY9MK7whWMhyjYrXtKky2F7i6C.woff2"
+          crossorigin />
+
+    <!-- Stylesheet will be loaded normally by your bundler or CSS import -->
+    <!-- No additional <link rel="stylesheet"> needed here unless you're not bundling -->
+
   </head>
 
   <body>
     <div id="root"></div>
 
+    <!-- Entry point for your app -->
     <script type="module" src="/client/App.tsx"></script>
   </body>
 </html>
