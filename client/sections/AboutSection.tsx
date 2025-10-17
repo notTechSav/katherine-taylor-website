@@ -1,6 +1,6 @@
 export default function AboutSection() {
   return (
-    <div className="flex flex-col items-center text-center max-w-xl mx-auto px-6">
+    <div className="flex flex-col items-center text-center max-w-xl mx-auto px-6 py-8">
       {/* Image */}
       <img
         src="/about-me-hero.jpeg"
