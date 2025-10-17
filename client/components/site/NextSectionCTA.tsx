@@ -9,7 +9,7 @@ interface NextSectionCTAProps {
 const NextSectionCTA = memo(
   ({ label, href, eyebrow }: NextSectionCTAProps) => {
     return (
-      <section className="border-t border-neutral-200 bg-luxury-white py-20 md:py-24">
+      <section className="border-t border-neutral-200 bg-luxury-white py-24 md:py-32 lg:py-40">
         <div className="mx-auto flex max-w-[680px] flex-col items-center gap-6 px-6 text-center md:px-8">
           {eyebrow && (
             <span className="text-xs font-light uppercase tracking-uppercase text-neutral-500">

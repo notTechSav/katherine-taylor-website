@@ -6,20 +6,21 @@ const backgroundImage =
 
 const LegendReinventedSection = () => {
   return (
-    <section className="relative isolate overflow-hidden bg-luxury-black">
-      <div
-        className="relative flex min-h-[520px] w-full items-center justify-start bg-cover bg-center px-8 py-24 sm:min-h-[640px] md:py-32 lg:py-40"
-        style={{ backgroundImage: `url(${backgroundImage})` }}
-      >
-        <div
-          className="absolute inset-0 bg-luxury-black/60"
-          aria-hidden="true"
-        />
-        <div className="relative z-10 max-w-[560px] space-y-8 text-left text-luxury-white">
-          <H2 as="p" className="mb-0 text-luxury-white">
+    <section className="bg-luxury-white py-24 md:py-32 lg:py-40">
+      <div className="mx-auto grid max-w-luxury items-center gap-8 px-4 sm:px-6 md:px-8 md:grid-cols-2 md:gap-12 lg:gap-16">
+        <div className="relative h-full w-full overflow-hidden border border-gray-200 bg-gray-50 shadow-luxury-md transition-shadow duration-400 ease-out hover:shadow-luxury-lg">
+          <div
+            className="aspect-[4/5] w-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${backgroundImage})` }}
+            role="img"
+            aria-label="Katherine Taylor elegant portrait"
+          />
+        </div>
+        <div className="space-y-8 text-left">
+          <H2 as="p" className="mb-0 text-luxury-black">
             Katherine Taylor — Elegant San Francisco & Sacramento Escort
           </H2>
-          <p className="max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-white/85">
+          <p className="max-w-[65ch] text-base font-light leading-relaxed tracking-luxury text-gray-600">
             Is it possible to find a genuine connection when searching for
             escorts near me? Katherine Taylor is an elegant San Francisco escort
             who transforms uncertainty into warm, authentic companionship that

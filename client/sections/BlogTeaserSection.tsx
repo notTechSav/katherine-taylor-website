@@ -13,7 +13,7 @@ const JournalTeaserCard = () => {
       </div>
 
       {/* Content */}
-      <div className="relative flex h-full w-full items-center px-8 py-12 md:py-24">
+      <div className="relative flex h-full w-full items-center px-6 py-8 md:px-8 md:py-24">
         <div className="relative z-10 max-w-[540px] space-y-8 text-luxury-white">
           <span className="text-xs font-light uppercase tracking-uppercase text-luxury-white/70">
             Continuity as Craft
