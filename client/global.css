@@ -209,17 +209,7 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.frame {
-  height: 100vh;
-  height: calc(var(--vh, 1vh) * 100);
-  scroll-snap-align: start;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  isolation: isolate;
-}
+/* .frame removed - use Tailwind classes instead to avoid specificity conflicts */
 
 .content {
   z-index: 2;
@@ -230,11 +220,6 @@
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-  .frame {
-    flex-direction: column;
-    /* justify-content: center inherited from base .frame styles */
-  }
-
   .content {
     padding: 1rem;
   }

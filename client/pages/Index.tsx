@@ -27,57 +27,57 @@ const Index = () => {
   return (
     <main className="scroll-snap-container">
       {/* 1. Hero Video Section */}
-      <section id="opening-video" className="frame" aria-label="Opening Video">
+      <section id="opening-video" className="h-screen snap-start relative flex items-center justify-center overflow-hidden isolate" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="Opening Video">
         <OpeningVideoSection />
       </section>
 
       {/* 2. About Slide (Mobile Only) */}
-      <section id="about-slide" className="frame md:hidden bg-[#fdfaf6]" aria-label="About Section">
+      <section id="about-slide" className="h-screen snap-start relative flex items-center justify-center overflow-hidden isolate md:hidden bg-[#fdfaf6]" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="About Section">
         <AboutSection />
       </section>
 
       {/* 3. Gallery Slide (Mobile Only) */}
-      <section id="gallery-slide" className="frame md:hidden bg-[#fdfaf6]" aria-label="Gallery Section">
+      <section id="gallery-slide" className="h-screen snap-start relative flex items-center justify-center overflow-hidden isolate md:hidden bg-[#fdfaf6]" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="Gallery Section">
         <GallerySection />
       </section>
 
       {/* 2-3. About + Gallery Combined (Desktop Only) */}
-      <section id="about-gallery-combined" className="hidden md:flex md:h-screen md:snap-start md:relative md:items-center md:justify-center md:overflow-hidden md:isolate" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="About and Gallery">
+      <section id="about-gallery-combined" className="hidden md:flex h-screen snap-start relative items-center justify-center overflow-hidden isolate" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="About and Gallery">
         <AboutGalleryCombinedSection />
       </section>
 
       {/* 4. Rates Video Section */}
-      <section id="rates-video" className="frame" aria-label="Rates Video">
+      <section id="rates-video" className="h-screen snap-start relative flex items-center justify-center overflow-hidden isolate" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="Rates Video">
         <RatesVideoSection />
       </section>
 
       {/* 5. Gifts Section */}
-      <section id="gifts" className="frame bg-luxury-cream" aria-label="Gifts Section">
+      <section id="gifts" className="h-screen snap-start relative flex items-center justify-center overflow-hidden isolate bg-luxury-cream" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="Gifts Section">
         <GiftsSection />
       </section>
 
       {/* 6. Blog Teaser Section */}
-      <section id="blog-teaser" className="frame bg-luxury-black" aria-label="Blog Teaser">
+      <section id="blog-teaser" className="h-screen snap-start relative flex items-center justify-center overflow-hidden isolate bg-luxury-black" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="Blog Teaser">
         <BlogTeaserSection />
       </section>
 
       {/* 7. FAQ Section */}
-      <section id="faq-teaser" className="frame bg-luxury-cream" aria-label="FAQ Teaser">
+      <section id="faq-teaser" className="h-screen snap-start relative flex items-center justify-center overflow-hidden isolate bg-luxury-cream" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="FAQ Teaser">
         <FAQTeaserSection />
       </section>
 
       {/* 8. San Francisco Local Page Teaser */}
-      <section id="location" className="frame bg-luxury-black" aria-label="San Francisco Location">
+      <section id="location" className="h-screen snap-start relative flex items-center justify-center overflow-hidden isolate bg-luxury-black" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="San Francisco Location">
         <LocationSection />
       </section>
 
       {/* 9. Inquiry Video Section (Limited Availability) */}
-      <section id="closing-video" className="frame" aria-label="Inquiry Video - Limited Availability">
+      <section id="closing-video" className="h-screen snap-start relative flex items-center justify-center overflow-hidden isolate" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="Inquiry Video - Limited Availability">
         <ClosingVideoSection />
       </section>
 
       {/* 10. Email Signup Section */}
-      <section id="newsletter" className="frame bg-luxury-cream" aria-label="Newsletter Signup">
+      <section id="newsletter" className="h-screen snap-start relative flex items-center justify-center overflow-hidden isolate bg-luxury-cream" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="Newsletter Signup">
         <NewsletterSection />
       </section>
     </main>
