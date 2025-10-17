@@ -1,6 +1,6 @@
 export default function AboutGalleryCombinedSection() {
   return (
-    <div className="h-full w-full hidden md:grid md:grid-cols-2">
+    <div className="h-full w-full grid grid-cols-2">
       {/* Left Column: About */}
       <div className="h-full flex flex-col justify-between bg-white px-6 py-12">
         <div className="max-w-xl mx-auto flex flex-col justify-between h-full">
