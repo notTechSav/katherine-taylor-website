@@ -7,7 +7,7 @@ import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
 
 const heroImage = {
-  src: "/faq-page-bg.png",
+  src: "/faq-page-bg.webp",
   alt: "Thoughtful composition suggesting clarity and answers",
 };
 

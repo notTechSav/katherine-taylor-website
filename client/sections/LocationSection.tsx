@@ -5,7 +5,7 @@ const SanFranciscoTeaserSection = () => {
         <div className="relative flex items-center justify-center overflow-hidden border border-gray-200 bg-gray-50 shadow-luxury-md transition-shadow duration-400 ease-out hover:shadow-luxury-lg">
           <div
             className="aspect-[4/5] w-full bg-cover bg-[50%_20%]"
-            style={{ backgroundImage: 'url(/sf-teaser-bg.png)' }}
+            style={{ backgroundImage: 'url(/sf-teaser-bg.webp)' }}
             role="img"
             aria-label="Golden hour light over San Francisco Bay"
           />

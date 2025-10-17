@@ -3,9 +3,11 @@ export default function GallerySection() {
     <div className="flex flex-col items-center text-center max-w-xl mx-auto px-6 py-8">
       {/* Image */}
       <img
-        src="/katherinewindow.png"
+        src="/katherinewindow.webp"
         alt="Gallery"
         className="object-cover max-w-sm w-full mb-6"
+        loading="lazy"
+        decoding="async"
       />
 
       {/* Heading */}

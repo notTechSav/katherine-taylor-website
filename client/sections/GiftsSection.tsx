@@ -5,7 +5,7 @@ const GiftsBannerSection = () => {
         <div className="relative flex items-center justify-center overflow-hidden border border-gray-200 bg-gray-50 shadow-luxury-md transition-shadow duration-400 ease-out hover:shadow-luxury-lg">
           <div
             className="aspect-[4/5] w-full bg-cover bg-center"
-            style={{ backgroundImage: 'url(/gifts-banner.png)' }}
+            style={{ backgroundImage: 'url(/gifts-banner.webp)' }}
             role="img"
             aria-label="Thoughtful gift gesture"
           />

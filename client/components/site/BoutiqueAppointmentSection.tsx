@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 
-const boutiqueImage = "/journal-teaser-bg.png";
+const boutiqueImage = "/journal-teaser-bg.webp";
 
 const BoutiqueAppointmentSection = () => {
   return (

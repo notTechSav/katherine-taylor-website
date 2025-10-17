@@ -4,11 +4,11 @@ const galleryImages = [
     alt: "Portrait of Katherine Taylor in tailored attire",
   },
   {
-    src: "/gallery-third.png",
+    src: "/gallery-third.webp",
     alt: "Katherine Taylor in elegant red evening gown",
   },
   {
-    src: "/katherinewindow.png",
+    src: "/katherinewindow.webp",
     alt: "Katherine Taylor in elegant white shirt and black attire",
   },
   {

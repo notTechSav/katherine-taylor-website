@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet-async';
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 
 const heroImage = {
-  src: "/sf-page-bg.png",
+  src: "/sf-page-bg.webp",
   alt: "Golden hour light over San Francisco Bay",
 };
 

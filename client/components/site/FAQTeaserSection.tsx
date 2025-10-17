@@ -7,7 +7,7 @@ const FAQTeaserSection = () => {
           <div className="relative flex items-center justify-center overflow-hidden border border-gray-200 bg-gray-50 shadow-luxury-md">
             <div
               className="aspect-[4/5] w-full bg-cover bg-center"
-              style={{ backgroundImage: `url(/faq-key-bg-mobile.png)` }}
+              style={{ backgroundImage: `url(/faq-key-bg-mobile.webp)` }}
               role="img"
               aria-label="FAQ background"
             />
@@ -50,7 +50,7 @@ const FAQTeaserSection = () => {
         <div className="absolute inset-0 overflow-hidden">
           {/* Desktop/Tablet background */}
           <img
-            src="/secrets.png"
+            src="/secrets.webp"
             alt=""
             className="h-full w-full object-cover"
             loading="lazy"

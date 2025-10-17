@@ -4,7 +4,7 @@ import { useState } from "react";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 
 const heroImage = {
-  src: "/inquire-hero.png",
+  src: "/inquire-hero.webp",
   alt: "Private threshold with elegant architectural details in soft light",
 };
 

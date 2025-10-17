@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-// Balanced quality for fast loading and good visuals
+// Optimized for performance: q_60 reduces file size from 10.5MB to ~4.6MB
 const HERO_VIDEO =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_80,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_60,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.mp4";
 
+// Valid poster image: 127KB JPEG at 3-second offset
 const POSTER_URL =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/so_0,q_auto:low,f_auto,w_1920/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.jpg";
+  "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/so_3,q_auto:good,f_jpg,w_1920/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.jpg";
 
 export default function OpeningVideoSection() {
   const [isMuted, setIsMuted] = useState(true);

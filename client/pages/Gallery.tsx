@@ -3,7 +3,7 @@ import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
 import { useEffect } from "react";
 
-const GALLERY_HERO_IMAGE = "/rose-hero.png";
+const GALLERY_HERO_IMAGE = "/rose-hero.webp";
 
 const Gallery = () => {
   useEffect(() => {

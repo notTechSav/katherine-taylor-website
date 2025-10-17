@@ -6,6 +6,8 @@ export default function AboutSection() {
         src="/about-me-hero.jpeg"
         alt="About"
         className="object-cover max-w-sm w-full mb-6"
+        loading="lazy"
+        decoding="async"
       />
 
       {/* Heading */}

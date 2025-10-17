@@ -4,7 +4,7 @@ const JournalTeaserCard = () => {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 overflow-hidden">
         <img
-          src="/journal-teaser-bg.png"
+          src="/journal-teaser-bg.webp"
           alt=""
           className="h-full w-full object-cover"
           loading="lazy"

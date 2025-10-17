@@ -10,6 +10,8 @@ export default function AboutGalleryCombinedSection() {
               src="/about-me-hero.jpeg"
               alt="About"
               className="object-cover max-w-sm w-full max-h-[70vh]"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
@@ -37,9 +39,11 @@ export default function AboutGalleryCombinedSection() {
           {/* Image container with top padding */}
           <div className="flex justify-center pt-12">
             <img
-              src="/katherinewindow.png"
+              src="/katherinewindow.webp"
               alt="Gallery"
               className="object-cover max-w-sm w-full max-h-[70vh]"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 
