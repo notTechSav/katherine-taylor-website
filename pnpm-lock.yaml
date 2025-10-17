@@ -202,7 +202,7 @@ importers:
         specifier: ^2.6.0
         version: 2.6.0
       tailwindcss:
-        specifier: ^3.4.17
+        specifier: 3.4.17
         version: 3.4.17(ts-node@10.9.1(@swc/core@1.13.3)(@types/node@24.2.1)(typescript@5.9.2))
       tailwindcss-animate:
         specifier: ^1.0.7
