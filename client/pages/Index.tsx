@@ -42,7 +42,7 @@ const Index = () => {
       </section>
 
       {/* 2-3. About + Gallery Combined (Desktop Only) */}
-      <section id="about-gallery-combined" className="frame hidden md:flex" aria-label="About and Gallery">
+      <section id="about-gallery-combined" className="hidden md:flex md:h-screen md:snap-start md:relative md:items-center md:justify-center md:overflow-hidden md:isolate" style={{height: 'calc(var(--vh, 1vh) * 100)'}} aria-label="About and Gallery">
         <AboutGalleryCombinedSection />
       </section>
 
