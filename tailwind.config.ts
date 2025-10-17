@@ -3,6 +3,13 @@ import type { Config } from "tailwindcss";
 export default {
   darkMode: ["class"],
   content: ["./client/**/*.{ts,tsx}"],
+  safelist: [
+    "hero",
+    "unmute-toggle",
+    "gallery-placeholder",
+    "section-heading",
+    "cta-button",
+  ],
   prefix: "",
   theme: {
     container: {

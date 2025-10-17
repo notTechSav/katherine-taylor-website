@@ -58,7 +58,7 @@ const HeroYSL = () => {
   };
 
   return (
-    <section className="relative isolate flex min-h-screen w-full overflow-hidden bg-luxury-black">
+    <section className="hero relative isolate flex min-h-screen w-full overflow-hidden bg-luxury-black">
       {/* Video Background */}
       <video
         ref={videoRef}
@@ -114,7 +114,7 @@ const HeroYSL = () => {
           type="button"
           onClick={toggleMute}
           aria-label={isMuted ? "Unmute video" : "Mute video"}
-          className="flex h-8 w-8 items-center justify-center text-luxury-white transition-opacity duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:opacity-70"
+          className="unmute-toggle flex h-8 w-8 items-center justify-center text-luxury-white transition-opacity duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:opacity-70"
         >
           {isMuted ? (
             <VolumeX className="h-4 w-4" />

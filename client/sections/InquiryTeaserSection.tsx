@@ -30,7 +30,7 @@ const InquireTeaserCard = () => {
         </p>
         <a
           href="/inquire"
-          className="text-sm font-light uppercase tracking-uppercase text-luxury-white underline decoration-1 underline-offset-4 transition-opacity duration-250 hover:opacity-70"
+          className="cta-button text-sm font-light uppercase tracking-uppercase text-luxury-white underline decoration-1 underline-offset-4 transition-opacity duration-250 hover:opacity-70"
         >
           Reserve Your Experience
         </a>

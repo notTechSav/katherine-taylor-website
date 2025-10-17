@@ -30,7 +30,7 @@ export default function OpeningVideoSection() {
       {/* Audio toggle */}
       <button
         onClick={() => setIsMuted(!isMuted)}
-        className="absolute top-4 right-4 z-30 bg-white/10 text-white px-4 py-2 rounded-full text-sm tracking-wide backdrop-blur hover:bg-white/20 transition"
+        className="unmute-toggle absolute top-4 right-4 z-30 bg-white/10 text-white px-4 py-2 rounded-full text-sm tracking-wide backdrop-blur hover:bg-white/20 transition"
         aria-label={isMuted ? "Unmute video" : "Mute video"}
       >
         {isMuted ? "🔇 Unmute" : "🔊 Mute"}
