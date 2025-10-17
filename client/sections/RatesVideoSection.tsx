@@ -36,7 +36,7 @@ export default function RatesVideoSection() {
       </button>
 
       {/* Bottom-aligned text block */}
-      <div className="relative z-20 flex h-full w-full items-end px-6 pb-24 text-white">
+      <div className="relative z-20 flex h-full w-full items-end px-6 pb-12 md:pb-20 text-white">
         <div className="max-w-xl">
           <h2 className="text-2xl sm:text-4xl font-serif tracking-wide uppercase mb-4">
             Rates
