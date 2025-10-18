@@ -2,7 +2,7 @@
 - name: Notify Vercel - lint
   uses: vercel/repository-dispatch/actions/status@v1
   with:
-    name: Vercel - katherine-taylor-website: lint
+    name: Vercel - katherine-taylor-website:lint
 
 - name: Notify Vercel - typecheck
   uses: vercel/repository-dispatch/actions/status@v1
