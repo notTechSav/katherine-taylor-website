@@ -1,4 +1,101 @@
-- name: 'notify vercel'
-  uses: 'vercel/repository-dispatch/actions/status@v1'
+# Notify Vercel of all CI/CD status checks
+- name: Notify Vercel - lint
+  uses: vercel/repository-dispatch/actions/status@v1
   with:
     name: Vercel - katherine-taylor-website: lint
+
+- name: Notify Vercel - typecheck
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: typecheck
+
+- name: Notify Vercel - build
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: build
+
+- name: Notify Vercel - test
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: test
+
+- name: Notify Vercel - e2e
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: e2e
+
+- name: Notify Vercel - SEO audit
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: SEO audit
+
+- name: Notify Vercel - accessibility
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: accessibility
+
+- name: Notify Vercel - performance
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: performance
+
+- name: Notify Vercel - preview deploy
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: preview deploy
+
+- name: Notify Vercel - production deploy
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: production deploy
+
+- name: Notify Vercel - vercel-status
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: vercel-status
+
+- name: Notify Vercel - sanity-sync
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: sanity-sync
+
+- name: Notify Vercel - schema-validate
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: schema-validate
+
+- name: Notify Vercel - image-optimization
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: image-optimization
+
+- name: Notify Vercel - font-preload
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: font-preload
+
+- name: Notify Vercel - routing-integrity
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: routing-integrity
+
+- name: Notify Vercel - metadata-complete
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: metadata-complete
+
+- name: Notify Vercel - robots-sitemap
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: robots-sitemap
+
+- name: Notify Vercel - manifest-check
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: manifest-check
+
+- name: Notify Vercel - security-audit
+  uses: vercel/repository-dispatch/actions/status@v1
+  with:
+    name: Vercel - katherine-taylor-website: security-audit
+
