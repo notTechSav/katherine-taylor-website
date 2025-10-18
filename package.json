@@ -106,7 +106,8 @@
     ],
     "allowScripts": {
       "@swc/core": true,
-      "esbuild": true
+      "esbuild": true,
+      "sharp": true
     }
   }
 }
