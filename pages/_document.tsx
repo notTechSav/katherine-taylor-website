@@ -1,4 +1,5 @@
 <head>
+  <!-- Core Meta -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
@@ -7,30 +8,39 @@
   <title>Katherine Taylor</title>
   <link rel="canonical" href="https://katherine-taylor-static-website.vercel.app/" />
 
-  <!-- Favicon and Apple Touch Icon -->
+  <!-- Icons -->
   <link rel="icon" type="image/svg+xml" href="/logo.svg" />
   <link rel="apple-touch-icon" href="/logo.svg" />
 
-  <!-- Preconnects for external resources -->
+  <!-- Preconnects -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://res.cloudinary.com" />
   <link rel="dns-prefetch" href="https://res.cloudinary.com" />
 
-  <!-- Preload Google Fonts stylesheet -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" />
+  <!-- Fonts -->
+  <link
+    rel="preload"
+    as="style"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap"
+  />
 
-  <!-- Open Graph for social previews -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Katherine Taylor" />
   <meta property="og:description" content="High-end private companionship. Quiet authority, intentional scarcity, refined experiences." />
   <meta property="og:image" content="https://res.cloudinary.com/YOUR_IMAGE_PATH.jpg" />
   <meta property="og:url" content="https://katherine-taylor-static-website.vercel.app/" />
   <meta property="og:type" content="website" />
+
+  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@yourhandle" />
 
-  <!-- LocalBusiness structured data -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
