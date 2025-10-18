@@ -102,6 +102,10 @@
     "trustedDependencies": [
       "@swc/core",
       "esbuild"
-    ]
+    ],
+    "allowScripts": {
+      "@swc/core": true,
+      "esbuild": true
+    }
   }
 }
