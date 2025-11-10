@@ -23,12 +23,12 @@
     "encode-videos": "node scripts/encode-videos.mjs"
   },
   "dependencies": {
-    "@ai-sdk/anthropic": "^2.0.23",
-    "@anthropic-ai/sdk": "^0.65.0",
-    "ai": "^5.0.60",
-    "dotenv": "^17.2.1",
+    "@ai-sdk/anthropic": "^2.0.40",
+    "@anthropic-ai/sdk": "^0.68.0",
+    "ai": "^5.0.86",
+    "dotenv": "^17.2.3",
     "express": "^5.1.0",
-    "express-rate-limit": "^8.1.0",
+    "express-rate-limit": "^8.2.1",
     "react-helmet-async": "^2.0.5",
     "zod": "^3.25.76"
   },
