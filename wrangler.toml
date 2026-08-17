@@ -1,4 +1,4 @@
-/*    https://developers.cloudflare.com/pages/platform/build-configuration/   */
+# https://developers.cloudflare.com/pages/platform/build-configuration/
 name = "katherine-taylor-website"
 compatibility_date = "2025-01-01"
 pages_build_output_dir = "dist/spa"

@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://katherinetaylorescort.com/sitemap.xml
 Sitemap: https://katherinetaylorescort.com/video-sitemap.xml
