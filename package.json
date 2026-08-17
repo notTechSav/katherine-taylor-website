@@ -12,11 +12,13 @@
     ]
   },
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "vite",
+    "build": "pnpm run build:client && pnpm run build:server",
     "build:client": "vite build",
     "build:server": "vite build --config vite.config.server.ts",
-    "start": "next start",
+    "start": "node dist/server/node-build.mjs",
+    "pages:deploy": "pnpm build:client && wrangler pages deploy dist/spa",
+    "worker:deploy": "wrangler deploy",
     "test": "vitest --run",
     "format.fix": "prettier --write .",
     "typecheck": "tsc",

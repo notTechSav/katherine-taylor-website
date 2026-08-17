@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /
+Allow: /
 
-# Site under construction - blocking all search engines
-# Remove this when ready to launch publicly
+Sitemap: https://katherinetaylorescort.com/video-sitemap.xml

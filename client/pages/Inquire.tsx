@@ -36,11 +36,23 @@ const InquirePage = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate submission - replace with actual API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
+      if (!response.ok) {
+        throw new Error("Submission failed");
+      }
+
+      setIsSubmitted(true);
+    } catch {
+      alert("Unable to submit inquiry. Please try again or email directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSubmitted) {

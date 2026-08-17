@@ -9,6 +9,7 @@ import {
   handleHealthCheck,
 } from "./routes/content-ai";
 import luxuryInquiryRouter from "./routes/luxury-inquiry";
+import inquiryRouter from "./routes/inquiry";
 
 export function createServer() {
   const app = express();
@@ -34,6 +35,9 @@ export function createServer() {
 
   // Luxury Inquiry routes
   app.use(luxuryInquiryRouter);
+
+  // Simple inquiry form (Inquire page)
+  app.use(inquiryRouter);
 
   return app;
 }

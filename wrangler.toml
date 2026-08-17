@@ -1,0 +1,12 @@
+/*    https://developers.cloudflare.com/pages/platform/build-configuration/   */
+name = "katherine-taylor-website"
+compatibility_date = "2025-01-01"
+pages_build_output_dir = "dist/spa"
+
+[vars]
+PING_MESSAGE = "ping pong"
+
+# Bind API Worker routes when deploying with custom domain
+# [[routes]]
+# pattern = "katherinetaylorescort.com/api/*"
+# zone_name = "katherinetaylorescort.com"
