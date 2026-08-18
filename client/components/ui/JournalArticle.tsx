@@ -12,6 +12,7 @@ import {
   essayMetadata,
 } from "@/lib/journal-content";
 import {
+  absoluteUrl,
   injectJsonLd,
   removeJsonLd,
   setLinkTag,
@@ -57,17 +58,11 @@ const JournalArticle = () => {
     setNamedMeta("geo.position", "37.7749;-122.4194");
     setNamedMeta("ICBM", "37.7749, -122.4194");
 
-    const canonicalUrl =
-      typeof window !== "undefined"
-        ? `${window.location.origin}/journal/${essay.slug}`
-        : `/journal/${essay.slug}`;
+    const canonicalUrl = absoluteUrl(`/journal/${essay.slug}`);
 
     setLinkTag("canonical", canonicalUrl);
 
-    const heroImageUrl =
-      typeof window !== "undefined"
-        ? new URL(heroImage.src, window.location.origin).toString()
-        : heroImage.src;
+    const heroImageUrl = absoluteUrl(heroImage.src);
 
     setPropertyMeta("og:type", "article");
     setPropertyMeta("og:title", essay.title);

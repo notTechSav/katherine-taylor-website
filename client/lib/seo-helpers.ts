@@ -1,3 +1,5 @@
+export { absoluteUrl, SITE_URL } from "@/lib/site-config";
+
 type MetaSelector = "name" | "property";
 
 const setMeta = (selector: MetaSelector, key: string, content: string) => {

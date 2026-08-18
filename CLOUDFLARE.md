@@ -6,12 +6,50 @@ This project deploys as a **Vite SPA** on Cloudflare Pages with **Pages Function
 
 | Environment | URL |
 |-------------|-----|
-| Production | https://katherine-taylor-website.pages.dev |
+| Production (canonical) | https://katherinetaylorescort.com |
+| Pages alias | https://katherine-taylor-website.pages.dev |
 | Preview (example) | https://b02b672e.katherine-taylor-website.pages.dev |
 
-Each deploy gets a unique preview URL; production is served from the project alias above.
+Each deploy gets a unique preview URL; production is served from the custom domain above once DNS is bound.
 
-**Custom domain:** `katherinetaylorescort.com` is not bound yet. In Cloudflare Pages → **katherine-taylor-website** → **Custom domains**, add the domain and follow DNS/CNAME instructions.
+## Custom domain setup
+
+1. In Cloudflare Pages → **katherine-taylor-website** → **Custom domains**, add:
+   - `katherinetaylorescort.com` (apex)
+   - `www.katherinetaylorescort.com` (for redirect source)
+2. Or via CLI:
+   ```bash
+   npx wrangler pages domain add katherinetaylorescort.com --project-name katherine-taylor-website
+   npx wrangler pages domain add www.katherinetaylorescort.com --project-name katherine-taylor-website
+   ```
+3. Ensure DNS for the zone points apex/`www` at Pages (CNAME to `katherine-taylor-website.pages.dev` or Cloudflare's recommended records).
+
+## www → apex redirect (301)
+
+The canonical hostname is **apex** (`katherinetaylorescort.com`). `www` must permanently redirect to apex.
+
+**Primary (recommended):** Cloudflare **Bulk Redirects** ([docs](https://developers.cloudflare.com/pages/how-to/www-redirect/)):
+
+| Source URL | Target URL | Status | Parameters |
+|------------|------------|--------|------------|
+| `www.katherinetaylorescort.com` | `https://katherinetaylorescort.com` | 301 | Preserve query string, Subpath matching, Preserve path suffix |
+
+Create a Bulk Redirect Rule that uses this list. Add a proxied DNS record for `www` (A `192.0.2.1` or CNAME to Pages).
+
+**Also in repo:** `public/_redirects` includes a host-based www→apex rule as a secondary path when both hostnames serve the same Pages project.
+
+Verify after DNS propagates:
+
+```bash
+curl -I https://www.katherinetaylorescort.com/
+# Expect: HTTP/2 301, location: https://katherinetaylorescort.com/...
+```
+
+## Canonical URLs
+
+Single source of truth: `client/lib/site-config.ts` (`SITE_URL = https://katherinetaylorescort.com`).
+
+Static files (`index.html`, `public/sitemap.xml`, `public/video-sitemap.xml`, `public/robots.txt`) use apex HTTPS. Journal and San Francisco pages use `absoluteUrl()` from site-config.
 
 ## Build settings (Cloudflare Dashboard)
 
@@ -63,4 +101,4 @@ For full API parity (AI content, luxury inquiry), deploy `dist/server` to a Node
 
 - `vercel.json` SPA rewrites → `public/_redirects` + `wrangler.toml`
 - Remove `.vercel/` after first successful Cloudflare preview
-- Update canonical URLs from `*.vercel.app` to `katherinetaylorescort.com` (after custom domain is bound in Pages)
+- Canonical URLs use `https://katherinetaylorescort.com` (see `client/lib/site-config.ts`)

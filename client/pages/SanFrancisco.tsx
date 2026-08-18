@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
+import { absoluteUrl } from "@/lib/site-config";
 
 const heroImage = {
   src: "/sf-page-bg.webp",
@@ -21,6 +22,8 @@ const SanFranciscoPage = () => {
       <Helmet>
         <title>Katherine Taylor - Elite San Francisco Escort | Luxury Companion Bay Area</title>
         <meta name="description" content="Katherine Taylor - independent luxury escort serving San Francisco's tech elite. High-end dinner dates, overnight arrangements, travel companionship. Pacific Heights, Nob Hill, Financial District. Verified, discreet, exceptional." />
+        <link rel="canonical" href={absoluteUrl("/san-francisco")} />
+        <meta property="og:url" content={absoluteUrl("/san-francisco")} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
