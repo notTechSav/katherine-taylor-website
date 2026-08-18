@@ -2,6 +2,17 @@
 
 This project deploys as a **Vite SPA** on Cloudflare Pages with **Pages Functions** for API routes.
 
+## Live URLs
+
+| Environment | URL |
+|-------------|-----|
+| Production | https://katherine-taylor-website.pages.dev |
+| Preview (example) | https://b02b672e.katherine-taylor-website.pages.dev |
+
+Each deploy gets a unique preview URL; production is served from the project alias above.
+
+**Custom domain:** `katherinetaylorescort.com` is not bound yet. In Cloudflare Pages → **katherine-taylor-website** → **Custom domains**, add the domain and follow DNS/CNAME instructions.
+
 ## Build settings (Cloudflare Dashboard)
 
 | Setting | Value |
@@ -52,4 +63,4 @@ For full API parity (AI content, luxury inquiry), deploy `dist/server` to a Node
 
 - `vercel.json` SPA rewrites → `public/_redirects` + `wrangler.toml`
 - Remove `.vercel/` after first successful Cloudflare preview
-- Update canonical URLs from `*.vercel.app` to `katherinetaylorescort.com`
+- Update canonical URLs from `*.vercel.app` to `katherinetaylorescort.com` (after custom domain is bound in Pages)
