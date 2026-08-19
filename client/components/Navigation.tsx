@@ -1,10 +1,9 @@
-import * as React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { cn } from "@/lib/utils";
 
-// Route prefetch mapping for lazy-loaded pages
-const routePrefetchMap: Record<string, () => Promise<any>> = {
+const routePrefetchMap: Record<string, () => Promise<unknown>> = {
   "/about": () => import("@/pages/About"),
   "/gifts": () => import("@/pages/Gifts"),
   "/journal": () => import("@/pages/Journal"),
@@ -42,81 +41,77 @@ const Navigation = () => {
     };
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen((previous) => !previous);
-  };
+  useEffect(() => {
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
 
-  const handleLinkClick = () => {
-    setIsMenuOpen(false);
-  };
-
-  // Prefetch route on hover for instant navigation
   const handleMouseEnter = (href: string) => {
     const prefetch = routePrefetchMap[href];
     if (prefetch) {
-      prefetch().catch(() => {
-        // Silently fail if prefetch errors
-      });
+      prefetch().catch(() => {});
     }
   };
 
   return (
     <nav
       className={cn(
-        "fixed top-0 z-50 w-full px-8 transition-all duration-400 ease-out",
+        "fixed top-0 z-50 w-full px-4 transition-all duration-400 ease-out md:px-8",
         scrolled
-          ? "bg-luxury-white/95 py-4 backdrop-blur-sm shadow-luxury-sm"
-          : "bg-luxury-white/80 py-8 backdrop-blur-sm",
+          ? "bg-luxury-white/95 py-3 backdrop-blur-sm shadow-luxury-sm md:py-4"
+          : "bg-luxury-white/80 py-5 backdrop-blur-sm md:py-8",
       )}
     >
       <div className="mx-auto flex max-w-luxury items-center justify-between">
-        <a
-          href="/"
+        <Link
+          to="/"
           className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
         >
-          <span className="text-2xl font-serif font-extralight uppercase tracking-uppercase leading-[1.1] text-luxury-black max-md:text-xl">
+          <span className="font-serif text-xl font-extralight uppercase leading-[1.1] tracking-uppercase text-luxury-black md:text-2xl">
             KATHERINE TAYLOR
           </span>
-        </a>
+        </Link>
         <button
           type="button"
-          onClick={toggleMenu}
-          className="text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 max-md:block hidden"
+          onClick={() => setIsMenuOpen((previous) => !previous)}
+          className="text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:hidden"
           aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
         >
           {isMenuOpen ? "Close" : "Menu"}
         </button>
-        <ul className="max-md:hidden flex items-center gap-12">
+        <ul className="hidden items-center gap-8 md:flex lg:gap-12">
           {navigationLinks.map((link) => (
             <li key={link.label}>
-              <a
-                href={link.href}
+              <Link
+                to={link.href}
                 onMouseEnter={() => handleMouseEnter(link.href)}
                 className="text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
       </div>
-      {isMenuOpen && (
-        <div className="mt-6 border-t border-gray-200 px-2 pt-6 max-md:block hidden">
-          <ul className="flex flex-col gap-4">
+      {isMenuOpen ? (
+        <div className="mt-4 border-t border-gray-200 px-2 pt-4 md:hidden">
+          <ul className="flex flex-col gap-2">
             {navigationLinks.map((link) => (
               <li key={link.label}>
-                <a
-                  href={link.href}
-                  onClick={handleLinkClick}
-                  className="block py-4 text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                <Link
+                  to={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block py-3 text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
         </div>
-      )}
+      ) : null}
     </nav>
   );
 };

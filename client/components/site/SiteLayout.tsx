@@ -9,11 +9,13 @@ const SiteLayout = ({ children }: PropsWithChildren) => {
   const isHomepage = pathname === "/";
 
   return (
-    <div className="flex min-h-screen flex-col bg-luxury-white text-gray-700">
+    <div className="flex min-h-screen w-full max-w-[100vw] flex-col overflow-x-hidden bg-luxury-white text-gray-700">
       <Navigation />
       <div
         className={
-          isHomepage ? "flex-1" : "flex-1 pt-28 md:pt-44 lg:pt-48 max-md:pt-24"
+          isHomepage
+            ? "min-w-0 flex-1"
+            : "min-w-0 flex-1 pt-24 md:pt-44 lg:pt-48"
         }
       >
         {children}
