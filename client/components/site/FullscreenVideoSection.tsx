@@ -206,21 +206,37 @@ export default function FullscreenVideoSection({
       return;
     }
 
+    const syncPlayback = (intersecting?: boolean) => {
+      const section = container.closest("[data-fullpage-section]");
+      const sectionActive =
+        !section || section.getAttribute("data-active") === "true";
+      const shouldPlay =
+        sectionActive && (intersecting === undefined || intersecting);
+
+      if (shouldPlay) {
+        attemptPlay();
+      } else {
+        element.pause();
+      }
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
-          attemptPlay();
-        } else if (!entry.isIntersecting && entry.intersectionRatio === 0) {
-          element.pause();
-        }
+        syncPlayback(entry.isIntersecting && entry.intersectionRatio >= 0.15);
       },
       { threshold: [0, 0.15, 0.35, 0.6, 1] },
     );
 
     observer.observe(container);
-    attemptPlay();
+    syncPlayback(true);
 
-    return () => observer.disconnect();
+    const onFullPageChange = () => syncPlayback();
+    window.addEventListener("fullpage:change", onFullPageChange);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("fullpage:change", onFullPageChange);
+    };
   }, [attemptPlay, currentSrc]);
 
   useEffect(() => {
@@ -281,8 +297,7 @@ export default function FullscreenVideoSection({
           playsInline
           preload={priority ? "auto" : "metadata"}
           poster={posterSrc}
-          // @ts-expect-error fetchPriority is valid on video in modern browsers
-          fetchPriority={priority ? "high" : "auto"}
+          fetchpriority={priority ? "high" : "auto"}
           onPlaying={handleVideoPlaying}
           onError={tryNextSource}
         />

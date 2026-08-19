@@ -1,6 +1,6 @@
 export default function GallerySection() {
   return (
-    <section className="gallery-placeholder flex flex-col items-center text-center max-w-xl mx-auto px-6 py-8" aria-hidden="true">
+    <div className="gallery-placeholder mx-auto flex min-h-full max-w-xl flex-col items-center justify-center px-6 py-8 text-center" aria-hidden="true">
       {/* Image */}
       <img
         src="/katherinewindow.webp"
@@ -22,6 +22,6 @@ export default function GallerySection() {
       >
         Explore
       </a>
-    </section>
+    </div>
   );
 }

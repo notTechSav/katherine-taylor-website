@@ -33,17 +33,25 @@ const Navigation = () => {
       setScrolled(window.scrollY > 50);
     };
 
+    const handleFullPage = (event: WindowEventMap["fullpage:change"]) => {
+      setScrolled(event.detail.index > 0);
+    };
+
     window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("fullpage:change", handleFullPage);
     handleScroll();
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("fullpage:change", handleFullPage);
     };
   }, []);
 
   useEffect(() => {
+    document.documentElement.toggleAttribute("data-menu-open", isMenuOpen);
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
+      document.documentElement.removeAttribute("data-menu-open");
       document.body.style.overflow = "";
     };
   }, [isMenuOpen]);
