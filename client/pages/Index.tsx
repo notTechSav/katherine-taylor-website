@@ -30,7 +30,9 @@ const Index = () => {
       <section
         id="about-slide"
         data-fullpage-section
-        className={sectionClass("bg-[#fdfaf6] md:hidden")}
+        className={sectionClass(
+          "bg-[#fdfaf6] bg-[url('/about-slide-mobile.webp')] bg-cover bg-center bg-no-repeat md:hidden",
+        )}
         aria-label="About Section"
       >
         <AboutSection />
