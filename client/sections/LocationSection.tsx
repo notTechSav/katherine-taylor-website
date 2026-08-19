@@ -18,7 +18,7 @@ const SanFranciscoTeaserSection = () => {
             Where I spend most of my time with clients. Where continuity happens. I know this city the way you know your own patterns—where discretion matters, which hotels understand privacy, how to move through the city without friction.
           </p>
           <a
-            href="/san-francisco"
+            href="/memoirs-in-the-city"
             className="inline-flex items-center text-sm font-light uppercase tracking-uppercase text-white underline decoration-1 underline-offset-4 transition-opacity duration-250 hover:opacity-70"
           >
             Explore San Francisco

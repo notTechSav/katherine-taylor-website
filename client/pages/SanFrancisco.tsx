@@ -20,10 +20,10 @@ const SanFranciscoPage = () => {
   return (
     <div className="bg-luxury-white text-luxury-black">
       <Helmet>
-        <title>Katherine Taylor - Elite San Francisco Escort | Luxury Companion Bay Area</title>
-        <meta name="description" content="Katherine Taylor - independent luxury escort serving San Francisco's tech elite. High-end dinner dates, overnight arrangements, travel companionship. Pacific Heights, Nob Hill, Financial District. Verified, discreet, exceptional." />
-        <link rel="canonical" href={absoluteUrl("/san-francisco")} />
-        <meta property="og:url" content={absoluteUrl("/san-francisco")} />
+        <title>San Francisco escorts - escorts near me | Memoirs in the City</title>
+        <meta name="description" content="After going viral at a Warriors game, Katherine Taylor vanished from San Francisco. Searches turned up nothing. This is why she left—and why she's back." />
+        <link rel="canonical" href={absoluteUrl("/memoirs-in-the-city")} />
+        <meta property="og:url" content={absoluteUrl("/memoirs-in-the-city")} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
@@ -59,8 +59,8 @@ const SanFranciscoPage = () => {
       </Helmet>
 
       <PageHeroOverlay
-        title="San Francisco"
-        subtitle="Where I spend most of my time with clients. Where continuity happens."
+        title="Memoirs in the City"
+        subtitle="Why I left San Francisco—and why I'm back."
         eyebrow="The City"
         imageSrc={heroImage.src}
         imageAlt={heroImage.alt}

@@ -1,3 +1,4 @@
+import { HelmetProvider } from "react-helmet-async";
 import "./global.css";
 
 import "./setup/patchViteOverlay";
@@ -73,6 +74,7 @@ const AppRoutes = () => {
           <Route path="/maison" element={withLayout(Maison)} />
           <Route path="/services" element={withLayout(Services)} />
           <Route path="/san-francisco" element={withLayout(SanFrancisco)} />
+          <Route path="/memoirs-in-the-city" element={withLayout(SanFrancisco)} />
           <Route path="/content-generator" element={withLayout(ContentGenerator)} />
           <Route path="/ai-concierge" element={withLayout(AIConcierge)} />
           <Route path="*" element={withLayout(NotFound)} />
@@ -88,15 +90,17 @@ const AppRoutes = () => {
 };
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <AppRoutes />
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+  <HelmetProvider>
+    <QueryClientProvider client={queryClient}>
+      <TooltipProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
+          <AppRoutes />
+        </BrowserRouter>
+      </TooltipProvider>
+    </QueryClientProvider>
+  </HelmetProvider>
 );
 
 const container = document.getElementById("root");
