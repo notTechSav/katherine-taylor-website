@@ -10,9 +10,9 @@ const openingStream =
   "https://customer-xyp94kxe4za8b3w1.cloudflarestream.com/f17ef86e3e7fbfa3d2d58dd3bd3d9065";
 
 export const openingVideo: VideoAsset = {
-  src: `${openingStream}/manifest/video.m3u8`,
-  fallbackSrc: "/videos/opening.mp4",
-  poster: `${openingStream}/thumbnails/thumbnail.jpg?height=600`,
+  // clientBandwidthHint biases Safari/native HLS toward 1080p (~3.9 Mbps top rendition)
+  src: `${openingStream}/manifest/video.m3u8?clientBandwidthHint=3.5`,
+  poster: `${openingStream}/thumbnails/thumbnail.jpg?time=0s&height=1080`,
   objectPosition: "center 30%",
 };
 

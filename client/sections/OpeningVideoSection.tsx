@@ -9,7 +9,7 @@ export default function OpeningVideoSection() {
       fallbackSrc={openingVideo.fallbackSrc}
       posterSrc={openingVideo.poster}
       objectPosition={openingVideo.objectPosition}
-      overlayClassName="bg-black/35 md:bg-black/45"
+      overlayClassName="bg-black/20 md:bg-black/30"
       priority
     >
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end px-4 pb-16 pt-28 text-white sm:px-6 sm:pb-24 md:pb-28">

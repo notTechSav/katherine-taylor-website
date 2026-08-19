@@ -1,5 +1,12 @@
 import { Volume2, VolumeX } from "lucide-react";
-import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 
 import { isHlsSource } from "@/lib/video-sections";
 import { cn } from "@/lib/utils";
@@ -9,7 +16,8 @@ type HlsInstance = {
   loadSource: (src: string) => void;
   attachMedia: (element: HTMLMediaElement) => void;
   on: (event: string, callback: (...args: unknown[]) => void) => void;
-  Events: { MANIFEST_PARSED: string; ERROR: string };
+  startLevel: number;
+  levels: unknown[];
 };
 
 type FullscreenVideoSectionProps = {
@@ -22,6 +30,43 @@ type FullscreenVideoSectionProps = {
   children: ReactNode;
 };
 
+function markVideoRendering(
+  element: HTMLVideoElement,
+  onActive: () => void,
+): () => void {
+  if (
+    element.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA &&
+    element.videoWidth > 0
+  ) {
+    onActive();
+    return () => {};
+  }
+
+  const videoWithFrameCallback = element as HTMLVideoElement & {
+    requestVideoFrameCallback?: (
+      callback: () => void,
+    ) => number;
+    cancelVideoFrameCallback?: (handle: number) => void;
+  };
+
+  if (videoWithFrameCallback.requestVideoFrameCallback) {
+    const id = videoWithFrameCallback.requestVideoFrameCallback(() =>
+      onActive(),
+    );
+    return () => videoWithFrameCallback.cancelVideoFrameCallback?.(id);
+  }
+
+  const onTimeUpdate = () => {
+    if (element.currentTime > 0 && element.videoWidth > 0) {
+      onActive();
+      element.removeEventListener("timeupdate", onTimeUpdate);
+    }
+  };
+
+  element.addEventListener("timeupdate", onTimeUpdate);
+  return () => element.removeEventListener("timeupdate", onTimeUpdate);
+}
+
 export default function FullscreenVideoSection({
   videoSrc,
   fallbackSrc,
@@ -31,8 +76,10 @@ export default function FullscreenVideoSection({
   priority = false,
   children,
 }: FullscreenVideoSectionProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<HlsInstance | null>(null);
+  const isMutedRef = useRef(true);
   const [isMuted, setIsMuted] = useState(true);
   const [videoActive, setVideoActive] = useState(false);
   const [sourceIndex, setSourceIndex] = useState(0);
@@ -50,6 +97,37 @@ export default function FullscreenVideoSection({
     );
   }, [sources.length]);
 
+  const attemptPlay = useCallback(() => {
+    const element = videoRef.current;
+    if (!element) {
+      return;
+    }
+
+    element.muted = isMutedRef.current;
+    const playPromise = element.play();
+    if (playPromise) {
+      playPromise.catch(() => {});
+    }
+  }, []);
+
+  const handleVideoPlaying = useCallback(() => {
+    const element = videoRef.current;
+    if (!element) {
+      return;
+    }
+
+    markVideoRendering(element, () => setVideoActive(true));
+    attemptPlay();
+  }, [attemptPlay]);
+
+  useEffect(() => {
+    isMutedRef.current = isMuted;
+    const element = videoRef.current;
+    if (element) {
+      element.muted = isMuted;
+    }
+  }, [isMuted]);
+
   useEffect(() => {
     const element = videoRef.current;
     if (!element || !currentSrc) {
@@ -66,18 +144,17 @@ export default function FullscreenVideoSection({
     let cancelled = false;
 
     const play = () => {
-      element.muted = isMuted;
-      const playPromise = element.play();
-      if (playPromise) {
-        playPromise.catch(() => {});
+      if (cancelled) {
+        return;
       }
+      attemptPlay();
     };
 
     if (isHlsSource(currentSrc)) {
       if (element.canPlayType("application/vnd.apple.mpegurl")) {
         element.src = currentSrc;
         element.load();
-        play();
+        element.addEventListener("loadeddata", play, { once: true });
       } else {
         void import("hls.js").then(({ default: Hls }) => {
           if (cancelled || !videoRef.current) {
@@ -85,9 +162,18 @@ export default function FullscreenVideoSection({
           }
 
           if (Hls.isSupported()) {
-            const hls = new Hls();
+            const hls = new Hls({
+              capLevelToPlayerSize: false,
+              startLevel: -1,
+              maxMaxBufferLength: 60,
+            });
             hlsRef.current = hls;
-            hls.on(Hls.Events.MANIFEST_PARSED, play);
+            hls.on(Hls.Events.MANIFEST_PARSED, () => {
+              if (hls.levels.length > 0) {
+                hls.startLevel = hls.levels.length - 1;
+              }
+              play();
+            });
             hls.on(Hls.Events.ERROR, (_, data: { fatal?: boolean }) => {
               if (data.fatal) {
                 tryNextSource();
@@ -103,7 +189,7 @@ export default function FullscreenVideoSection({
     } else {
       element.src = currentSrc;
       element.load();
-      play();
+      element.addEventListener("loadeddata", play, { once: true });
     }
 
     return () => {
@@ -111,7 +197,42 @@ export default function FullscreenVideoSection({
       hlsRef.current?.destroy();
       hlsRef.current = null;
     };
-  }, [currentSrc, isMuted, tryNextSource]);
+  }, [attemptPlay, currentSrc, tryNextSource]);
+
+  useEffect(() => {
+    const container = containerRef.current;
+    const element = videoRef.current;
+    if (!container || !element || !currentSrc) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+          attemptPlay();
+        } else if (!entry.isIntersecting) {
+          element.pause();
+        }
+      },
+      { threshold: [0, 0.35, 0.6, 1] },
+    );
+
+    observer.observe(container);
+    attemptPlay();
+
+    return () => observer.disconnect();
+  }, [attemptPlay, currentSrc]);
+
+  useEffect(() => {
+    const retry = () => attemptPlay();
+    document.addEventListener("touchstart", retry, { once: true, passive: true });
+    document.addEventListener("pointerdown", retry, { once: true });
+
+    return () => {
+      document.removeEventListener("touchstart", retry);
+      document.removeEventListener("pointerdown", retry);
+    };
+  }, [attemptPlay]);
 
   const toggleMute = () => {
     const element = videoRef.current;
@@ -120,6 +241,7 @@ export default function FullscreenVideoSection({
     }
 
     const nextMuted = !isMuted;
+    isMutedRef.current = nextMuted;
     element.muted = nextMuted;
     if (element.paused) {
       void element.play();
@@ -128,7 +250,10 @@ export default function FullscreenVideoSection({
   };
 
   return (
-    <div className="relative h-full w-full min-w-0 overflow-hidden bg-luxury-black">
+    <div
+      ref={containerRef}
+      className="relative h-full w-full min-w-0 overflow-hidden bg-luxury-black"
+    >
       <div
         aria-hidden="true"
         className={cn(
@@ -158,8 +283,7 @@ export default function FullscreenVideoSection({
           poster={posterSrc}
           // @ts-expect-error fetchPriority is valid on video in modern browsers
           fetchPriority={priority ? "high" : "auto"}
-          onCanPlay={() => setVideoActive(true)}
-          onPlaying={() => setVideoActive(true)}
+          onPlaying={handleVideoPlaying}
           onError={tryNextSource}
         />
       ) : null}
@@ -168,7 +292,7 @@ export default function FullscreenVideoSection({
 
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/5 bg-gradient-to-t from-black/75 via-black/35 to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/5 bg-gradient-to-t from-black/60 via-black/25 to-transparent"
       />
 
       {videoActive ? (
