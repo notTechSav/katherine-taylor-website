@@ -3,6 +3,7 @@ import AboutSection from "@/sections/AboutSection";
 import BlogTeaserSection from "@/sections/BlogTeaserSection";
 import ClosingVideoSection from "@/sections/ClosingVideoSection";
 import FAQTeaserSection from "@/sections/FAQTeaserSection";
+import FullBleedPhoto from "@/components/site/FullBleedPhoto";
 import FullPageSections from "@/components/site/FullPageSections";
 import GallerySection from "@/sections/GallerySection";
 import GiftsSection from "@/sections/GiftsSection";
@@ -30,24 +31,20 @@ const Index = () => {
       <section
         id="about-slide"
         data-fullpage-section
-        className={sectionClass(
-          "bg-[#fdfaf6] bg-cover bg-center bg-no-repeat md:hidden",
-        )}
-        style={{ backgroundImage: "url('/about-slide-mobile.webp?v=hires2')" }}
+        className={sectionClass("bg-[#fdfaf6] md:hidden")}
         aria-label="About Section"
       >
+        <FullBleedPhoto src="/about-slide-mobile.webp?v=hires2" />
         <AboutSection />
       </section>
 
       <section
         id="gallery-slide"
         data-fullpage-section
-        className={sectionClass(
-          "bg-[#fdfaf6] bg-cover bg-center bg-no-repeat md:hidden",
-        )}
-        style={{ backgroundImage: "url('/katherinewindow.webp?v=hires2')" }}
+        className={sectionClass("bg-[#fdfaf6] md:hidden")}
         aria-label="Gallery Section"
       >
+        <FullBleedPhoto src="/katherinewindow.webp?v=hires2" />
         <GallerySection />
       </section>
 
@@ -72,48 +69,40 @@ const Index = () => {
       <section
         id="gifts"
         data-fullpage-section
-        className={sectionClass(
-          "bg-luxury-cream bg-cover bg-center bg-no-repeat",
-        )}
-        style={{ backgroundImage: "url('/gifts-slide.webp?v=hires2')" }}
+        className={sectionClass("bg-luxury-cream")}
         aria-label="Gifts Section"
       >
+        <FullBleedPhoto src="/gifts-slide.webp?v=hires2" />
         <GiftsSection />
       </section>
 
       <section
         id="blog-teaser"
         data-fullpage-section
-        className={sectionClass(
-          "bg-luxury-cream bg-cover bg-center bg-no-repeat",
-        )}
-        style={{ backgroundImage: "url('/journal-slide.webp?v=hires2')" }}
+        className={sectionClass("bg-luxury-cream")}
         aria-label="Blog Teaser"
       >
+        <FullBleedPhoto src="/journal-slide.webp?v=hires2" />
         <BlogTeaserSection />
       </section>
 
       <section
         id="faq-teaser"
         data-fullpage-section
-        className={sectionClass(
-          "bg-luxury-cream bg-cover bg-center bg-no-repeat",
-        )}
-        style={{ backgroundImage: "url('/faq-slide.webp?v=hires2')" }}
+        className={sectionClass("bg-luxury-cream")}
         aria-label="FAQ Teaser"
       >
+        <FullBleedPhoto src="/faq-slide.webp?v=hires2" />
         <FAQTeaserSection />
       </section>
 
       <section
         id="location"
         data-fullpage-section
-        className={sectionClass(
-          "bg-luxury-cream bg-cover bg-center bg-no-repeat",
-        )}
-        style={{ backgroundImage: "url('/location-slide.webp?v=hires2')" }}
+        className={sectionClass("bg-luxury-cream")}
         aria-label="San Francisco Location"
       >
+        <FullBleedPhoto src="/location-slide.webp?v=hires2" />
         <LocationSection />
       </section>
 

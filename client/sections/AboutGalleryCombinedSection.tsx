@@ -1,13 +1,13 @@
+import FullBleedPhoto from "@/components/site/FullBleedPhoto";
+
 export default function AboutGalleryCombinedSection() {
   return (
-    <div className="h-full w-full grid grid-cols-2">
+    <div className="grid h-full w-full grid-cols-2">
       {/* Left Column: About */}
-      <div
-        className="relative flex h-full flex-col items-center justify-center bg-cover bg-center bg-no-repeat px-6 py-12"
-        style={{ backgroundImage: "url('/about-slide-mobile.webp?v=hires2')" }}
-      >
+      <div className="relative flex h-full flex-col items-center justify-center px-6 py-12">
+        <FullBleedPhoto src="/about-slide-mobile.webp?v=hires2" sizes="50vw" />
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 z-[1]"
           style={{
             background:
               "linear-gradient(to top, rgba(17,17,17,0.5) 0%, rgba(17,17,17,0.2) 50%, rgba(17,17,17,0.15) 100%)",
@@ -26,12 +26,10 @@ export default function AboutGalleryCombinedSection() {
       </div>
 
       {/* Right Column: Gallery */}
-      <div
-        className="relative flex h-full flex-col items-center justify-center bg-cover bg-center bg-no-repeat px-6 py-12"
-        style={{ backgroundImage: "url('/katherinewindow.webp?v=hires2')" }}
-      >
+      <div className="relative flex h-full flex-col items-center justify-center px-6 py-12">
+        <FullBleedPhoto src="/katherinewindow.webp?v=hires2" sizes="50vw" />
         <div
-          className="absolute inset-0"
+          className="absolute inset-0 z-[1]"
           style={{
             background:
               "linear-gradient(to top, rgba(17,17,17,0.5) 0%, rgba(17,17,17,0.2) 50%, rgba(17,17,17,0.15) 100%)",

@@ -141,16 +141,19 @@ function applySettledTransforms(sections: HTMLElement[], activeIndex: number) {
       section.tabIndex = -1;
       section.style.zIndex = "2";
       section.style.visibility = "visible";
-      section.style.transform = "translate3d(0, 0, 0)";
+      section.style.transform = "none";
+      section.style.backfaceVisibility = "visible";
     } else if (index < activeIndex) {
       section.style.zIndex = "0";
       section.style.visibility = "hidden";
-      section.style.transform = "translate3d(0, 0, 0)";
+      section.style.transform = "none";
+      section.style.backfaceVisibility = "visible";
     } else {
       section.scrollTop = 0;
       section.style.zIndex = "0";
       section.style.visibility = "hidden";
       section.style.transform = "translate3d(0, 100%, 0)";
+      section.style.backfaceVisibility = "hidden";
     }
 
     setInert(section, !isActive);

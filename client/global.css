@@ -242,13 +242,18 @@
     overflow-y: auto;
     overscroll-behavior: contain;
     -webkit-overflow-scrolling: touch;
-    backface-visibility: hidden;
     transform: translate3d(0, 100%, 0);
   }
 
   html.fullpage-is-ready .fullpage-section.is-active,
   html.fullpage-is-ready .fullpage-section.is-passed {
-    transform: translate3d(0, 0, 0);
+    transform: none;
+    backface-visibility: visible;
+  }
+
+  html.fullpage-is-ready .fullpage-section.is-upcoming,
+  html.fullpage-is-ready .fullpage-section.is-transitioning {
+    backface-visibility: hidden;
   }
 
   html.fullpage-is-ready .fullpage-section.is-upcoming {

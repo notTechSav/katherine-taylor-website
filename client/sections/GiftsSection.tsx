@@ -1,6 +1,6 @@
 const GiftsBannerSection = () => {
   return (
-    <div className="relative flex min-h-full w-full items-center justify-center">
+    <div className="relative z-10 flex min-h-full w-full items-center justify-center">
       <div
         className="absolute inset-0"
         style={{
