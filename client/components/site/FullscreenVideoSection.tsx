@@ -24,6 +24,7 @@ type FullscreenVideoSectionProps = {
   videoSrc: string;
   fallbackSrc?: string;
   posterSrc: string;
+  posterMobileSrc?: string;
   overlayClassName?: string;
   objectPosition?: string;
   priority?: boolean;
@@ -71,6 +72,7 @@ export default function FullscreenVideoSection({
   videoSrc,
   fallbackSrc,
   posterSrc,
+  posterMobileSrc,
   overlayClassName = "bg-black/50",
   objectPosition = "center center",
   priority = false,
@@ -83,6 +85,20 @@ export default function FullscreenVideoSection({
   const [isMuted, setIsMuted] = useState(true);
   const [videoActive, setVideoActive] = useState(false);
   const [sourceIndex, setSourceIndex] = useState(0);
+  const [holdMobilePoster, setHoldMobilePoster] = useState(false);
+
+  useEffect(() => {
+    if (!posterMobileSrc) {
+      setHoldMobilePoster(false);
+      return;
+    }
+
+    const media = window.matchMedia("(max-width: 767px)");
+    const sync = () => setHoldMobilePoster(media.matches);
+    sync();
+    media.addEventListener("change", sync);
+    return () => media.removeEventListener("change", sync);
+  }, [posterMobileSrc]);
 
   const sources = useMemo(
     () => [videoSrc, fallbackSrc].filter(Boolean) as string[],
@@ -130,7 +146,10 @@ export default function FullscreenVideoSection({
 
   useEffect(() => {
     const element = videoRef.current;
-    if (!element || !currentSrc) {
+    if (!element || !currentSrc || holdMobilePoster) {
+      if (holdMobilePoster) {
+        setVideoActive(false);
+      }
       return;
     }
 
@@ -197,12 +216,12 @@ export default function FullscreenVideoSection({
       hlsRef.current?.destroy();
       hlsRef.current = null;
     };
-  }, [attemptPlay, currentSrc, tryNextSource]);
+  }, [attemptPlay, currentSrc, holdMobilePoster, tryNextSource]);
 
   useEffect(() => {
     const container = containerRef.current;
     const element = videoRef.current;
-    if (!container || !element || !currentSrc) {
+    if (!container || !element || !currentSrc || holdMobilePoster) {
       return;
     }
 
@@ -237,7 +256,7 @@ export default function FullscreenVideoSection({
       observer.disconnect();
       window.removeEventListener("fullpage:change", onFullPageChange);
     };
-  }, [attemptPlay, currentSrc]);
+  }, [attemptPlay, currentSrc, holdMobilePoster]);
 
   useEffect(() => {
     const retry = () => attemptPlay();
@@ -270,10 +289,22 @@ export default function FullscreenVideoSection({
       ref={containerRef}
       className="relative h-full w-full min-w-0 overflow-hidden bg-luxury-black"
     >
+      {posterMobileSrc ? (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
+          style={{
+            backgroundImage: `url(${posterMobileSrc})`,
+            backgroundPosition: objectPosition,
+          }}
+        />
+      ) : null}
+
       <div
         aria-hidden="true"
         className={cn(
           "absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 ease-out",
+          posterMobileSrc && "max-md:hidden",
           videoActive ? "opacity-0" : "opacity-100",
         )}
         style={{
@@ -282,12 +313,13 @@ export default function FullscreenVideoSection({
         }}
       />
 
-      {currentSrc ? (
+      {currentSrc && !holdMobilePoster ? (
         <video
           ref={videoRef}
           key={currentSrc}
           className={cn(
             "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
+            posterMobileSrc && "max-md:hidden",
             videoActive ? "opacity-100" : "opacity-0",
           )}
           style={{ objectPosition }}
@@ -310,11 +342,14 @@ export default function FullscreenVideoSection({
         className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/5 bg-gradient-to-t from-black/60 via-black/25 to-transparent"
       />
 
-      {videoActive ? (
+      {videoActive && !holdMobilePoster ? (
         <button
           type="button"
           onClick={toggleMute}
-          className="absolute bottom-6 right-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur transition hover:bg-black/50 sm:right-6"
+          className={cn(
+            "absolute bottom-6 right-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur transition hover:bg-black/50 sm:right-6",
+            posterMobileSrc && "max-md:hidden",
+          )}
           aria-label={isMuted ? "Unmute video" : "Mute video"}
         >
           {isMuted ? (

@@ -3,6 +3,8 @@ export type VideoAsset = {
   /** Optional fallback if the primary source fails (local MP4, remote MP4, etc.). */
   fallbackSrc?: string;
   poster: string;
+  /** Optional portrait poster shown below the Tailwind md breakpoint. */
+  posterMobile?: string;
   objectPosition?: string;
 };
 
@@ -21,6 +23,7 @@ export const ratesVideo: VideoAsset = {
   fallbackSrc:
     "https://res.cloudinary.com/katherine-taylor-escort-video/video/upload/q_70,f_auto/v1760312600/The_Story_Continues_Katherine_Taylor_Escort_slmfra.mp4",
   poster: "/journal-teaser-bg.webp",
+  posterMobile: "/rates-video-poster-mobile.webp",
   objectPosition: "center center",
 };
 
