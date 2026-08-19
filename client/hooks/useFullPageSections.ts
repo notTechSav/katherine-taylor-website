@@ -125,6 +125,11 @@ function cancelSectionAnimations(section: HTMLElement) {
   section.getAnimations().forEach((animation) => animation.cancel());
 }
 
+function clearCompositor(section: HTMLElement) {
+  section.style.removeProperty("transform");
+  section.style.removeProperty("backface-visibility");
+}
+
 function applySettledTransforms(sections: HTMLElement[], activeIndex: number) {
   sections.forEach((section, index) => {
     const isActive = index === activeIndex;
@@ -141,13 +146,11 @@ function applySettledTransforms(sections: HTMLElement[], activeIndex: number) {
       section.tabIndex = -1;
       section.style.zIndex = "2";
       section.style.visibility = "visible";
-      section.style.transform = "none";
-      section.style.backfaceVisibility = "visible";
+      clearCompositor(section);
     } else if (index < activeIndex) {
       section.style.zIndex = "0";
       section.style.visibility = "hidden";
-      section.style.transform = "none";
-      section.style.backfaceVisibility = "visible";
+      clearCompositor(section);
     } else {
       section.scrollTop = 0;
       section.style.zIndex = "0";

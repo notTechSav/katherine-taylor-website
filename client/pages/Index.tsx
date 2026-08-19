@@ -34,7 +34,7 @@ const Index = () => {
         className={sectionClass("bg-[#fdfaf6] md:hidden")}
         aria-label="About Section"
       >
-        <FullBleedPhoto src="/about-slide-mobile.webp?v=hires2" />
+        <FullBleedPhoto src="/about-slide-mobile.webp?v=hires3" />
         <AboutSection />
       </section>
 
@@ -44,7 +44,7 @@ const Index = () => {
         className={sectionClass("bg-[#fdfaf6] md:hidden")}
         aria-label="Gallery Section"
       >
-        <FullBleedPhoto src="/katherinewindow.webp?v=hires2" />
+        <FullBleedPhoto src="/katherinewindow.webp?v=hires3" />
         <GallerySection />
       </section>
 
@@ -72,7 +72,7 @@ const Index = () => {
         className={sectionClass("bg-luxury-cream")}
         aria-label="Gifts Section"
       >
-        <FullBleedPhoto src="/gifts-slide.webp?v=hires2" />
+        <FullBleedPhoto src="/gifts-slide.webp?v=hires3" />
         <GiftsSection />
       </section>
 
@@ -82,7 +82,7 @@ const Index = () => {
         className={sectionClass("bg-luxury-cream")}
         aria-label="Blog Teaser"
       >
-        <FullBleedPhoto src="/journal-slide.webp?v=hires2" />
+        <FullBleedPhoto src="/journal-slide.webp?v=hires3" />
         <BlogTeaserSection />
       </section>
 
@@ -92,7 +92,7 @@ const Index = () => {
         className={sectionClass("bg-luxury-cream")}
         aria-label="FAQ Teaser"
       >
-        <FullBleedPhoto src="/faq-slide.webp?v=hires2" />
+        <FullBleedPhoto src="/faq-slide.webp?v=hires3" />
         <FAQTeaserSection />
       </section>
 
@@ -102,7 +102,7 @@ const Index = () => {
         className={sectionClass("bg-luxury-cream")}
         aria-label="San Francisco Location"
       >
-        <FullBleedPhoto src="/location-slide.webp?v=hires2" />
+        <FullBleedPhoto src="/location-slide.webp?v=hires3" />
         <LocationSection />
       </section>
 

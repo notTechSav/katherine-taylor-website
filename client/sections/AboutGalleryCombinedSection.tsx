@@ -5,7 +5,7 @@ export default function AboutGalleryCombinedSection() {
     <div className="grid h-full w-full grid-cols-2">
       {/* Left Column: About */}
       <div className="relative flex h-full flex-col items-center justify-center px-6 py-12">
-        <FullBleedPhoto src="/about-slide-mobile.webp?v=hires2" sizes="50vw" />
+        <FullBleedPhoto src="/about-slide-mobile.webp?v=hires3" />
         <div
           className="absolute inset-0 z-[1]"
           style={{
@@ -27,7 +27,7 @@ export default function AboutGalleryCombinedSection() {
 
       {/* Right Column: Gallery */}
       <div className="relative flex h-full flex-col items-center justify-center px-6 py-12">
-        <FullBleedPhoto src="/katherinewindow.webp?v=hires2" sizes="50vw" />
+        <FullBleedPhoto src="/katherinewindow.webp?v=hires3" />
         <div
           className="absolute inset-0 z-[1]"
           style={{
