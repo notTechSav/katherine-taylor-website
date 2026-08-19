@@ -12,7 +12,7 @@ const openingStream =
 export const openingVideo: VideoAsset = {
   // clientBandwidthHint biases Safari/native HLS toward 1080p (~3.9 Mbps top rendition)
   src: `${openingStream}/manifest/video.m3u8?clientBandwidthHint=3.5`,
-  poster: `${openingStream}/thumbnails/thumbnail.jpg?time=0s&height=1080`,
+  poster: "/glam2.jpeg",
   objectPosition: "center 30%",
 };
 

@@ -208,13 +208,13 @@ export default function FullscreenVideoSection({
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.35) {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.15) {
           attemptPlay();
-        } else if (!entry.isIntersecting) {
+        } else if (!entry.isIntersecting && entry.intersectionRatio === 0) {
           element.pause();
         }
       },
-      { threshold: [0, 0.35, 0.6, 1] },
+      { threshold: [0, 0.15, 0.35, 0.6, 1] },
     );
 
     observer.observe(container);
