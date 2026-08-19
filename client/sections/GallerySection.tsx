@@ -1,27 +1,25 @@
 export default function GallerySection() {
   return (
-    <div className="gallery-placeholder mx-auto flex min-h-full max-w-xl flex-col items-center justify-center px-6 py-8 text-center" aria-hidden="true">
-      {/* Image */}
-      <img
-        src="/katherinewindow.webp"
-        alt="Gallery"
-        className="object-cover max-w-sm w-full mb-6"
-        loading="lazy"
-        decoding="async"
+    <div className="relative flex min-h-full w-full items-center justify-center">
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to top, rgba(17,17,17,0.5) 0%, rgba(17,17,17,0.2) 50%, rgba(17,17,17,0.15) 100%)",
+        }}
+        aria-hidden="true"
       />
-
-      {/* Heading */}
-      <h2 className="section-heading text-2xl font-serif uppercase tracking-wide mb-6">
-        Gallery
-      </h2>
-
-      {/* CTA Button */}
-      <a
-        href="/gallery"
-        className="text-sm uppercase border border-luxury-black px-4 py-2 transition-opacity duration-250 hover:opacity-70"
-      >
-        Explore
-      </a>
+      <div className="relative z-10 mx-auto flex max-w-xl flex-col items-center justify-center px-6 py-8 text-center">
+        <h2 className="mb-6 text-2xl font-serif uppercase tracking-wide text-white">
+          Gallery
+        </h2>
+        <a
+          href="/gallery"
+          className="border border-white px-4 py-2 text-sm uppercase text-white transition-opacity duration-250 hover:opacity-70"
+        >
+          Explore
+        </a>
+      </div>
     </div>
   );
 }

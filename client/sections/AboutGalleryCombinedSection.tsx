@@ -2,67 +2,51 @@ export default function AboutGalleryCombinedSection() {
   return (
     <div className="h-full w-full grid grid-cols-2">
       {/* Left Column: About */}
-      <div className="h-full flex flex-col justify-between bg-white px-6 py-12">
-        <div className="max-w-xl mx-auto flex flex-col justify-between h-full">
-          {/* Image container with top padding */}
-          <div className="flex justify-center pt-12">
-            <img
-              src="/about-me-hero.jpeg"
-              alt="About"
-              className="object-cover max-w-sm w-full max-h-[70vh]"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          {/* Text block - centered with bottom padding */}
-          <div className="text-center pb-12">
-            {/* Heading */}
-            <h2 className="text-xl font-serif uppercase tracking-wider mb-6 leading-tight">
-              About
-            </h2>
-
-            {/* CTA Button */}
-            <a
-              href="/about"
-              className="inline-block text-sm uppercase border border-luxury-black px-4 py-2 mb-12 transition-opacity duration-250 hover:opacity-70"
-            >
-              Discover
-            </a>
-          </div>
-        </div>
+      <div
+        className="relative flex h-full flex-col items-center justify-center bg-cover bg-center bg-no-repeat px-6 py-12"
+        style={{ backgroundImage: "url('/about-slide-mobile.webp?v=hires2')" }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(17,17,17,0.5) 0%, rgba(17,17,17,0.2) 50%, rgba(17,17,17,0.15) 100%)",
+          }}
+          aria-hidden="true"
+        />
+        <h2 className="relative z-10 mb-6 text-xl font-serif uppercase tracking-wider leading-tight text-white">
+          About
+        </h2>
+        <a
+          href="/about"
+          className="relative z-10 inline-block border border-white px-4 py-2 text-sm uppercase text-white transition-opacity duration-250 hover:opacity-70"
+        >
+          Discover
+        </a>
       </div>
 
       {/* Right Column: Gallery */}
-      <div className="h-full flex flex-col justify-between bg-white px-6 py-12">
-        <div className="max-w-xl mx-auto flex flex-col justify-between h-full">
-          {/* Image container with top padding */}
-          <div className="flex justify-center pt-12">
-            <img
-              src="/katherinewindow.webp"
-              alt="Gallery"
-              className="object-cover max-w-sm w-full max-h-[70vh]"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-
-          {/* Text block - centered with bottom padding */}
-          <div className="text-center pb-12">
-            {/* Heading */}
-            <h2 className="text-xl font-serif uppercase tracking-wider mb-6 leading-tight">
-              Gallery
-            </h2>
-
-            {/* CTA Button */}
-            <a
-              href="/gallery"
-              className="inline-block text-sm uppercase border border-luxury-black px-4 py-2 mb-12 transition-opacity duration-250 hover:opacity-70"
-            >
-              Explore
-            </a>
-          </div>
-        </div>
+      <div
+        className="relative flex h-full flex-col items-center justify-center bg-cover bg-center bg-no-repeat px-6 py-12"
+        style={{ backgroundImage: "url('/katherinewindow.webp?v=hires2')" }}
+      >
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "linear-gradient(to top, rgba(17,17,17,0.5) 0%, rgba(17,17,17,0.2) 50%, rgba(17,17,17,0.15) 100%)",
+          }}
+          aria-hidden="true"
+        />
+        <h2 className="relative z-10 mb-6 text-xl font-serif uppercase tracking-wider leading-tight text-white">
+          Gallery
+        </h2>
+        <a
+          href="/gallery"
+          className="relative z-10 inline-block border border-white px-4 py-2 text-sm uppercase text-white transition-opacity duration-250 hover:opacity-70"
+        >
+          Explore
+        </a>
       </div>
     </div>
   );

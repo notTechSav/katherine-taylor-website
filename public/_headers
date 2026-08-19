@@ -1,0 +1,5 @@
+# Custom domain (katherinetaylorescort.com) applies zone Browser Cache TTL
+# (~4h) on static assets. Keep the About mobile photo revalidate-friendly so
+# replacements are not stuck on phones after a same-URL update.
+/about-slide-mobile.webp
+  Cache-Control: public, max-age=0, must-revalidate

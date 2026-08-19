@@ -31,8 +31,9 @@ const Index = () => {
         id="about-slide"
         data-fullpage-section
         className={sectionClass(
-          "bg-[#fdfaf6] bg-[url('/about-slide-mobile.webp')] bg-cover bg-center bg-no-repeat md:hidden",
+          "bg-[#fdfaf6] bg-cover bg-center bg-no-repeat md:hidden",
         )}
+        style={{ backgroundImage: "url('/about-slide-mobile.webp?v=hires2')" }}
         aria-label="About Section"
       >
         <AboutSection />
@@ -41,7 +42,10 @@ const Index = () => {
       <section
         id="gallery-slide"
         data-fullpage-section
-        className={sectionClass("bg-[#fdfaf6] md:hidden")}
+        className={sectionClass(
+          "bg-[#fdfaf6] bg-cover bg-center bg-no-repeat md:hidden",
+        )}
+        style={{ backgroundImage: "url('/katherinewindow.webp?v=hires2')" }}
         aria-label="Gallery Section"
       >
         <GallerySection />
@@ -68,7 +72,10 @@ const Index = () => {
       <section
         id="gifts"
         data-fullpage-section
-        className={sectionClass("bg-luxury-cream")}
+        className={sectionClass(
+          "bg-luxury-cream bg-cover bg-center bg-no-repeat",
+        )}
+        style={{ backgroundImage: "url('/gifts-slide.webp?v=hires2')" }}
         aria-label="Gifts Section"
       >
         <GiftsSection />
@@ -77,7 +84,10 @@ const Index = () => {
       <section
         id="blog-teaser"
         data-fullpage-section
-        className={sectionClass("bg-luxury-black")}
+        className={sectionClass(
+          "bg-luxury-cream bg-cover bg-center bg-no-repeat",
+        )}
+        style={{ backgroundImage: "url('/journal-slide.webp?v=hires2')" }}
         aria-label="Blog Teaser"
       >
         <BlogTeaserSection />
@@ -86,7 +96,10 @@ const Index = () => {
       <section
         id="faq-teaser"
         data-fullpage-section
-        className={sectionClass("bg-luxury-cream")}
+        className={sectionClass(
+          "bg-luxury-cream bg-cover bg-center bg-no-repeat",
+        )}
+        style={{ backgroundImage: "url('/faq-slide.webp?v=hires2')" }}
         aria-label="FAQ Teaser"
       >
         <FAQTeaserSection />
@@ -95,7 +108,10 @@ const Index = () => {
       <section
         id="location"
         data-fullpage-section
-        className={sectionClass("bg-luxury-black")}
+        className={sectionClass(
+          "bg-luxury-cream bg-cover bg-center bg-no-repeat",
+        )}
+        style={{ backgroundImage: "url('/location-slide.webp?v=hires2')" }}
         aria-label="San Francisco Location"
       >
         <LocationSection />
