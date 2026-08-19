@@ -1,16 +1,26 @@
 import { type RefObject, useEffect } from "react";
 
-const TRANSITION_MS = 800;
+const TRANSFORM_MS = 800;
+const OPACITY_MS = 500;
 const REDUCED_MOTION_MS = 120;
-const WHEEL_THRESHOLD = 72;
-const WHEEL_RESET_MS = 180;
+const TRANSFORM_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+const OPACITY_EASE = "cubic-bezier(0.25, 0.1, 0.25, 1)";
+const INCOMING_OPACITY = 0.96;
+const WHEEL_THRESHOLD = 100;
+const WHEEL_IDLE_MS = 180;
+const WHEEL_COOLDOWN_MS = 320;
 const SWIPE_THRESHOLD = 48;
-const EASE = "cubic-bezier(0.77, 0, 0.175, 1)";
 
 const SECTION_ALIASES: Record<string, string[]> = {
   "about-slide": ["about-gallery-combined"],
   "gallery-slide": ["about-gallery-combined"],
   "about-gallery-combined": ["about-slide", "gallery-slide"],
+};
+
+type GoToOptions = {
+  instant?: boolean;
+  fromKeyboard?: boolean;
+  fromPointer?: boolean;
 };
 
 type FullPageChangeDetail = {
@@ -52,6 +62,18 @@ function isEditableTarget(target: EventTarget | null) {
 
 function isMenuOpen() {
   return document.documentElement.hasAttribute("data-menu-open");
+}
+
+function wheelDeltaPixels(event: WheelEvent) {
+  if (event.deltaMode === WheelEvent.DOM_DELTA_LINE) {
+    return event.deltaY * 16;
+  }
+
+  if (event.deltaMode === WheelEvent.DOM_DELTA_PAGE) {
+    return event.deltaY * window.innerHeight;
+  }
+
+  return event.deltaY;
 }
 
 function getScrollableAncestor(start: EventTarget | null, root: HTMLElement) {
@@ -99,26 +121,38 @@ function setInert(element: HTMLElement, inert: boolean) {
   element.removeAttribute("aria-hidden");
 }
 
+function cancelSectionAnimations(section: HTMLElement) {
+  section.getAnimations().forEach((animation) => animation.cancel());
+}
+
 function applySettledTransforms(sections: HTMLElement[], activeIndex: number) {
   sections.forEach((section, index) => {
     const isActive = index === activeIndex;
-    const isPassed = index < activeIndex;
-
+    cancelSectionAnimations(section);
     section.classList.toggle("is-active", isActive);
-    section.classList.toggle("is-passed", isPassed);
+    section.classList.toggle("is-passed", index < activeIndex);
     section.classList.toggle("is-upcoming", index > activeIndex);
+    section.classList.remove("is-transitioning");
     section.dataset.active = isActive ? "true" : "false";
+    section.style.opacity = "1";
+    section.style.pointerEvents = isActive ? "auto" : "none";
+
     if (isActive) {
       section.tabIndex = -1;
-    }
-    section.style.zIndex = isActive ? String(index + 10) : String(index + 1);
-    section.style.pointerEvents = isActive ? "auto" : "none";
-    if (index > activeIndex) {
+      section.style.zIndex = "2";
+      section.style.visibility = "visible";
+      section.style.transform = "translate3d(0, 0, 0)";
+    } else if (index < activeIndex) {
+      section.style.zIndex = "0";
+      section.style.visibility = "hidden";
+      section.style.transform = "translate3d(0, 0, 0)";
+    } else {
       section.scrollTop = 0;
+      section.style.zIndex = "0";
+      section.style.visibility = "hidden";
+      section.style.transform = "translate3d(0, 100%, 0)";
     }
-    section.style.transform = isPassed || isActive
-      ? "translate3d(0, 0, 0)"
-      : "translate3d(0, 100%, 0)";
+
     setInert(section, !isActive);
   });
 }
@@ -163,7 +197,9 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
     const html = document.documentElement;
     html.classList.add("fullpage-is-ready");
     let alive = true;
-    let unlockTimer = 0;
+    let cooldownTimer = 0;
+    let idleTimer = 0;
+    let wheelResetTimer = 0;
 
     const setViewportHeight = () => {
       const height = window.visualViewport?.height ?? window.innerHeight;
@@ -175,22 +211,25 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
     const state = {
       index: 0,
       locked: false,
+      pointerCooling: false,
+      cooldownElapsed: false,
+      internalGesture: false,
       sections: querySections(root),
       wheelAccum: 0,
       touchStartY: 0,
       touchStartX: 0,
-      animation: null as Animation | null,
+      animations: [] as Animation[],
       targetIndex: 0,
       queuedIndex: null as number | null,
-      queuedOptions: undefined as { instant?: boolean; fromKeyboard?: boolean } | undefined,
+      queuedOptions: undefined as GoToOptions | undefined,
     };
 
     const hashId = window.location.hash.replace(/^#/, "");
     if (hashId) {
       const hashIndex = resolveSectionIndex(state.sections, hashId);
       if (hashIndex >= 0) {
-      state.index = hashIndex;
-      state.targetIndex = hashIndex;
+        state.index = hashIndex;
+        state.targetIndex = hashIndex;
       }
     }
 
@@ -199,23 +238,84 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       dispatchChange(state.sections[state.index].id, state.index);
     }
 
-    const unlockSoon = () => {
-      window.clearTimeout(unlockTimer);
-      unlockTimer = window.setTimeout(() => {
-        if (alive) {
-          state.locked = false;
-        }
-      }, 40);
+    const clearPointerCooling = () => {
+      state.pointerCooling = false;
+      state.cooldownElapsed = false;
+      state.internalGesture = false;
+      state.wheelAccum = 0;
     };
 
-    const goTo = async (nextIndex: number, options?: { instant?: boolean; fromKeyboard?: boolean }) => {
+    const armIdleRelease = () => {
+      window.clearTimeout(idleTimer);
+      idleTimer = window.setTimeout(() => {
+        if (!alive || state.locked) {
+          return;
+        }
+
+        state.internalGesture = false;
+        state.wheelAccum = 0;
+
+        if (state.cooldownElapsed || !state.pointerCooling) {
+          clearPointerCooling();
+        }
+      }, WHEEL_IDLE_MS);
+    };
+
+    const beginPointerCooldown = () => {
+      state.pointerCooling = true;
+      state.cooldownElapsed = false;
+      state.wheelAccum = 0;
+      window.clearTimeout(cooldownTimer);
+      window.clearTimeout(idleTimer);
+      cooldownTimer = window.setTimeout(() => {
+        if (!alive) {
+          return;
+        }
+        state.cooldownElapsed = true;
+        armIdleRelease();
+      }, WHEEL_COOLDOWN_MS);
+    };
+
+    const finishMove = (toEl: HTMLElement, nextIndex: number, options?: GoToOptions) => {
+      state.animations.forEach((animation) => {
+        animation.commitStyles();
+        animation.cancel();
+      });
+      state.animations = [];
+      state.index = nextIndex;
+      state.targetIndex = nextIndex;
+      applySettledTransforms(state.sections, state.index);
+      syncHash(toEl.id);
+      dispatchChange(toEl.id, state.index);
+      if (options?.fromKeyboard) {
+        toEl.focus({ preventScroll: true });
+      }
+
+      const queuedIndex = state.queuedIndex;
+      const queuedOptions = state.queuedOptions;
+      state.queuedIndex = null;
+      state.queuedOptions = undefined;
+      state.locked = false;
+
+      if (options?.fromPointer) {
+        beginPointerCooldown();
+      }
+
+      if (queuedIndex !== null && queuedIndex !== state.index && !queuedOptions?.fromPointer) {
+        void goTo(queuedIndex, queuedOptions);
+      }
+    };
+
+    const goTo = async (nextIndex: number, options?: GoToOptions) => {
       if (nextIndex < 0 || nextIndex >= state.sections.length) {
         return;
       }
 
       if (state.locked) {
-        state.queuedIndex = nextIndex;
-        state.queuedOptions = options;
+        if (!options?.fromPointer) {
+          state.queuedIndex = nextIndex;
+          state.queuedOptions = options;
+        }
         return;
       }
 
@@ -233,146 +333,159 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       state.wheelAccum = 0;
       state.targetIndex = nextIndex;
       const direction = nextIndex > state.index ? "down" : "up";
-      const instant = Boolean(options?.instant);
-      const reduced = prefersReducedMotion();
+      const reduced = prefersReducedMotion() || Boolean(options?.instant);
 
-      toEl.classList.remove("is-upcoming");
-      toEl.classList.add("is-active");
-      toEl.style.pointerEvents = "auto";
+      state.sections.forEach((section) => {
+        const participating = section === fromEl || section === toEl;
+        section.classList.toggle("is-transitioning", participating);
+        if (!participating) {
+          section.style.visibility = "hidden";
+          section.style.pointerEvents = "none";
+          section.style.zIndex = "0";
+          setInert(section, true);
+        }
+      });
+
+      fromEl.style.visibility = "visible";
+      toEl.style.visibility = "visible";
+      fromEl.style.pointerEvents = "none";
+      toEl.style.pointerEvents = "none";
       setInert(toEl, false);
 
-      if (instant) {
-        state.animation?.cancel();
-        state.index = nextIndex;
-        applySettledTransforms(state.sections, state.index);
-        syncHash(toEl.id);
-        dispatchChange(toEl.id, state.index);
-        if (options?.fromKeyboard) {
-          toEl.focus({ preventScroll: true });
-        }
-        const queuedIndex = state.queuedIndex;
-        const queuedOptions = state.queuedOptions;
-        state.queuedIndex = null;
-        state.queuedOptions = undefined;
-        if (queuedIndex !== null && queuedIndex !== state.index) {
-          state.locked = false;
-          void goTo(queuedIndex, queuedOptions);
+      if (reduced) {
+        toEl.style.zIndex = "2";
+        toEl.style.transform = "translate3d(0, 0, 0)";
+        const fade = toEl.animate(
+          [
+            { transform: "translate3d(0, 0, 0)", opacity: 0 },
+            { transform: "translate3d(0, 0, 0)", opacity: 1 },
+          ],
+          { duration: options?.instant ? 1 : REDUCED_MOTION_MS, easing: "linear", fill: "forwards" },
+        );
+        state.animations = [fade];
+        await fade.finished.catch(() => undefined);
+        if (!alive) {
           return;
         }
-        unlockSoon();
+        finishMove(toEl, nextIndex, options);
         return;
       }
 
-      const duration = reduced ? REDUCED_MOTION_MS : TRANSITION_MS;
-
       try {
-        if (reduced) {
-          toEl.style.zIndex = "100";
-          toEl.style.transform = "translate3d(0, 0, 0)";
-          state.animation = toEl.animate(
-            [
-              { transform: "translate3d(0, 0, 0)", opacity: 0 },
-              { transform: "translate3d(0, 0, 0)", opacity: 1 },
-            ],
-            { duration, easing: "linear", fill: "forwards" },
-          );
-        } else if (direction === "down") {
-          toEl.style.zIndex = "100";
+        if (direction === "down") {
+          fromEl.style.zIndex = "1";
+          toEl.style.zIndex = "2";
           toEl.style.transform = "translate3d(0, 100%, 0)";
-          toEl.style.opacity = "0.92";
-          state.animation = toEl.animate(
-            [
-              { transform: "translate3d(0, 100%, 0)", opacity: 0.92 },
-              { transform: "translate3d(0, 0, 0)", opacity: 1 },
-            ],
-            { duration, easing: EASE, fill: "forwards" },
-          );
+          toEl.style.opacity = String(INCOMING_OPACITY);
+          state.animations = [
+            toEl.animate(
+              [
+                { transform: "translate3d(0, 100%, 0)" },
+                { transform: "translate3d(0, 0, 0)" },
+              ],
+              { duration: TRANSFORM_MS, easing: TRANSFORM_EASE, fill: "forwards" },
+            ),
+            toEl.animate(
+              [{ opacity: INCOMING_OPACITY }, { opacity: 1 }],
+              { duration: OPACITY_MS, easing: OPACITY_EASE, fill: "forwards" },
+            ),
+          ];
         } else {
-          fromEl.style.zIndex = "100";
-          state.animation = fromEl.animate(
-            [
-              { transform: "translate3d(0, 0, 0)", opacity: 1 },
-              { transform: "translate3d(0, 100%, 0)", opacity: 1 },
-            ],
-            { duration, easing: EASE, fill: "forwards" },
-          );
+          toEl.style.zIndex = "1";
+          toEl.style.transform = "translate3d(0, 0, 0)";
+          toEl.style.opacity = String(INCOMING_OPACITY);
+          fromEl.style.zIndex = "2";
+          state.animations = [
+            fromEl.animate(
+              [
+                { transform: "translate3d(0, 0, 0)" },
+                { transform: "translate3d(0, 100%, 0)" },
+              ],
+              { duration: TRANSFORM_MS, easing: TRANSFORM_EASE, fill: "forwards" },
+            ),
+            toEl.animate(
+              [{ opacity: INCOMING_OPACITY }, { opacity: 1 }],
+              { duration: OPACITY_MS, easing: OPACITY_EASE, fill: "forwards" },
+            ),
+          ];
         }
 
-        if (!state.animation) {
-          return;
-        }
-
-        await state.animation.finished.catch(() => undefined);
+        await Promise.all(state.animations.map((animation) => animation.finished.catch(() => undefined)));
         if (!alive) {
           return;
         }
-        state.animation?.commitStyles();
-        state.animation?.cancel();
-      } finally {
-        if (!alive) {
-          return;
+        finishMove(toEl, nextIndex, options);
+      } catch {
+        if (alive) {
+          finishMove(toEl, nextIndex, options);
         }
-        state.animation = null;
-        state.index = nextIndex;
-        applySettledTransforms(state.sections, state.index);
-        syncHash(toEl.id);
-        dispatchChange(toEl.id, state.index);
-        if (options?.fromKeyboard) {
-          toEl.focus({ preventScroll: true });
-        }
-        const queuedIndex = state.queuedIndex;
-        const queuedOptions = state.queuedOptions;
-        state.queuedIndex = null;
-        state.queuedOptions = undefined;
-        if (queuedIndex !== null && queuedIndex !== state.index) {
-          state.locked = false;
-          void goTo(queuedIndex, queuedOptions);
-          return;
-        }
-        unlockSoon();
       }
     };
 
-    const goBy = (delta: number, options?: { fromKeyboard?: boolean }) => {
-      const base = state.queuedIndex ?? state.targetIndex;
+    const goBy = (delta: number, options?: GoToOptions) => {
+      if (options?.fromPointer && (state.locked || state.pointerCooling)) {
+        return;
+      }
+
+      const base = options?.fromPointer
+        ? state.index
+        : (state.queuedIndex ?? state.targetIndex);
       void goTo(base + delta, options);
     };
 
-    let wheelResetTimer = 0;
     const onWheel = (event: WheelEvent) => {
       if (isMenuOpen() || event.ctrlKey) {
         return;
       }
 
-      if (state.locked) {
+      const delta = wheelDeltaPixels(event);
+
+      if (state.locked || state.pointerCooling) {
         event.preventDefault();
+        if (state.cooldownElapsed) {
+          armIdleRelease();
+        }
         return;
       }
 
-      const scrollable = getScrollableAncestor(event.target, root);
-      if (scrollable && canScrollInDirection(scrollable, event.deltaY)) {
+      const activeSection = state.sections[state.index];
+      const scrollable =
+        getScrollableAncestor(event.target, root) ??
+        (activeSection &&
+        activeSection.scrollHeight > activeSection.clientHeight + 1
+          ? activeSection
+          : null);
+      if (scrollable && canScrollInDirection(scrollable, delta)) {
+        state.internalGesture = true;
         state.wheelAccum = 0;
+        return;
+      }
+
+      if (state.internalGesture) {
+        event.preventDefault();
+        state.wheelAccum = 0;
+        armIdleRelease();
         return;
       }
 
       event.preventDefault();
 
-      if (Math.abs(event.deltaY) < 1) {
+      if (Math.abs(delta) < 1) {
         return;
       }
 
-      state.wheelAccum += event.deltaY;
+      state.wheelAccum += delta;
       window.clearTimeout(wheelResetTimer);
       wheelResetTimer = window.setTimeout(() => {
         state.wheelAccum = 0;
-      }, WHEEL_RESET_MS);
+      }, WHEEL_IDLE_MS);
 
       if (state.wheelAccum >= WHEEL_THRESHOLD) {
         state.wheelAccum = 0;
-        goBy(1);
+        goBy(1, { fromPointer: true });
       } else if (state.wheelAccum <= -WHEEL_THRESHOLD) {
         state.wheelAccum = 0;
-        goBy(-1);
+        goBy(-1, { fromPointer: true });
       }
     };
 
@@ -393,12 +506,18 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       const deltaY = state.touchStartY - event.touches[0].clientY;
       const scrollable = getScrollableAncestor(event.target, root);
 
-      if (state.locked) {
+      if (state.locked || state.pointerCooling) {
         event.preventDefault();
         return;
       }
 
       if (scrollable && canScrollInDirection(scrollable, deltaY)) {
+        state.internalGesture = true;
+        return;
+      }
+
+      if (state.internalGesture) {
+        event.preventDefault();
         return;
       }
 
@@ -408,7 +527,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
     };
 
     const onTouchEnd = (event: TouchEvent) => {
-      if (isMenuOpen() || state.locked || !event.changedTouches.length) {
+      if (isMenuOpen() || state.locked || state.pointerCooling || !event.changedTouches.length) {
         return;
       }
 
@@ -420,11 +539,16 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
         return;
       }
 
+      if (state.internalGesture) {
+        armIdleRelease();
+        return;
+      }
+
       if (Math.abs(deltaY) < SWIPE_THRESHOLD || Math.abs(deltaY) < Math.abs(deltaX)) {
         return;
       }
 
-      goBy(deltaY > 0 ? 1 : -1);
+      goBy(deltaY > 0 ? 1 : -1, { fromPointer: true });
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
@@ -533,9 +657,10 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
 
     return () => {
       alive = false;
-      state.animation?.cancel();
+      state.animations.forEach((animation) => animation.cancel());
       window.clearTimeout(wheelResetTimer);
-      window.clearTimeout(unlockTimer);
+      window.clearTimeout(cooldownTimer);
+      window.clearTimeout(idleTimer);
       html.classList.remove("fullpage-is-ready");
       html.style.removeProperty("--fullpage-height");
       delete html.dataset.fullpageIndex;

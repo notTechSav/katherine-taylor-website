@@ -255,6 +255,11 @@
     transform: translate3d(0, 100%, 0);
   }
 
+  html.fullpage-is-ready .fullpage-section:not(.is-active):not(.is-transitioning) {
+    visibility: hidden;
+    pointer-events: none;
+  }
+
   html.fullpage-is-ready .fullpage-section:focus {
     outline: none;
   }
