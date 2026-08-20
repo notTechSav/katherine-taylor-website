@@ -90,7 +90,7 @@ const Index = () => {
         className={sectionClass("bg-luxury-cream")}
         aria-label="Blog Teaser"
       >
-        <FullBleedPhoto src="/journal-slide.webp?v=hires3" />
+        <FullBleedPhoto src="/journal-slide.webp?v=hires4" />
         <BlogTeaserSection />
       </section>
 
@@ -100,7 +100,7 @@ const Index = () => {
         className={sectionClass("bg-luxury-cream")}
         aria-label="FAQ Teaser"
       >
-        <FullBleedPhoto src="/faq-slide.webp?v=hires3" />
+        <FullBleedPhoto src="/faq-slide.webp?v=hires5" />
         <FAQTeaserSection />
       </section>
 
