@@ -7,7 +7,7 @@ const Footer = () => {
         </p>
         <nav className="flex flex-col items-center gap-4 md:flex-row md:gap-8">
           <a
-            href="#"
+            href="/inquire"
             className="text-sm font-light tracking-wide text-gray-600 transition-colors hover:text-gray-900"
           >
             Contact

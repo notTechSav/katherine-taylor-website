@@ -1065,6 +1065,12 @@ const SanFranciscoPage = () => {
         <div className="mx-auto max-w-[620px] space-y-6 text-left">
           <nav className="flex flex-wrap gap-3 text-[14px] font-light text-luxury-black">
             <a
+              href="/sacramento-escorts"
+              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+            >
+              Sacramento
+            </a>
+            <a
               href="/rates"
               className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
             >

@@ -138,7 +138,7 @@ export const essayMetadata = {
 export const journalFooter = {
   intro: "For those seeking presence and company in the Bay Area:",
   links: [
-    { href: "/san-francisco-escorts", text: "San Francisco escorts" },
+    { href: "/memoirs-in-the-city", text: "San Francisco escorts" },
     { href: "/sacramento-escorts", text: "Sacramento escorts" },
     { href: "/about", text: "About Katherine Taylor escort practice" },
   ],

@@ -31,6 +31,7 @@ const Maison = lazy(() => import("./pages/Maison"));
 const Rates = lazy(() => import("./pages/Rates"));
 const Services = lazy(() => import("./pages/Services"));
 const SanFrancisco = lazy(() => import("./pages/SanFrancisco"));
+const Sacramento = lazy(() => import("./pages/Sacramento"));
 const ContentGenerator = lazy(() => import("./pages/ContentGenerator"));
 const AIConcierge = lazy(() => import("./pages/AIConcierge"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -75,6 +76,8 @@ const AppRoutes = () => {
           <Route path="/services" element={withLayout(Services)} />
           <Route path="/san-francisco" element={withLayout(SanFrancisco)} />
           <Route path="/memoirs-in-the-city" element={withLayout(SanFrancisco)} />
+          <Route path="/sacramento-escorts" element={withLayout(Sacramento)} />
+          <Route path="/sacramento" element={withLayout(Sacramento)} />
           <Route path="/content-generator" element={withLayout(ContentGenerator)} />
           <Route path="/ai-concierge" element={withLayout(AIConcierge)} />
           <Route path="*" element={withLayout(NotFound)} />

@@ -12,6 +12,7 @@ const routePrefetchMap: Record<string, () => Promise<unknown>> = {
   "/faq": () => import("@/pages/FAQ"),
   "/inquire": () => import("@/pages/Inquire"),
   "/memoirs-in-the-city": () => import("@/pages/SanFrancisco"),
+  "/sacramento-escorts": () => import("@/pages/Sacramento"),
 };
 
 const navigationLinks = [

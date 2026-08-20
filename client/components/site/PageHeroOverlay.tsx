@@ -12,6 +12,7 @@ type PageHeroOverlayProps = {
   gradient?: "horizontal" | "vertical";
   headingAs?: "h1" | "h2" | "p";
   className?: string;
+  imageClassName?: string;
 };
 
 const horizontalGradients = {
@@ -34,6 +35,7 @@ const PageHeroOverlay = memo(
     gradient = "horizontal",
     headingAs = "h1",
     className,
+    imageClassName,
   }: PageHeroOverlayProps) => {
     const Heading = headingAs as ElementType;
     const gradientStyle =
@@ -63,7 +65,10 @@ const PageHeroOverlay = memo(
             <img
               src={imageSrc}
               alt={imageAlt}
-              className="h-full w-full object-cover object-left sm:object-center"
+              className={cn(
+                "h-full w-full object-cover object-left sm:object-center",
+                imageClassName,
+              )}
               loading="eager"
               fetchpriority="high"
             />

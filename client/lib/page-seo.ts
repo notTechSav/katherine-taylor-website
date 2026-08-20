@@ -59,6 +59,12 @@ export const pageSeo = {
       "The maison behind Katherine Taylor escort—stories, craft, and the private practice of high-end companionship in San Francisco and Sacramento.",
     path: "/maison",
   },
+  sacramento: {
+    title: "Escorts Near Me | The High-End Edition — Sacramento Escort",
+    description:
+      "What ten years in escorting—and two years trying very hard not to do it—taught Katherine Taylor about proximity, compatibility, discretion, and finding the right person in Sacramento.",
+    path: "/sacramento-escorts",
+  },
   notFound: {
     title: "Page Not Found | Katherine Taylor Escort",
     description: "This page has not been crafted yet. Return home to continue.",
