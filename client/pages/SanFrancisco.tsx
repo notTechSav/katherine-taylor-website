@@ -61,10 +61,11 @@ const SanFranciscoPage = () => {
       <PageHeroOverlay
         title="Memoirs in the City"
         subtitle="Why I left San Francisco—and why I'm back."
-        eyebrow="The City"
+        eyebrow="San Francisco Escorts"
         imageSrc={heroImage.src}
         imageAlt={heroImage.alt}
         alignment="left"
+        headingAs="p"
       />
 
       {/* H1 */}

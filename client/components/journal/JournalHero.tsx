@@ -27,47 +27,25 @@ const JournalHero = memo(
             aria-hidden
           />
 
-          {/* Desktop text overlay */}
-          <figcaption className="pointer-events-none absolute inset-0 hidden items-end sm:flex">
-            <div className="mx-auto w-full max-w-[1120px] px-12 pb-14">
+          <figcaption className="pointer-events-none absolute inset-0 flex items-end">
+            <div className="w-full px-8 pb-10 sm:mx-auto sm:max-w-[1120px] sm:px-12 sm:pb-14">
               <div className="max-w-xl text-left text-luxury-white">
                 <p
-                  className="mb-3 text-sm font-light uppercase tracking-[0.12em] text-luxury-white/75"
+                  className="mb-2 text-xs font-light uppercase tracking-[0.12em] text-luxury-white/75 sm:mb-3 sm:text-sm"
                   style={{ letterSpacing: "0.12em" }}
                 >
                   THE HIGH-END EDITION
                 </p>
                 <h1
-                  className="text-4xl font-extralight leading-[1.1] tracking-[-0.02em] text-luxury-white sm:text-[50px]"
+                  className="text-[32px] font-extralight leading-[1.15] tracking-[-0.02em] text-luxury-white sm:text-4xl sm:leading-[1.1] sm:text-[50px]"
                   style={{ fontWeight: 200 }}
                 >
                   {title}
                 </h1>
-                <p className="mt-5 text-base font-light text-luxury-white/80">
+                <p className="mt-4 text-sm font-light leading-[1.8] text-luxury-white/80 sm:mt-5 sm:text-base">
                   {subtitle}
                 </p>
               </div>
-            </div>
-          </figcaption>
-
-          {/* Mobile text overlay - now inside figure with absolute positioning */}
-          <figcaption className="pointer-events-none absolute inset-0 flex items-end sm:hidden">
-            <div className="w-full px-8 pb-10">
-              <p
-                className="mb-2 text-xs font-light uppercase tracking-[0.12em] text-luxury-white/75"
-                style={{ letterSpacing: "0.12em" }}
-              >
-                THE HIGH-END EDITION
-              </p>
-              <h1
-                className="text-[32px] font-extralight leading-[1.15] tracking-[-0.02em] text-luxury-white"
-                style={{ fontWeight: 200 }}
-              >
-                {title}
-              </h1>
-              <p className="mt-4 text-sm font-light leading-[1.8] text-luxury-white/80">
-                {subtitle}
-              </p>
             </div>
           </figcaption>
         </figure>

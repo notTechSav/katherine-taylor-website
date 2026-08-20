@@ -487,9 +487,9 @@ function Hub({
   return (
     <section className="mx-auto max-w-[1180px] px-6 md:px-12 pt-32 pb-32 md:pt-40 md:pb-48">
       <header className="mx-auto mb-14 max-w-[720px] sm:mb-24">
-        <h1 className="text-[56px] sm:text-[68px] md:text-[84px] font-extralight tracking-[-0.03em] leading-[0.95]">
+        <h2 className="text-[56px] sm:text-[68px] md:text-[84px] font-extralight tracking-[-0.03em] leading-[0.95]">
           Private Collections
-        </h1>
+        </h2>
         <p className="mt-3 sm:mt-4 max-w-prose text-sm sm:text-base font-light leading-[1.75] text-neutral-700">
           Three collections I'm sharing with you. Take your time.
         </p>
@@ -527,9 +527,9 @@ function Hub({
                 })()}
               </div>
               <div className="mt-5 space-y-2">
-                <h2 className="text-[22px] sm:text-[26px] md:text-[32px] font-extralight tracking-[-0.02em] leading-[1.15] transition-colors duration-[250ms] group-hover:text-[#6B5D54]">
+                <h3 className="text-[22px] sm:text-[26px] md:text-[32px] font-extralight tracking-[-0.02em] leading-[1.15] transition-colors duration-[250ms] group-hover:text-[#6B5D54]">
                   {c.title}
-                </h2>
+                </h3>
                 <p
                   id={`${c.slug}-desc`}
                   className="text-xs sm:text-sm font-light text-neutral-600"
@@ -571,10 +571,9 @@ function CollectionHeader({
             <span className="text-base">←</span> Back to Collections
           </button>
           <div className="space-y-4">
-            <h1 className="text-3xl sm:text-4xl md:text-[48px] font-extralight tracking-[-0.025em] leading-[1.05]">
+            <h2 className="text-3xl sm:text-4xl md:text-[48px] font-extralight tracking-[-0.025em] leading-[1.05]">
               {c.title}
-            </h1>
-            <h2 className="sr-only">{c.title} — Katherine Taylor escort</h2>
+            </h2>
             <p className="max-w-[48ch] text-sm sm:text-base font-light leading-[1.75] text-neutral-700">
               {c.statement}
             </p>

@@ -11,19 +11,17 @@ const FAQTeaserCard = () => {
       />
       <div className="relative z-10 mx-auto flex w-full max-w-luxury flex-col justify-center px-6 py-8 md:px-8 md:py-12">
         <div className="max-w-[65ch] space-y-8">
-          <span className="text-xs font-light uppercase tracking-uppercase text-white/80">
+          <p className="text-xs font-light uppercase tracking-uppercase text-white/80">
             Transparency Over Theater
-          </span>
+          </p>
           <h2
             className="text-2xl font-extralight leading-[1.2] tracking-[-0.02em] text-white md:text-3xl"
             style={{ fontWeight: 200 }}
           >
-            I answer the questions
-            <br />
-            other providers don't.
+            Frequently Asked Questions
           </h2>
           <p className="text-base font-light leading-relaxed tracking-luxury text-white/90">
-            After a decade at the highest tier of this industry, I answer what law firm blogs and agency websites won't touch.
+            I answer the questions other providers don't. After a decade at the highest tier of this industry, I answer what law firm blogs and agency websites won't touch.
           </p>
           <a
             href="/faq"

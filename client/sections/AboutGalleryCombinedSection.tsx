@@ -15,7 +15,7 @@ export default function AboutGalleryCombinedSection() {
           aria-hidden="true"
         />
         <h2 className="relative z-10 mb-6 text-xl font-serif uppercase tracking-wider leading-tight text-white">
-          About
+          About Katherine Taylor
         </h2>
         <a
           href="/about"
@@ -37,7 +37,7 @@ export default function AboutGalleryCombinedSection() {
           aria-hidden="true"
         />
         <h2 className="relative z-10 mb-6 text-xl font-serif uppercase tracking-wider leading-tight text-white">
-          Gallery
+          Private Collections
         </h2>
         <a
           href="/gallery"

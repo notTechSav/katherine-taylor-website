@@ -4,7 +4,7 @@ const EmailSignupSection = () => {
   return (
     <div className="flex min-h-full w-full items-center px-6 py-8 md:px-8 md:py-12">
       <div className="mx-auto flex max-w-luxury flex-col items-center text-center">
-        <h2 className="text-sm font-light uppercase tracking-uppercase text-gray-700">
+        <h2 className="font-serif text-2xl uppercase tracking-wide text-gray-800 md:text-3xl">
           Latest from Katherine
         </h2>
         <form className="mt-8 md:mt-12 flex w-full max-w-2xl flex-col gap-4 sm:flex-row sm:items-center">

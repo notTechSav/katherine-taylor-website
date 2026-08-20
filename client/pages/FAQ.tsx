@@ -5,6 +5,8 @@ import { ChevronDown } from "lucide-react";
 
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
+import SeoHead from "@/components/site/SeoHead";
+import { pageSeo } from "@/lib/page-seo";
 
 const heroImage = {
   src: "/faq-page-bg.webp",
@@ -16,10 +18,15 @@ const FAQPage = () => {
 
   return (
     <div className="bg-luxury-white text-luxury-black">
+      <SeoHead
+        title={pageSeo.faq.title}
+        description={pageSeo.faq.description}
+        path={pageSeo.faq.path}
+      />
       <PageHeroOverlay
-        title="FAQ"
+        title="Frequently Asked Questions"
         subtitle="Answers to questions most providers avoid."
-        eyebrow="Frequently Asked"
+        eyebrow="Katherine Taylor Escort"
         imageSrc={heroImage.src}
         imageAlt={heroImage.alt}
         alignment="left"

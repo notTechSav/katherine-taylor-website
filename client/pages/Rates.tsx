@@ -5,6 +5,8 @@ import { ChevronDown } from "lucide-react";
 
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
+import SeoHead from "@/components/site/SeoHead";
+import { pageSeo } from "@/lib/page-seo";
 
 const heroImage = {
   src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fff453c7ff48442fc8efd2f475a954ade?format=webp&width=800",
@@ -16,10 +18,15 @@ const RatesPage = () => {
 
   return (
     <div className="bg-luxury-white text-luxury-black">
+      <SeoHead
+        title={pageSeo.rates.title}
+        description={pageSeo.rates.description}
+        path={pageSeo.rates.path}
+      />
       <PageHeroOverlay
         title="Rates"
         subtitle="Every figure on this page exists to protect one idea: you never have to explain yourself twice."
-        eyebrow="Rate Structure"
+        eyebrow="Katherine Taylor Escort"
         imageSrc={heroImage.src}
         imageAlt={heroImage.alt}
         alignment="left"
@@ -69,10 +76,11 @@ const RatesPage = () => {
               className="mb-8 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
-              Rates
+              Hourly and Overnight
             </h2>
 
             {/* Hourly Rates */}
+            <h3 className="mb-4 text-lg font-light text-luxury-black">Hourly Engagements</h3>
             <div className="space-y-4 mb-12">
               <div className="flex items-baseline justify-between border-b border-gray-200 pb-3 transition-all duration-200 hover:border-gray-400 hover:pb-4">
                 <span className="text-base font-light text-gray-700">
@@ -133,6 +141,7 @@ const RatesPage = () => {
             </div>
 
             {/* Extended Rates */}
+            <h3 className="mb-4 text-lg font-light text-luxury-black">Overnight and Multi-Day</h3>
             <div className="space-y-4">
               <div className="flex items-baseline justify-between border-b border-gray-200 pb-3 transition-all duration-200 hover:border-gray-400 hover:pb-4">
                 <span className="text-base font-light text-gray-700">
@@ -183,33 +192,33 @@ const RatesPage = () => {
 
             <div className="space-y-6">
               <div className="border-b border-gray-200 pb-4">
-                <p className="text-base font-light text-luxury-black">
+                <h3 className="text-base font-light text-luxury-black">
                   West Coast
-                </p>
+                </h3>
                 <p className="text-sm font-light text-gray-600 mt-1">
                   Add $1,000 travel fee + first-class airfare + accommodation
                 </p>
               </div>
               <div className="border-b border-gray-200 pb-4">
-                <p className="text-base font-light text-luxury-black">
+                <h3 className="text-base font-light text-luxury-black">
                   Midwest
-                </p>
+                </h3>
                 <p className="text-sm font-light text-gray-600 mt-1">
                   Add $2,000 travel fee + first-class airfare + accommodation
                 </p>
               </div>
               <div className="border-b border-gray-200 pb-4">
-                <p className="text-base font-light text-luxury-black">
+                <h3 className="text-base font-light text-luxury-black">
                   National
-                </p>
+                </h3>
                 <p className="text-sm font-light text-gray-600 mt-1">
                   Add $3,000 travel fee + first-class airfare + accommodation
                 </p>
               </div>
               <div className="pb-4">
-                <p className="text-base font-light text-luxury-black">
+                <h3 className="text-base font-light text-luxury-black">
                   International
-                </p>
+                </h3>
                 <p className="text-sm font-light text-gray-600 mt-1">
                   Add $4,000 travel fee + first-class airfare + accommodation
                 </p>
@@ -230,36 +239,36 @@ const RatesPage = () => {
 
             <div className="space-y-6">
               <div className="border-b border-gray-200 pb-4">
-                <p className="text-base font-light text-luxury-black mb-1">
+                <h3 className="text-base font-light text-luxury-black mb-1">
                   Sacramento
-                </p>
+                </h3>
                 <p className="text-sm font-light text-gray-600">
                   Hosting provided at no additional cost.
                 </p>
               </div>
 
               <div className="border-b border-gray-200 pb-4">
-                <p className="text-base font-light text-luxury-black mb-1">
+                <h3 className="text-base font-light text-luxury-black mb-1">
                   Outcalls
-                </p>
+                </h3>
                 <p className="text-sm font-light text-gray-600">
                   Round-trip car service preferred.
                 </p>
               </div>
 
               <div className="border-b border-gray-200 pb-4">
-                <p className="text-base font-light text-luxury-black mb-1">
+                <h3 className="text-base font-light text-luxury-black mb-1">
                   Extensions
-                </p>
+                </h3>
                 <p className="text-sm font-light text-gray-600">
                   $1,000 per additional hour.
                 </p>
               </div>
 
               <div className="border-b border-gray-200 pb-4">
-                <p className="text-base font-light text-luxury-black mb-1">
+                <h3 className="text-base font-light text-luxury-black mb-1">
                   Additional Guest
-                </p>
+                </h3>
                 <p className="text-sm font-light text-gray-600">
                   Add $1,000 for a companion to join.
                 </p>
@@ -360,12 +369,12 @@ const RatesPage = () => {
       {/* Closing Statement */}
       <section className="border-t border-gray-200 py-20 md:py-28 bg-luxury-white">
         <div className="container mx-auto px-6 md:px-8 max-w-2xl text-center space-y-8">
-          <p
+          <h2
             className="text-xl md:text-2xl font-extralight leading-[1.5] text-luxury-black"
             style={{ fontWeight: 200 }}
           >
             I don't sell time.
-          </p>
+          </h2>
           <p
             className="text-xl md:text-2xl font-extralight leading-[1.5] text-gray-700"
             style={{ fontWeight: 200 }}

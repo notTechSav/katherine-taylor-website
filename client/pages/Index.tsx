@@ -11,6 +11,8 @@ import LocationSection from "@/sections/LocationSection";
 import NewsletterSection from "@/sections/NewsletterSection";
 import OpeningVideoSection from "@/sections/OpeningVideoSection";
 import RatesVideoSection from "@/sections/RatesVideoSection";
+import SeoHead from "@/components/site/SeoHead";
+import { pageSeo } from "@/lib/page-seo";
 import { cn } from "@/lib/utils";
 
 const sectionClass = (...classes: Array<string | undefined>) =>
@@ -18,7 +20,13 @@ const sectionClass = (...classes: Array<string | undefined>) =>
 
 const Index = () => {
   return (
-    <FullPageSections>
+    <>
+      <SeoHead
+        title={pageSeo.home.title}
+        description={pageSeo.home.description}
+        path={pageSeo.home.path}
+      />
+      <FullPageSections>
       <section
         id="opening-video"
         data-fullpage-section
@@ -124,6 +132,7 @@ const Index = () => {
         <NewsletterSection />
       </section>
     </FullPageSections>
+    </>
   );
 };
 

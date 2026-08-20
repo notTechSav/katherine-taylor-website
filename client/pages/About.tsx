@@ -1,7 +1,8 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
-import { useEffect } from "react";
+import SeoHead from "@/components/site/SeoHead";
+import { pageSeo } from "@/lib/page-seo";
 
 const ABOUT_HERO_IMAGE =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F544eebd3dfb24d86b1212878113625c0?format=webp&width=1600";
@@ -9,23 +10,17 @@ const ABOUT_SECONDARY_IMAGE =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fc52c5d671db044f38e0442b59a54c778?format=webp&width=1200";
 
 const About = () => {
-  useEffect(() => {
-    document.title = "About Katherine Taylor | High-End Private Companionship";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute(
-        "content",
-        "Katherine Taylor offers refined, ongoing companionship for executives and founders. Strategic counsel meets personal continuity—institutional memory that lets you move without rehearsal."
-      );
-    }
-  }, []);
-
   return (
     <div className="bg-luxury-white text-neutral-600">
+        <SeoHead
+          title={pageSeo.about.title}
+          description={pageSeo.about.description}
+          path={pageSeo.about.path}
+        />
         <PageHeroOverlay
-          title="About Me"
+          title="About Katherine Taylor"
           subtitle="I remember what matters. The conversation picks up where it left."
-          eyebrow="Katherine Taylor"
+          eyebrow="Katherine Taylor Escort"
           imageSrc={ABOUT_HERO_IMAGE}
           imageAlt="Sunlit doorway opening onto herringbone floors beside linen curtains"
           alignment="left"
@@ -47,6 +42,12 @@ const About = () => {
 
           <main className="space-y-16">
             <section className="space-y-7">
+              <h2
+                className="text-2xl font-extralight tracking-[-0.02em] text-luxury-black md:text-3xl"
+                style={{ fontWeight: 200 }}
+              >
+                Institutional Memory
+              </h2>
               <p>
                 A client once sent two lines: in-suite only, three hours, no
                 celebrity talk. Most people would see red flags. I saw the
@@ -67,6 +68,15 @@ const About = () => {
                   />
                 </AspectRatio>
               </div>
+            </section>
+
+            <section className="space-y-7">
+              <h2
+                className="text-2xl font-extralight tracking-[-0.02em] text-luxury-black md:text-3xl"
+                style={{ fontWeight: 200 }}
+              >
+                Strategic Counsel and Continuity
+              </h2>
               <p>
                 My work sits at the intersection of strategic counsel and personal
                 continuity. Half of what I do is high-level thinking—pattern
@@ -81,6 +91,15 @@ const About = () => {
                 operating at full depth. Decisions move faster, and the
                 conversations reach a level most people never get to have.
               </p>
+            </section>
+
+            <section className="space-y-7">
+              <h2
+                className="text-2xl font-extralight tracking-[-0.02em] text-luxury-black md:text-3xl"
+                style={{ fontWeight: 200 }}
+              >
+                Who I Work With
+              </h2>
               <p>
                 I work with C-suite executives, IPO founders, and family-office
                 principals who already have brilliant advisors but no one who

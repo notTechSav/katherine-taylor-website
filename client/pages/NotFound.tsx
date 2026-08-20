@@ -1,5 +1,7 @@
 import { useLocation, Link } from "react-router-dom";
 import { useEffect } from "react";
+import SeoHead from "@/components/site/SeoHead";
+import { pageSeo } from "@/lib/page-seo";
 
 const NotFound = () => {
   const location = useLocation();
@@ -13,6 +15,12 @@ const NotFound = () => {
 
   return (
     <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 px-6 text-center">
+      <SeoHead
+        title={pageSeo.notFound.title}
+        description={pageSeo.notFound.description}
+        path={location.pathname}
+        noIndex
+      />
       <span className="text-[0.7rem] uppercase tracking-[0.4em] text-muted-foreground">
         Page unavailable
       </span>

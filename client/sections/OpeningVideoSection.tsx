@@ -15,10 +15,10 @@ export default function OpeningVideoSection() {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end px-4 pb-16 pt-28 text-white sm:px-6 sm:pb-24 md:pb-28">
         <div className="pointer-events-auto max-w-xl">
           <h1 className="mb-3 font-serif text-3xl uppercase tracking-wide sm:mb-4 sm:text-5xl">
-            Timeless Luxury
+            Katherine Taylor Escort
           </h1>
           <p className="mb-6 max-w-md text-sm leading-relaxed text-white/90 sm:text-base">
-            A cinematic experience of elegance and intention.
+            High-end private companionship in San Francisco and Sacramento.
           </p>
           <Link
             to="/about"

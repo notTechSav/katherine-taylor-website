@@ -3,6 +3,7 @@
 import { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import JournalFooter from "@/components/journal/JournalFooter";
+import SeoHead from "@/components/site/SeoHead";
 import {
   heroImage,
   journalDisplay,
@@ -11,14 +12,7 @@ import {
   getReadNextEssay,
   essayMetadata,
 } from "@/lib/journal-content";
-import {
-  absoluteUrl,
-  injectJsonLd,
-  removeJsonLd,
-  setLinkTag,
-  setNamedMeta,
-  setPropertyMeta,
-} from "@/lib/seo-helpers";
+import { absoluteUrl } from "@/lib/site-config";
 import NotFound from "@/pages/NotFound";
 
 const headingLetterSpacing = { letterSpacing: "-0.02em" } as const;
@@ -47,55 +41,6 @@ const JournalArticle = () => {
       return;
     }
     window.scrollTo({ top: 0, behavior: "auto" });
-
-    const baseTitle = `${essay.title} — Katherine Taylor Escort`;
-    document.title = baseTitle;
-
-    const description = essayMetadata.description;
-    setNamedMeta("description", description);
-    setNamedMeta("keywords", essayMetadata.keywords);
-    setNamedMeta("geo.region", "US-CA");
-    setNamedMeta("geo.position", "37.7749;-122.4194");
-    setNamedMeta("ICBM", "37.7749, -122.4194");
-
-    const canonicalUrl = absoluteUrl(`/journal/${essay.slug}`);
-
-    setLinkTag("canonical", canonicalUrl);
-
-    const heroImageUrl = absoluteUrl(heroImage.src);
-
-    setPropertyMeta("og:type", "article");
-    setPropertyMeta("og:title", essay.title);
-    setPropertyMeta("og:description", description);
-    setPropertyMeta("og:url", canonicalUrl);
-    setPropertyMeta("og:image", heroImageUrl);
-    setPropertyMeta("og:image:alt", heroImage.alt);
-
-    injectJsonLd("journal-article", {
-      "@context": "https://schema.org",
-      "@type": "Article",
-      headline: essay.title,
-      description,
-      author: {
-        "@type": "Person",
-        name: "Katherine Taylor",
-      },
-      publisher: {
-        "@type": "Person",
-        name: "Katherine Taylor",
-      },
-      datePublished: essay.publishedDate,
-      mainEntityOfPage: {
-        "@type": "WebPage",
-        "@id": canonicalUrl,
-      },
-      keywords: essayMetadata.keywords,
-      image: heroImageUrl,
-    });
-
-    return () => {
-      removeJsonLd("journal-article");
-    };
   }, [essay]);
 
   if (!essay) {
@@ -108,6 +53,35 @@ const JournalArticle = () => {
 
   return (
     <div className="bg-luxury-white text-luxury-black">
+      <SeoHead
+        title={`${essay.title} — Katherine Taylor Escort`}
+        description={essay.excerpt || essayMetadata.description}
+        path={`/journal/${essay.slug}`}
+        image={absoluteUrl(heroImage.src)}
+        imageAlt={heroImage.alt}
+        type="article"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: essay.title,
+          description: essay.excerpt || essayMetadata.description,
+          author: {
+            "@type": "Person",
+            name: "Katherine Taylor",
+          },
+          publisher: {
+            "@type": "Person",
+            name: "Katherine Taylor",
+          },
+          datePublished: essay.publishedDate,
+          mainEntityOfPage: {
+            "@type": "WebPage",
+            "@id": absoluteUrl(`/journal/${essay.slug}`),
+          },
+          keywords: essayMetadata.keywords,
+          image: absoluteUrl(heroImage.src),
+        }}
+      />
       <section className="relative overflow-hidden bg-luxury-white">
         <div className="relative h-[48vh] min-h-[260px] w-full sm:h-[52vh]">
           <img

@@ -11,9 +11,12 @@ const GiftsBannerSection = () => {
       />
       <div className="relative z-10 mx-auto flex w-full max-w-luxury flex-col justify-center px-6 py-8 md:px-8 md:py-12">
         <div className="max-w-[65ch] space-y-8">
-          <span className="text-xs font-light uppercase tracking-uppercase text-white/80">
+          <p className="text-xs font-light uppercase tracking-uppercase text-white/80">
             On Gifts
-          </span>
+          </p>
+          <h2 className="font-serif text-2xl uppercase tracking-wide text-white md:text-3xl">
+            Gift Etiquette
+          </h2>
           <p className="text-base font-light leading-relaxed tracking-luxury text-white/90">
             Gifts aren't expected—they're punctuation, not purpose. When they happen, they feel like a quiet thank-you that marks knowing each other. The best ones reflect the texture of us.
           </p>

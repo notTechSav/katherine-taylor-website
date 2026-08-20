@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, type ElementType } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -10,6 +10,7 @@ type PageHeroOverlayProps = {
   eyebrow?: string;
   alignment?: "left" | "right";
   gradient?: "horizontal" | "vertical";
+  headingAs?: "h1" | "h2" | "p";
   className?: string;
 };
 
@@ -31,8 +32,10 @@ const PageHeroOverlay = memo(
     eyebrow,
     alignment = "left",
     gradient = "horizontal",
+    headingAs = "h1",
     className,
   }: PageHeroOverlayProps) => {
+    const Heading = headingAs as ElementType;
     const gradientStyle =
       gradient === "horizontal"
         ? {
@@ -43,23 +46,20 @@ const PageHeroOverlay = memo(
           }
         : { background: verticalGradient };
 
-    const desktopAlignment = "items-end";
     const desktopJustify =
-      alignment === "right" ? "justify-end" : "justify-start";
-    const textAlignment = alignment === "right" ? "text-right" : "text-left";
+      alignment === "right" ? "sm:justify-end" : "sm:justify-start";
+    const textAlignment = alignment === "right" ? "sm:text-right" : "text-left";
     const containerAlignment =
-      alignment === "right" ? "ml-auto mr-0" : "mr-auto ml-0";
+      alignment === "right" ? "sm:ml-auto sm:mr-0" : "sm:mr-auto sm:ml-0";
 
     return (
       <section className={cn("relative bg-luxury-white", className)}>
         <figure className="relative h-[48vh] min-h-[320px] w-full overflow-hidden bg-luxury-black sm:h-[56vh]">
           <picture>
-            {/* Mobile: smaller, optimized image with width=800 */}
             <source
               media="(max-width: 767px)"
-              srcSet={`${imageSrc.replace(/width=\d+/, 'width=800')}`}
+              srcSet={`${imageSrc.replace(/width=\d+/, "width=800")}`}
             />
-            {/* Desktop: full quality image (original or width=1600) */}
             <img
               src={imageSrc}
               alt={imageAlt}
@@ -70,68 +70,39 @@ const PageHeroOverlay = memo(
           </picture>
           <div className="absolute inset-0" style={gradientStyle} aria-hidden />
 
-          {/* Desktop overlay */}
-          <figcaption
-            className={cn(
-              "pointer-events-none absolute inset-0 hidden sm:flex",
-              desktopAlignment,
-            )}
-          >
+          <figcaption className="pointer-events-none absolute inset-0 flex items-end">
             <div
               className={cn(
-                "w-full max-w-[1120px] px-6 sm:px-12 lg:px-16",
+                "w-full px-6 pb-10 sm:max-w-[1120px] sm:px-12 sm:pb-8 lg:px-16 lg:pb-10",
                 containerAlignment,
               )}
             >
               <div className={cn("flex w-full", desktopJustify)}>
                 <div
                   className={cn(
-                    "max-w-xl pb-8 text-luxury-white lg:pb-10",
+                    "max-w-xl text-luxury-white",
                     textAlignment,
                   )}
                 >
                   {eyebrow ? (
                     <p
-                      className="mb-3 text-xs font-light uppercase tracking-[0.12em] text-luxury-white/75"
+                      className="mb-2 text-xs font-light uppercase tracking-[0.12em] text-luxury-white/75 sm:mb-3"
                       style={{ letterSpacing: "0.12em" }}
                     >
                       {eyebrow}
                     </p>
                   ) : null}
-                  <h1
-                    className="text-4xl font-extralight leading-[1.08] tracking-[-0.02em] text-luxury-white sm:text-[50px]"
+                  <Heading
+                    className="text-[32px] font-extralight leading-[1.15] tracking-[-0.02em] text-luxury-white sm:text-4xl sm:leading-[1.08] sm:text-[50px]"
                     style={{ fontWeight: 200 }}
                   >
                     {title}
-                  </h1>
-                  <p className="mt-5 text-base font-light leading-[1.8] text-luxury-white/80">
+                  </Heading>
+                  <p className="mt-4 text-sm font-light leading-[1.8] text-luxury-white/80 sm:mt-5 sm:text-base">
                     {subtitle}
                   </p>
                 </div>
               </div>
-            </div>
-          </figcaption>
-
-          {/* Mobile overlay */}
-          <figcaption className="pointer-events-none absolute inset-0 flex items-end sm:hidden">
-            <div className="w-full px-6 pb-10">
-              {eyebrow ? (
-                <p
-                  className="mb-2 text-xs font-light uppercase tracking-[0.12em] text-luxury-white/70"
-                  style={{ letterSpacing: "0.12em" }}
-                >
-                  {eyebrow}
-                </p>
-              ) : null}
-              <h1
-                className="text-[32px] font-extralight leading-[1.15] tracking-[-0.02em] text-luxury-white"
-                style={{ fontWeight: 200 }}
-              >
-                {title}
-              </h1>
-              <p className="mt-4 text-sm font-light leading-[1.8] text-luxury-white/80">
-                {subtitle}
-              </p>
             </div>
           </figcaption>
         </figure>

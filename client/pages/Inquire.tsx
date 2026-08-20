@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
+import SeoHead from "@/components/site/SeoHead";
+import { pageSeo } from "@/lib/page-seo";
 
 const heroImage = {
   src: "/inquire-hero.webp",
@@ -58,12 +60,17 @@ const InquirePage = () => {
   if (isSubmitted) {
     return (
       <div className="bg-luxury-white text-luxury-black min-h-screen flex items-center justify-center">
+        <SeoHead
+          title={pageSeo.inquire.title}
+          description={pageSeo.inquire.description}
+          path={pageSeo.inquire.path}
+        />
         <div className="container mx-auto px-6 md:px-8 max-w-2xl text-center space-y-8">
           <h1
             className="text-4xl md:text-5xl font-extralight tracking-[-0.02em] text-luxury-black"
             style={{ fontWeight: 200 }}
           >
-            Received
+            Inquiry Received
           </h1>
           <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700">
             I'll review your inquiry within 24 hours and respond directly.
@@ -87,10 +94,15 @@ const InquirePage = () => {
 
   return (
     <div className="bg-luxury-white text-luxury-black">
+      <SeoHead
+        title={pageSeo.inquire.title}
+        description={pageSeo.inquire.description}
+        path={pageSeo.inquire.path}
+      />
       <PageHeroOverlay
         title="Inquire"
         subtitle="Every inquiry is read personally. I respond to those where the fit is mutual."
-        eyebrow="Private Inquiry"
+        eyebrow="Katherine Taylor Escort"
         imageSrc={heroImage.src}
         imageAlt={heroImage.alt}
         alignment="left"
@@ -99,6 +111,12 @@ const InquirePage = () => {
       <section className="bg-luxury-white py-20 md:py-28">
         <div className="container mx-auto px-6 md:px-8 max-w-2xl">
           <div className="mb-12 space-y-4 text-center">
+            <h2
+              className="text-3xl font-extralight tracking-[-0.02em] text-luxury-black md:text-4xl"
+              style={{ fontWeight: 200 }}
+            >
+              Private Inquiry
+            </h2>
             <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700">
               Please provide enough context for me to understand who you are and what you're looking for.
             </p>
@@ -324,21 +342,33 @@ const InquirePage = () => {
 
           <div className="space-y-6">
             <div className="border-l-2 border-gray-300 pl-4 py-2">
+              <h3 className="mb-1 text-base font-light text-luxury-black">
+                Personal review
+              </h3>
               <p className="text-base font-light leading-[1.8] text-gray-700">
                 I read every inquiry personally, usually within 24 hours.
               </p>
             </div>
             <div className="border-l-2 border-gray-300 pl-4 py-2">
+              <h3 className="mb-1 text-base font-light text-luxury-black">
+                Mutual fit
+              </h3>
               <p className="text-base font-light leading-[1.8] text-gray-700">
                 If the fit seems mutual, I'll respond with next steps and availability.
               </p>
             </div>
             <div className="border-l-2 border-gray-300 pl-4 py-2">
+              <h3 className="mb-1 text-base font-light text-luxury-black">
+                If I don't respond
+              </h3>
               <p className="text-base font-light leading-[1.8] text-gray-700">
                 If I don't respond within 48 hours, it likely means I'm not the right match.
               </p>
             </div>
             <div className="border-l-2 border-gray-300 pl-4 py-2">
+              <h3 className="mb-1 text-base font-light text-luxury-black">
+                Discretion
+              </h3>
               <p className="text-base font-light leading-[1.8] text-gray-700">
                 All correspondence remains private, regardless of outcome.
               </p>

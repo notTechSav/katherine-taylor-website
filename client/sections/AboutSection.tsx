@@ -11,7 +11,7 @@ export default function AboutSection() {
       />
       <div className="relative z-10 mx-auto flex max-w-xl flex-col items-center justify-center px-6 py-8 text-center">
         <h2 className="mb-6 text-2xl font-serif uppercase tracking-wide text-white">
-          About
+          About Katherine Taylor
         </h2>
         <a
           href="/about"

@@ -11,9 +11,12 @@ const JournalTeaserCard = () => {
       />
       <div className="relative z-10 mx-auto flex w-full max-w-luxury flex-col justify-center px-6 py-8 md:px-8 md:py-12">
         <div className="max-w-[65ch] space-y-8">
-          <span className="text-xs font-light uppercase tracking-uppercase text-white/80">
+          <p className="text-xs font-light uppercase tracking-uppercase text-white/80">
+            The Journal
+          </p>
+          <h2 className="font-serif text-2xl uppercase tracking-wide text-white md:text-3xl">
             Continuity as Craft
-          </span>
+          </h2>
           <p className="text-base font-light leading-relaxed tracking-luxury text-white/90">
             The conversation never resets. I remember your M&A timeline, your board anxieties, the trip you've been planning. Not because I take notes—because I've built a decade of pattern libraries that let me read what you don't say.
           </p>

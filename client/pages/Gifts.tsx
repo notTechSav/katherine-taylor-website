@@ -1,18 +1,15 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
+import SeoHead from "@/components/site/SeoHead";
+import { pageSeo } from "@/lib/page-seo";
 
 const Gifts = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleGuidance = useCallback(() => {
     setIsExpanded((prev) => !prev);
-  }, []);
-
-  useEffect(() => {
-    document.title =
-      "Gifts | Katherine Taylor Escort - San Francisco & Sacramento";
   }, []);
 
   const guidance = [
@@ -23,12 +20,17 @@ const Gifts = () => {
 
   return (
     <div className="bg-luxury-white text-luxury-black">
+      <SeoHead
+        title={pageSeo.gifts.title}
+        description={pageSeo.gifts.description}
+        path={pageSeo.gifts.path}
+      />
       {/* Hero Section - matching journal's hero exactly */}
       <section className="relative bg-luxury-white">
         <figure className="relative h-[48vh] min-h-[280px] w-full overflow-hidden sm:h-[52vh]">
           <img
             src="https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe8959b4139fc4dd9a3ce4786c1b4e8dc?format=webp&width=1600"
-            alt="Gifts"
+            alt="Gifts for Katherine Taylor escort — San Francisco and Sacramento"
             className="h-full w-full object-cover"
             loading="eager"
           />
@@ -41,47 +43,25 @@ const Gifts = () => {
             aria-hidden
           />
 
-          {/* Desktop overlay */}
-          <figcaption className="pointer-events-none absolute inset-0 hidden items-end sm:flex">
-            <div className="mx-auto w-full max-w-[1120px] px-12 pb-14">
+          <figcaption className="pointer-events-none absolute inset-0 flex items-end">
+            <div className="w-full px-8 pb-10 sm:mx-auto sm:max-w-[1120px] sm:px-12 sm:pb-14">
               <div className="max-w-xl text-left text-luxury-white">
                 <p
-                  className="mb-3 text-sm font-light uppercase tracking-[0.12em] text-luxury-white/75"
+                  className="mb-2 text-xs font-light uppercase tracking-[0.12em] text-luxury-white/75 sm:mb-3 sm:text-sm"
                   style={{ letterSpacing: "0.12em", fontWeight: 200 }}
                 >
                   A QUIET PROTOCOL
                 </p>
                 <h1
-                  className="text-4xl font-extralight leading-[1.1] tracking-[-0.02em] sm:text-[50px]"
+                  className="text-[32px] font-extralight leading-[1.15] tracking-[-0.02em] text-luxury-white sm:text-4xl sm:leading-[1.1] sm:text-[50px]"
                   style={{ fontWeight: 200 }}
                 >
                   Gifts
                 </h1>
-                <p className="mt-5 text-base font-light text-luxury-white/80">
+                <p className="mt-4 text-sm font-light leading-[1.8] text-luxury-white/80 sm:mt-5 sm:text-base">
                   A quiet page, by request
                 </p>
               </div>
-            </div>
-          </figcaption>
-
-          {/* Mobile overlay */}
-          <figcaption className="pointer-events-none absolute inset-0 flex items-end sm:hidden">
-            <div className="w-full px-8 pb-10">
-              <p
-                className="mb-2 text-xs font-light uppercase tracking-[0.12em] text-luxury-white/75"
-                style={{ letterSpacing: "0.12em", fontWeight: 200 }}
-              >
-                A QUIET PROTOCOL
-              </p>
-              <h1
-                className="text-[32px] font-extralight leading-[1.15] tracking-[-0.02em] text-luxury-white"
-                style={{ fontWeight: 200 }}
-              >
-                Gifts
-              </h1>
-              <p className="mt-4 text-sm font-light leading-[1.8] text-luxury-white/80">
-                A quiet page, by request
-              </p>
             </div>
           </figcaption>
         </figure>
