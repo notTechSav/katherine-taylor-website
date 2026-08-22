@@ -9,7 +9,6 @@ import GallerySection from "@/sections/GallerySection";
 import GiftsSection from "@/sections/GiftsSection";
 import LocationSection from "@/sections/LocationSection";
 import SacramentoSection from "@/sections/SacramentoSection";
-import NewsletterSection from "@/sections/NewsletterSection";
 import OpeningVideoSection from "@/sections/OpeningVideoSection";
 import RatesVideoSection from "@/sections/RatesVideoSection";
 import SeoHead from "@/components/site/SeoHead";
@@ -132,15 +131,6 @@ const Index = () => {
         aria-label="Inquiry Video - Limited Availability"
       >
         <ClosingVideoSection />
-      </section>
-
-      <section
-        id="newsletter"
-        data-fullpage-section
-        className={sectionClass("bg-luxury-cream")}
-        aria-label="Newsletter Signup"
-      >
-        <NewsletterSection />
       </section>
     </FullPageSections>
     </>

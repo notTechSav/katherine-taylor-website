@@ -88,6 +88,8 @@ const Navigation = () => {
           onClick={() => setIsMenuOpen((previous) => !previous)}
           className="text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:hidden"
           aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
         >
           {isMenuOpen ? "Close" : "Menu"}
         </button>
@@ -106,7 +108,10 @@ const Navigation = () => {
         </ul>
       </div>
       {isMenuOpen ? (
-        <div className="mt-4 border-t border-gray-200 px-2 pt-4 md:hidden">
+        <div
+          id="mobile-navigation"
+          className="mt-4 border-t border-gray-200 px-2 pt-4 md:hidden"
+        >
           <ul className="flex flex-col gap-2">
             {navigationLinks.map((link) => (
               <li key={link.label}>

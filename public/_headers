@@ -3,3 +3,9 @@
 # replacements are not stuck on phones after a same-URL update.
 /about-slide-mobile.webp
   Cache-Control: public, max-age=0, must-revalidate
+
+# Low-risk headers not already supplied by the Cloudflare zone.
+# Live apex already sends X-Content-Type-Options, X-Frame-Options, and
+# Referrer-Policy. HSTS is deferred until www HTTPS is healthy.
+/*
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()

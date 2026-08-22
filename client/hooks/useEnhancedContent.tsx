@@ -16,17 +16,6 @@ export interface GenerationOptions {
   useCache?: boolean;
 }
 
-interface ClaudeMessage {
-  role: 'user' | 'assistant';
-  content: string;
-}
-
-interface ClaudeResponse {
-  content: Array<{ text: string }>;
-  id: string;
-  model: string;
-}
-
 const CACHE_KEY_PREFIX = 'content_cache_';
 const CACHE_EXPIRY = 24 * 60 * 60 * 1000; // 24 hours
 
@@ -93,59 +82,11 @@ export const useEnhancedContent = () => {
         if (cached) return cached;
       }
 
-      const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
-      if (!apiKey) {
-        throw new Error(
-          'Anthropic API key not found. Please set VITE_ANTHROPIC_API_KEY environment variable.'
-        );
-      }
-
-      const systemPrompt = [
-        'You are a luxury brand copywriter specializing in the Katherine Taylor brand voice.',
-        'Brand characteristics: De Beers × Hermès aesthetic, quiet authority, understated luxury, pixel-perfect precision.',
-        'Tone: Confident restraint, "less is more on surface, more is more behind the scenes".',
-        'Return only HTML (no markdown, no commentary).',
-        ...styleDirectives,
-      ].join('\n');
-
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-        },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: maxTokens,
-          temperature,
-          system: systemPrompt,
-          messages: [
-            {
-              role: 'user',
-              content: prompt,
-            },
-          ],
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error(
-          `API request failed: ${response.status} ${response.statusText}`
-        );
-      }
-
-      const data = (await response.json()) as ClaudeResponse;
-      const content = data.content?.[0]?.text || '';
-
-      // Cache the result
-      if (useCache) {
-        setCachedContent(cacheKey, content);
-      }
-
-      return content;
+      throw new Error(
+        'AI content generation is disabled. A server-side /api/content/generate implementation is required.'
+      );
     },
-    [getCachedContent, setCachedContent]
+    [getCachedContent]
   );
 
   // Generate a single section

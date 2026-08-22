@@ -6,6 +6,7 @@ type FullBleedPhotoProps = {
   className?: string;
   width?: number;
   height?: number;
+  priority?: boolean;
 };
 
 export default function FullBleedPhoto({
@@ -14,6 +15,7 @@ export default function FullBleedPhoto({
   className,
   width = 2048,
   height = 3072,
+  priority = false,
 }: FullBleedPhotoProps) {
   return (
     <img
@@ -22,8 +24,8 @@ export default function FullBleedPhoto({
       width={width}
       height={height}
       draggable={false}
-      decoding="sync"
-      fetchPriority="high"
+      decoding={priority ? "sync" : "async"}
+      fetchPriority={priority ? "high" : "auto"}
       className={cn(
         "pointer-events-none absolute inset-0 z-0 h-full w-full max-h-none max-w-none object-cover object-center",
         className,

@@ -329,7 +329,6 @@ export default function FullscreenVideoSection({
           playsInline
           preload={priority ? "auto" : "metadata"}
           poster={posterSrc}
-          fetchpriority={priority ? "high" : "auto"}
           onPlaying={handleVideoPlaying}
           onError={tryNextSource}
         />

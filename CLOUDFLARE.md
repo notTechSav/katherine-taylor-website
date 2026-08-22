@@ -61,8 +61,7 @@ Static files (`index.html`, `public/sitemap.xml`, `public/video-sitemap.xml`, `p
 Set in Cloudflare Pages → Settings → Environment variables:
 
 - `PING_MESSAGE` — health check response (optional)
-- `ANTHROPIC_API_KEY` — required for AI content/concierge features
-- `VITE_ANTHROPIC_API_KEY` — client-side if needed at build time
+- `ANTHROPIC_API_KEY` — server-side only, for future Pages Function / Node API work. Do not expose as `VITE_*`.
 
 ## Local development
 
