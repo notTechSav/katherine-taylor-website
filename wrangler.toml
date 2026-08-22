@@ -3,6 +3,9 @@ name = "katherine-taylor-website"
 compatibility_date = "2025-01-01"
 pages_build_output_dir = "dist/spa"
 
+[observability.traces]
+enabled = true
+
 [vars]
 PING_MESSAGE = "ping pong"
 
