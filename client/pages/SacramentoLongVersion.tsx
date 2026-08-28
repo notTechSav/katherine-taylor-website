@@ -570,7 +570,7 @@ const SacramentoLongVersion = () => {
             <a href="/inquire" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">Inquire</a>
             <a href="/rates" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">Rates</a>
             <a href="/faq" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">FAQ</a>
-            <a href="/memoirs-in-the-city" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">Why I Left San Francisco</a>
+            <a href="/journal/memoirs-in-the-city" className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline">Why I Left San Francisco</a>
           </nav>
         </div>
       </section>

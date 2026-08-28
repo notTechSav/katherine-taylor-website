@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import JournalBody from "@/components/journal/JournalBody";
 import JournalFooter from "@/components/journal/JournalFooter";
 import SeoHead from "@/components/site/SeoHead";
 import {
@@ -47,24 +48,26 @@ const JournalArticle = () => {
     return <NotFound />;
   }
 
-  const paragraphs = essay.body
-    .split(/\n\n+/g)
-    .map((paragraph) => paragraph.trim());
+  const seoTitle = essay.seo?.title ?? `${essay.title} — Katherine Taylor Escort`;
+  const seoDescription =
+    essay.seo?.description ?? essay.excerpt ?? essayMetadata.description;
 
   return (
     <div className="bg-luxury-white text-luxury-black">
       <SeoHead
-        title={`${essay.title} — Katherine Taylor Escort`}
-        description={essay.excerpt || essayMetadata.description}
+        title={seoTitle}
+        description={seoDescription}
         path={`/journal/${essay.slug}`}
         image={absoluteUrl(heroImage.src)}
         imageAlt={heroImage.alt}
         type="article"
+        geoRegion={essay.seo?.geoRegion}
+        geoPlacename={essay.seo?.geoPlacename}
         jsonLd={{
           "@context": "https://schema.org",
           "@type": "Article",
           headline: essay.title,
-          description: essay.excerpt || essayMetadata.description,
+          description: seoDescription,
           author: {
             "@type": "Person",
             name: "Katherine Taylor",
@@ -78,7 +81,7 @@ const JournalArticle = () => {
             "@type": "WebPage",
             "@id": absoluteUrl(`/journal/${essay.slug}`),
           },
-          keywords: essayMetadata.keywords,
+          keywords: essay.seo?.keywords ?? essayMetadata.keywords,
           image: absoluteUrl(heroImage.src),
         }}
       />
@@ -121,11 +124,7 @@ const JournalArticle = () => {
           <p className="text-sm font-light tracking-[0.12em] text-gray-600">
             {journalDisplay.subtitle}
           </p>
-          <div className="space-y-6 text-[18px] font-light leading-[1.75] text-luxury-black">
-            {paragraphs.map((paragraph, index) => (
-              <p key={`${essay.slug}-paragraph-${index}`}>{paragraph}</p>
-            ))}
-          </div>
+          <JournalBody body={essay.body} idPrefix={essay.slug} />
           <div className="flex justify-between pt-8 text-sm font-light text-luxury-black">
             <button
               type="button"

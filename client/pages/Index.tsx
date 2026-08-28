@@ -8,7 +8,6 @@ import FullBleedPhoto from "@/components/site/FullBleedPhoto";
 import FullPageSections from "@/components/site/FullPageSections";
 import GallerySection from "@/sections/GallerySection";
 import GiftsSection from "@/sections/GiftsSection";
-import LocationSection from "@/sections/LocationSection";
 import SacramentoSection from "@/sections/SacramentoSection";
 import OpeningVideoSection from "@/sections/OpeningVideoSection";
 import RatesVideoSection from "@/sections/RatesVideoSection";
@@ -104,16 +103,6 @@ const Index = () => {
       >
         <FullBleedPhoto src="/faq-slide.webp?v=hires5" />
         <FAQTeaserSection />
-      </section>
-
-      <section
-        id="location"
-        data-fullpage-section
-        className={sectionClass("bg-luxury-cream")}
-        aria-label="San Francisco Location"
-      >
-        <FullBleedPhoto src="/location-slide.webp?v=hires3" />
-        <LocationSection />
       </section>
 
       <section

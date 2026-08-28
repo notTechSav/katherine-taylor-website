@@ -1,5 +1,6 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { type CSSProperties, useMemo } from "react";
+import JournalBody from "@/components/journal/JournalBody";
 import type { JournalEssay } from "@/lib/journal-content";
 
 interface JournalModalProps {
@@ -43,11 +44,6 @@ const JournalModal = ({
   nextEssay,
   onNavigateNext,
 }: JournalModalProps) => {
-  const paragraphs = useMemo(() => {
-    if (!essay) return [];
-    return essay.body.split(/\n\n+/g).map((paragraph) => paragraph.trim());
-  }, [essay]);
-
   const formattedPublishedDate = useMemo(() => {
     if (!essay) return "";
     const parsed = new Date(essay.publishedDate);
@@ -107,15 +103,10 @@ const JournalModal = ({
                 </DialogPrimitive.Title>
               </header>
 
-              <DialogPrimitive.Description asChild>
-                <div className="space-y-6 text-[18px] font-light leading-[1.75] text-luxury-black">
-                  {paragraphs.map((paragraph, index) => (
-                    <p key={`${essay?.slug ?? ""}-paragraph-${index}`}>
-                      {paragraph}
-                    </p>
-                  ))}
-                </div>
-              </DialogPrimitive.Description>
+              <JournalBody
+                body={essay?.body ?? ""}
+                idPrefix={essay?.slug ?? "essay"}
+              />
 
               {essay?.readNext && onNavigateNext && nextEssay ? (
                 <footer className="border-t border-gray-200 pt-6">

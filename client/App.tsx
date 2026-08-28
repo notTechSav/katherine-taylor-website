@@ -31,7 +31,6 @@ const JournalArticle = lazy(() => import("./pages/JournalArticle"));
 const Maison = lazy(() => import("./pages/Maison"));
 const Rates = lazy(() => import("./pages/Rates"));
 const Services = lazy(() => import("./pages/Services"));
-const SanFrancisco = lazy(() => import("./pages/SanFrancisco"));
 const Sacramento = lazy(() => import("./pages/Sacramento"));
 const ContentGenerator = lazy(() => import("./pages/ContentGenerator"));
 const AIConcierge = lazy(() => import("./pages/AIConcierge"));
@@ -75,10 +74,13 @@ const AppRoutes = () => {
           <Route path="/inquire" element={withLayout(Inquire)} />
           <Route path="/maison" element={withLayout(Maison)} />
           <Route path="/services" element={withLayout(Services)} />
-          <Route path="/memoirs-in-the-city" element={withLayout(SanFrancisco)} />
+          <Route
+            path="/memoirs-in-the-city"
+            element={<Navigate to="/journal/memoirs-in-the-city" replace />}
+          />
           <Route
             path="/san-francisco"
-            element={<Navigate to="/memoirs-in-the-city" replace />}
+            element={<Navigate to="/journal/memoirs-in-the-city" replace />}
           />
           <Route path="/sacramento-escorts" element={withLayout(Sacramento)} />
           <Route

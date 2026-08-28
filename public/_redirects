@@ -2,7 +2,8 @@
 # fallback if host-based rules do not apply — see CLOUDFLARE.md.
 https://www.katherinetaylorescort.com/* https://katherinetaylorescort.com/:splat 301
 
-/san-francisco /memoirs-in-the-city 301
+/san-francisco /journal/memoirs-in-the-city 301
+/memoirs-in-the-city /journal/memoirs-in-the-city 301
 /sacramento /sacramento-escorts 301
 
 # SPA fallback

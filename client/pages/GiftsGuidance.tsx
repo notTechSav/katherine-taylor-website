@@ -248,7 +248,7 @@ const GiftsGuidance = () => {
         </P>
         <P>
           My travels and years working as a{" "}
-          <InternalLink href="/memoirs-in-the-city">California escort</InternalLink> have taken me well beyond Sacramento.
+          <InternalLink href="/journal/memoirs-in-the-city">California escort</InternalLink> have taken me well beyond Sacramento.
         </P>
       </section>
     </div>
