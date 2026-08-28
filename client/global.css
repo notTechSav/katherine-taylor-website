@@ -576,6 +576,11 @@
     visibility: hidden;
     pointer-events: none;
     background-color: var(--luxury-white);
+    /* The reveal slides the footer up from bottom:0, so anything taller than the
+       viewport would be clipped out of reach on short screens. */
+    max-height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   html.fullpage-is-ready [data-fullpage-footer].is-revealed {

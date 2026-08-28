@@ -1,17 +1,11 @@
 "use client";
 
 import { useLocation, useNavigate } from "react-router-dom";
-import JournalFooter from "@/components/journal/JournalFooter";
 import JournalGrid from "@/components/journal/JournalGrid";
 import JournalHero from "@/components/journal/JournalHero";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
-import {
-  essays,
-  heroImage,
-  journalDisplay,
-  journalFooter,
-} from "@/lib/journal-content";
+import { essays, heroImage, journalDisplay } from "@/lib/journal-content";
 import { pageSeo } from "@/lib/page-seo";
 import { absoluteUrl } from "@/lib/site-config";
 
@@ -60,7 +54,6 @@ const Journal = () => {
         onOpen={handleOpen}
         ctaLabel={journalDisplay.ctaLabel}
       />
-      <JournalFooter intro={journalFooter.intro} links={journalFooter.links} />
       <NextSectionCTA
         eyebrow="Next"
         label="Browse Gallery"

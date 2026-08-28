@@ -377,34 +377,6 @@ const InquirePage = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-200 bg-luxury-white px-6 py-16">
-        <div className="mx-auto max-w-[620px] space-y-6 text-left">
-          <nav className="flex flex-wrap gap-3 text-[14px] font-light text-luxury-black">
-            <a
-              href="/rates"
-              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
-            >
-              Rates
-            </a>
-            <a
-              href="/faq"
-              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
-            >
-              FAQ
-            </a>
-            <a
-              href="/about"
-              className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
-            >
-              About
-            </a>
-          </nav>
-          <p className="text-xs font-light text-gray-400 tracking-[0.08em]">
-            © 2025 Katherine Taylor
-          </p>
-        </div>
-      </footer>
     </div>
   );
 };

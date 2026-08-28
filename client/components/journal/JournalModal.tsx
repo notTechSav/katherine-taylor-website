@@ -109,7 +109,7 @@ const JournalModal = ({
               />
 
               {essay?.readNext && onNavigateNext && nextEssay ? (
-                <footer className="border-t border-gray-200 pt-6">
+                <div className="border-t border-gray-200 pt-6">
                   <button
                     type="button"
                     onClick={() => onNavigateNext(essay.readNext!)}
@@ -118,7 +118,7 @@ const JournalModal = ({
                     {readNextLabel}{" "}
                     <span className="font-normal">{nextEssay.title}</span>
                   </button>
-                </footer>
+                </div>
               ) : null}
             </div>
           </div>

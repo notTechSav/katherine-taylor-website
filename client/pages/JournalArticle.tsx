@@ -3,12 +3,10 @@
 import { useEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import JournalBody from "@/components/journal/JournalBody";
-import JournalFooter from "@/components/journal/JournalFooter";
 import SeoHead from "@/components/site/SeoHead";
 import {
   heroImage,
   journalDisplay,
-  journalFooter,
   getEssayBySlug,
   getReadNextEssay,
   essayMetadata,
@@ -151,7 +149,6 @@ const JournalArticle = () => {
         </div>
       </section>
 
-      <JournalFooter intro={journalFooter.intro} links={journalFooter.links} />
     </div>
   );
 };
