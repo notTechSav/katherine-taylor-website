@@ -54,11 +54,7 @@ const Journal = () => {
         onOpen={handleOpen}
         ctaLabel={journalDisplay.ctaLabel}
       />
-      <NextSectionCTA
-        eyebrow="Next"
-        label="Browse Gallery"
-        href="/gallery"
-      />
+      <NextSectionCTA label="Browse Gallery" href="/gallery" />
     </div>
   );
 };

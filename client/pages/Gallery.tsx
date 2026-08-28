@@ -1,4 +1,5 @@
 import DeckBuilderPreview from "@/components/gallery/DeckBuilderPreview";
+import NextSectionCTA from "@/components/site/NextSectionCTA";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import SeoHead from "@/components/site/SeoHead";
 import { pageSeo } from "@/lib/page-seo";
@@ -22,6 +23,7 @@ const Gallery = () => {
         alignment="left"
       />
       <DeckBuilderPreview />
+      <NextSectionCTA label="Browse Gifts" href="/gifts" />
     </div>
   );
 };

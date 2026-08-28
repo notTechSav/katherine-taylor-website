@@ -388,11 +388,7 @@ const RatesPage = () => {
         </div>
       </section>
 
-      <NextSectionCTA
-        eyebrow="Next"
-        label="Browse Gifts"
-        href="/gifts"
-      />
+      <NextSectionCTA label="Browse Gifts" href="/gifts" />
     </div>
   );
 };

@@ -462,7 +462,7 @@ function Hub({
   return (
     <section
       id={GALLERY_INDEX_ID}
-      className="mx-auto max-w-[1180px] scroll-mt-28 px-6 pt-32 pb-32 md:scroll-mt-36 md:px-12 md:pt-40 md:pb-48"
+      className="mx-auto max-w-[1180px] scroll-mt-28 px-6 pt-32 pb-8 md:scroll-mt-36 md:px-12 md:pt-40 md:pb-12"
       aria-label="Private Collections"
     >
       <header className="mx-auto mb-14 max-w-[720px] sm:mb-24">

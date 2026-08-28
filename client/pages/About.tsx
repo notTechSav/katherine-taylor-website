@@ -115,11 +115,7 @@ const About = () => {
             </section>
           </main>
         </div>
-        <NextSectionCTA
-          eyebrow="Next"
-          label="Explore Gallery"
-          href="/gallery"
-        />
+        <NextSectionCTA label="Browse Gallery" href="/gallery" />
       </div>
   );
 };

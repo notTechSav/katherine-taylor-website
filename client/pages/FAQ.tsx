@@ -992,11 +992,7 @@ const FAQPage = () => {
         </div>
       </section>
 
-      <NextSectionCTA
-        eyebrow="Next"
-        label="Get in Touch"
-        href="/inquire"
-      />
+      <NextSectionCTA label="Get in Touch" href="/inquire" />
     </div>
   );
 };

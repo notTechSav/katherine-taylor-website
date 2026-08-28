@@ -129,11 +129,7 @@ const Index = () => {
         tabIndex={-1}
         className="bg-luxury-white focus:outline-none"
       >
-        <NextSectionCTA
-          eyebrow="Next"
-          label="About Katherine"
-          href="/about"
-        />
+        <NextSectionCTA label="About Katherine" href="/about" />
         <Footer />
       </div>
     </FullPageSections>

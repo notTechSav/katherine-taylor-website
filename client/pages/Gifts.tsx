@@ -113,11 +113,7 @@ const Gifts = () => {
         </div>
       </section>
 
-      <NextSectionCTA
-        eyebrow="Next"
-        label="Frequently Asked Questions"
-        href="/faq"
-      />
+      <NextSectionCTA label="Frequently Asked Questions" href="/faq" />
     </div>
   );
 };
