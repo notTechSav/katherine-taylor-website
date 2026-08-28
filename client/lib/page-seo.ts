@@ -53,12 +53,6 @@ export const pageSeo = {
       "Essays, memoirs, and notes from Katherine Taylor on companionship, travel, culture, and the quiet discipline of continuity.",
     path: sitePages.journal.path,
   },
-  services: {
-    title: "Companion Services | Katherine Taylor — San Francisco",
-    description:
-      "Fantasy dates and companion services with Katherine Taylor through San Francisco and beyond—dinners, ballgames, Napa, and travel by appointment.",
-    path: sitePages.services.path,
-  },
   sacramento: {
     title: "Escorts Near Me | The High-End Edition — Sacramento Escort",
     description:

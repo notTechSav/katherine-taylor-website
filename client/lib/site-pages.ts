@@ -56,13 +56,6 @@ export const sitePages = {
     priority: 0.9,
     footer: "practice",
   },
-  services: {
-    path: "/services",
-    navLabel: "Services",
-    changefreq: "monthly",
-    priority: 0.7,
-    footer: "practice",
-  },
   faq: {
     path: "/faq",
     navLabel: "FAQ",
