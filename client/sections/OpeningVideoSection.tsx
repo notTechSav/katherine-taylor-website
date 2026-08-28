@@ -14,6 +14,7 @@ export default function OpeningVideoSection() {
       priority
     >
       <HomepageEditorialOverlay>
+        <p className="homepage-eyebrow">By Appointment</p>
         <h1 className="homepage-h1">
           Katherine Taylor <span className="homepage-h1-break">Escort</span>
         </h1>
@@ -21,14 +22,9 @@ export default function OpeningVideoSection() {
           Private companionship in
           <br className="md:hidden" /> San Francisco and Sacramento.
         </p>
-        <div className="homepage-cta-group">
-          <Link to="/about" className="homepage-cta text-white">
-            About Katherine
-          </Link>
-          <Link to="/inquire" className="homepage-cta-quiet text-white">
-            Inquire
-          </Link>
-        </div>
+        <Link to="/about" className="homepage-cta text-white">
+          About Katherine
+        </Link>
       </HomepageEditorialOverlay>
     </FullscreenVideoSection>
   );

@@ -1,34 +1,18 @@
 import FullBleedPhoto from "@/components/site/FullBleedPhoto";
-import {
-  HomepageImageNav,
-  HomepageVeil,
-} from "@/components/site/homepage-editorial";
+import AboutSection from "@/sections/AboutSection";
+import GallerySection from "@/sections/GallerySection";
 
 export default function AboutGalleryCombinedSection() {
   return (
     <div className="grid h-full w-full grid-cols-2">
-      <div className="relative flex h-full flex-col items-center justify-center">
+      <div className="relative h-full min-w-0">
         <FullBleedPhoto src="/about-slide-mobile.webp?v=hires3" />
-        <HomepageVeil tone="center" />
-        <HomepageImageNav
-          title={
-            <>
-              About <span className="homepage-h2-break">Katherine Taylor</span>
-            </>
-          }
-          to="/about"
-          cta="About Katherine"
-        />
+        <AboutSection />
       </div>
 
-      <div className="relative flex h-full flex-col items-center justify-center">
+      <div className="relative h-full min-w-0">
         <FullBleedPhoto src="/katherinewindow.webp?v=hires3" />
-        <HomepageVeil tone="strong" />
-        <HomepageImageNav
-          title="Private Collections"
-          to="/gallery"
-          cta="View Private Collections"
-        />
+        <GallerySection />
       </div>
     </div>
   );

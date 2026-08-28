@@ -14,6 +14,7 @@ export default function RatesVideoSection() {
       overlayClassName="homepage-veil-lower-strong"
     >
       <HomepageEditorialOverlay>
+        <p className="homepage-eyebrow">The Structure</p>
         <h2 className="homepage-h2">Companion Rates</h2>
         <p className="homepage-body">
           Rates are published plainly. Availability remains intentionally limited.

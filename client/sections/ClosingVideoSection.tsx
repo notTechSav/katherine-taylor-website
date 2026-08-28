@@ -13,6 +13,7 @@ export default function ClosingVideoSection() {
       overlayClassName="homepage-veil-lower"
     >
       <HomepageEditorialOverlay>
+        <p className="homepage-eyebrow">By Introduction</p>
         <h2 className="homepage-h2">Limited Availability</h2>
         <p className="homepage-body">
           I accept three to four private engagements each month.

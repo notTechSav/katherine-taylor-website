@@ -15,7 +15,7 @@ import {
   useLocation,
   type Location,
 } from "react-router-dom";
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useLayoutEffect } from "react";
 import SiteLayout from "@/components/site/SiteLayout";
 import JournalModalRoute from "@/components/journal/JournalModalRoute";
 
@@ -52,10 +52,36 @@ const withLayout = (Page: React.ComponentType) => (
   </SiteLayout>
 );
 
+const restoreScrollToTop = () => {
+  const html = document.documentElement;
+  const previousBehavior = html.style.scrollBehavior;
+  html.style.scrollBehavior = "auto";
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  html.scrollTop = 0;
+  document.body.scrollTop = 0;
+  html.style.scrollBehavior = previousBehavior;
+};
+
 const AppRoutes = () => {
   const location = useLocation();
   const state = location.state as RouterState | undefined;
   const backgroundLocation = state?.backgroundLocation ?? location;
+
+  useLayoutEffect(() => {
+    const historyObj = window.history;
+    const previousRestoration = historyObj.scrollRestoration;
+    historyObj.scrollRestoration = "manual";
+    return () => {
+      historyObj.scrollRestoration = previousRestoration;
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    if (state?.backgroundLocation || location.hash) {
+      return;
+    }
+    restoreScrollToTop();
+  }, [location.hash, location.pathname, state?.backgroundLocation]);
 
   return (
     <>

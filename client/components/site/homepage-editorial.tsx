@@ -1,5 +1,4 @@
 import { type ReactNode } from "react";
-import { Link } from "react-router-dom";
 
 import { cn } from "@/lib/utils";
 
@@ -52,31 +51,6 @@ export function HomepageEditorialOverlay({
           <HomepageEditorialStack>{children}</HomepageEditorialStack>
         </div>
       </HomepageRail>
-    </div>
-  );
-}
-
-export function HomepageImageNav({
-  title,
-  to,
-  cta,
-  className,
-}: {
-  title: ReactNode;
-  to: string;
-  cta: string;
-  className?: string;
-}) {
-  return (
-    <div className={cn("homepage-image-nav", className)}>
-      <h2 className="homepage-h2 text-white">
-        <Link to={to} className="homepage-image-nav-title">
-          {title}
-        </Link>
-      </h2>
-      <Link to={to} className="homepage-cta-frame text-white">
-        {cta}
-      </Link>
     </div>
   );
 }
