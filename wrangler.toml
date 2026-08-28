@@ -3,8 +3,8 @@ name = "katherine-taylor-website"
 compatibility_date = "2025-01-01"
 pages_build_output_dir = "dist/spa"
 
-[observability.traces]
-enabled = true
+# Pages config rejects [observability.*]; tracing must be enabled in the
+# Cloudflare dashboard, or here only after migrating to a Worker deploy.
 
 [vars]
 PING_MESSAGE = "ping pong"
