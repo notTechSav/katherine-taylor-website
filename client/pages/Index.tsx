@@ -14,19 +14,10 @@ import OpeningVideoSection from "@/sections/OpeningVideoSection";
 import RatesVideoSection from "@/sections/RatesVideoSection";
 import SeoHead from "@/components/site/SeoHead";
 import { pageSeo } from "@/lib/page-seo";
-import { SITE_URL } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
 const sectionClass = (...classes: Array<string | undefined>) =>
   cn("fullpage-section relative isolate w-full max-w-[100vw]", ...classes);
-
-const homeWebsiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Katherine Taylor",
-  alternateName: "Katherine Taylor Escort",
-  url: `${SITE_URL}/`,
-};
 
 const Index = () => {
   return (
@@ -36,7 +27,6 @@ const Index = () => {
         description={pageSeo.home.description}
         path={pageSeo.home.path}
         geoRegion="US-CA"
-        jsonLd={homeWebsiteJsonLd}
       />
       <FullPageSections>
       <section
