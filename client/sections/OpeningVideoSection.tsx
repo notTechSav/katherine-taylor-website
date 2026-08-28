@@ -21,9 +21,14 @@ export default function OpeningVideoSection() {
           Private companionship in
           <br className="md:hidden" /> San Francisco and Sacramento.
         </p>
-        <Link to="/about" className="homepage-cta text-white">
-          About Katherine
-        </Link>
+        <div className="homepage-cta-group">
+          <Link to="/about" className="homepage-cta text-white">
+            About Katherine
+          </Link>
+          <Link to="/inquire" className="homepage-cta-quiet text-white">
+            Inquire
+          </Link>
+        </div>
       </HomepageEditorialOverlay>
     </FullscreenVideoSection>
   );

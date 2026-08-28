@@ -257,6 +257,8 @@ const InquirePage = () => {
                 style={{ fontWeight: 300 }}
               >
                 <option value="">Select location</option>
+                <option value="san-francisco">San Francisco (your hosting)</option>
+                <option value="san-francisco-outcall">San Francisco (outcall)</option>
                 <option value="sacramento">Sacramento (your hosting)</option>
                 <option value="sacramento-outcall">Sacramento (outcall)</option>
                 <option value="west-coast">West Coast Travel</option>

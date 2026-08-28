@@ -429,8 +429,17 @@
   }
 
   .homepage-editorial-stack > .homepage-cta,
-  .homepage-editorial-stack > .homepage-cta-frame {
+  .homepage-editorial-stack > .homepage-cta-frame,
+  .homepage-editorial-stack > .homepage-cta-group {
     margin-top: var(--homepage-gap-cta);
+  }
+
+  .homepage-cta-group {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: 1.75rem;
+    row-gap: 0.75rem;
   }
 
   .homepage-image-nav {
@@ -494,8 +503,27 @@
     opacity: 0.7;
   }
 
+  .homepage-cta-quiet {
+    display: inline-flex;
+    align-items: center;
+    font-family: "Work Sans", sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 300;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    opacity: 0.62;
+    text-decoration: none;
+    transition: opacity 250ms cubic-bezier(0, 0, 0.58, 1);
+  }
+
+  .homepage-cta-quiet:hover {
+    opacity: 1;
+  }
+
   .homepage-cta:focus-visible,
-  .homepage-cta-frame:focus-visible {
+  .homepage-cta-frame:focus-visible,
+  .homepage-cta-quiet:focus-visible {
     outline: 1px solid currentColor;
     outline-offset: 4px;
   }

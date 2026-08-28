@@ -15,16 +15,38 @@ const routePrefetchMap: Record<string, () => Promise<unknown>> = {
   "/sacramento-escorts": () => import("@/pages/Sacramento"),
 };
 
-const navigationLinks = [
+type NavChild = {
+  label: string;
+  href: string;
+};
+
+type NavItem = {
+  label: string;
+  href: string;
+  children?: NavChild[];
+};
+
+const navigationLinks: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Gifts", href: "/gifts" },
-  { label: "Journal", href: "/journal" },
+  {
+    label: "Journal",
+    href: "/journal",
+    children: [{ label: "Sacramento", href: "/sacramento-escorts" }],
+  },
   { label: "Rates", href: "/rates" },
   { label: "Gallery", href: "/gallery" },
   { label: "FAQ", href: "/faq" },
-  { label: "Inquire", href: "/inquire" },
 ];
+
+const inquireHref = "/inquire";
+
+const navLinkClass =
+  "text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2";
+
+const inquireButtonClass =
+  "inline-flex items-center justify-center border border-luxury-black/25 px-4 py-2 text-sm font-light uppercase tracking-uppercase text-luxury-black transition-colors duration-250 ease-out hover:border-luxury-black hover:bg-luxury-black hover:text-luxury-white focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -74,7 +96,7 @@ const Navigation = () => {
           : "bg-luxury-white/80 py-5 backdrop-blur-sm md:py-8",
       )}
     >
-      <div className="mx-auto flex max-w-luxury items-center justify-between">
+      <div className="mx-auto flex max-w-luxury items-center justify-between gap-6">
         <Link
           to="/"
           className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
@@ -93,19 +115,46 @@ const Navigation = () => {
         >
           {isMenuOpen ? "Close" : "Menu"}
         </button>
-        <ul className="hidden items-center gap-8 md:flex lg:gap-12">
-          {navigationLinks.map((link) => (
-            <li key={link.label}>
-              <Link
-                to={link.href}
-                onMouseEnter={() => handleMouseEnter(link.href)}
-                className="text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <div className="hidden items-center gap-8 md:flex lg:gap-12">
+          <ul className="flex items-center gap-8 lg:gap-12">
+            {navigationLinks.map((link) => (
+              <li key={link.label} className={link.children ? "group relative" : undefined}>
+                <Link
+                  to={link.href}
+                  onMouseEnter={() => handleMouseEnter(link.href)}
+                  className={navLinkClass}
+                >
+                  {link.label}
+                </Link>
+                {link.children ? (
+                  <ul className="pointer-events-none absolute left-0 top-full z-50 min-w-[11rem] pt-3 opacity-0 transition-opacity duration-250 ease-out group-hover:pointer-events-auto group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:opacity-100">
+                    {link.children.map((child) => (
+                      <li
+                        key={child.href}
+                        className="bg-luxury-white/95 py-2 shadow-luxury-sm backdrop-blur-sm"
+                      >
+                        <Link
+                          to={child.href}
+                          onMouseEnter={() => handleMouseEnter(child.href)}
+                          className={cn(navLinkClass, "block px-4 py-1.5")}
+                        >
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+          <Link
+            to={inquireHref}
+            onMouseEnter={() => handleMouseEnter(inquireHref)}
+            className={inquireButtonClass}
+          >
+            Inquire
+          </Link>
+        </div>
       </div>
       {isMenuOpen ? (
         <div
@@ -122,8 +171,32 @@ const Navigation = () => {
                 >
                   {link.label}
                 </Link>
+                {link.children ? (
+                  <ul className="mb-1 ml-4 border-l border-gray-200">
+                    {link.children.map((child) => (
+                      <li key={child.href}>
+                        <Link
+                          to={child.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block py-2 pl-4 text-sm font-light uppercase tracking-uppercase text-luxury-black/70 transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+                        >
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                ) : null}
               </li>
             ))}
+            <li className="pt-2">
+              <Link
+                to={inquireHref}
+                onClick={() => setIsMenuOpen(false)}
+                className={cn(inquireButtonClass, "w-full py-3")}
+              >
+                Inquire
+              </Link>
+            </li>
           </ul>
         </div>
       ) : null}
