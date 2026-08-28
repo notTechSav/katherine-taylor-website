@@ -4,6 +4,15 @@
 /about-slide-mobile.webp
   Cache-Control: public, max-age=0, must-revalidate
 
+# Replace the leftover Cartier mark immediately; zone Browser Cache TTL
+# would otherwise keep /logo.svg on phones for hours after deploy.
+/logo.svg
+  Cache-Control: public, max-age=0, must-revalidate
+/favicon.svg
+  Cache-Control: public, max-age=0, must-revalidate
+/apple-touch-icon.png
+  Cache-Control: public, max-age=0, must-revalidate
+
 # Low-risk headers not already supplied by the Cloudflare zone.
 # Live apex already sends X-Content-Type-Options, X-Frame-Options, and
 # Referrer-Policy. HSTS is deferred until www HTTPS is healthy.

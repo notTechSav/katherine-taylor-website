@@ -166,7 +166,7 @@ FORMAT YOUR RESPONSE AS JSON:
         description: parsed.shortVersion,
         provider: {
           '@type': 'Organization',
-          name: 'Cartier San Francisco', // Update with your actual business name
+          name: 'Katherine Taylor',
           areaServed: 'San Francisco, CA',
         },
         ...(details.price && {
