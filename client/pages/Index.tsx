@@ -6,6 +6,7 @@ import FAQTeaserSection from "@/sections/FAQTeaserSection";
 import Footer from "@/components/site/Footer";
 import FullBleedPhoto from "@/components/site/FullBleedPhoto";
 import FullPageSections from "@/components/site/FullPageSections";
+import NextSectionCTA from "@/components/site/NextSectionCTA";
 import GallerySection from "@/sections/GallerySection";
 import GiftsSection from "@/sections/GiftsSection";
 import SacramentoSection from "@/sections/SacramentoSection";
@@ -123,7 +124,18 @@ const Index = () => {
       >
         <ClosingVideoSection />
       </section>
-      <Footer />
+      <div
+        data-fullpage-footer
+        tabIndex={-1}
+        className="bg-luxury-white focus:outline-none"
+      >
+        <NextSectionCTA
+          eyebrow="Next"
+          label="About Katherine"
+          href="/about"
+        />
+        <Footer />
+      </div>
     </FullPageSections>
     </>
   );

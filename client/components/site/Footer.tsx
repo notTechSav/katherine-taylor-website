@@ -15,7 +15,6 @@ const linkClass = `text-sm font-light leading-[1.5] text-gray-600 underline-offs
 const Footer = () => {
   return (
     <footer
-      data-fullpage-footer
       tabIndex={-1}
       // Explicit because the homepage renders this inside <main>, where a bare
       // <footer> would not expose a contentinfo landmark.

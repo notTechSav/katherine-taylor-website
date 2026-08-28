@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { Link } from "react-router-dom";
 
 interface NextSectionCTAProps {
   label: string;
@@ -16,8 +17,8 @@ const NextSectionCTA = memo(
               {eyebrow}
             </span>
           )}
-          <a
-            href={href}
+          <Link
+            to={href}
             className="group relative inline-flex items-center gap-3 text-lg font-light tracking-luxury text-luxury-black transition-opacity duration-250 hover:opacity-60"
           >
             <span>{label}</span>
@@ -34,7 +35,7 @@ const NextSectionCTA = memo(
                 d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
               />
             </svg>
-          </a>
+          </Link>
         </div>
       </section>
     );
