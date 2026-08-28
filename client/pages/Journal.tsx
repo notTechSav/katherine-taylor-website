@@ -11,7 +11,6 @@ import {
   heroImage,
   journalDisplay,
   journalFooter,
-  journalMetadata,
 } from "@/lib/journal-content";
 import { pageSeo } from "@/lib/page-seo";
 import { absoluteUrl } from "@/lib/site-config";
@@ -20,14 +19,13 @@ const journalJsonLd = {
   "@context": "https://schema.org",
   "@type": "Blog",
   name: journalDisplay.pageTitle,
-  description: journalMetadata.openGraph.description,
+  description: pageSeo.journal.description,
   url: absoluteUrl("/journal"),
   image: absoluteUrl(heroImage.src),
   author: {
     "@type": "Person",
     name: "Katherine Taylor",
   },
-  keywords: journalMetadata.keywords,
 };
 
 const Journal = () => {

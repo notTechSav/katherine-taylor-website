@@ -11,6 +11,8 @@ type SeoHeadProps = {
   type?: "website" | "article";
   noIndex?: boolean;
   jsonLd?: Record<string, unknown>;
+  geoRegion?: string;
+  geoPlacename?: string;
 };
 
 const SeoHead = ({
@@ -22,6 +24,8 @@ const SeoHead = ({
   type = "website",
   noIndex = false,
   jsonLd,
+  geoRegion,
+  geoPlacename,
 }: SeoHeadProps) => {
   const url = absoluteUrl(path);
 
@@ -39,6 +43,7 @@ const SeoHead = ({
       )}
       <link rel="canonical" href={url} />
       <meta property="og:type" content={type} />
+      <meta property="og:site_name" content="Katherine Taylor" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
@@ -48,8 +53,10 @@ const SeoHead = ({
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
-      <meta name="geo.region" content="US-CA" />
-      <meta name="geo.placename" content="San Francisco" />
+      {geoRegion ? <meta name="geo.region" content={geoRegion} /> : null}
+      {geoPlacename ? (
+        <meta name="geo.placename" content={geoPlacename} />
+      ) : null}
       {jsonLd ? (
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       ) : null}

@@ -1,6 +1,7 @@
 import { type RefObject, useEffect } from "react";
 
 const TRANSFORM_MS = 800;
+const FOOTER_MS = 480;
 const OPACITY_MS = 500;
 const REDUCED_MOTION_MS = 120;
 const TRANSFORM_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
@@ -46,6 +47,10 @@ function querySections(root: HTMLElement) {
   return Array.from(
     root.querySelectorAll<HTMLElement>(":scope > [data-fullpage-section]"),
   ).filter(isVisibleSection);
+}
+
+function queryFooter(root: HTMLElement) {
+  return root.querySelector<HTMLElement>(":scope > [data-fullpage-footer]");
 }
 
 function isEditableTarget(target: EventTarget | null) {
@@ -221,6 +226,8 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       cooldownElapsed: false,
       internalGesture: false,
       sections: querySections(root),
+      footer: queryFooter(root),
+      footerRevealed: false,
       wheelAccum: 0,
       touchStartY: 0,
       touchStartX: 0,
@@ -239,7 +246,41 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       }
     }
 
+    const applyFooterSettled = (revealed: boolean) => {
+      const footer = state.footer;
+      const last = state.sections[state.sections.length - 1];
+      if (!footer) {
+        return;
+      }
+
+      const height = footer.offsetHeight;
+      footer.classList.toggle("is-revealed", revealed);
+      html.dataset.fullpageFooterRevealed = revealed ? "true" : "false";
+
+      if (revealed && last && state.index === state.sections.length - 1) {
+        last.style.transform = `translate3d(0, ${-height}px, 0)`;
+        footer.style.transform = "translate3d(0, 0, 0)";
+        footer.style.visibility = "visible";
+        footer.style.pointerEvents = "auto";
+        footer.style.zIndex = "4";
+        setInert(footer, false);
+        return;
+      }
+
+      footer.style.transform = "translate3d(0, 100%, 0)";
+      footer.style.visibility = "hidden";
+      footer.style.pointerEvents = "none";
+      setInert(footer, true);
+      if (last && state.index === state.sections.length - 1) {
+        last.style.transform = "translate3d(0, 0, 0)";
+      }
+    };
+
     applySettledTransforms(state.sections, state.index);
+    applyFooterSettled(false);
+    if (state.footer) {
+      setInert(state.footer, true);
+    }
     if (state.sections[state.index]) {
       dispatchChange(state.sections[state.index].id, state.index);
     }
@@ -291,10 +332,15 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       state.index = nextIndex;
       state.targetIndex = nextIndex;
       applySettledTransforms(state.sections, state.index);
+      applyFooterSettled(state.footerRevealed);
       syncHash(toEl.id);
       dispatchChange(toEl.id, state.index);
       if (options?.fromKeyboard) {
-        toEl.focus({ preventScroll: true });
+        if (state.footerRevealed && state.footer) {
+          state.footer.focus({ preventScroll: true });
+        } else {
+          toEl.focus({ preventScroll: true });
+        }
       }
 
       const queuedIndex = state.queuedIndex;
@@ -312,9 +358,118 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       }
     };
 
+    const setFooterRevealed = async (revealed: boolean, options?: GoToOptions) => {
+      const footer = state.footer;
+      const last = state.sections[state.sections.length - 1];
+      if (!footer || !last || revealed === state.footerRevealed) {
+        return;
+      }
+
+      if (state.locked) {
+        return;
+      }
+
+      state.locked = true;
+      state.wheelAccum = 0;
+      const height = footer.offsetHeight;
+      const reduced = prefersReducedMotion() || Boolean(options?.instant);
+
+      footer.style.visibility = "visible";
+      last.style.visibility = "visible";
+      footer.style.pointerEvents = "none";
+      last.style.pointerEvents = "none";
+
+      if (reduced) {
+        state.footerRevealed = revealed;
+        applyFooterSettled(revealed);
+        last.style.pointerEvents = "auto";
+        state.locked = false;
+        if (options?.fromKeyboard && revealed) {
+          footer.focus({ preventScroll: true });
+        }
+        if (options?.fromPointer) {
+          beginPointerCooldown();
+        }
+        return;
+      }
+
+      try {
+        if (revealed) {
+          footer.style.transform = "translate3d(0, 100%, 0)";
+          last.style.transform = "translate3d(0, 0, 0)";
+          state.animations = [
+            last.animate(
+              [
+                { transform: "translate3d(0, 0, 0)" },
+                { transform: `translate3d(0, ${-height}px, 0)` },
+              ],
+              { duration: FOOTER_MS, easing: TRANSFORM_EASE, fill: "forwards" },
+            ),
+            footer.animate(
+              [
+                { transform: "translate3d(0, 100%, 0)" },
+                { transform: "translate3d(0, 0, 0)" },
+              ],
+              { duration: FOOTER_MS, easing: TRANSFORM_EASE, fill: "forwards" },
+            ),
+          ];
+        } else {
+          state.animations = [
+            last.animate(
+              [
+                { transform: `translate3d(0, ${-height}px, 0)` },
+                { transform: "translate3d(0, 0, 0)" },
+              ],
+              { duration: FOOTER_MS, easing: TRANSFORM_EASE, fill: "forwards" },
+            ),
+            footer.animate(
+              [
+                { transform: "translate3d(0, 0, 0)" },
+                { transform: "translate3d(0, 100%, 0)" },
+              ],
+              { duration: FOOTER_MS, easing: TRANSFORM_EASE, fill: "forwards" },
+            ),
+          ];
+        }
+
+        await Promise.all(
+          state.animations.map((animation) => animation.finished.catch(() => undefined)),
+        );
+        if (!alive) {
+          return;
+        }
+        state.animations = [];
+        state.footerRevealed = revealed;
+        applyFooterSettled(revealed);
+        last.style.pointerEvents = "auto";
+        state.locked = false;
+        if (options?.fromKeyboard && revealed) {
+          footer.focus({ preventScroll: true });
+        } else if (options?.fromKeyboard && !revealed) {
+          last.focus({ preventScroll: true });
+        }
+        if (options?.fromPointer) {
+          beginPointerCooldown();
+        }
+      } catch {
+        if (!alive) {
+          return;
+        }
+        state.footerRevealed = revealed;
+        applyFooterSettled(revealed);
+        last.style.pointerEvents = "auto";
+        state.locked = false;
+      }
+    };
+
     const goTo = async (nextIndex: number, options?: GoToOptions) => {
       if (nextIndex < 0 || nextIndex >= state.sections.length) {
         return;
+      }
+
+      if (state.footerRevealed) {
+        state.footerRevealed = false;
+        applyFooterSettled(false);
       }
 
       if (state.locked) {
@@ -430,6 +585,18 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
 
     const goBy = (delta: number, options?: GoToOptions) => {
       if (options?.fromPointer && (state.locked || state.pointerCooling)) {
+        return;
+      }
+
+      const lastIndex = state.sections.length - 1;
+
+      if (state.footer && delta > 0 && state.index === lastIndex && !state.footerRevealed) {
+        void setFooterRevealed(true, options);
+        return;
+      }
+
+      if (state.footer && delta < 0 && state.footerRevealed) {
+        void setFooterRevealed(false, options);
         return;
       }
 
@@ -580,7 +747,15 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
           break;
         case "End":
           event.preventDefault();
-          void goTo(state.sections.length - 1, { fromKeyboard: true });
+          if (
+            state.footer &&
+            state.index === state.sections.length - 1 &&
+            !state.footerRevealed
+          ) {
+            void setFooterRevealed(true, { fromKeyboard: true });
+          } else {
+            void goTo(state.sections.length - 1, { fromKeyboard: true });
+          }
           break;
         default:
           break;
@@ -623,6 +798,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
     const refreshSections = () => {
       const previousId = state.sections[state.index]?.id;
       state.sections = querySections(root);
+      state.footer = queryFooter(root);
       let nextIndex = previousId
         ? resolveSectionIndex(state.sections, previousId)
         : 0;
@@ -631,7 +807,11 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       }
       state.index = nextIndex;
       state.targetIndex = nextIndex;
+      if (state.index !== state.sections.length - 1) {
+        state.footerRevealed = false;
+      }
       applySettledTransforms(state.sections, state.index);
+      applyFooterSettled(state.footerRevealed);
       if (state.sections[state.index]) {
         dispatchChange(state.sections[state.index].id, state.index);
       }
@@ -647,6 +827,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     const onMotionChange = () => {
       applySettledTransforms(state.sections, state.index);
+      applyFooterSettled(state.footerRevealed);
     };
 
     root.addEventListener("wheel", onWheel, { passive: false });
@@ -671,6 +852,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       html.style.removeProperty("--fullpage-height");
       delete html.dataset.fullpageIndex;
       delete html.dataset.fullpageId;
+      delete html.dataset.fullpageFooterRevealed;
       root.removeEventListener("wheel", onWheel);
       root.removeEventListener("touchstart", onTouchStart);
       root.removeEventListener("touchmove", onTouchMove);

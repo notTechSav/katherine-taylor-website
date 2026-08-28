@@ -24,6 +24,8 @@ const SanFranciscoPage = () => {
         <meta name="description" content="After going viral at a Warriors game, Katherine Taylor vanished from San Francisco. Searches turned up nothing. This is why she left—and why she's back." />
         <link rel="canonical" href={absoluteUrl("/memoirs-in-the-city")} />
         <meta property="og:url" content={absoluteUrl("/memoirs-in-the-city")} />
+        <meta name="geo.region" content="US-CA" />
+        <meta name="geo.placename" content="San Francisco" />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",

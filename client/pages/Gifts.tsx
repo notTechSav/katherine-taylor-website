@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import GiftsGuidance from "@/pages/GiftsGuidance";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
 import { pageSeo } from "@/lib/page-seo";
@@ -11,12 +12,6 @@ const Gifts = () => {
   const toggleGuidance = useCallback(() => {
     setIsExpanded((prev) => !prev);
   }, []);
-
-  const guidance = [
-    "The most meaningful ones usually reflect the texture of what we've talked about: a book that deepened a conversation, a bottle tied to a story, a small object that travels well, or an experience that creates calm.",
-    "I don't accept extravagant or public gifts. The intention matters more than the scale, and privacy always comes first. If you're uncertain, ask — I'll answer honestly.",
-    "The best gift, though, is time well spent. Continuity itself — the ongoing conversation, the trust that builds when you realize I remember the details you didn't need to repeat — that's the one that stays.",
-  ];
 
   return (
     <div className="bg-luxury-white text-luxury-black">
@@ -101,6 +96,8 @@ const Gifts = () => {
                   transitionDuration: "350ms",
                   letterSpacing: "0.01em",
                 }}
+                aria-expanded={isExpanded}
+                aria-controls="gifts-guidance"
               >
                 <span
                   className="underline-offset-[6px] transition-all hover:underline"
@@ -111,22 +108,7 @@ const Gifts = () => {
               </button>
             </article>
 
-            {/* Expandable Content */}
-            {isExpanded && (
-              <div className="space-y-6 border-t border-gray-200 pt-10">
-                {guidance.map((paragraph, index) => (
-                  <p
-                    key={index}
-                    className="max-w-[62ch] text-[16px] font-light leading-[1.75] text-gray-600"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-                <p className="max-w-[62ch] text-[14px] font-light italic leading-[1.75] text-gray-500 pt-4">
-                  The most meaningful gesture is often the most considered one.
-                </p>
-              </div>
-            )}
+            {isExpanded ? <GiftsGuidance /> : null}
           </div>
         </div>
       </section>

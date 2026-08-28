@@ -9,6 +9,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   BrowserRouter,
+  Navigate,
   Route,
   Routes,
   useLocation,
@@ -74,10 +75,16 @@ const AppRoutes = () => {
           <Route path="/inquire" element={withLayout(Inquire)} />
           <Route path="/maison" element={withLayout(Maison)} />
           <Route path="/services" element={withLayout(Services)} />
-          <Route path="/san-francisco" element={withLayout(SanFrancisco)} />
           <Route path="/memoirs-in-the-city" element={withLayout(SanFrancisco)} />
+          <Route
+            path="/san-francisco"
+            element={<Navigate to="/memoirs-in-the-city" replace />}
+          />
           <Route path="/sacramento-escorts" element={withLayout(Sacramento)} />
-          <Route path="/sacramento" element={withLayout(Sacramento)} />
+          <Route
+            path="/sacramento"
+            element={<Navigate to="/sacramento-escorts" replace />}
+          />
           <Route path="/content-generator" element={withLayout(ContentGenerator)} />
           <Route path="/ai-concierge" element={withLayout(AIConcierge)} />
           <Route path="*" element={withLayout(NotFound)} />

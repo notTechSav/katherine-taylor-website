@@ -1,10 +1,10 @@
 import FullBleedPhoto from "@/components/site/FullBleedPhoto";
+import { Link } from "react-router-dom";
 
 export default function AboutGalleryCombinedSection() {
   return (
     <div className="grid h-full w-full grid-cols-2">
-      {/* Left Column: About */}
-      <div className="relative flex h-full flex-col items-center justify-center px-6 py-12">
+      <div className="relative flex h-full flex-col items-center justify-center px-6 py-12 md:px-8">
         <FullBleedPhoto src="/about-slide-mobile.webp?v=hires3" />
         <div
           className="absolute inset-0 z-[1]"
@@ -14,19 +14,18 @@ export default function AboutGalleryCombinedSection() {
           }}
           aria-hidden="true"
         />
-        <h2 className="relative z-10 mb-6 text-xl font-serif uppercase tracking-wider leading-tight text-white">
+        <h2 className="homepage-h2-split relative z-10 mb-6 text-white">
           About Katherine Taylor
         </h2>
-        <a
-          href="/about"
-          className="relative z-10 inline-block border border-white px-4 py-2 text-sm uppercase text-white transition-opacity duration-250 hover:opacity-70"
+        <Link
+          to="/about"
+          className="homepage-cta-frame relative z-10 text-white"
         >
-          Discover
-        </a>
+          About Katherine
+        </Link>
       </div>
 
-      {/* Right Column: Gallery */}
-      <div className="relative flex h-full flex-col items-center justify-center px-6 py-12">
+      <div className="relative flex h-full flex-col items-center justify-center px-6 py-12 md:px-8">
         <FullBleedPhoto src="/katherinewindow.webp?v=hires3" />
         <div
           className="absolute inset-0 z-[1]"
@@ -36,15 +35,15 @@ export default function AboutGalleryCombinedSection() {
           }}
           aria-hidden="true"
         />
-        <h2 className="relative z-10 mb-6 text-xl font-serif uppercase tracking-wider leading-tight text-white">
+        <h2 className="homepage-h2-split relative z-10 mb-6 text-white">
           Private Collections
         </h2>
-        <a
-          href="/gallery"
-          className="relative z-10 inline-block border border-white px-4 py-2 text-sm uppercase text-white transition-opacity duration-250 hover:opacity-70"
+        <Link
+          to="/gallery"
+          className="homepage-cta-frame relative z-10 text-white"
         >
-          Explore
-        </a>
+          View Private Collections
+        </Link>
       </div>
     </div>
   );

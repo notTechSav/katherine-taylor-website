@@ -33,6 +33,11 @@
     --spacing-2xl: 96px;
     --spacing-luxury: 128px;
 
+    /* Homepage content rail */
+    --homepage-gutter: 1.5rem;
+    --homepage-gutter-md: 2rem;
+    --homepage-rail-max: 70rem;
+
     /* Neutral palette */
     --luxury-black: #1a1a1a;
     --luxury-white: #fafafa;
@@ -272,5 +277,192 @@
 
   .tracking-uppercase {
     letter-spacing: 0.15em;
+  }
+}
+
+@layer components {
+  .homepage-rail {
+    width: 100%;
+    max-width: var(--homepage-rail-max);
+    margin-inline: auto;
+    padding-inline: var(--homepage-gutter);
+  }
+
+  @media (min-width: 768px) {
+    .homepage-rail {
+      padding-inline: var(--homepage-gutter-md);
+    }
+  }
+
+  .homepage-copy {
+    max-width: 65ch;
+  }
+
+  .homepage-h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.875rem;
+    font-weight: 400;
+    line-height: 1.15;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  @media (min-width: 640px) {
+    .homepage-h1 {
+      font-size: 3rem;
+    }
+  }
+
+  .homepage-h2 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  @media (min-width: 768px) {
+    .homepage-h2 {
+      font-size: 1.875rem;
+    }
+  }
+
+  .homepage-h2-display {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  @media (min-width: 640px) {
+    .homepage-h2-display {
+      font-size: 2.25rem;
+    }
+  }
+
+  .homepage-h2-split {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
+  }
+
+  @media (min-width: 1024px) {
+    .homepage-h2-split {
+      font-size: 1.5rem;
+    }
+  }
+
+  .homepage-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .homepage-body {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.625;
+    letter-spacing: 0.025em;
+  }
+
+  .homepage-cta {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration-line: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+    transition: opacity 250ms cubic-bezier(0, 0, 0.58, 1);
+  }
+
+  .homepage-cta:hover {
+    opacity: 0.7;
+  }
+
+  .homepage-cta:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  .homepage-cta-frame {
+    display: inline-block;
+    border: 1px solid currentColor;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: opacity 250ms cubic-bezier(0, 0, 0.58, 1);
+  }
+
+  .homepage-cta-frame:hover {
+    opacity: 0.7;
+  }
+
+  .homepage-cta-frame:focus-visible {
+    outline: 1px solid currentColor;
+    outline-offset: 4px;
+  }
+
+  .homepage-overlay-bottom {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    display: flex;
+    align-items: flex-end;
+    padding-top: 7rem;
+    padding-bottom: max(4rem, calc(env(safe-area-inset-bottom, 0px) + 2.5rem));
+  }
+
+  @media (min-width: 640px) {
+    .homepage-overlay-bottom {
+      padding-bottom: max(6rem, calc(env(safe-area-inset-bottom, 0px) + 3rem));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .homepage-overlay-bottom {
+      padding-bottom: max(7rem, calc(env(safe-area-inset-bottom, 0px) + 3.5rem));
+    }
+  }
+
+  html.fullpage-is-ready [data-fullpage-footer] {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 4;
+    transform: translate3d(0, 100%, 0);
+    visibility: hidden;
+    pointer-events: none;
+    background-color: var(--luxury-white);
+  }
+
+  html.fullpage-is-ready [data-fullpage-footer].is-revealed {
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .sacramento-story-toggle > summary {
+    list-style: none;
+  }
+
+  .sacramento-story-toggle > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .sacramento-story-toggle > summary:focus-visible {
+    outline: 1px solid var(--gray-400);
+    outline-offset: -8px;
   }
 }

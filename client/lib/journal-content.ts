@@ -115,14 +115,14 @@ I don't sell more time. I protect the conditions that make the time worth anythi
 ];
 
 export const journalMetadata = {
-  title: "Escorts Near Me | The High-End Edition — Katherine Taylor Escort",
+  title: "The Journal | Katherine Taylor",
   description:
-    "Luxury escorts in San Francisco & Sacramento curated by Katherine Taylor Escort. The High-End Edition explores presence, craftsmanship & the art of company.",
-  keywords:
-    "escorts near me, San Francisco escorts, Sacramento escorts, luxury escorts, Bay Area escorts, Katherine Taylor escort",
+    "Essays, memoirs, and notes from Katherine Taylor on companionship, travel, culture, and the quiet discipline of continuity.",
+  keywords: "Katherine Taylor journal, memoirs, companionship, travel, culture",
   openGraph: {
-    title: "The High-End Edition — Katherine Taylor Escort",
-    description: "Notes on presence, continuity, and scarcity.",
+    title: "The Journal | Katherine Taylor",
+    description:
+      "Essays, memoirs, and notes on companionship, travel, culture, and continuity.",
     image: heroImage.src,
   },
 };
@@ -132,7 +132,7 @@ export const essayMetadata = {
   description:
     "On institutional memory and the art of anticipation in luxury companionship. An essay from The High-End Edition.",
   keywords:
-    "escorts near me, luxury escorts, San Francisco escorts, continuity, discretion, Katherine Taylor escort",
+    "Katherine Taylor journal, continuity, discretion, San Francisco companionship",
 };
 
 export const journalFooter = {

@@ -36,15 +36,15 @@ export const pageSeo = {
     path: "/inquire",
   },
   gifts: {
-    title: "Gifts | Katherine Taylor Escort — San Francisco & Sacramento",
+    title: "Gifts & Favorite Things | Katherine Taylor, Sacramento Escort",
     description:
-      "Thoughtful guidance on gifts from Katherine Taylor, a high-end escort in San Francisco and Sacramento. Gestures that mark continuity, not transaction.",
+      "A few favorite things from Katherine Taylor, a Sacramento escort with a weakness for perfume, cigars, beautiful shoes, spa days, lingerie, and unforgettable experiences.",
     path: "/gifts",
   },
   journal: {
-    title: "Escorts Near Me | The High-End Edition — Katherine Taylor Escort",
+    title: "The Journal | Katherine Taylor",
     description:
-      "Luxury escorts in San Francisco and Sacramento curated by Katherine Taylor. The High-End Edition explores presence, craftsmanship, and the art of company.",
+      "Essays, memoirs, and notes from Katherine Taylor on companionship, travel, culture, and the quiet discipline of continuity.",
     path: "/journal",
   },
   services: {

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import SeoHead from "@/components/site/SeoHead";
 import SacramentoLongVersion from "@/pages/SacramentoLongVersion";
@@ -30,8 +29,6 @@ const body =
   "text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700";
 
 const SacramentoPage = () => {
-  const [showStory, setShowStory] = useState(false);
-
   return (
     <div className="bg-luxury-white text-luxury-black">
       <SeoHead
@@ -40,6 +37,8 @@ const SacramentoPage = () => {
         path={pageSeo.sacramento.path}
         type="article"
         jsonLd={sacramentoJsonLd}
+        geoRegion="US-CA"
+        geoPlacename="Sacramento"
       />
 
       <article itemScope itemType="https://schema.org/Article">
@@ -65,8 +64,7 @@ const SacramentoPage = () => {
             </p>
             <h2
               id="short-version-heading"
-              className="mb-8 text-3xl font-extralight tracking-[-0.02em] text-luxury-black md:text-4xl"
-              style={{ fontWeight: 200 }}
+              className="mb-8 text-3xl font-extralight tracking-display text-luxury-black md:text-4xl"
             >
               What “Escorts Near Me” Doesn't Tell You
             </h2>
@@ -102,22 +100,16 @@ const SacramentoPage = () => {
           </div>
         </section>
 
-        <div className="border-b border-t border-gray-200 bg-luxury-gray-50 py-20">
-          <div className="container mx-auto max-w-2xl px-6 text-center md:px-8">
-            <button
-              type="button"
-              onClick={() => setShowStory(true)}
-              className="inline-flex items-center gap-3 border border-gray-300 px-12 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)]"
-              style={{ fontWeight: 300 }}
-              aria-expanded={showStory}
-              aria-controls="long-version-content"
-            >
-              If you'd like to hear this story →
-            </button>
-          </div>
-        </div>
-
-        {showStory ? <SacramentoLongVersion /> : null}
+        <details className="sacramento-story-toggle group">
+          <summary className="cursor-pointer border-b border-t border-gray-200 bg-luxury-gray-50 py-20 marker:content-none">
+            <span className="container mx-auto flex max-w-2xl justify-center px-6 md:px-8">
+              <span className="inline-flex items-center gap-3 border border-gray-300 px-12 py-4 text-sm font-light tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)] group-open:border-gray-400 group-open:text-luxury-black">
+                If you'd like to hear this story →
+              </span>
+            </span>
+          </summary>
+          <SacramentoLongVersion />
+        </details>
       </article>
     </div>
   );
