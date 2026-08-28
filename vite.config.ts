@@ -2,6 +2,8 @@ import { defineConfig, Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { createServer } from "./server";
+import { SITE_URL } from "./client/lib/site-config";
+import { renderSitemap } from "./client/lib/site-pages";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -36,7 +38,7 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
-  plugins: [expressPlugin(), react()],
+  plugins: [expressPlugin(), sitemapPlugin(), react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./client"),
@@ -53,6 +55,33 @@ function expressPlugin(): Plugin {
     configureServer(server) {
       const app = createServer();
       server.middlewares.use(app);
+    },
+  };
+}
+
+/**
+ * Builds sitemap.xml from client/lib/site-pages.ts rather than a checked-in
+ * file, so the sitemap cannot fall out of step with the footer nav.
+ */
+function sitemapPlugin(): Plugin {
+  return {
+    name: "sitemap-plugin",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (req.url?.split("?")[0] !== "/sitemap.xml") {
+          next();
+          return;
+        }
+        res.setHeader("Content-Type", "application/xml");
+        res.end(renderSitemap(SITE_URL));
+      });
+    },
+    generateBundle() {
+      this.emitFile({
+        type: "asset",
+        fileName: "sitemap.xml",
+        source: renderSitemap(SITE_URL),
+      });
     },
   };
 }
