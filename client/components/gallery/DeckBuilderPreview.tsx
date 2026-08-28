@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
-type CTA = "private-access" | "conversation" | "inquire";
 type FrameAsset = {
   base: string;
   widths?: number[];
@@ -9,11 +9,11 @@ type FrameAsset = {
 
 type Collection = {
   slug: string;
+  id: string;
   dir?: string;
   placeholderSeed?: string;
   title: string;
   statement: string;
-  cta: CTA;
   count: number;
   hero?: {
     src: string;
@@ -52,9 +52,9 @@ const colorfieldHeroBase =
 const DATA: Collection[] = [
   {
     slug: "photos-1",
+    id: "silk-and-stone",
     title: "Silk and Stone",
     statement: "Kept close. Defines what softness means to you.",
-    cta: "private-access",
     count: 23,
     hero: {
       src: `${silkAndStoneHeroBase}?format=webp&width=1200`,
@@ -158,9 +158,9 @@ const DATA: Collection[] = [
   },
   {
     slug: "photos-2",
+    id: "gold-and-radiance",
     title: "Gold and Radiance",
     statement: "Worn boldly. Defines the moments not meant to be dimmed.",
-    cta: "conversation",
     count: 21,
     hero: {
       src: `${colorfieldHeroBase}?format=webp&width=1200`,
@@ -256,13 +256,17 @@ const DATA: Collection[] = [
   },
   {
     slug: "photos-3",
+    id: "bare-light",
     dir: "/gallery/photos-3",
     title: "Bare Light",
     statement: "Clean light—no story. Just presence.",
-    cta: "inquire",
     count: 25,
   },
 ];
+
+const GALLERY_INDEX_ID = "private-collections";
+const galleryIndexHref = `/gallery#${GALLERY_INDEX_ID}`;
+const collectionHref = (id: string) => `/gallery#${id}`;
 
 const pad3 = (n: number) => String(n).padStart(3, "0");
 const enc = (s: string) => encodeURI(s);
@@ -450,64 +454,41 @@ function PrimaryButton({
   );
 }
 
-function SecondaryButton({
-  children,
-  onClick,
-  className,
-  ariaLabel,
-  disabled,
-}: {
-  children: React.ReactNode;
-  onClick?: () => void;
-  className?: string;
-  ariaLabel?: string;
-  disabled?: boolean;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      aria-label={ariaLabel}
-      disabled={disabled}
-      className={`inline-flex items-center justify-center uppercase tracking-[0.15em] text-[13px] sm:text-[14px] font-light px-12 sm:px-14 py-5 sm:py-6 border border-luxury-black text-luxury-black rounded-none transition-all duration-[250ms] ease-out hover:bg-luxury-black hover:text-luxury-white hover:scale-[1.01] hover:shadow-md disabled:opacity-60 ${
-        className ?? ""
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
-
 function Hub({
-  onOpen,
   onIntent,
 }: {
-  onOpen: (slug: string) => void;
   onIntent: (slug: string) => void;
 }) {
   return (
-    <section className="mx-auto max-w-[1180px] px-6 md:px-12 pt-32 pb-32 md:pt-40 md:pb-48">
+    <section
+      id={GALLERY_INDEX_ID}
+      className="mx-auto max-w-[1180px] scroll-mt-28 px-6 pt-32 pb-32 md:scroll-mt-36 md:px-12 md:pt-40 md:pb-48"
+      aria-label="Private Collections"
+    >
       <header className="mx-auto mb-14 max-w-[720px] sm:mb-24">
-        <h2 className="text-[56px] sm:text-[68px] md:text-[84px] font-extralight tracking-[-0.03em] leading-[0.95]">
+        <p
+          data-gallery-index-title
+          tabIndex={-1}
+          className="text-[56px] font-extralight leading-[0.95] tracking-[-0.03em] outline-none sm:text-[68px] md:text-[84px]"
+        >
           Private Collections
-        </h2>
-        <p className="mt-3 sm:mt-4 max-w-prose text-sm sm:text-base font-light leading-[1.75] text-neutral-700">
+        </p>
+        <p className="mt-3 max-w-prose text-sm font-light leading-[1.75] text-neutral-700 sm:mt-4 sm:text-base">
           Three collections I'm sharing with you. Take your time.
         </p>
       </header>
-      <div className="grid grid-cols-1 md:grid-cols-3 justify-items-start gap-y-16 sm:gap-y-24 gap-x-12 md:gap-x-16">
+      <div className="grid grid-cols-1 justify-items-start gap-x-12 gap-y-16 sm:gap-y-24 md:grid-cols-3 md:gap-x-16">
         {DATA.map((c) => (
           <article key={c.slug} className="group w-full max-w-[360px]">
-            <button
+            <Link
+              to={collectionHref(c.id)}
               onMouseEnter={() => onIntent(c.slug)}
               onFocus={() => onIntent(c.slug)}
-              onClick={() => onOpen(c.slug)}
-              className="block w-full text-left focus:outline-none"
+              className="block w-full text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B5D54]/40"
               aria-label={`Enter collection ${c.title}`}
-              aria-describedby={`${c.slug}-desc`}
+              aria-describedby={`${c.id}-desc`}
             >
-              <div
-                className="aspect-[4/5] overflow-hidden transition-all duration-[400ms] ease-out group-hover:scale-[1.02] shadow-md"
-              >
+              <div className="aspect-[4/5] overflow-hidden shadow-md transition-all duration-[400ms] ease-out group-hover:scale-[1.02]">
                 {(() => {
                   const src = heroSrc(c);
                   if (!src) {
@@ -527,20 +508,20 @@ function Hub({
                 })()}
               </div>
               <div className="mt-5 space-y-2">
-                <h3 className="text-[22px] sm:text-[26px] md:text-[32px] font-extralight tracking-[-0.02em] leading-[1.15] transition-colors duration-[250ms] group-hover:text-[#6B5D54]">
+                <h2 className="text-[22px] font-extralight leading-[1.15] tracking-[-0.02em] transition-colors duration-[250ms] group-hover:text-[#6B5D54] sm:text-[26px] md:text-[32px]">
                   {c.title}
-                </h3>
+                </h2>
                 <p
-                  id={`${c.slug}-desc`}
-                  className="text-xs sm:text-sm font-light text-neutral-600"
+                  id={`${c.id}-desc`}
+                  className="text-xs font-light text-neutral-600 sm:text-sm"
                 >
                   {c.statement}
                 </p>
-                <span className="inline-block text-[10px] sm:text-[11px] tracking-[0.18em] uppercase transition-colors duration-[250ms] group-hover:text-[#6B5D54]">
+                <span className="inline-block text-[10px] uppercase tracking-[0.18em] transition-colors duration-[250ms] group-hover:text-[#6B5D54] sm:text-[11px]">
                   View Collection
                 </span>
               </div>
-            </button>
+            </Link>
           </article>
         ))}
       </div>
@@ -551,51 +532,49 @@ function Hub({
 function CollectionHeader({
   c,
   onOpen,
-  onBack,
 }: {
   c: Collection;
   onOpen: () => void;
-  onBack: () => void;
 }) {
   const totalFrames = frameCount(c);
   return (
-    <section className="mx-auto max-w-[1180px] px-6 md:px-12 pt-32 pb-24 md:pt-40 md:pb-36">
+    <section
+      id={c.id}
+      className="mx-auto max-w-[1180px] scroll-mt-28 px-6 pt-32 pb-24 md:scroll-mt-36 md:px-12 md:pt-40 md:pb-36"
+      aria-labelledby={`${c.id}-title`}
+    >
       <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(320px,360px)] lg:items-start">
         <div className="space-y-8">
-          <button
-            onClick={onBack}
+          <Link
+            to={galleryIndexHref}
             className="inline-flex h-11 items-center gap-2 text-xs uppercase tracking-[0.15em] text-[#6B5D54] transition-colors duration-[250ms] hover:text-luxury-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B5D54]/40"
-            aria-label="Back to Gallery"
-            title="Back to Gallery"
+            aria-label="Back to Private Collections"
           >
-            <span className="text-base">←</span> Back to Collections
-          </button>
+            <span className="text-base" aria-hidden="true">
+              ←
+            </span>{" "}
+            Back to Collections
+          </Link>
           <div className="space-y-4">
-            <h2 className="text-3xl sm:text-4xl md:text-[48px] font-extralight tracking-[-0.025em] leading-[1.05]">
+            <h2
+              id={`${c.id}-title`}
+              tabIndex={-1}
+              className="text-3xl font-extralight leading-[1.05] tracking-[-0.025em] outline-none sm:text-4xl md:text-[48px]"
+            >
               {c.title}
             </h2>
-            <p className="max-w-[48ch] text-sm sm:text-base font-light leading-[1.75] text-neutral-700">
+            <p className="max-w-[48ch] text-sm font-light leading-[1.75] text-neutral-700 sm:text-base">
               {c.statement}
             </p>
-          </div>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
-            <a
-              href="/inquire"
-              className="inline-flex items-center justify-center uppercase tracking-[0.15em] text-[13px] sm:text-[14px] font-light px-12 sm:px-14 py-5 sm:py-6 bg-luxury-black text-luxury-white rounded-none transition-all duration-[250ms] ease-out hover:opacity-90 hover:scale-[1.01] hover:shadow-md w-full sm:w-auto"
-              aria-label={`${c.title}: Reserve privately`}
-            >
-              {c.cta === "private-access" && "Reserve Privately"}
-              {c.cta === "conversation" && "Book in Privacy"}
-              {c.cta === "inquire" && "Privately Reserve"}
-            </a>
-            <SecondaryButton
-              className="w-full sm:w-auto"
+            <button
+              type="button"
               onClick={onOpen}
-              ariaLabel={`Build Private Deck for ${c.title}`}
               disabled={totalFrames === 0}
+              className="text-[10px] font-light uppercase tracking-[0.18em] text-neutral-400 transition-colors duration-[250ms] hover:text-neutral-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B5D54]/40 disabled:cursor-not-allowed disabled:opacity-40 sm:text-[11px]"
+              aria-label={`Build a private deck of ${c.title}`}
             >
-              Build Private Deck
-            </SecondaryButton>
+              Build a private deck
+            </button>
           </div>
         </div>
         {(() => {
@@ -640,7 +619,7 @@ function FrameGrid({
       <button
         key={index}
         onClick={() => onOpen(index)}
-        className="block text-left focus:outline-none"
+        className="block text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B5D54]/40"
         aria-label={`Open ${alt} full screen`}
       >
         <figure
@@ -665,11 +644,38 @@ function FrameGrid({
   }
 
   return (
-    <section className="mx-auto max-w-[1120px] px-4 sm:px-6 md:px-12 pb-24 md:pb-32">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
+    <section className="mx-auto max-w-[1120px] px-4 pb-8 sm:px-6 md:px-12 md:pb-12">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 md:grid-cols-3 md:gap-10">
         {items}
       </div>
     </section>
+  );
+}
+
+function CollectionHandoff({ c }: { c: Collection }) {
+  const index = DATA.findIndex((item) => item.id === c.id);
+  const next = index >= 0 ? DATA[index + 1] : undefined;
+  const handoffClass =
+    "mt-5 block w-full font-serif text-[28px] font-extralight leading-[1.2] tracking-[-0.02em] text-luxury-black transition-opacity duration-250 hover:opacity-60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B5D54]/40 sm:mt-6 sm:text-[36px] md:text-[48px]";
+
+  return (
+    <nav
+      className="mx-auto max-w-[1180px] min-w-0 overflow-x-hidden px-6 pt-20 pb-36 md:px-12 md:pt-28 md:pb-44"
+      aria-label={next ? "Next collection" : "Private Collections"}
+    >
+      <p className="text-[10px] font-light uppercase tracking-[0.18em] text-neutral-500 sm:text-[11px]">
+        {next ? "Next Collection" : "Private Collections"}
+      </p>
+      {next ? (
+        <Link to={collectionHref(next.id)} className={handoffClass}>
+          {next.title} <span aria-hidden="true">→</span>
+        </Link>
+      ) : (
+        <Link to={galleryIndexHref} className={handoffClass}>
+          Return to the Gallery <span aria-hidden="true">→</span>
+        </Link>
+      )}
+    </nav>
   );
 }
 
@@ -1071,21 +1077,44 @@ function ImageViewer({
 }
 
 export default function DeckBuilderPreview() {
-  const [view, setView] = useState<"hub" | "collection">("hub");
-  const [slug, setSlug] = useState<string>(DATA[0].slug);
+  const location = useLocation();
+  const hashId = location.hash.replace(/^#/, "");
+  const currentFromHash = DATA.find((item) => item.id === hashId);
+  const view = currentFromHash ? "collection" : "hub";
+  const current = currentFromHash ?? DATA[0];
   const [open, setOpen] = useState(false);
   const [viewerIdx, setViewerIdx] = useState<number | null>(null);
-  const current = useMemo(
-    () => DATA.find((d) => d.slug === slug) ?? DATA[0],
-    [slug],
-  );
   const meta = useCollectionMeta(current);
   const currentFrameCount = frameCount(current);
 
-  // Scroll to top when view changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, [view]);
+    const targetId = currentFromHash?.id
+      ?? (hashId === GALLERY_INDEX_ID ? GALLERY_INDEX_ID : null);
+    if (!targetId) return;
+
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const frame = window.requestAnimationFrame(() => {
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      el.scrollIntoView({
+        behavior: prefersReducedMotion ? "auto" : "smooth",
+        block: "start",
+      });
+      const focusable = el.querySelector<HTMLElement>(
+        "h2[tabindex], [data-gallery-index-title]",
+      );
+      focusable?.focus({ preventScroll: true });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [hashId, currentFromHash]);
+
+  useEffect(() => {
+    setOpen(false);
+    setViewerIdx(null);
+  }, [hashId]);
 
   useEffect(() => {
     const el = document.documentElement;
@@ -1106,10 +1135,6 @@ export default function DeckBuilderPreview() {
     <div className="text-luxury-black">
       {view === "hub" ? (
         <Hub
-          onOpen={(s) => {
-            setSlug(s);
-            setView("collection");
-          }}
           onIntent={(s) => {
             const c = DATA.find((d) => d.slug === s);
             if (!c || prefetched.has(c.slug)) return;
@@ -1127,12 +1152,9 @@ export default function DeckBuilderPreview() {
         />
       ) : (
         <>
-          <CollectionHeader
-            c={current}
-            onOpen={() => setOpen(true)}
-            onBack={() => setView("hub")}
-          />
+          <CollectionHeader c={current} onOpen={() => setOpen(true)} />
           <FrameGrid c={current} onOpen={(i) => setViewerIdx(i)} />
+          <CollectionHandoff c={current} />
         </>
       )}
       {open && frameCount(current) > 0 && (

@@ -69,7 +69,11 @@ export function HomepageImageNav({
 }) {
   return (
     <div className={cn("homepage-image-nav", className)}>
-      <h2 className="homepage-h2 text-white">{title}</h2>
+      <h2 className="homepage-h2 text-white">
+        <Link to={to} className="homepage-image-nav-title">
+          {title}
+        </Link>
+      </h2>
       <Link to={to} className="homepage-cta-frame text-white">
         {cta}
       </Link>

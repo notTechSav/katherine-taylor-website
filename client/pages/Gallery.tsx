@@ -1,6 +1,5 @@
 import DeckBuilderPreview from "@/components/gallery/DeckBuilderPreview";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
-import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
 import { pageSeo } from "@/lib/page-seo";
 
@@ -23,11 +22,6 @@ const Gallery = () => {
         alignment="left"
       />
       <DeckBuilderPreview />
-      <NextSectionCTA
-        eyebrow="Next"
-        label="View Rates"
-        href="/rates"
-      />
     </div>
   );
 };
