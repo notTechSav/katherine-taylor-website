@@ -101,7 +101,7 @@ const Navigation = () => {
           to="/"
           className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
         >
-          <span className="font-serif text-xl font-extralight uppercase leading-[1.1] tracking-uppercase text-luxury-black md:text-2xl">
+          <span className="font-helvetica text-xl font-extralight uppercase leading-[1.1] tracking-uppercase text-luxury-black md:text-2xl">
             KATHERINE TAYLOR
           </span>
         </Link>

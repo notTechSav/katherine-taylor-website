@@ -86,6 +86,7 @@ export default {
         sans: ["'Work Sans'", "sans-serif"],
         serif: ["'Cormorant Garamond'", "serif"],
         brand: ["'Cormorant Garamond'", "serif"],
+        helvetica: ['"Helvetica Neue"', "Helvetica", "Arial", "sans-serif"],
       },
       fontWeight: {
         thin: "100",
