@@ -105,13 +105,6 @@ export const sitePages = {
     priority: 0.6,
     footer: "collections",
   },
-  maison: {
-    path: "/maison",
-    navLabel: "Maison",
-    changefreq: "monthly",
-    priority: 0.5,
-    footer: "collections",
-  },
 } as const satisfies Record<string, SitePage>;
 
 export type PageKey = keyof typeof sitePages;

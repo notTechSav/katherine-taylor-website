@@ -59,12 +59,6 @@ export const pageSeo = {
       "Fantasy dates and companion services with Katherine Taylor through San Francisco and beyond—dinners, ballgames, Napa, and travel by appointment.",
     path: sitePages.services.path,
   },
-  maison: {
-    title: "Maison | Katherine Taylor Escort",
-    description:
-      "The maison behind Katherine Taylor escort—stories, craft, and the private practice of high-end companionship in San Francisco and Sacramento.",
-    path: sitePages.maison.path,
-  },
   sacramento: {
     title: "Escorts Near Me | The High-End Edition — Sacramento Escort",
     description:

@@ -28,7 +28,6 @@ const Gallery = lazy(() => import("./pages/Gallery"));
 const Inquire = lazy(() => import("./pages/Inquire"));
 const Journal = lazy(() => import("./pages/Journal"));
 const JournalArticle = lazy(() => import("./pages/JournalArticle"));
-const Maison = lazy(() => import("./pages/Maison"));
 const Rates = lazy(() => import("./pages/Rates"));
 const Services = lazy(() => import("./pages/Services"));
 const Sacramento = lazy(() => import("./pages/Sacramento"));
@@ -72,7 +71,7 @@ const AppRoutes = () => {
           <Route path="/gallery" element={withLayout(Gallery)} />
           <Route path="/faq" element={withLayout(FAQ)} />
           <Route path="/inquire" element={withLayout(Inquire)} />
-          <Route path="/maison" element={withLayout(Maison)} />
+          <Route path="/maison" element={<Navigate to="/" replace />} />
           <Route path="/services" element={withLayout(Services)} />
           <Route
             path="/memoirs-in-the-city"

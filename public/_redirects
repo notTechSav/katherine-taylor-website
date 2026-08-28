@@ -5,6 +5,7 @@ https://www.katherinetaylorescort.com/* https://katherinetaylorescort.com/:splat
 /san-francisco /journal/memoirs-in-the-city 301
 /memoirs-in-the-city /journal/memoirs-in-the-city 301
 /sacramento /sacramento-escorts 301
+/maison / 301
 
 # SPA fallback
 /* /index.html 200
