@@ -1,4 +1,5 @@
 import FullscreenVideoSection from "@/components/site/FullscreenVideoSection";
+import { HomepageEditorialOverlay } from "@/components/site/homepage-editorial";
 import { ratesVideo } from "@/lib/video-sections";
 import { Link } from "react-router-dom";
 
@@ -10,20 +11,17 @@ export default function RatesVideoSection() {
       posterSrc={ratesVideo.poster}
       posterMobileSrc={ratesVideo.posterMobile}
       objectPosition={ratesVideo.objectPosition}
+      overlayClassName="homepage-veil-lower-strong"
     >
-      <div className="homepage-overlay-bottom pointer-events-none text-white">
-        <div className="homepage-rail">
-          <div className="pointer-events-auto max-w-xl">
-            <h2 className="homepage-h2-display mb-4">Companion Rates</h2>
-            <p className="homepage-body mb-6 text-white/90">
-              Transparent pricing for timeless experiences.
-            </p>
-            <Link to="/rates" className="homepage-cta text-white">
-              View Rates
-            </Link>
-          </div>
-        </div>
-      </div>
+      <HomepageEditorialOverlay>
+        <h2 className="homepage-h2">Companion Rates</h2>
+        <p className="homepage-body">
+          Rates are published plainly. Availability remains intentionally limited.
+        </p>
+        <Link to="/rates" className="homepage-cta text-white">
+          View Rates
+        </Link>
+      </HomepageEditorialOverlay>
     </FullscreenVideoSection>
   );
 }

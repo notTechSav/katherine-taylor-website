@@ -73,7 +73,7 @@ export default function FullscreenVideoSection({
   fallbackSrc,
   posterSrc,
   posterMobileSrc,
-  overlayClassName = "bg-black/50",
+  overlayClassName = "homepage-veil-lower",
   objectPosition = "center center",
   priority = false,
   children,
@@ -334,11 +334,9 @@ export default function FullscreenVideoSection({
         />
       ) : null}
 
-      <div className={`absolute inset-0 z-10 ${overlayClassName}`} />
-
       <div
+        className={cn("absolute inset-0 z-10", overlayClassName)}
         aria-hidden="true"
-        className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-2/5 bg-gradient-to-t from-black/60 via-black/25 to-transparent"
       />
 
       {videoActive && !holdMobilePoster ? (

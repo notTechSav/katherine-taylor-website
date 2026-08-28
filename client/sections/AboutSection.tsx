@@ -1,22 +1,21 @@
-import { Link } from "react-router-dom";
+import {
+  HomepageImageNav,
+  HomepageVeil,
+} from "@/components/site/homepage-editorial";
 
 export default function AboutSection() {
   return (
-    <div className="relative z-10 flex min-h-full w-full items-center justify-center">
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(to top, rgba(17,17,17,0.5) 0%, rgba(17,17,17,0.2) 50%, rgba(17,17,17,0.15) 100%)",
-        }}
-        aria-hidden="true"
+    <div className="absolute inset-0 z-10 flex items-center justify-center">
+      <HomepageVeil tone="center" />
+      <HomepageImageNav
+        title={
+          <>
+            About <span className="homepage-h2-break">Katherine Taylor</span>
+          </>
+        }
+        to="/about"
+        cta="About Katherine"
       />
-      <div className="homepage-rail relative z-10 flex flex-col items-center justify-center py-8 text-center">
-        <h2 className="homepage-h2 mb-6 text-white">About Katherine Taylor</h2>
-        <Link to="/about" className="homepage-cta-frame text-white">
-          About Katherine
-        </Link>
-      </div>
     </div>
   );
 }

@@ -1,49 +1,34 @@
 import FullBleedPhoto from "@/components/site/FullBleedPhoto";
-import { Link } from "react-router-dom";
+import {
+  HomepageImageNav,
+  HomepageVeil,
+} from "@/components/site/homepage-editorial";
 
 export default function AboutGalleryCombinedSection() {
   return (
     <div className="grid h-full w-full grid-cols-2">
-      <div className="relative flex h-full flex-col items-center justify-center px-6 py-12 md:px-8">
+      <div className="relative flex h-full flex-col items-center justify-center">
         <FullBleedPhoto src="/about-slide-mobile.webp?v=hires3" />
-        <div
-          className="absolute inset-0 z-[1]"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(17,17,17,0.5) 0%, rgba(17,17,17,0.2) 50%, rgba(17,17,17,0.15) 100%)",
-          }}
-          aria-hidden="true"
-        />
-        <h2 className="homepage-h2-split relative z-10 mb-6 text-white">
-          About Katherine Taylor
-        </h2>
-        <Link
+        <HomepageVeil tone="center" />
+        <HomepageImageNav
+          title={
+            <>
+              About <span className="homepage-h2-break">Katherine Taylor</span>
+            </>
+          }
           to="/about"
-          className="homepage-cta-frame relative z-10 text-white"
-        >
-          About Katherine
-        </Link>
+          cta="About Katherine"
+        />
       </div>
 
-      <div className="relative flex h-full flex-col items-center justify-center px-6 py-12 md:px-8">
+      <div className="relative flex h-full flex-col items-center justify-center">
         <FullBleedPhoto src="/katherinewindow.webp?v=hires3" />
-        <div
-          className="absolute inset-0 z-[1]"
-          style={{
-            background:
-              "linear-gradient(to top, rgba(17,17,17,0.5) 0%, rgba(17,17,17,0.2) 50%, rgba(17,17,17,0.15) 100%)",
-          }}
-          aria-hidden="true"
-        />
-        <h2 className="homepage-h2-split relative z-10 mb-6 text-white">
-          Private Collections
-        </h2>
-        <Link
+        <HomepageVeil tone="strong" />
+        <HomepageImageNav
+          title="Private Collections"
           to="/gallery"
-          className="homepage-cta-frame relative z-10 text-white"
-        >
-          View Private Collections
-        </Link>
+          cta="View Private Collections"
+        />
       </div>
     </div>
   );
