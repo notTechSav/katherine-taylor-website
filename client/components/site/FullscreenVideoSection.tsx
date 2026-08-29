@@ -9,6 +9,11 @@ import {
 } from "react";
 
 import {
+  canPlayNativeHls,
+  shouldAttachHlsAfterImport,
+  shouldLoadHlsJs,
+} from "@/lib/hls-playback";
+import {
   HLS_MAX_HEIGHT,
   HLS_START_HEIGHT,
   isHlsSource,
@@ -40,33 +45,7 @@ type FullscreenVideoSectionProps = {
   children: ReactNode;
 };
 
-function canPlayNativeHls(): boolean {
-  if (typeof document === "undefined") {
-    return false;
-  }
-  const video = document.createElement("video");
-  if (!video.canPlayType("application/vnd.apple.mpegurl")) {
-    return false;
-  }
-
-  const ua = navigator.userAgent;
-  const ios =
-    /iP(hone|od|ad)/.test(ua) ||
-    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
-  if (ios) {
-    return true;
-  }
-
-  const safari =
-    /Safari/.test(ua) && !/Chrome|Chromium|Edg|OPR|Android/i.test(ua);
-  return safari;
-}
-
 const nativeHlsSupported = canPlayNativeHls();
-const hlsJsImport =
-  typeof document !== "undefined" && !nativeHlsSupported
-    ? import("hls.js")
-    : null;
 
 function lockInlineAutoplay(element: HTMLVideoElement, muted: boolean) {
   element.setAttribute("playsinline", "true");
@@ -236,47 +215,66 @@ export default function FullscreenVideoSection({
       attemptPlay();
     };
 
-    if (isHlsSource(currentSrc) && !nativeHlsSupported) {
+    if (shouldLoadHlsJs(currentSrc, canPlayNativeHls(element))) {
       element.removeAttribute("src");
-      void (hlsJsImport ?? import("hls.js")).then(({ default: Hls }) => {
-        if (cancelled || !videoRef.current) {
+      void import("hls.js").then(({ default: Hls }) => {
+        if (
+          !shouldAttachHlsAfterImport({
+            cancelled,
+            video: videoRef.current,
+            expectedVideo: element,
+          })
+        ) {
           return;
         }
 
-        if (Hls.isSupported()) {
-          const hls = new Hls({
-            capLevelToPlayerSize: true,
-            maxDevicePixelRatio: 2,
-            testBandwidth: false,
-            startLevel: -1,
-            abrEwmaDefaultEstimate: 1_200_000,
-            maxBufferLength: 8,
-            maxMaxBufferLength: 16,
-            maxBufferSize: 15_000_000,
-          });
-          hlsRef.current = hls;
-          hls.on(Hls.Events.MANIFEST_PARSED, () => {
-            const start = pickHlsStartLevel(hls.levels, HLS_START_HEIGHT);
-            const cap = pickHlsCapLevel(hls.levels, HLS_MAX_HEIGHT);
-            if (start >= 0) {
-              hls.startLevel = start;
-              hls.nextLoadLevel = start;
-            }
-            if (cap >= 0) {
-              hls.autoLevelCapping = cap;
-            }
-            play();
-          });
-          hls.on(Hls.Events.ERROR, (_, data: { fatal?: boolean }) => {
-            if (data.fatal) {
-              tryNextSource();
-            }
-          });
-          hls.loadSource(currentSrc);
-          hls.attachMedia(videoRef.current);
-        } else {
+        if (!Hls.isSupported()) {
           tryNextSource();
+          return;
         }
+
+        const hls = new Hls({
+          capLevelToPlayerSize: true,
+          maxDevicePixelRatio: 2,
+          testBandwidth: false,
+          startLevel: -1,
+          abrEwmaDefaultEstimate: 1_200_000,
+          maxBufferLength: 8,
+          maxMaxBufferLength: 16,
+          maxBufferSize: 15_000_000,
+        });
+
+        if (
+          !shouldAttachHlsAfterImport({
+            cancelled,
+            video: videoRef.current,
+            expectedVideo: element,
+          })
+        ) {
+          hls.destroy();
+          return;
+        }
+
+        hlsRef.current = hls;
+        hls.on(Hls.Events.MANIFEST_PARSED, () => {
+          const start = pickHlsStartLevel(hls.levels, HLS_START_HEIGHT);
+          const cap = pickHlsCapLevel(hls.levels, HLS_MAX_HEIGHT);
+          if (start >= 0) {
+            hls.startLevel = start;
+            hls.nextLoadLevel = start;
+          }
+          if (cap >= 0) {
+            hls.autoLevelCapping = cap;
+          }
+          play();
+        });
+        hls.on(Hls.Events.ERROR, (_, data: { fatal?: boolean }) => {
+          if (data.fatal) {
+            tryNextSource();
+          }
+        });
+        hls.loadSource(currentSrc);
+        hls.attachMedia(element);
       });
 
       return () => {
