@@ -13,9 +13,28 @@ type PagesContext = {
   params: { path?: string[] };
 };
 
+import {
+  loadMobileOpeningManifest,
+  OPENING_HLS_PROXY_PATH,
+} from "../../client/lib/video-sections";
+
 export async function onRequest(context: PagesContext): Promise<Response> {
   const url = new URL(context.request.url);
   const path = url.pathname;
+
+  if (path === OPENING_HLS_PROXY_PATH && context.request.method === "GET") {
+    try {
+      const body = await loadMobileOpeningManifest();
+      return new Response(body, {
+        headers: {
+          "Content-Type": "application/vnd.apple.mpegurl",
+          "Cache-Control": "public, max-age=60",
+        },
+      });
+    } catch {
+      return new Response("Opening HLS manifest unavailable", { status: 502 });
+    }
+  }
 
   if (path === "/api/ping" && context.request.method === "GET") {
     return Response.json({

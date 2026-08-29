@@ -10,6 +10,10 @@ import {
 } from "./routes/content-ai";
 import luxuryInquiryRouter from "./routes/luxury-inquiry";
 import inquiryRouter from "./routes/inquiry";
+import {
+  loadMobileOpeningManifest,
+  OPENING_HLS_PROXY_PATH,
+} from "../client/lib/video-sections";
 
 export function createServer() {
   const app = express();
@@ -18,6 +22,18 @@ export function createServer() {
   app.use(cors());
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
+
+  app.get(OPENING_HLS_PROXY_PATH, async (_req, res) => {
+    try {
+      const body = await loadMobileOpeningManifest();
+      res.status(200);
+      res.setHeader("Content-Type", "application/vnd.apple.mpegurl");
+      res.setHeader("Cache-Control", "public, max-age=60");
+      res.end(body);
+    } catch {
+      res.status(502).type("text/plain").send("Opening HLS manifest unavailable");
+    }
+  });
 
   // Example API routes
   app.get("/api/ping", (_req, res) => {

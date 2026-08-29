@@ -9,10 +9,18 @@ export type VideoAsset = {
 const openingStream =
   "https://customer-xyp94kxe4za8b3w1.cloudflarestream.com/f17ef86e3e7fbfa3d2d58dd3bd3d9065";
 
+/** Stream master lists 1080p first (SCORE=5). Do not pass clientBandwidthHint. */
+export const OPENING_STREAM_MASTER = `${openingStream}/manifest/video.m3u8`;
+
+/** Same-origin rewrite: 480p first, then 720p. Used so iOS native HLS does not start at 1080p. */
+export const OPENING_HLS_PROXY_PATH = "/api/opening-hls.m3u8";
+
+export const HLS_START_HEIGHT = 480;
+export const HLS_MAX_HEIGHT = 720;
+
 export const openingVideo: VideoAsset = {
-  // Full ladder (240p–1080p). Do not pass clientBandwidthHint: a 3.5 Mbps hint
-  // collapses Stream’s playlist to 1080p-only (~1.3 MB before the first frame).
-  src: `${openingStream}/manifest/video.m3u8`,
+  src: OPENING_HLS_PROXY_PATH,
+  fallbackSrc: OPENING_STREAM_MASTER,
   poster: `${openingStream}/thumbnails/thumbnail.jpg?time=3s&height=720`,
   objectPosition: "center 30%",
 };
@@ -21,23 +29,179 @@ export function isHlsSource(src: string): boolean {
   return src.includes(".m3u8");
 }
 
-/** First fragment near 720p so playback can start without waiting on 1080p. */
+type LevelLike = { height?: number };
+
+function heightOf(level: LevelLike): number {
+  return level.height ?? 0;
+}
+
+/**
+ * First fragment near 480p. Never pick 240/360 when a 480p+ rung exists.
+ */
 export function pickHlsStartLevel(
-  levels: Array<{ height?: number }>,
-  targetHeight = 720,
+  levels: LevelLike[],
+  targetHeight = HLS_START_HEIGHT,
+  minHeight = HLS_START_HEIGHT,
 ): number {
   if (levels.length === 0) {
     return -1;
   }
 
-  let bestIndex = 0;
+  const indexed = levels.map((level, index) => ({
+    index,
+    height: heightOf(level),
+  }));
+  const eligible = indexed.filter((level) => level.height >= minHeight);
+  const pool = eligible.length > 0 ? eligible : indexed;
+
+  let bestIndex = pool[0].index;
   let bestDiff = Infinity;
-  levels.forEach((level, index) => {
-    const diff = Math.abs((level.height ?? 0) - targetHeight);
+  for (const level of pool) {
+    const diff = Math.abs(level.height - targetHeight);
     if (diff < bestDiff) {
       bestDiff = diff;
+      bestIndex = level.index;
+    }
+  }
+  return bestIndex;
+}
+
+/** Highest rung at or below 720p so phones never step up to 1080p. */
+export function pickHlsCapLevel(
+  levels: LevelLike[],
+  maxHeight = HLS_MAX_HEIGHT,
+): number {
+  if (levels.length === 0) {
+    return -1;
+  }
+
+  let bestIndex = -1;
+  let bestHeight = -1;
+  levels.forEach((level, index) => {
+    const height = heightOf(level);
+    if (height <= maxHeight && height >= bestHeight) {
+      bestHeight = height;
       bestIndex = index;
     }
   });
   return bestIndex;
+}
+
+type ParsedVariant = {
+  height: number;
+  inf: string;
+  uri: string;
+};
+
+function resolveManifestUri(uri: string, masterUrl: string): string {
+  if (/^https?:\/\//i.test(uri)) {
+    return uri;
+  }
+  return new URL(uri, masterUrl).href;
+}
+
+function rewriteQuotedUris(line: string, masterUrl: string): string {
+  return line.replace(/URI="([^"]+)"/gi, (_, uri: string) => {
+    return `URI="${resolveManifestUri(uri, masterUrl)}"`;
+  });
+}
+
+function stripScore(inf: string): string {
+  return inf
+    .replace(/,SCORE=\d+(?:\.\d+)?/gi, "")
+    .replace(/SCORE=\d+(?:\.\d+)?,?/gi, "")
+    .replace(/,,+/g, ",")
+    .replace(/,$/, "");
+}
+
+function closestInRange(
+  variants: ParsedVariant[],
+  target: number,
+  min: number,
+  max: number,
+): ParsedVariant | undefined {
+  const pool = variants.filter(
+    (variant) => variant.height >= min && variant.height <= max,
+  );
+  if (pool.length === 0) {
+    return undefined;
+  }
+  return pool.reduce((best, variant) =>
+    Math.abs(variant.height - target) < Math.abs(best.height - target)
+      ? variant
+      : best,
+  );
+}
+
+function selectMobileVariants(variants: ParsedVariant[]): ParsedVariant[] {
+  const start = closestInRange(variants, HLS_START_HEIGHT, 460, 540);
+  const cap = closestInRange(variants, HLS_MAX_HEIGHT, 680, 780);
+  const picked: ParsedVariant[] = [];
+  if (start) {
+    picked.push(start);
+  }
+  if (cap && cap.uri !== start?.uri) {
+    picked.push(cap);
+  }
+  if (picked.length > 0) {
+    return picked;
+  }
+
+  const capped = variants.filter(
+    (variant) => variant.height > 0 && variant.height <= HLS_MAX_HEIGHT,
+  );
+  const sharp = capped.filter((variant) => variant.height >= 460);
+  return (sharp.length > 0 ? sharp : capped).slice().sort((a, b) => a.height - b.height);
+}
+
+/**
+ * Keep 480p then 720p, drop 1080p/240p, strip SCORE, and make child URIs absolute.
+ * Stream’s default master lists 1080p first with SCORE=5, so iOS starts there.
+ */
+export function filterMobileHlsMaster(manifest: string, masterUrl: string): string {
+  const lines = manifest.replace(/\r\n/g, "\n").split("\n");
+  const header: string[] = [];
+  const variants: ParsedVariant[] = [];
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index].trim();
+    if (!line) {
+      continue;
+    }
+
+    if (line.startsWith("#EXT-X-STREAM-INF:")) {
+      const uriLine = lines[index + 1]?.trim() ?? "";
+      index += 1;
+      const height = Number(line.match(/RESOLUTION=\d+x(\d+)/i)?.[1] ?? 0);
+      variants.push({
+        height,
+        inf: stripScore(rewriteQuotedUris(line, masterUrl)),
+        uri: resolveManifestUri(uriLine, masterUrl),
+      });
+      continue;
+    }
+
+    if (line.startsWith("#EXT-X-I-FRAME-STREAM-INF:")) {
+      continue;
+    }
+
+    header.push(rewriteQuotedUris(line, masterUrl));
+  }
+
+  const selected = selectMobileVariants(variants);
+  if (selected.length === 0) {
+    return manifest;
+  }
+
+  return `${[...header, ...selected.flatMap((variant) => [variant.inf, variant.uri])].join("\n")}\n`;
+}
+
+export async function loadMobileOpeningManifest(
+  fetchImpl: typeof fetch = fetch,
+): Promise<string> {
+  const response = await fetchImpl(OPENING_STREAM_MASTER);
+  if (!response.ok) {
+    throw new Error(`Opening HLS manifest failed: ${response.status}`);
+  }
+  return filterMobileHlsMaster(await response.text(), OPENING_STREAM_MASTER);
 }

@@ -8,7 +8,13 @@ import {
   type ReactNode,
 } from "react";
 
-import { isHlsSource, pickHlsStartLevel } from "@/lib/video-sections";
+import {
+  HLS_MAX_HEIGHT,
+  HLS_START_HEIGHT,
+  isHlsSource,
+  pickHlsCapLevel,
+  pickHlsStartLevel,
+} from "@/lib/video-sections";
 import { cn } from "@/lib/utils";
 import { useNearbyFullpageMedia } from "@/hooks/useNearbyFullpageMedia";
 
@@ -18,6 +24,8 @@ type HlsInstance = {
   attachMedia: (element: HTMLMediaElement) => void;
   on: (event: string, callback: (...args: unknown[]) => void) => void;
   startLevel: number;
+  autoLevelCapping: number;
+  nextLoadLevel: number;
   levels: Array<{ height?: number }>;
 };
 
@@ -32,6 +40,32 @@ type FullscreenVideoSectionProps = {
   children: ReactNode;
 };
 
+function canPlayNativeHls(): boolean {
+  if (typeof document === "undefined") {
+    return false;
+  }
+  return Boolean(
+    document.createElement("video").canPlayType("application/vnd.apple.mpegurl"),
+  );
+}
+
+const nativeHlsSupported = canPlayNativeHls();
+const hlsJsImport =
+  typeof document !== "undefined" && !nativeHlsSupported
+    ? import("hls.js")
+    : null;
+
+function lockInlineAutoplay(element: HTMLVideoElement, muted: boolean) {
+  element.setAttribute("playsinline", "true");
+  element.setAttribute("webkit-playsinline", "true");
+  element.setAttribute("autoplay", "");
+  if (muted) {
+    element.defaultMuted = true;
+    element.muted = true;
+    element.setAttribute("muted", "");
+  }
+}
+
 function markVideoRendering(
   element: HTMLVideoElement,
   onActive: () => void,
@@ -45,9 +79,7 @@ function markVideoRendering(
   }
 
   const videoWithFrameCallback = element as HTMLVideoElement & {
-    requestVideoFrameCallback?: (
-      callback: () => void,
-    ) => number;
+    requestVideoFrameCallback?: (callback: () => void) => number;
     cancelVideoFrameCallback?: (handle: number) => void;
   };
 
@@ -107,6 +139,9 @@ export default function FullscreenVideoSection({
     [fallbackSrc, videoSrc],
   );
   const currentSrc = sources[sourceIndex];
+  const useNativeHlsSrc = Boolean(
+    currentSrc && isHlsSource(currentSrc) && nativeHlsSupported,
+  );
 
   const tryNextSource = useCallback(() => {
     setVideoActive(false);
@@ -115,13 +150,21 @@ export default function FullscreenVideoSection({
     );
   }, [sources.length]);
 
+  const setVideoNode = useCallback((element: HTMLVideoElement | null) => {
+    videoRef.current = element;
+    if (!element) {
+      return;
+    }
+    lockInlineAutoplay(element, isMutedRef.current);
+  }, []);
+
   const attemptPlay = useCallback(() => {
     const element = videoRef.current;
     if (!element) {
       return;
     }
 
-    element.muted = isMutedRef.current;
+    lockInlineAutoplay(element, isMutedRef.current);
     const playPromise = element.play();
     if (playPromise) {
       playPromise.catch(() => {});
@@ -156,8 +199,7 @@ export default function FullscreenVideoSection({
     }
 
     setVideoActive(false);
-    element.removeAttribute("src");
-    element.load();
+    lockInlineAutoplay(element, isMutedRef.current);
 
     hlsRef.current?.destroy();
     hlsRef.current = null;
@@ -171,54 +213,79 @@ export default function FullscreenVideoSection({
       attemptPlay();
     };
 
-    if (isHlsSource(currentSrc)) {
-      if (element.canPlayType("application/vnd.apple.mpegurl")) {
-        element.src = currentSrc;
-        element.load();
-        element.addEventListener("loadeddata", play, { once: true });
-      } else {
-        void import("hls.js").then(({ default: Hls }) => {
-          if (cancelled || !videoRef.current) {
-            return;
-          }
+    if (isHlsSource(currentSrc) && !nativeHlsSupported) {
+      element.removeAttribute("src");
+      void (hlsJsImport ?? import("hls.js")).then(({ default: Hls }) => {
+        if (cancelled || !videoRef.current) {
+          return;
+        }
 
-          if (Hls.isSupported()) {
-            const hls = new Hls({
-              capLevelToPlayerSize: true,
-              startLevel: -1,
-              maxBufferLength: 10,
-              maxMaxBufferLength: 20,
-              abrEwmaDefaultEstimate: 2_000_000,
-            });
-            hlsRef.current = hls;
-            hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              hls.startLevel = pickHlsStartLevel(hls.levels);
-              play();
-            });
-            hls.on(Hls.Events.ERROR, (_, data: { fatal?: boolean }) => {
-              if (data.fatal) {
-                tryNextSource();
-              }
-            });
-            hls.loadSource(currentSrc);
-            hls.attachMedia(videoRef.current);
-          } else {
-            tryNextSource();
-          }
-        });
-      }
-    } else {
-      element.src = currentSrc;
-      element.load();
-      element.addEventListener("loadeddata", play, { once: true });
+        if (Hls.isSupported()) {
+          const hls = new Hls({
+            capLevelToPlayerSize: true,
+            maxDevicePixelRatio: 2,
+            testBandwidth: false,
+            startLevel: -1,
+            abrEwmaDefaultEstimate: 1_200_000,
+            maxBufferLength: 8,
+            maxMaxBufferLength: 16,
+            maxBufferSize: 15_000_000,
+          });
+          hlsRef.current = hls;
+          hls.on(Hls.Events.MANIFEST_PARSED, () => {
+            const start = pickHlsStartLevel(hls.levels, HLS_START_HEIGHT);
+            const cap = pickHlsCapLevel(hls.levels, HLS_MAX_HEIGHT);
+            if (start >= 0) {
+              hls.startLevel = start;
+              hls.nextLoadLevel = start;
+            }
+            if (cap >= 0) {
+              hls.autoLevelCapping = cap;
+            }
+            play();
+          });
+          hls.on(Hls.Events.ERROR, (_, data: { fatal?: boolean }) => {
+            if (data.fatal) {
+              tryNextSource();
+            }
+          });
+          hls.loadSource(currentSrc);
+          hls.attachMedia(videoRef.current);
+        } else {
+          tryNextSource();
+        }
+      });
+
+      return () => {
+        cancelled = true;
+        hlsRef.current?.destroy();
+        hlsRef.current = null;
+      };
     }
+
+    if (!useNativeHlsSrc) {
+      element.src = currentSrc;
+    }
+
+    play();
+    element.addEventListener("loadedmetadata", play);
+    element.addEventListener("loadeddata", play);
+    element.addEventListener("canplay", play);
 
     return () => {
       cancelled = true;
-      hlsRef.current?.destroy();
-      hlsRef.current = null;
+      element.removeEventListener("loadedmetadata", play);
+      element.removeEventListener("loadeddata", play);
+      element.removeEventListener("canplay", play);
     };
-  }, [allowMedia, attemptPlay, currentSrc, holdMobilePoster, tryNextSource]);
+  }, [
+    allowMedia,
+    attemptPlay,
+    currentSrc,
+    holdMobilePoster,
+    tryNextSource,
+    useNativeHlsSrc,
+  ]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -227,19 +294,34 @@ export default function FullscreenVideoSection({
       return;
     }
 
-    const syncPlayback = (intersecting?: boolean) => {
+    const sectionIsInactive = () => {
       const section = container.closest("[data-fullpage-section]");
-      const sectionActive =
-        !section || section.getAttribute("data-active") === "true";
-      const shouldPlay =
-        sectionActive && (intersecting === undefined || intersecting);
+      return section?.getAttribute("data-active") === "false";
+    };
 
-      if (shouldPlay) {
+    const syncPlayback = (intersecting?: boolean) => {
+      if (sectionIsInactive()) {
+        element.pause();
+        return;
+      }
+
+      const inView =
+        priority || intersecting === undefined || intersecting;
+      if (inView) {
         attemptPlay();
       } else {
         element.pause();
       }
     };
+
+    if (priority) {
+      syncPlayback(true);
+      const onFullPageChange = () => syncPlayback(true);
+      window.addEventListener("fullpage:change", onFullPageChange);
+      return () => {
+        window.removeEventListener("fullpage:change", onFullPageChange);
+      };
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -258,16 +340,23 @@ export default function FullscreenVideoSection({
       observer.disconnect();
       window.removeEventListener("fullpage:change", onFullPageChange);
     };
-  }, [allowMedia, attemptPlay, currentSrc, holdMobilePoster]);
+  }, [allowMedia, attemptPlay, currentSrc, holdMobilePoster, priority]);
 
   useEffect(() => {
-    const retry = () => attemptPlay();
+    const retry = () => {
+      if (document.visibilityState === "hidden") {
+        return;
+      }
+      attemptPlay();
+    };
     document.addEventListener("touchstart", retry, { once: true, passive: true });
     document.addEventListener("pointerdown", retry, { once: true });
+    document.addEventListener("visibilitychange", retry);
 
     return () => {
       document.removeEventListener("touchstart", retry);
       document.removeEventListener("pointerdown", retry);
+      document.removeEventListener("visibilitychange", retry);
     };
   }, [attemptPlay]);
 
@@ -307,7 +396,8 @@ export default function FullscreenVideoSection({
         alt=""
         aria-hidden="true"
         fetchPriority={priority ? "high" : "auto"}
-        decoding="async"
+        loading={priority ? "eager" : "lazy"}
+        decoding={priority ? "sync" : "async"}
         className={cn(
           "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
           posterMobileSrc && "max-md:hidden",
@@ -318,8 +408,9 @@ export default function FullscreenVideoSection({
 
       {currentSrc && !holdMobilePoster && allowMedia ? (
         <video
-          ref={videoRef}
+          ref={setVideoNode}
           key={currentSrc}
+          src={useNativeHlsSrc ? currentSrc : undefined}
           className={cn(
             "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
             posterMobileSrc && "max-md:hidden",
@@ -330,6 +421,7 @@ export default function FullscreenVideoSection({
           muted={isMuted}
           loop
           playsInline
+          {...{ "webkit-playsinline": "true" }}
           preload={priority ? "auto" : "none"}
           poster={posterSrc}
           onPlaying={handleVideoPlaying}
@@ -338,7 +430,10 @@ export default function FullscreenVideoSection({
       ) : null}
 
       <div
-        className={cn("absolute inset-0 z-10", overlayClassName)}
+        className={cn(
+          "pointer-events-none absolute inset-0 z-10",
+          overlayClassName,
+        )}
         aria-hidden="true"
       />
 
