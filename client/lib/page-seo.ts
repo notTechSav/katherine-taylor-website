@@ -42,9 +42,9 @@ export const pageSeo = {
     path: sitePages.inquire.path,
   },
   gifts: {
-    title: "Gifts & Favorite Things | Katherine Taylor, Sacramento Escort",
+    title: "Gifts | Katherine Taylor — Thoughtful Gestures & Gift Etiquette",
     description:
-      "A few favorite things from Katherine Taylor, a Sacramento escort with a weakness for perfume, cigars, beautiful shoes, spa days, lingerie, and unforgettable experiences.",
+      "A few favorite things from Katherine Taylor — perfume, cigars, beautiful shoes, spa days, lingerie, and the etiquette of a thoughtful gesture.",
     path: sitePages.gifts.path,
   },
   journal: {

@@ -51,7 +51,7 @@ export const essays: JournalEssay[] = [
     title: "Memoirs in the City",
     excerpt:
       "After going viral at a Warriors game, I vanished from San Francisco. Searches turned up nothing. This is why I left—and why I'm back.",
-    body: `## "San Francisco escorts" - "escorts near me" won't help you find Katherine Taylor
+    body: `## Searching for Katherine Taylor in San Francisco
 
 A rush of searches: "Katherine Taylor", "Katherine Taylor Steph Curry", "Katherine Taylor Warriors" - nothing. "Katherine Taylor website"? TMZ inquired. "Katherine Taylor Twitter"? New York Post. Nothing. "San Francisco escorts"? "Sacramento escorts"? "Bay Area escorts"? "Escorts near me"? -*googled* an Amish man on his time away on a library computer. The website: "KatherineTaylorEscort.com" - gone.
 
@@ -319,19 +319,19 @@ Two hours south on Highway 1. Carmel for Michelin restaurants and art galleries.
 
 Cathedral-quiet redwoods, twenty minutes north. When you need to remember that most of what feels urgent isn't. No cell service. That's the point.
 
-## Service Areas Throughout the Bay
+## The Peninsula, the South Bay, the East Bay
 
 Ten years taught me geography matters. Not just which city—which neighborhood. Not just which hotel—which entrance.
 
-### Elite Companion Services: Peninsula
+### The Peninsula
 
 Palo Alto. Sand Hill Road. Stanford. Venture capital epicenter. Clients in town for pitch meetings who need someone fluent in cap tables. Menlo Park for Meta headquarters and additional VC offices. Mountain View for Google's main campus. Redwood City for Oracle. San Mateo for the space between.
 
-### Luxury Escort Services: South Bay
+### The South Bay
 
 San Jose. Downtown, Santana Row, the sprawling tech hub people underestimate. Cisco, Adobe, PayPal—less visible than San Francisco, equally wealthy. Sunnyvale for LinkedIn. Cupertino for Apple Park. Los Gatos for Netflix and wine bars. Campbell and Saratoga for residential wealth.
 
-### Professional Companion: East Bay
+### The East Bay
 
 Oakland. Songbird, Art Murmur, the lake. Less pretension than San Francisco, more authenticity. Berkeley for university culture and conversations that extend past 3 AM. Walnut Creek for East Bay wealth untied to tech. Piedmont for residential discretion.
 
@@ -361,7 +361,7 @@ I specialize in serving San Francisco's tech and finance professionals. My clien
 
 While I prefer 24-48 hours notice for optimal preparation, I occasionally accommodate same-day requests for established clients. Availability varies based on my schedule. For the best experience and to ensure availability, advance booking is strongly recommended, particularly for dinner reservations at places like House of Prime Rib or Benu.
 
-## How to Book a Luxury Companion in San Francisco
+## San Francisco, If This Sounds Aligned
 
 As an independent, verified escort serving San Francisco's tech and finance elite, I offer high-end companion services for discerning professionals who value discretion, intelligence, and sophistication.
 
@@ -411,12 +411,11 @@ So I'm back. If this sounds aligned—welcome to my world.
     publishedDate: "2026-08-27",
     readNext: "continuity-as-craft",
     seo: {
-      title:
-        "San Francisco escorts - escorts near me | Memoirs in the City",
+      title: "Memoirs in the City | Katherine Taylor in San Francisco",
       description:
         "After going viral at a Warriors game, Katherine Taylor vanished from San Francisco. Searches turned up nothing. This is why she left—and why she's back.",
       keywords:
-        "San Francisco escorts, escorts near me, Bay Area escorts, luxury companion San Francisco, Katherine Taylor",
+        "Katherine Taylor San Francisco, San Francisco escorts, Memoirs in the City, Katherine Taylor",
       geoRegion: "US-CA",
       geoPlacename: "San Francisco",
     },
@@ -528,9 +527,9 @@ export const essayMetadata = {
 export const journalFooter = {
   intro: "For those seeking presence and company in the Bay Area:",
   links: [
-    { href: "/journal/memoirs-in-the-city", text: "San Francisco escorts" },
-    { href: "/sacramento-escorts", text: "Sacramento escorts" },
-    { href: "/about", text: "About Katherine Taylor escort practice" },
+    { href: "/journal/memoirs-in-the-city", text: "Memoirs in the City" },
+    { href: "/sacramento-escorts", text: "Sacramento" },
+    { href: "/about", text: "About Katherine" },
   ],
 };
 

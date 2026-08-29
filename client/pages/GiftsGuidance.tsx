@@ -77,7 +77,7 @@ const GiftsGuidance = () => {
       </section>
 
       <section className="space-y-6" aria-labelledby="favorites-heading">
-        <Heading id="favorites-heading">A Few of This Sacramento Escort's Favorite Things</Heading>
+        <Heading id="favorites-heading">A Few of Katherine's Favorite Things</Heading>
         <P>
           There are a handful of things that are almost impossible to get wrong: perfume, cigars, beautiful lingerie, spa treatments, and experiences that give me somewhere to go.
         </P>
@@ -239,16 +239,18 @@ const GiftsGuidance = () => {
 
       <section className="space-y-6" aria-label="Related reading">
         <P>
-          New here? You may enjoy my rather opinionated take on what an{" "}
-          <InternalLink href="/sacramento-escorts">escorts near me</InternalLink> search leaves out when choosing someone.
+          New here? You may enjoy{" "}
+          <InternalLink href="/sacramento-escorts">The High-End Edition</InternalLink>
+          {" "}— my rather opinionated take on what a search for proximity leaves out when choosing someone.
         </P>
         <P>
-          Learn more about me, my approach, and what more than a decade as a{" "}
-          <InternalLink href="/about">Sacramento escort</InternalLink> has taught me.
+          Learn more in{" "}
+          <InternalLink href="/about">About Katherine</InternalLink>
+          {" "}— my approach, and what more than a decade has taught me.
         </P>
         <P>
-          My travels and years working as a{" "}
-          <InternalLink href="/journal/memoirs-in-the-city">California escort</InternalLink> have taken me well beyond Sacramento.
+          <InternalLink href="/journal/memoirs-in-the-city">Memoirs in the City</InternalLink>
+          {" "}is the longer story — years that have taken me well beyond Sacramento.
         </P>
       </section>
     </div>

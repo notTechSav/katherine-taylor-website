@@ -4,18 +4,21 @@
  */
 
 export const giftsMetadata = {
-  title: "Gifts | Katherine Taylor Escort - San Francisco & Sacramento",
-  description: "Thoughtful guidance on gifts for escorts near me. Katherine Taylor escort shares refined perspectives on meaningful gestures for San Francisco escorts and Bay Area companionship.",
-  keywords: "escorts near me, San Francisco escorts, Sacramento escorts, Katherine Taylor escort, Bay Area escorts, escort gifts, SF escort etiquette, luxury escort services",
+  title: "Gifts | Katherine Taylor — Thoughtful Gestures & Gift Etiquette",
+  description:
+    "A few favorite things from Katherine Taylor — perfume, cigars, beautiful shoes, spa days, lingerie, and the etiquette of a thoughtful gesture.",
+  keywords:
+    "Katherine Taylor gifts, gift etiquette, thoughtful gestures, Katherine Taylor",
   openGraph: {
-    title: "Gifts | Katherine Taylor - SF Escort Etiquette",
-    description: "A quiet page on meaningful gestures. Katherine Taylor escort guidance for discerning clients seeking San Francisco escorts and Bay Area companionship.",
+    title: "Gifts | Katherine Taylor — Thoughtful Gestures & Gift Etiquette",
+    description:
+      "A quiet page on meaningful gestures. Gift etiquette and a few favorite things from Katherine Taylor.",
   },
 };
 
 export const heroImage = {
   src: "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe8959b4139fc4dd9a3ce4786c1b4e8dc",
-  alt: "Katherine Taylor Escort - Gifts Guidance for San Francisco and Sacramento Escorts",
+  alt: "Gifts for Katherine Taylor — thoughtful gestures and favorite things",
 };
 
 export const giftsDisplay = {
@@ -33,7 +36,8 @@ export const guidanceParagraphs = [
 ];
 
 export const giftsFooter = {
-  intro: "For those searching 'escorts near me' or seeking San Francisco escorts and Sacramento escorts with substance, this page offers Katherine Taylor escort's perspective on meaningful connection.",
+  intro:
+    "A quiet page on gift etiquette and thoughtful gestures, from Katherine Taylor.",
   links: [
     { label: "About", href: "/about" },
     { label: "Journal", href: "/journal" },

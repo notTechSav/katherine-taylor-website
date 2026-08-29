@@ -1,11 +1,11 @@
 import { describe, it, expect } from "vitest";
+import { essays } from "./journal-content";
 import { pageSeo } from "./page-seo";
 import {
   footerGroupOrder,
   pagesInFooterGroup,
   renderSitemap,
   sitePageList,
-  sitePages,
 } from "./site-pages";
 
 const ORIGIN = "https://katherinetaylorescort.com";
@@ -24,16 +24,19 @@ describe("site pages", () => {
 });
 
 describe("footer coverage", () => {
-  it("places every page in the brand block or exactly one link group", () => {
+  it("places every page in the brand block, exactly one link group, or sitemap-only", () => {
     const grouped = footerGroupOrder.flatMap((group) =>
       pagesInFooterGroup(group.id).map((page) => page.key),
     );
     const brand = sitePageList
       .filter((page) => page.footer === "brand")
       .map((page) => page.key);
+    const sitemapOnly = sitePageList
+      .filter((page) => page.footer === "none")
+      .map((page) => page.key);
 
     expect(new Set(grouped).size).toBe(grouped.length);
-    expect([...grouped, ...brand].sort()).toEqual(
+    expect([...grouped, ...brand, ...sitemapOnly].sort()).toEqual(
       sitePageList.map((page) => page.key).sort(),
     );
   });
@@ -46,6 +49,7 @@ describe("footer coverage", () => {
 
   it("gives every footer link visible text", () => {
     for (const page of sitePageList) {
+      if (page.footer === "none") continue;
       expect(page.navLabel.trim().length).toBeGreaterThan(0);
     }
   });
@@ -76,6 +80,13 @@ describe("sitemap", () => {
       expect(loc.startsWith(`${ORIGIN}/`)).toBe(true);
     }
   });
+
+  it("lists every public journal essay", () => {
+    for (const essay of essays) {
+      const loc = `${ORIGIN}/journal/${essay.slug}`;
+      expect(xml.split(`<loc>${loc}</loc>`).length - 1).toBe(1);
+    }
+  });
 });
 
 describe("page-seo", () => {
@@ -93,11 +104,15 @@ describe("page-seo", () => {
     const seoPaths = new Set<string>(
       Object.values(pageSeo).map((entry) => entry.path),
     );
-    // The memoir's metadata is owned per-essay in journal-content.ts.
-    const exempt = new Set<string>([sitePages.memoirs.path]);
+    // Journal essay metadata is owned per-essay in journal-content.ts.
+    const journalEssayPaths = new Set(
+      sitePageList
+        .filter((page) => page.path.startsWith("/journal/"))
+        .map((page) => page.path),
+    );
 
     for (const page of sitePageList) {
-      if (exempt.has(page.path)) continue;
+      if (journalEssayPaths.has(page.path)) continue;
       expect(seoPaths.has(page.path), `${page.path} has no pageSeo entry`).toBe(
         true,
       );

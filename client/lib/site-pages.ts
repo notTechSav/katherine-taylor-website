@@ -11,8 +11,11 @@
 
 export type FooterGroupId = "practice" | "writing" | "collections";
 
-/** "brand" pages are surfaced in the footer's brand block, not in a link group. */
-export type FooterPlacement = "brand" | FooterGroupId;
+/**
+ * "brand" pages are surfaced in the footer's brand block, not in a link group.
+ * "none" pages are indexable (sitemap + canonical) but omitted from the footer.
+ */
+export type FooterPlacement = "brand" | FooterGroupId | "none";
 
 export type SitePage = {
   path: string;
@@ -76,6 +79,27 @@ export const sitePages = {
     changefreq: "monthly",
     priority: 0.9,
     footer: "writing",
+  },
+  continuity: {
+    path: "/journal/continuity-as-craft",
+    navLabel: "Continuity as Craft",
+    changefreq: "monthly",
+    priority: 0.6,
+    footer: "none",
+  },
+  unsaid: {
+    path: "/journal/the-luxury-of-unsaid-things",
+    navLabel: "The Luxury of Unsaid Things",
+    changefreq: "monthly",
+    priority: 0.6,
+    footer: "none",
+  },
+  scarcity: {
+    path: "/journal/scarcity-discipline",
+    navLabel: "Scarcity Discipline",
+    changefreq: "monthly",
+    priority: 0.6,
+    footer: "none",
   },
   sacramento: {
     path: "/sacramento-escorts",
