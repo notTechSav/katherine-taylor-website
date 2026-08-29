@@ -1,17 +1,15 @@
 import { memo } from "react";
 import JournalCard from "./JournalCard";
-import type { JournalEssay } from "@/lib/journal-content";
+import { essayPath, type JournalEssay } from "@/lib/journal-content";
 
 interface JournalGridProps {
   entries: JournalEssay[];
   microline?: string;
   ctaLabel: string;
-  onOpen?: (slug: string) => void;
-  hrefFor?: (slug: string) => string;
 }
 
 const JournalGrid = memo(
-  ({ entries, microline, onOpen, hrefFor, ctaLabel }: JournalGridProps) => {
+  ({ entries, microline, ctaLabel }: JournalGridProps) => {
     return (
       <section className="bg-luxury-white px-6 pb-24 pt-16 text-luxury-black sm:px-10">
         <div className="mx-auto flex max-w-[680px] flex-col gap-16 sm:gap-20">
@@ -27,11 +25,9 @@ const JournalGrid = memo(
             {entries.map((entry) => (
               <JournalCard
                 key={entry.slug}
-                slug={entry.slug}
                 title={entry.title}
                 excerpt={entry.excerpt}
-                onOpen={onOpen}
-                href={hrefFor?.(entry.slug)}
+                href={essayPath(entry.slug)}
                 ctaLabel={ctaLabel}
               />
             ))}

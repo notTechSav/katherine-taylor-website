@@ -556,6 +556,8 @@ export const parseJournalBody = (body: string): JournalBlock[] =>
       return { type: "paragraph", text: lines.join(" ") };
     });
 
+export const essayPath = (slug: string) => `/journal/${slug}`;
+
 export const getEssayBySlug = (slug: string | undefined) =>
   essays.find((essay) => essay.slug === slug);
 

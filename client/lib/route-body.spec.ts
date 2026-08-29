@@ -99,7 +99,14 @@ describe("prerender route bodies", () => {
 
     const journal = renderRoute("/journal");
     expect(journal).toMatch(/<h1[^>]*>The High-End Edition<\/h1>/);
-    expect(journal).toContain('href="/journal/memoirs-in-the-city"');
+    for (const essay of essays) {
+      expect(journal).toContain(`href="/journal/${essay.slug}"`);
+      expect(journal).toContain(`aria-label="Read quietly: ${essay.title}"`);
+    }
+    const buttons = journal.match(/<button\b[\s\S]*?<\/button>/g) ?? [];
+    expect(buttons.some((button) => button.includes("Read quietly"))).toBe(
+      false,
+    );
     expect(journal).toContain("<a");
     expect(journal).toContain('href="/gallery"');
   });

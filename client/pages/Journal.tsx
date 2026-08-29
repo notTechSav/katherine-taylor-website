@@ -1,6 +1,5 @@
 "use client";
 
-import { useLocation, useNavigate } from "react-router-dom";
 import JournalGrid from "@/components/journal/JournalGrid";
 import JournalHero from "@/components/journal/JournalHero";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
@@ -22,11 +21,7 @@ export const journalIndexJsonLd = {
   },
 };
 
-export const JournalIndexContent = ({
-  onOpenEssay,
-}: {
-  onOpenEssay?: (slug: string) => void;
-}) => (
+export const JournalIndexContent = () => (
   <div className="bg-luxury-white text-luxury-black">
     <SeoHead
       title={pageSeo.journal.title}
@@ -45,27 +40,12 @@ export const JournalIndexContent = ({
     <JournalGrid
       entries={essays}
       microline={journalDisplay.microline}
-      onOpen={onOpenEssay}
-      hrefFor={
-        onOpenEssay ? undefined : (slug) => `/journal/${slug}`
-      }
       ctaLabel={journalDisplay.ctaLabel}
     />
     <NextSectionCTA label="Browse Gallery" href="/gallery" />
   </div>
 );
 
-const Journal = () => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleOpen = (slug: string) => {
-    navigate(`/journal/${slug}`, {
-      state: { backgroundLocation: location },
-    });
-  };
-
-  return <JournalIndexContent onOpenEssay={handleOpen} />;
-};
+const Journal = () => <JournalIndexContent />;
 
 export default Journal;

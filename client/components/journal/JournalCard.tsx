@@ -1,11 +1,10 @@
 import { memo } from "react";
+import { Link } from "react-router-dom";
 
 interface JournalCardProps {
   title: string;
   excerpt: string;
-  slug: string;
-  onOpen?: (slug: string) => void;
-  href?: string;
+  href: string;
   ctaLabel: string;
 }
 
@@ -18,16 +17,7 @@ const ctaStyle = {
 } as const;
 
 const JournalCard = memo(
-  ({ title, excerpt, onOpen, href, slug, ctaLabel }: JournalCardProps) => {
-    const label = (
-      <span
-        className="underline-offset-[6px] transition-all group-hover:underline"
-        style={{ transitionDuration: "350ms" }}
-      >
-        {ctaLabel}
-      </span>
-    );
-
+  ({ title, excerpt, href, ctaLabel }: JournalCardProps) => {
     return (
       <article className="group space-y-4 border-t border-gray-200 pt-10 text-left first:border-t-0 first:pt-0">
         <header>
@@ -41,20 +31,19 @@ const JournalCard = memo(
         <p className="max-w-[62ch] text-[18px] font-light leading-[1.75] text-gray-600">
           {excerpt}
         </p>
-        {href ? (
-          <a href={href} className={ctaClassName} style={ctaStyle}>
-            {label}
-          </a>
-        ) : (
-          <button
-            type="button"
-            onClick={() => onOpen?.(slug)}
-            className={ctaClassName}
-            style={ctaStyle}
+        <Link
+          to={href}
+          className={ctaClassName}
+          style={ctaStyle}
+          aria-label={`${ctaLabel}: ${title}`}
+        >
+          <span
+            className="underline-offset-[6px] transition-all group-hover:underline"
+            style={{ transitionDuration: "350ms" }}
           >
-            {label}
-          </button>
-        )}
+            {ctaLabel}
+          </span>
+        </Link>
       </article>
     );
   },
