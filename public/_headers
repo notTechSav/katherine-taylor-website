@@ -4,11 +4,12 @@
 /about-slide-mobile.webp
   Cache-Control: public, max-age=0, must-revalidate
 
-# Replace the leftover Cartier mark immediately; zone Browser Cache TTL
-# would otherwise keep /logo.svg on phones for hours after deploy.
-/logo.svg
-  Cache-Control: public, max-age=0, must-revalidate
+# Icon files must revalidate immediately. Zone Browser Cache TTL would
+# otherwise keep a leftover template mark (Cartier wordmark / Builder "B")
+# on phones for hours after a same-URL replace.
 /favicon.svg
+  Cache-Control: public, max-age=0, must-revalidate
+/favicon.ico
   Cache-Control: public, max-age=0, must-revalidate
 /apple-touch-icon.png
   Cache-Control: public, max-age=0, must-revalidate

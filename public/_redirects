@@ -7,6 +7,7 @@ https://www.katherinetaylorescort.com/* https://katherinetaylorescort.com/:splat
 /sacramento /sacramento-escorts 301
 /maison / 301
 /services / 301
+/logo.svg / 301
 
 # No SPA catch-all. Unknown paths are served by 404.html (HTTP 404).
 # Known routes are prerendered to matching .html files at build time.

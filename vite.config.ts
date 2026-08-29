@@ -60,6 +60,17 @@ function expressPlugin(): Plugin {
     apply: "serve",
     enforce: "pre",
     configureServer(server) {
+      // Deleted Cartier/template mark. Intercept before Vite's SPA fallback
+      // so /logo.svg cannot paint a full-page icon during local first load.
+      server.middlewares.use((req, res, next) => {
+        if (req.url?.split("?")[0] !== "/logo.svg") {
+          next();
+          return;
+        }
+        res.statusCode = 301;
+        res.setHeader("Location", "/");
+        res.end();
+      });
       const app = createServer();
       server.middlewares.use(app);
     },
