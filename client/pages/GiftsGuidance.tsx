@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
+import React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "../lib/utils";
 
 const body =
   "max-w-[62ch] text-[16px] font-light leading-[1.75] text-gray-600";

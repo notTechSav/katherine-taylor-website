@@ -1,5 +1,7 @@
-import { cn } from "@/lib/utils";
 import type { ReactNode } from "react";
+import React from "react";
+
+import { cn } from "../lib/utils";
 
 const body =
   "text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700";

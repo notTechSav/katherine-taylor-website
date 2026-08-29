@@ -106,9 +106,9 @@ function sitemapPlugin(): Plugin {
 
 /**
  * Writes per-route HTML files so crawlers receive page-specific metadata
- * in the first byte. Uses `.html` files (not `/path/index.html`) so
- * Cloudflare Pages pretty-URLs stay slash-free. A top-level 404.html
- * disables Pages' SPA fallback and returns HTTP 404.
+ * and meaningful body markup in the first byte. Uses `.html` files (not
+ * `/path/index.html`) so Cloudflare Pages pretty-URLs stay slash-free.
+ * A top-level 404.html disables Pages' SPA fallback and returns HTTP 404.
  */
 function prerenderHtmlPlugin(): Plugin {
   return {
@@ -118,19 +118,56 @@ function prerenderHtmlPlugin(): Plugin {
       const outDir = path.resolve(__dirname, "dist/spa");
       const indexPath = path.join(outDir, "index.html");
       const html = await readFile(indexPath, "utf8");
+      const { createServer: createViteServer } = await import("vite");
+      const prerenderServer = await createViteServer({
+        configFile: false,
+        root: path.resolve(__dirname),
+        appType: "custom",
+        mode: "production",
+        server: { middlewareMode: true },
+        plugins: [
+          react({
+            useAtYourOwnRisk_mutateSwcOptions(swcOptions) {
+              if (swcOptions.jsc?.transform?.react) {
+                swcOptions.jsc.transform.react.development = false;
+              }
+            },
+          }),
+        ],
+        resolve: {
+          alias: {
+            "@": path.resolve(__dirname, "./client"),
+            "@shared": path.resolve(__dirname, "./shared"),
+          },
+        },
+        ssr: {
+          noExternal: ["react-helmet-async"],
+        },
+      });
 
-      for (const route of getPrerenderRoutes()) {
-        const rendered = applyRouteHead(html, route);
-        const relative = prerenderOutputPath(route.path);
-        const dest = path.join(outDir, relative);
-        await mkdir(path.dirname(dest), { recursive: true });
-        await writeFile(dest, rendered);
+      try {
+        const { applyRouteBody } = await prerenderServer.ssrLoadModule(
+          "/client/lib/route-body.tsx",
+        );
+
+        for (const route of getPrerenderRoutes()) {
+          const rendered = applyRouteBody(
+            applyRouteHead(html, route),
+            route.path,
+          );
+          const relative = prerenderOutputPath(route.path);
+          const dest = path.join(outDir, relative);
+          await mkdir(path.dirname(dest), { recursive: true });
+          await writeFile(dest, rendered);
+        }
+
+        await writeFile(
+          path.join(outDir, "404.html"),
+          applyRouteBody(applyRouteHead(html, notFoundHead), notFoundHead.path),
+        );
+      } finally {
+        await prerenderServer.close();
       }
-
-      await writeFile(
-        path.join(outDir, "404.html"),
-        applyRouteHead(html, notFoundHead),
-      );
     },
   };
 }
