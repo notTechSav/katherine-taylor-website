@@ -141,9 +141,9 @@ I'm certain he made the right choice, just as I did ordering the added truffles 
 
 The truffles vary between $200 and $10,000 per gram (not quite) depending on season and availability. Reservations required. Regulars are accommodated.
 
-#### Songbird — Oakland
+#### Birdsong — San Francisco
 
-Michelin-rated, understated. Chef Chris Bleidorn's tasting menu changes with the seasons. The precision remains constant. A Google executive took me here on our fourth date—mentioned his position only in passing. The Waymo pickup meant no shared attention with a driver. Oakland locals protect this place carefully.
+Michelin-rated, understated. Chef Chris Bleidorn's tasting menu changes with the seasons. The precision remains constant. A Google executive took me here on our fourth date—mentioned his position only in passing. The Waymo pickup meant no shared attention with a driver. San Francisco locals protect this place carefully.
 
 #### House of Prime Rib — Polk Gulch
 
@@ -255,7 +255,7 @@ Historic without performance. The Garden Court's glass dome ceiling dates to 190
 
 #### The Proper Hotel — Mid-Market
 
-Kelly Wearstler interiors. Rooftop with unobstructed city views. Villon restaurant downstairs for California-Mediterranean. Mid-Market location means Twitter (now X) headquarters proximity. Tech crowd, design-forward, younger energy than Nob Hill.
+Kelly Wearstler interiors. Rooftop with unobstructed city views. Villon restaurant downstairs for California-Mediterranean. Tech crowd, design-forward, younger energy than Nob Hill.
 
 ### Neighborhoods — Where I've Lived and Worked
 
@@ -333,7 +333,7 @@ San Jose. Downtown, Santana Row, the sprawling tech hub people underestimate. Ci
 
 ### The East Bay
 
-Oakland. Songbird, Art Murmur, the lake. Less pretension than San Francisco, more authenticity. Berkeley for university culture and conversations that extend past 3 AM. Walnut Creek for East Bay wealth untied to tech. Piedmont for residential discretion.
+Oakland. Art Murmur, the lake. Less pretension than San Francisco, more authenticity. Berkeley for university culture and conversations that extend past 3 AM. Walnut Creek for East Bay wealth untied to tech. Piedmont for residential discretion.
 
 ## Frequently Asked Questions
 
@@ -347,7 +347,7 @@ I offer elite companion services including dinner dates at restaurants like Gary
 
 ### How do I book a luxury companion in San Francisco?
 
-Screening is required for all new clients. I accept LinkedIn profiles, employment verification, or two provider references. Please allow 24-48 hours advance notice for dinner dates and overnight arrangements, though occasional last-minute availability exists for repeat clients. Rates are provided after screening.
+Screening is required for all new clients. I accept LinkedIn profiles, employment verification, or two provider references. Please allow 24-48 hours advance notice for dinner dates and overnight arrangements, though occasional last-minute availability exists for repeat clients. Current rates are published on the [Rates page](/rates). Availability and appointment details are confirmed after screening.
 
 ### Do you offer travel companionship?
 
@@ -387,7 +387,7 @@ Dinner companionship at Michelin-starred restaurants. Overnight arrangements at 
 
 ### Contact
 
-Reach me through the inquiry form. Rates available upon request after screening.
+Reach me through the inquiry form. Current rates are published on the [Rates page](/rates). Availability and appointment details are confirmed after screening.
 
 ## I ♥ SF
 

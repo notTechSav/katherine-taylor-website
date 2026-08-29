@@ -1,5 +1,42 @@
-import { memo, useMemo } from "react";
+import { memo, useMemo, type ReactNode } from "react";
 import { parseJournalBody } from "@/lib/journal-content";
+
+const journalInlineLinkClass =
+  "underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline";
+
+const internalMarkdownLink = /\[([^\]]+)\]\((\/(?!\/)[^)\s:]*)\)/g;
+
+function renderInlineText(text: string, keyPrefix: string): ReactNode {
+  const nodes: ReactNode[] = [];
+  let lastIndex = 0;
+
+  for (const match of text.matchAll(internalMarkdownLink)) {
+    const index = match.index ?? 0;
+    if (index > lastIndex) {
+      nodes.push(text.slice(lastIndex, index));
+    }
+    nodes.push(
+      <a
+        key={`${keyPrefix}-link-${index}`}
+        href={match[2]}
+        className={journalInlineLinkClass}
+      >
+        {match[1]}
+      </a>,
+    );
+    lastIndex = index + match[0].length;
+  }
+
+  if (lastIndex === 0) {
+    return text;
+  }
+
+  if (lastIndex < text.length) {
+    nodes.push(text.slice(lastIndex));
+  }
+
+  return nodes;
+}
 
 interface JournalBodyProps {
   body: string;
@@ -64,7 +101,7 @@ const JournalBody = memo(({ body, idPrefix, className }: JournalBodyProps) => {
           );
         }
 
-        return <p key={key}>{block.text}</p>;
+        return <p key={key}>{renderInlineText(block.text, key)}</p>;
       })}
     </div>
   );
