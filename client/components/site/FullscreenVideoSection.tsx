@@ -44,9 +44,22 @@ function canPlayNativeHls(): boolean {
   if (typeof document === "undefined") {
     return false;
   }
-  return Boolean(
-    document.createElement("video").canPlayType("application/vnd.apple.mpegurl"),
-  );
+  const video = document.createElement("video");
+  if (!video.canPlayType("application/vnd.apple.mpegurl")) {
+    return false;
+  }
+
+  const ua = navigator.userAgent;
+  const ios =
+    /iP(hone|od|ad)/.test(ua) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  if (ios) {
+    return true;
+  }
+
+  const safari =
+    /Safari/.test(ua) && !/Chrome|Chromium|Edg|OPR|Android/i.test(ua);
+  return safari;
 }
 
 const nativeHlsSupported = canPlayNativeHls();
@@ -66,14 +79,16 @@ function lockInlineAutoplay(element: HTMLVideoElement, muted: boolean) {
   }
 }
 
+const POSTER_HOLD_SECONDS = 2.75;
+
 function markVideoRendering(
   element: HTMLVideoElement,
   onActive: () => void,
 ): () => void {
-  if (
-    element.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA &&
-    element.videoWidth > 0
-  ) {
+  const shouldReveal = () =>
+    element.videoWidth > 0 && element.currentTime >= POSTER_HOLD_SECONDS;
+
+  if (shouldReveal()) {
     onActive();
     return () => {};
   }
@@ -84,14 +99,20 @@ function markVideoRendering(
   };
 
   if (videoWithFrameCallback.requestVideoFrameCallback) {
-    const id = videoWithFrameCallback.requestVideoFrameCallback(() =>
-      onActive(),
-    );
-    return () => videoWithFrameCallback.cancelVideoFrameCallback?.(id);
+    let handle = 0;
+    const tick = () => {
+      if (shouldReveal()) {
+        onActive();
+        return;
+      }
+      handle = videoWithFrameCallback.requestVideoFrameCallback!(tick);
+    };
+    handle = videoWithFrameCallback.requestVideoFrameCallback(tick);
+    return () => videoWithFrameCallback.cancelVideoFrameCallback?.(handle);
   }
 
   const onTimeUpdate = () => {
-    if (element.currentTime > 0 && element.videoWidth > 0) {
+    if (shouldReveal()) {
       onActive();
       element.removeEventListener("timeupdate", onTimeUpdate);
     }
@@ -115,6 +136,7 @@ export default function FullscreenVideoSection({
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<HlsInstance | null>(null);
   const isMutedRef = useRef(true);
+  const stopRevealRef = useRef<(() => void) | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [videoActive, setVideoActive] = useState(false);
   const [sourceIndex, setSourceIndex] = useState(0);
@@ -177,7 +199,8 @@ export default function FullscreenVideoSection({
       return;
     }
 
-    markVideoRendering(element, () => setVideoActive(true));
+    stopRevealRef.current?.();
+    stopRevealRef.current = markVideoRendering(element, () => setVideoActive(true));
     attemptPlay();
   }, [attemptPlay]);
 
@@ -258,6 +281,8 @@ export default function FullscreenVideoSection({
 
       return () => {
         cancelled = true;
+        stopRevealRef.current?.();
+        stopRevealRef.current = null;
         hlsRef.current?.destroy();
         hlsRef.current = null;
       };
@@ -274,6 +299,8 @@ export default function FullscreenVideoSection({
 
     return () => {
       cancelled = true;
+      stopRevealRef.current?.();
+      stopRevealRef.current = null;
       element.removeEventListener("loadedmetadata", play);
       element.removeEventListener("loadeddata", play);
       element.removeEventListener("canplay", play);

@@ -3,6 +3,11 @@
  * Static SPA is served from dist/spa; these handlers replace Express in serverless deploys.
  */
 
+import {
+  loadMobileOpeningManifest,
+  OPENING_HLS_PROXY_PATH,
+} from "../../client/lib/video-sections";
+
 interface Env {
   PING_MESSAGE?: string;
 }
@@ -12,11 +17,6 @@ type PagesContext = {
   env: Env;
   params: { path?: string[] };
 };
-
-import {
-  loadMobileOpeningManifest,
-  OPENING_HLS_PROXY_PATH,
-} from "../../client/lib/video-sections";
 
 export async function onRequest(context: PagesContext): Promise<Response> {
   const url = new URL(context.request.url);
