@@ -110,11 +110,7 @@ Pages Functions in `functions/` are picked up automatically when deploying via W
 
 For full API parity (AI content, luxury inquiry), deploy `dist/server` to a Node host or port remaining routes to Pages Functions.
 
-## Migration from Vercel
-
-- `vercel.json` SPA rewrites → `public/_redirects` + `wrangler.toml`
-- Remove `.vercel/` after first successful Cloudflare preview
-- Canonical URLs use `https://katherinetaylorescort.com` (see `client/lib/site-config.ts`)
+Canonical URLs use `https://katherinetaylorescort.com` (see `client/lib/site-config.ts`).
 
 ## Domain status checklist (manual dashboard)
 
