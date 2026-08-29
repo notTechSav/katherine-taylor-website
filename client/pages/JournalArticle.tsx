@@ -10,6 +10,7 @@ import {
   getEssayBySlug,
   getReadNextEssay,
   essayMetadata,
+  formatJournalPublishedDate,
 } from "@/lib/journal-content";
 import { absoluteUrl } from "@/lib/site-config";
 import { builderHeroAttrs } from "@/lib/builder-image";
@@ -23,18 +24,10 @@ const JournalArticle = () => {
   const readNextEssay = useMemo(() => getReadNextEssay(slug), [slug]);
   const navigate = useNavigate();
 
-  const formattedPublishedDate = useMemo(() => {
-    if (!essay) return "";
-    const parsed = new Date(essay.publishedDate);
-    if (Number.isNaN(parsed.getTime())) {
-      return essay.publishedDate;
-    }
-    return new Intl.DateTimeFormat("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    }).format(parsed);
-  }, [essay]);
+  const formattedPublishedDate = useMemo(
+    () => (essay ? formatJournalPublishedDate(essay.publishedDate) : ""),
+    [essay],
+  );
 
   useEffect(() => {
     if (!essay) {

@@ -22,7 +22,7 @@ type HlsInstance = {
 };
 
 type FullscreenVideoSectionProps = {
-  videoSrc: string;
+  videoSrc?: string;
   fallbackSrc?: string;
   posterSrc: string;
   posterMobileSrc?: string;

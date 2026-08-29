@@ -1,16 +1,13 @@
 import FullscreenVideoSection from "@/components/site/FullscreenVideoSection";
 import { HomepageEditorialOverlay } from "@/components/site/homepage-editorial";
-import { ratesVideo } from "@/lib/video-sections";
 import { Link } from "react-router-dom";
 
 export default function RatesVideoSection() {
   return (
     <FullscreenVideoSection
-      videoSrc={ratesVideo.src}
-      fallbackSrc={ratesVideo.fallbackSrc}
-      posterSrc={ratesVideo.poster}
-      posterMobileSrc={ratesVideo.posterMobile}
-      objectPosition={ratesVideo.objectPosition}
+      posterSrc="/journal-teaser-bg.webp"
+      posterMobileSrc="/rates-video-poster-mobile.webp"
+      objectPosition="center center"
       overlayClassName="homepage-veil-lower-strong"
     >
       <HomepageEditorialOverlay>

@@ -18,7 +18,7 @@ export const pageSeo = {
     path: sitePages.about.path,
   },
   rates: {
-    title: "Rates | Katherine Taylor Escort — San Francisco",
+    title: "Companion Rates | Katherine Taylor — San Francisco & Sacramento",
     description:
       "Transparent rates for high-end companionship with Katherine Taylor in San Francisco and Sacramento. Continuity, discretion, and scarcity—priced to protect the work.",
     path: sitePages.rates.path,

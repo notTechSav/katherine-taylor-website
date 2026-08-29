@@ -524,15 +524,6 @@ export const essayMetadata = {
     "Katherine Taylor journal, continuity, discretion, San Francisco companionship",
 };
 
-export const journalFooter = {
-  intro: "For those seeking presence and company in the Bay Area:",
-  links: [
-    { href: "/journal/memoirs-in-the-city", text: "Memoirs in the City" },
-    { href: "/sacramento-escorts", text: "Sacramento" },
-    { href: "/about", text: "About Katherine" },
-  ],
-};
-
 const headingPattern = /^(#{2,4})\s+(.*)$/;
 
 /**
@@ -574,3 +565,22 @@ export const getReadNextEssay = (slug: string | undefined) => {
   if (!essay?.readNext) return undefined;
   return getEssayBySlug(essay.readNext);
 };
+
+/**
+ * Format a date-only value (YYYY-MM-DD) as a calendar date.
+ * `new Date("YYYY-MM-DD")` is UTC midnight and can display the previous day.
+ */
+export function formatJournalPublishedDate(isoDate: string): string {
+  const match = /^(\d{4})-(\d{2})-(\d{2})$/.exec(isoDate);
+  if (!match) {
+    return isoDate;
+  }
+  const year = Number(match[1]);
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  return new Intl.DateTimeFormat("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  }).format(new Date(year, month - 1, day));
+}

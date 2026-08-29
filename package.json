@@ -21,8 +21,7 @@
     "worker:deploy": "wrangler deploy",
     "test": "vitest --run",
     "format.fix": "prettier --write .",
-    "typecheck": "tsc",
-    "encode-videos": "node scripts/encode-videos.mjs"
+    "typecheck": "tsc"
   },
   "dependencies": {
     "@ai-sdk/anthropic": "^2.0.23",

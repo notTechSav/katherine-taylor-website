@@ -1,15 +1,12 @@
 import FullscreenVideoSection from "@/components/site/FullscreenVideoSection";
 import { HomepageEditorialOverlay } from "@/components/site/homepage-editorial";
-import { closingVideo } from "@/lib/video-sections";
 import { Link } from "react-router-dom";
 
 export default function ClosingVideoSection() {
   return (
     <FullscreenVideoSection
-      videoSrc={closingVideo.src}
-      fallbackSrc={closingVideo.fallbackSrc}
-      posterSrc={closingVideo.poster}
-      objectPosition={closingVideo.objectPosition}
+      posterSrc="/limited-availability-bg.webp"
+      objectPosition="center 35%"
       overlayClassName="homepage-veil-lower"
     >
       <HomepageEditorialOverlay>

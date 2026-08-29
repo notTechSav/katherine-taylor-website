@@ -1,7 +1,10 @@
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { type CSSProperties, useMemo } from "react";
 import JournalBody from "@/components/journal/JournalBody";
-import type { JournalEssay } from "@/lib/journal-content";
+import {
+  formatJournalPublishedDate,
+  type JournalEssay,
+} from "@/lib/journal-content";
 
 interface JournalModalProps {
   isOpen: boolean;
@@ -44,18 +47,10 @@ const JournalModal = ({
   nextEssay,
   onNavigateNext,
 }: JournalModalProps) => {
-  const formattedPublishedDate = useMemo(() => {
-    if (!essay) return "";
-    const parsed = new Date(essay.publishedDate);
-    if (Number.isNaN(parsed.getTime())) {
-      return essay.publishedDate;
-    }
-    return new Intl.DateTimeFormat("en-US", {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    }).format(parsed);
-  }, [essay]);
+  const formattedPublishedDate = useMemo(
+    () => (essay ? formatJournalPublishedDate(essay.publishedDate) : ""),
+    [essay],
+  );
 
   const handleOpenChange = (open: boolean) => {
     if (!open) {
