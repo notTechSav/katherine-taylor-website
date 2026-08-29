@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, type ReactNode } from "react";
 import GiftsGuidance from "@/pages/GiftsGuidance";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
@@ -11,7 +11,7 @@ const GIFTS_HERO_IMAGE =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe8959b4139fc4dd9a3ce4786c1b4e8dc?format=webp&width=1600";
 const giftsHero = builderHeroAttrs(GIFTS_HERO_IMAGE);
 
-const Gifts = () => {
+const Gifts = ({ children }: { children?: ReactNode }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleGuidance = useCallback(() => {
@@ -19,7 +19,7 @@ const Gifts = () => {
   }, []);
 
   return (
-    <div className="bg-luxury-white text-luxury-black">
+    <main className="bg-luxury-white text-luxury-black">
       <SeoHead
         title={pageSeo.gifts.title}
         description={pageSeo.gifts.description}
@@ -122,7 +122,8 @@ const Gifts = () => {
       </section>
 
       <NextSectionCTA label="Frequently Asked Questions" href="/faq" />
-    </div>
+      {children}
+    </main>
   );
 };
 

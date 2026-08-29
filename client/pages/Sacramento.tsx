@@ -30,7 +30,7 @@ const body =
 
 const SacramentoPage = () => {
   return (
-    <div className="bg-luxury-white text-luxury-black">
+    <main className="bg-luxury-white text-luxury-black">
       <SeoHead
         title={pageSeo.sacramento.title}
         description={pageSeo.sacramento.description}
@@ -111,7 +111,7 @@ const SacramentoPage = () => {
           <SacramentoLongVersion />
         </details>
       </article>
-    </div>
+    </main>
   );
 };
 

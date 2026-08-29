@@ -22,7 +22,7 @@ export const journalIndexJsonLd = {
 };
 
 export const JournalIndexContent = () => (
-  <div className="bg-luxury-white text-luxury-black">
+  <main className="bg-luxury-white text-luxury-black">
     <SeoHead
       title={pageSeo.journal.title}
       description={pageSeo.journal.description}
@@ -43,7 +43,7 @@ export const JournalIndexContent = () => (
       ctaLabel={journalDisplay.ctaLabel}
     />
     <NextSectionCTA label="Browse Gallery" href="/gallery" />
-  </div>
+  </main>
 );
 
 const Journal = () => <JournalIndexContent />;

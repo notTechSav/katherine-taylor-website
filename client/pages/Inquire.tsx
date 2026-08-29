@@ -59,7 +59,7 @@ const InquirePage = () => {
 
   if (isSubmitted) {
     return (
-      <div className="bg-luxury-white text-luxury-black min-h-screen flex items-center justify-center">
+      <main className="bg-luxury-white text-luxury-black min-h-screen flex items-center justify-center">
         <SeoHead
           title={pageSeo.inquire.title}
           description={pageSeo.inquire.description}
@@ -88,12 +88,12 @@ const InquirePage = () => {
             </a>
           </div>
         </div>
-      </div>
+      </main>
     );
   }
 
   return (
-    <div className="bg-luxury-white text-luxury-black">
+    <main className="bg-luxury-white text-luxury-black">
       <SeoHead
         title={pageSeo.inquire.title}
         description={pageSeo.inquire.description}
@@ -379,7 +379,7 @@ const InquirePage = () => {
         </div>
       </section>
 
-    </div>
+    </main>
   );
 };
 

@@ -27,8 +27,7 @@ const withLayout = (Page: ComponentType) => (
 );
 
 const GiftsFallback = () => (
-  <>
-    <Gifts />
+  <Gifts>
     <details className="border-t border-gray-200 bg-luxury-white px-6 py-16 sm:px-10">
       <summary className="mx-auto max-w-[680px] cursor-pointer text-[14px] font-light tracking-[0.01em] text-luxury-black underline-offset-[6px]">
         Read guidance
@@ -37,7 +36,7 @@ const GiftsFallback = () => (
         <GiftsGuidance />
       </div>
     </details>
-  </>
+  </Gifts>
 );
 
 const PrerenderRoutes = () => (

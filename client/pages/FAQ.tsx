@@ -17,7 +17,7 @@ const FAQPage = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="bg-luxury-white text-luxury-black">
+    <main className="bg-luxury-white text-luxury-black">
       <SeoHead
         title={pageSeo.faq.title}
         description={pageSeo.faq.description}
@@ -993,7 +993,7 @@ const FAQPage = () => {
       </section>
 
       <NextSectionCTA label="Get in Touch" href="/inquire" />
-    </div>
+    </main>
   );
 };
 

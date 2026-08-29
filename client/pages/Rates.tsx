@@ -17,7 +17,7 @@ const RatesPage = () => {
   const [isRevealed, setIsRevealed] = useState(false);
 
   return (
-    <div className="bg-luxury-white text-luxury-black">
+    <main className="bg-luxury-white text-luxury-black">
       <SeoHead
         title={pageSeo.rates.title}
         description={pageSeo.rates.description}
@@ -389,7 +389,7 @@ const RatesPage = () => {
       </section>
 
       <NextSectionCTA label="Browse Gifts" href="/gifts" />
-    </div>
+    </main>
   );
 };
 

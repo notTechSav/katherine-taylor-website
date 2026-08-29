@@ -46,7 +46,7 @@ const JournalArticle = () => {
   const articleHero = builderHeroAttrs(heroImage.src);
 
   return (
-    <div className="bg-luxury-white text-luxury-black">
+    <main className="bg-luxury-white text-luxury-black">
       <SeoHead
         title={seoTitle}
         description={seoDescription}
@@ -147,7 +147,7 @@ const JournalArticle = () => {
         </div>
       </section>
 
-    </div>
+    </main>
   );
 };
 

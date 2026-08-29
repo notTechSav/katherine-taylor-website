@@ -13,6 +13,7 @@ import {
 } from "./route-head";
 import { essays } from "./journal-content";
 import { pageSeo } from "./page-seo";
+import { sitePageList } from "./site-pages";
 
 const indexHtml = readFileSync(
   path.join(process.cwd(), "index.html"),
@@ -39,6 +40,22 @@ function renderRoute(pathName: string): string {
   const route = getPrerenderRoutes().find((entry) => entry.path === pathName);
   if (!route) throw new Error(`missing route ${pathName}`);
   return applyRouteBody(applyRouteHead(indexHtml, route), route.path);
+}
+
+function landmarkParts(html: string) {
+  const opens = html.match(/<main\b/gi) ?? [];
+  const openMatch = html.match(/<main\b[^>]*>/i);
+  const closeIndex = html.lastIndexOf("</main>");
+  const openIndex = openMatch ? html.indexOf(openMatch[0]) : -1;
+  return {
+    mainCount: opens.length,
+    before: openIndex >= 0 ? html.slice(0, openIndex) : html,
+    inner:
+      openMatch && closeIndex >= 0
+        ? html.slice(openIndex + openMatch[0].length, closeIndex)
+        : "",
+    after: closeIndex >= 0 ? html.slice(closeIndex + "</main>".length) : "",
+  };
 }
 
 describe("prerender route bodies", () => {
@@ -129,5 +146,52 @@ describe("prerender route bodies", () => {
     expect(about).not.toContain('classList.add("js")');
     expect(about).not.toMatch(/id="prerender-root"[^>]*aria-hidden/);
     expect(about).not.toMatch(/id="prerender-root"[^>]*inert/);
+  });
+
+  it("emits exactly one main landmark for each indexable route", () => {
+    const indexablePaths = new Set(sitePageList.map((page) => page.path));
+    expect(indexablePaths).toEqual(
+      new Set(requiredRoutes.map((route) => route.path)),
+    );
+
+    for (const { path: routePath, h1 } of requiredRoutes) {
+      const html = renderRoute(routePath);
+      const parts = landmarkParts(html);
+      expect(parts.mainCount, `${routePath} main count`).toBe(1);
+      expect(html).not.toMatch(/role=["']main["']/i);
+      expect(parts.before, `${routePath} site nav`).toMatch(
+        /<nav\b[^>]*class="fixed top-0/,
+      );
+      expect(parts.inner).not.toMatch(/<nav\b[^>]*class="fixed top-0/);
+      expect(parts.inner).not.toMatch(/<main\b/i);
+
+      if (routePath === "/about") {
+        expect(parts.before).toContain(h1);
+        expect(parts.after).toMatch(/<footer\b/);
+        continue;
+      }
+
+      expect(
+        parts.inner.replace(/<[^>]+>/g, " ").replace(/\s+/g, " "),
+        `${routePath} H1 in main`,
+      ).toContain(h1);
+      if (routePath === "/") {
+        expect(parts.inner).toMatch(/<footer\b/);
+        continue;
+      }
+
+      expect(parts.after, `${routePath} footer outside main`).toMatch(
+        /<footer\b/,
+      );
+      expect(parts.inner).not.toMatch(/role="contentinfo"/);
+    }
+  });
+
+  it("does not add a main landmark to the 404 page", () => {
+    const html = applyRouteBody(
+      applyRouteHead(indexHtml, notFoundHead),
+      notFoundHead.path,
+    );
+    expect(html.match(/<main\b/gi) ?? []).toHaveLength(0);
   });
 });

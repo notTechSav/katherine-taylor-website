@@ -8,7 +8,7 @@ const GALLERY_HERO_IMAGE = "/rose-hero.webp";
 
 const Gallery = () => {
   return (
-    <div className="bg-luxury-white text-luxury-black">
+    <main className="bg-luxury-white text-luxury-black">
       <SeoHead
         title={pageSeo.gallery.title}
         description={pageSeo.gallery.description}
@@ -24,7 +24,7 @@ const Gallery = () => {
       />
       <DeckBuilderPreview />
       <NextSectionCTA label="Browse Gifts" href="/gifts" />
-    </div>
+    </main>
   );
 };
 
