@@ -4,7 +4,12 @@ import { useState, useCallback } from "react";
 import GiftsGuidance from "@/pages/GiftsGuidance";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
+import { builderHeroAttrs } from "@/lib/builder-image";
 import { pageSeo } from "@/lib/page-seo";
+
+const GIFTS_HERO_IMAGE =
+  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe8959b4139fc4dd9a3ce4786c1b4e8dc?format=webp&width=1600";
+const giftsHero = builderHeroAttrs(GIFTS_HERO_IMAGE);
 
 const Gifts = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -24,10 +29,13 @@ const Gifts = () => {
       <section className="relative bg-luxury-white">
         <figure className="relative h-[48vh] min-h-[280px] w-full overflow-hidden sm:h-[52vh]">
           <img
-            src="https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe8959b4139fc4dd9a3ce4786c1b4e8dc?format=webp&width=1600"
+            src={giftsHero.src}
+            srcSet={giftsHero.srcSet}
+            sizes={giftsHero.sizes}
             alt="Gifts for Katherine Taylor escort — San Francisco and Sacramento"
             className="h-full w-full object-cover"
             loading="eager"
+            fetchPriority="high"
           />
           <div
             className="absolute inset-0"

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import AIConcierge from "@/components/ai/AIConcierge";
 
 export default function LuxuryHero() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -126,9 +125,6 @@ export default function LuxuryHero() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* AI Concierge floating component */}
-      <AIConcierge />
 
       {/* Subtle grain texture overlay */}
       <div className="absolute inset-0 z-30 pointer-events-none opacity-[0.02]">

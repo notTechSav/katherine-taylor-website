@@ -13,6 +13,7 @@ import SacramentoSection from "@/sections/SacramentoSection";
 import OpeningVideoSection from "@/sections/OpeningVideoSection";
 import RatesVideoSection from "@/sections/RatesVideoSection";
 import SeoHead from "@/components/site/SeoHead";
+import { homeJsonLd } from "@/lib/home-json-ld";
 import { pageSeo } from "@/lib/page-seo";
 import { cn } from "@/lib/utils";
 
@@ -27,6 +28,7 @@ const Index = () => {
         description={pageSeo.home.description}
         path={pageSeo.home.path}
         geoRegion="US-CA"
+        jsonLd={[...homeJsonLd] as Record<string, unknown>[]}
       />
       <FullPageSections>
       <section

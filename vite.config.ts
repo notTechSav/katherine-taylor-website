@@ -1,7 +1,14 @@
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "path";
 import { defineConfig, Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import path from "path";
 import { createServer } from "./server";
+import {
+  applyRouteHead,
+  getPrerenderRoutes,
+  notFoundHead,
+  prerenderOutputPath,
+} from "./client/lib/route-head";
 import { SITE_URL } from "./client/lib/site-config";
 import { renderSitemap } from "./client/lib/site-pages";
 
@@ -38,7 +45,7 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
-  plugins: [expressPlugin(), sitemapPlugin(), react()],
+  plugins: [expressPlugin(), sitemapPlugin(), prerenderHtmlPlugin(), react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./client"),
@@ -82,6 +89,37 @@ function sitemapPlugin(): Plugin {
         fileName: "sitemap.xml",
         source: renderSitemap(SITE_URL),
       });
+    },
+  };
+}
+
+/**
+ * Writes per-route HTML files so crawlers receive page-specific metadata
+ * in the first byte. Uses `.html` files (not `/path/index.html`) so
+ * Cloudflare Pages pretty-URLs stay slash-free. A top-level 404.html
+ * disables Pages' SPA fallback and returns HTTP 404.
+ */
+function prerenderHtmlPlugin(): Plugin {
+  return {
+    name: "prerender-html",
+    apply: "build",
+    async writeBundle() {
+      const outDir = path.resolve(__dirname, "dist/spa");
+      const indexPath = path.join(outDir, "index.html");
+      const html = await readFile(indexPath, "utf8");
+
+      for (const route of getPrerenderRoutes()) {
+        const rendered = applyRouteHead(html, route);
+        const relative = prerenderOutputPath(route.path);
+        const dest = path.join(outDir, relative);
+        await mkdir(path.dirname(dest), { recursive: true });
+        await writeFile(dest, rendered);
+      }
+
+      await writeFile(
+        path.join(outDir, "404.html"),
+        applyRouteHead(html, notFoundHead),
+      );
     },
   };
 }

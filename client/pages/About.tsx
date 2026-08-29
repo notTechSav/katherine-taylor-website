@@ -2,12 +2,14 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
+import { builderHeroAttrs } from "@/lib/builder-image";
 import { pageSeo } from "@/lib/page-seo";
 
 const ABOUT_HERO_IMAGE =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F544eebd3dfb24d86b1212878113625c0?format=webp&width=1600";
 const ABOUT_SECONDARY_IMAGE =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fc52c5d671db044f38e0442b59a54c778?format=webp&width=1200";
+const aboutSecondary = builderHeroAttrs(ABOUT_SECONDARY_IMAGE);
 
 const About = () => {
   return (
@@ -61,7 +63,9 @@ const About = () => {
               <div className="relative overflow-hidden rounded-sm bg-gradient-to-br from-neutral-200 via-neutral-100 to-neutral-200">
                 <AspectRatio ratio={16 / 9}>
                   <img
-                    src={ABOUT_SECONDARY_IMAGE}
+                    src={aboutSecondary.src}
+                    srcSet={aboutSecondary.srcSet}
+                    sizes="(min-width: 768px) 680px, 100vw"
                     alt="Hardcover journal with pencil and card in warm window light"
                     className="h-full w-full object-cover"
                     loading="lazy"

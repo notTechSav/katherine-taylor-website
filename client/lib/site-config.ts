@@ -2,7 +2,7 @@
 export const SITE_URL = "https://katherinetaylorescort.com";
 
 export const DEFAULT_OG_IMAGE =
-  "https://res.cloudinary.com/katherine-taylor-escort-video/image/upload/q_80,f_auto/v1760312493/Love_Elevated_Katherine_Taylor_Escort_kuz4ej.jpg";
+  "https://customer-xyp94kxe4za8b3w1.cloudflarestream.com/f17ef86e3e7fbfa3d2d58dd3bd3d9065/thumbnails/thumbnail.jpg?time=3s&height=1080";
 
 /** Build an absolute URL for canonical/OG/sitemap use. */
 export const absoluteUrl = (path = "/"): string => {

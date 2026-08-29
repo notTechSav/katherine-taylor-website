@@ -1,5 +1,7 @@
 import { memo } from "react";
 
+import { builderHeroAttrs } from "@/lib/builder-image";
+
 interface JournalHeroProps {
   title: string;
   subtitle: string;
@@ -12,14 +14,19 @@ const overlayGradient =
 
 const JournalHero = memo(
   ({ title, subtitle, imageSrc, imageAlt }: JournalHeroProps) => {
+    const heroImage = builderHeroAttrs(imageSrc);
+
     return (
       <section className="relative bg-luxury-black">
         <figure className="relative h-[48vh] min-h-[280px] w-full overflow-hidden bg-luxury-black sm:h-[52vh]">
           <img
-            src={imageSrc}
+            src={heroImage.src}
+            srcSet={heroImage.srcSet}
+            sizes={heroImage.sizes}
             alt={imageAlt}
             className="h-full w-full object-cover"
-            loading="lazy"
+            loading="eager"
+            fetchPriority="high"
           />
           <div
             className="absolute inset-0"

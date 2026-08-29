@@ -15,7 +15,7 @@ const NextSectionCTA = memo(({ label, href }: NextSectionCTAProps) => {
         </span>
         <Link
           to={href}
-          className="group relative inline-flex items-center gap-3 text-lg font-light tracking-luxury text-luxury-black transition-opacity duration-250 hover:opacity-60"
+          className="group relative inline-flex min-h-[44px] items-center gap-3 text-lg font-light tracking-luxury text-luxury-black transition-opacity duration-250 hover:opacity-60"
         >
           <span>{label}</span>
           <svg

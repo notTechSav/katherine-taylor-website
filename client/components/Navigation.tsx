@@ -108,7 +108,7 @@ const Navigation = () => {
         <button
           type="button"
           onClick={() => setIsMenuOpen((previous) => !previous)}
-          className="text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:hidden"
+          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:hidden"
           aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-navigation"

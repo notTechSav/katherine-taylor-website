@@ -1,5 +1,5 @@
-# www → apex (301). Bulk Redirects in Cloudflare dashboard is the recommended
-# fallback if host-based rules do not apply — see CLOUDFLARE.md.
+# www → apex (301). Requires www DNS to point at this Pages project.
+# Current blocker: www still resolves off-Cloudflare (see CLOUDFLARE.md).
 https://www.katherinetaylorescort.com/* https://katherinetaylorescort.com/:splat 301
 
 /san-francisco /journal/memoirs-in-the-city 301
@@ -8,5 +8,5 @@ https://www.katherinetaylorescort.com/* https://katherinetaylorescort.com/:splat
 /maison / 301
 /services / 301
 
-# SPA fallback
-/* /index.html 200
+# No SPA catch-all. Unknown paths are served by 404.html (HTTP 404).
+# Known routes are prerendered to matching .html files at build time.

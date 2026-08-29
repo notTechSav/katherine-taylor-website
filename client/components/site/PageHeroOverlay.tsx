@@ -1,5 +1,6 @@
 import { memo, type ElementType } from "react";
 
+import { builderHeroAttrs } from "@/lib/builder-image";
 import { cn } from "@/lib/utils";
 
 type PageHeroOverlayProps = {
@@ -38,6 +39,7 @@ const PageHeroOverlay = memo(
     imageClassName,
   }: PageHeroOverlayProps) => {
     const Heading = headingAs as ElementType;
+    const heroImage = builderHeroAttrs(imageSrc);
     const gradientStyle =
       gradient === "horizontal"
         ? {
@@ -57,22 +59,18 @@ const PageHeroOverlay = memo(
     return (
       <section className={cn("relative bg-luxury-white", className)}>
         <figure className="relative h-[48vh] min-h-[320px] w-full overflow-hidden bg-luxury-black sm:h-[56vh]">
-          <picture>
-            <source
-              media="(max-width: 767px)"
-              srcSet={`${imageSrc.replace(/width=\d+/, "width=800")}`}
-            />
-            <img
-              src={imageSrc}
-              alt={imageAlt}
-              className={cn(
-                "h-full w-full object-cover object-left sm:object-center",
-                imageClassName,
-              )}
-              loading="eager"
-              fetchpriority="high"
-            />
-          </picture>
+          <img
+            src={heroImage.src}
+            srcSet={heroImage.srcSet}
+            sizes={heroImage.sizes}
+            alt={imageAlt}
+            className={cn(
+              "h-full w-full object-cover object-left sm:object-center",
+              imageClassName,
+            )}
+            loading="eager"
+            fetchPriority="high"
+          />
           <div className="absolute inset-0" style={gradientStyle} aria-hidden />
 
           <figcaption className="pointer-events-none absolute inset-0 flex items-end">

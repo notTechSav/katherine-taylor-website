@@ -10,7 +10,7 @@ import {
 const focusRing =
   "focus-visible:outline focus-visible:outline-1 focus-visible:outline-offset-4 focus-visible:outline-current";
 
-const linkClass = `text-sm font-light leading-[1.5] text-gray-600 underline-offset-4 transition-colors duration-300 hover:text-luxury-black hover:underline focus-visible:text-luxury-black ${focusRing}`;
+const linkClass = `relative text-sm font-light leading-[1.5] text-gray-600 underline-offset-4 transition-colors duration-300 hover:text-luxury-black hover:underline focus-visible:text-luxury-black after:absolute after:-inset-x-2 after:-inset-y-3 after:content-[''] ${focusRing}`;
 
 const Footer = () => {
   return (

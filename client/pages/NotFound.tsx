@@ -18,7 +18,6 @@ const NotFound = () => {
       <SeoHead
         title={pageSeo.notFound.title}
         description={pageSeo.notFound.description}
-        path={location.pathname}
         noIndex
       />
       <span className="text-[0.7rem] uppercase tracking-[0.4em] text-muted-foreground">

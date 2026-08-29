@@ -1,3 +1,6 @@
+import { useRef } from "react";
+
+import { useNearbyFullpageMedia } from "@/hooks/useNearbyFullpageMedia";
 import { cn } from "@/lib/utils";
 
 type FullBleedPhotoProps = {
@@ -17,19 +20,27 @@ export default function FullBleedPhoto({
   height = 3072,
   priority = false,
 }: FullBleedPhotoProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const allowMedia = useNearbyFullpageMedia(containerRef, priority);
+
   return (
-    <img
-      src={src}
-      alt={alt}
-      width={width}
-      height={height}
-      draggable={false}
-      decoding={priority ? "sync" : "async"}
-      fetchPriority={priority ? "high" : "auto"}
-      className={cn(
-        "pointer-events-none absolute inset-0 z-0 h-full w-full max-h-none max-w-none object-cover object-center",
-        className,
-      )}
-    />
+    <div ref={containerRef} className="absolute inset-0 z-0">
+      {allowMedia ? (
+        <img
+          src={src}
+          alt={alt}
+          width={width}
+          height={height}
+          draggable={false}
+          loading={priority ? "eager" : "lazy"}
+          decoding={priority ? "sync" : "async"}
+          fetchPriority={priority ? "high" : "low"}
+          className={cn(
+            "pointer-events-none h-full w-full max-h-none max-w-none object-cover object-center",
+            className,
+          )}
+        />
+      ) : null}
+    </div>
   );
 }

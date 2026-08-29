@@ -61,7 +61,14 @@ export const handleGenerateContent: RequestHandler = async (req, res) => {
         messages: [{ role: 'user', content: prompt }],
       });
 
-      const content = response.content[0].text;
+      const contentBlock = response.content[0];
+      if (!contentBlock || contentBlock.type !== "text") {
+        return res.status(500).json({
+          error: "Unexpected response format from the model.",
+        });
+      }
+
+      const content = contentBlock.text;
 
       return res.json({
         success: true,

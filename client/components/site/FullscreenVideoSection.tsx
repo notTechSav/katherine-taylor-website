@@ -10,6 +10,7 @@ import {
 
 import { isHlsSource } from "@/lib/video-sections";
 import { cn } from "@/lib/utils";
+import { useNearbyFullpageMedia } from "@/hooks/useNearbyFullpageMedia";
 
 type HlsInstance = {
   destroy: () => void;
@@ -86,6 +87,7 @@ export default function FullscreenVideoSection({
   const [videoActive, setVideoActive] = useState(false);
   const [sourceIndex, setSourceIndex] = useState(0);
   const [holdMobilePoster, setHoldMobilePoster] = useState(false);
+  const allowMedia = useNearbyFullpageMedia(containerRef, priority);
 
   useEffect(() => {
     if (!posterMobileSrc) {
@@ -146,7 +148,7 @@ export default function FullscreenVideoSection({
 
   useEffect(() => {
     const element = videoRef.current;
-    if (!element || !currentSrc || holdMobilePoster) {
+    if (!element || !currentSrc || holdMobilePoster || !allowMedia) {
       if (holdMobilePoster) {
         setVideoActive(false);
       }
@@ -216,12 +218,12 @@ export default function FullscreenVideoSection({
       hlsRef.current?.destroy();
       hlsRef.current = null;
     };
-  }, [attemptPlay, currentSrc, holdMobilePoster, tryNextSource]);
+  }, [allowMedia, attemptPlay, currentSrc, holdMobilePoster, tryNextSource]);
 
   useEffect(() => {
     const container = containerRef.current;
     const element = videoRef.current;
-    if (!container || !element || !currentSrc || holdMobilePoster) {
+    if (!container || !element || !currentSrc || holdMobilePoster || !allowMedia) {
       return;
     }
 
@@ -256,7 +258,7 @@ export default function FullscreenVideoSection({
       observer.disconnect();
       window.removeEventListener("fullpage:change", onFullPageChange);
     };
-  }, [attemptPlay, currentSrc, holdMobilePoster]);
+  }, [allowMedia, attemptPlay, currentSrc, holdMobilePoster]);
 
   useEffect(() => {
     const retry = () => attemptPlay();
@@ -313,7 +315,7 @@ export default function FullscreenVideoSection({
         }}
       />
 
-      {currentSrc && !holdMobilePoster ? (
+      {currentSrc && !holdMobilePoster && allowMedia ? (
         <video
           ref={videoRef}
           key={currentSrc}

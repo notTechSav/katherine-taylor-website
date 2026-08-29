@@ -12,6 +12,7 @@ import {
   essayMetadata,
 } from "@/lib/journal-content";
 import { absoluteUrl } from "@/lib/site-config";
+import { builderHeroAttrs } from "@/lib/builder-image";
 import NotFound from "@/pages/NotFound";
 
 const headingLetterSpacing = { letterSpacing: "-0.02em" } as const;
@@ -49,6 +50,7 @@ const JournalArticle = () => {
   const seoTitle = essay.seo?.title ?? `${essay.title} — Katherine Taylor Escort`;
   const seoDescription =
     essay.seo?.description ?? essay.excerpt ?? essayMetadata.description;
+  const articleHero = builderHeroAttrs(heroImage.src);
 
   return (
     <div className="bg-luxury-white text-luxury-black">
@@ -86,10 +88,13 @@ const JournalArticle = () => {
       <section className="relative overflow-hidden bg-luxury-white">
         <div className="relative h-[48vh] min-h-[260px] w-full sm:h-[52vh]">
           <img
-            src={heroImage.src}
+            src={articleHero.src}
+            srcSet={articleHero.srcSet}
+            sizes={articleHero.sizes}
             alt={heroImage.alt}
             className="h-full w-full object-cover"
-            loading="lazy"
+            loading="eager"
+            fetchPriority="high"
           />
           <div
             className="absolute inset-0"

@@ -139,7 +139,7 @@ FORMAT YOUR RESPONSE AS JSON:
     const { text } = await generateText({
       model: anthropic('claude-sonnet-4-20250514'),
       prompt,
-      maxTokens: 2000,
+      maxOutputTokens: 2000,
     });
 
     // Parse the JSON response
@@ -231,7 +231,7 @@ FORMAT AS JSON:
   const { text } = await generateText({
     model: anthropic('claude-sonnet-4-20250514'),
     prompt,
-    maxTokens: 1500,
+    maxOutputTokens: 1500,
   });
 
   const jsonMatch = text.match(/\{[\s\S]*\}/);

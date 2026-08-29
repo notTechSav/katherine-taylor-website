@@ -5,12 +5,12 @@ import { DEFAULT_OG_IMAGE, absoluteUrl } from "@/lib/site-config";
 type SeoHeadProps = {
   title: string;
   description: string;
-  path: string;
+  path?: string;
   image?: string;
   imageAlt?: string;
   type?: "website" | "article";
   noIndex?: boolean;
-  jsonLd?: Record<string, unknown>;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
   geoRegion?: string;
   geoPlacename?: string;
 };
@@ -27,7 +27,12 @@ const SeoHead = ({
   geoRegion,
   geoPlacename,
 }: SeoHeadProps) => {
-  const url = absoluteUrl(path);
+  const url = path ? absoluteUrl(path) : null;
+  const jsonLdItems = jsonLd
+    ? Array.isArray(jsonLd)
+      ? jsonLd
+      : [jsonLd]
+    : [];
 
   return (
     <Helmet prioritizeSeoTags>
@@ -41,12 +46,12 @@ const SeoHead = ({
           content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
         />
       )}
-      <link rel="canonical" href={url} />
+      {url ? <link rel="canonical" href={url} /> : null}
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="Katherine Taylor" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={url} />
+      {url ? <meta property="og:url" content={url} /> : null}
       <meta property="og:image" content={image} />
       <meta property="og:image:alt" content={imageAlt} />
       <meta name="twitter:card" content="summary_large_image" />
@@ -57,9 +62,11 @@ const SeoHead = ({
       {geoPlacename ? (
         <meta name="geo.placename" content={geoPlacename} />
       ) : null}
-      {jsonLd ? (
-        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
-      ) : null}
+      {jsonLdItems.map((item, index) => (
+        <script key={index} type="application/ld+json">
+          {JSON.stringify(item)}
+        </script>
+      ))}
     </Helmet>
   );
 };

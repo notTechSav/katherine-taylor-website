@@ -24,15 +24,29 @@ Each deploy gets a unique preview URL; production is served from the custom doma
 
 The canonical hostname is **apex** (`katherinetaylorescort.com`). `www` must permanently redirect to apex.
 
-**Primary (recommended):** Cloudflare **Bulk Redirects** ([docs](https://developers.cloudflare.com/pages/how-to/www-redirect/)):
+**Status as of 2026-08-28 technical pass:**
 
-| Source URL | Target URL | Status | Parameters |
-|------------|------------|--------|------------|
-| `www.katherinetaylorescort.com` | `https://katherinetaylorescort.com` | 301 | Preserve query string, Subpath matching, Preserve path suffix |
+| Check | Result |
+|-------|--------|
+| Pages custom domain `www.katherinetaylorescort.com` | Present on project `katherine-taylor-website`, status **deactivated** (HTTP validation pending) |
+| `dig www.katherinetaylorescort.com` | `A 91.195.240.13` (off-Cloudflare parking IP) |
+| `https://www.katherinetaylorescort.com/` | TLS fails (`tlsv1 unrecognized name`) |
+| Wrangler OAuth DNS API | `403` on `GET /zones/{id}/dns_records` — this token cannot change DNS |
 
-Create a Bulk Redirect Rule that uses this list. Add a proxied DNS record for `www` (A `192.0.2.1` or CNAME to Pages).
+The repo already includes `public/_redirects` host rule:
 
-**Also in repo:** `public/_redirects` includes a host-based www→apex rule as a secondary path when both hostnames serve the same Pages project.
+`https://www.katherinetaylorescort.com/*` → `https://katherinetaylorescort.com/:splat` `301`
+
+That rule cannot run until `www` is proxied through Cloudflare. **Required dashboard DNS change (not applied here — no DNS write permission):**
+
+1. Delete the `www` **A** record pointing at `91.195.240.13`.
+2. Add a **proxied** **CNAME**: `www` → `katherine-taylor-website.pages.dev`.
+3. Wait for Pages to mark the www custom domain **Active** (TLS issued).
+4. Confirm: `curl -I https://www.katherinetaylorescort.com/about` → **301** to `https://katherinetaylorescort.com/about`.
+
+Do not create a second Pages project. The www hostname is already attached to `katherine-taylor-website`.
+
+**Optional extra:** zone Bulk Redirects with preserve path + query, in addition to `_redirects`.
 
 Verify after DNS propagates:
 
@@ -40,6 +54,10 @@ Verify after DNS propagates:
 curl -I https://www.katherinetaylorescort.com/
 # Expect: HTTP/2 301, location: https://katherinetaylorescort.com/...
 ```
+
+## Serving and 404s
+
+SPA catch-all is intentionally absent. Unknown paths are served by `404.html` with HTTP 404. Known routes are prerendered to matching `.html` files at build time.
 
 ## Canonical URLs
 

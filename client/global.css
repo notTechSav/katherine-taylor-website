@@ -485,11 +485,18 @@
   }
 
   .homepage-cta {
+    position: relative;
     display: inline-flex;
     align-items: center;
     text-decoration-line: underline;
     text-decoration-thickness: 1px;
     text-underline-offset: 0.35em;
+  }
+
+  .homepage-cta::after {
+    content: "";
+    position: absolute;
+    inset: -14px -12px;
   }
 
   .homepage-cta-frame {
