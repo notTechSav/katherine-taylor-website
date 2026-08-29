@@ -7,6 +7,7 @@ import {
   loadMobileOpeningManifest,
   OPENING_HLS_PROXY_PATH,
 } from "../../client/lib/video-sections";
+import { handleInquiryPostRequest } from "../../shared/inquiry";
 
 interface Env {
   PING_MESSAGE?: string;
@@ -43,27 +44,12 @@ export async function onRequest(context: PagesContext): Promise<Response> {
   }
 
   if (path === "/api/inquiry" && context.request.method === "POST") {
-    try {
-      const data = (await context.request.json()) as Record<string, string>;
-      if (!data.name || !data.email) {
-        return Response.json(
-          { success: false, message: "Name and email are required." },
-          { status: 400 },
-        );
-      }
-      const confirmationNumber = `INQ-${Date.now()}`;
-      console.log("Inquiry received:", confirmationNumber, data.email);
-      return Response.json({
-        success: true,
-        confirmationNumber,
-        message: "Your inquiry has been received.",
-      });
-    } catch {
-      return Response.json(
-        { success: false, message: "Invalid request body." },
-        { status: 400 },
-      );
-    }
+    return handleInquiryPostRequest(
+      context.request,
+      (data, confirmationNumber) => {
+        console.log("Inquiry received:", confirmationNumber, data.email);
+      },
+    );
   }
 
   if (path === "/api/luxury-inquiry/health" && context.request.method === "GET") {

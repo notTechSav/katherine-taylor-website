@@ -3,7 +3,14 @@
 import { useState } from "react";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import SeoHead from "@/components/site/SeoHead";
+import { submitInquiryFromForm } from "@/lib/inquiry-submit";
 import { pageSeo } from "@/lib/page-seo";
+import {
+  EMPTY_INQUIRY,
+  INQUIRY_ENDPOINT,
+  INQUIRY_FORM_METHOD,
+  type InquiryPayload,
+} from "@shared/inquiry";
 
 const heroImage = {
   src: "/inquire-hero.webp",
@@ -11,16 +18,7 @@ const heroImage = {
 };
 
 const InquirePage = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    preferredDate: "",
-    duration: "",
-    location: "",
-    referral: "",
-    message: "",
-  });
+  const [formData, setFormData] = useState<InquiryPayload>(EMPTY_INQUIRY);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -39,11 +37,7 @@ const InquirePage = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/inquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const response = await submitInquiryFromForm(e, formData);
 
       if (!response.ok) {
         throw new Error("Submission failed");
@@ -125,7 +119,12 @@ const InquirePage = () => {
             </p>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-8">
+          <form
+            method={INQUIRY_FORM_METHOD}
+            action={INQUIRY_ENDPOINT}
+            onSubmit={handleSubmit}
+            className="space-y-8"
+          >
             {/* Name & Email */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
@@ -139,6 +138,7 @@ const InquirePage = () => {
                   type="text"
                   id="name"
                   name="name"
+                  autoComplete="name"
                   value={formData.name}
                   onChange={handleChange}
                   required
@@ -158,6 +158,7 @@ const InquirePage = () => {
                   type="email"
                   id="email"
                   name="email"
+                  autoComplete="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
@@ -179,6 +180,7 @@ const InquirePage = () => {
                 type="tel"
                 id="phone"
                 name="phone"
+                autoComplete="tel"
                 value={formData.phone}
                 onChange={handleChange}
                 className="w-full border-b border-gray-300 bg-transparent py-3 text-base font-light text-luxury-black placeholder-gray-400 outline-none transition-all duration-300 focus:border-gray-600"
