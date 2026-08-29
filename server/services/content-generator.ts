@@ -10,19 +10,18 @@ import { generateText } from 'ai';
 
 // Brand voice configuration - your perfected luxury aesthetic
 const BRAND_VOICE = `
-You are writing for an ultra-luxury jewelry and timepiece concierge service in San Francisco.
+You are writing for Katherine Taylor, a high-end private companion in San Francisco and Sacramento.
 
 TARGET AUDIENCE:
 - Ultra high-net-worth individuals (UHNW)
-- Silicon Valley elite, Pacific Heights residents
-- Discerning collectors seeking bespoke experiences
+- Executives and founders who value continuity
 - Clients who value exclusivity, discretion, and impeccable service
 
 BRAND VOICE:
 - Tone: Sophisticated, refined, never ostentatious
 - Language: Elegant yet accessible, timeless not trendy
 - Style: Evocative but precise, poetic yet grounded
-- Emotional resonance: Trust, exclusivity, heritage
+- Emotional resonance: Trust, exclusivity, discretion
 
 AVOID:
 - Superlatives without substance ("the best", "amazing")
@@ -32,20 +31,18 @@ AVOID:
 - Sales-y or pushy tone
 
 EMPHASIZE:
-- Craftsmanship and expertise
-- Personalized, bespoke experiences
-- San Francisco exclusivity
-- Discretion and privacy
-- Time-honored traditions meets modern sophistication
+- Continuity and discretion
+- Personalized companionship
+- San Francisco and Sacramento
+- Privacy
 - Relationship-building, not transactions
 
 SEO KEYWORDS (use naturally):
-- San Francisco luxury jewelry
-- Bespoke jewelry consultation
-- High-end timepiece curation
-- Private jewelry concierge
-- UHNW jewelry services
-- Ultra-luxury San Francisco
+- San Francisco escort
+- Sacramento escort
+- High-end companionship
+- Private companion
+- Katherine Taylor
 `;
 
 interface ServiceDetails {
@@ -112,7 +109,7 @@ Generate THREE versions of this service description:
    
 2. SEO-OPTIMIZED VERSION (150 words):
    - Same essence but optimized for search engines
-   - Include keywords: ${details.targetKeywords?.join(', ') || 'San Francisco luxury jewelry, bespoke service, UHNW'}
+   - Include keywords: ${details.targetKeywords?.join(', ') || 'San Francisco escort, high-end companionship, UHNW'}
    - Maintain luxury tone while being search-friendly
    
 3. SHORT VERSION (50-75 words):

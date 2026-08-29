@@ -8,7 +8,7 @@ import {
   type ReactNode,
 } from "react";
 
-import { isHlsSource } from "@/lib/video-sections";
+import { isHlsSource, pickHlsStartLevel } from "@/lib/video-sections";
 import { cn } from "@/lib/utils";
 import { useNearbyFullpageMedia } from "@/hooks/useNearbyFullpageMedia";
 
@@ -18,7 +18,7 @@ type HlsInstance = {
   attachMedia: (element: HTMLMediaElement) => void;
   on: (event: string, callback: (...args: unknown[]) => void) => void;
   startLevel: number;
-  levels: unknown[];
+  levels: Array<{ height?: number }>;
 };
 
 type FullscreenVideoSectionProps = {
@@ -184,15 +184,15 @@ export default function FullscreenVideoSection({
 
           if (Hls.isSupported()) {
             const hls = new Hls({
-              capLevelToPlayerSize: false,
+              capLevelToPlayerSize: true,
               startLevel: -1,
-              maxMaxBufferLength: 60,
+              maxBufferLength: 10,
+              maxMaxBufferLength: 20,
+              abrEwmaDefaultEstimate: 2_000_000,
             });
             hlsRef.current = hls;
             hls.on(Hls.Events.MANIFEST_PARSED, () => {
-              if (hls.levels.length > 0) {
-                hls.startLevel = hls.levels.length - 1;
-              }
+              hls.startLevel = pickHlsStartLevel(hls.levels);
               play();
             });
             hls.on(Hls.Events.ERROR, (_, data: { fatal?: boolean }) => {
@@ -292,27 +292,28 @@ export default function FullscreenVideoSection({
       className="relative h-full w-full min-w-0 overflow-hidden bg-luxury-black"
     >
       {posterMobileSrc ? (
-        <div
+        <img
+          src={posterMobileSrc}
+          alt=""
           aria-hidden="true"
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat md:hidden"
-          style={{
-            backgroundImage: `url(${posterMobileSrc})`,
-            backgroundPosition: objectPosition,
-          }}
+          decoding="async"
+          className="absolute inset-0 h-full w-full object-cover md:hidden"
+          style={{ objectPosition }}
         />
       ) : null}
 
-      <div
+      <img
+        src={posterSrc}
+        alt=""
         aria-hidden="true"
+        fetchPriority={priority ? "high" : "auto"}
+        decoding="async"
         className={cn(
-          "absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-700 ease-out",
+          "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
           posterMobileSrc && "max-md:hidden",
           videoActive ? "opacity-0" : "opacity-100",
         )}
-        style={{
-          backgroundImage: `url(${posterSrc})`,
-          backgroundPosition: objectPosition,
-        }}
+        style={{ objectPosition }}
       />
 
       {currentSrc && !holdMobilePoster && allowMedia ? (
@@ -329,7 +330,7 @@ export default function FullscreenVideoSection({
           muted={isMuted}
           loop
           playsInline
-          preload={priority ? "auto" : "metadata"}
+          preload={priority ? "auto" : "none"}
           poster={posterSrc}
           onPlaying={handleVideoPlaying}
           onError={tryNextSource}

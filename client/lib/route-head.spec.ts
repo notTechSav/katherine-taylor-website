@@ -52,6 +52,8 @@ describe("prerender route heads", () => {
     );
     expect(html).toContain('"@type":"Person"');
     expect(html).toContain('"@type":"WebSite"');
+    expect(html).toContain('rel="preload" as="image"');
+    expect(html).toContain("thumbnails/thumbnail.jpg?time=3s&amp;height=720");
   });
 
   it("gives Sacramento its own title and canonical in raw HTML", () => {
@@ -69,6 +71,7 @@ describe("prerender route heads", () => {
       'rel="canonical" href="https://katherinetaylorescort.com/"',
     );
     expect(html).toContain("Escorts Near Me");
+    expect(html).not.toContain('rel="preload" as="image"');
   });
 
   it("gives the San Francisco memoir its own title and canonical", () => {
