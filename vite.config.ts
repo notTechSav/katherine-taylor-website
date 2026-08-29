@@ -11,6 +11,7 @@ import {
 } from "./client/lib/route-head";
 import { SITE_URL } from "./client/lib/site-config";
 import { renderSitemap } from "./client/lib/site-pages";
+import { exemptModuleEntryFromRocketLoader } from "./client/lib/rocket-loader-entry";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -45,7 +46,13 @@ export default defineConfig(({ mode }) => ({
       },
     },
   },
-  plugins: [expressPlugin(), sitemapPlugin(), prerenderHtmlPlugin(), react()],
+  plugins: [
+    expressPlugin(),
+    sitemapPlugin(),
+    prerenderHtmlPlugin(),
+    rocketLoaderExemptEntryPlugin(),
+    react(),
+  ],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./client"),
@@ -53,6 +60,18 @@ export default defineConfig(({ mode }) => ({
     },
   },
 }));
+
+function rocketLoaderExemptEntryPlugin(): Plugin {
+  return {
+    name: "rocket-loader-exempt-entry",
+    transformIndexHtml: {
+      order: "post",
+      handler(html) {
+        return exemptModuleEntryFromRocketLoader(html);
+      },
+    },
+  };
+}
 
 function expressPlugin(): Plugin {
   return {
