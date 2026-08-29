@@ -19,6 +19,25 @@ const indexHtml = readFileSync(
 describe("prerender route heads", () => {
   const routes = getPrerenderRoutes();
 
+  it("includes the Google tag once, immediately after <head>", () => {
+    expect(indexHtml).toMatch(
+      /<head>\s*<!-- Google tag \(gtag\.js\) -->\s*<script async data-cfasync="false" src="https:\/\/www\.googletagmanager\.com\/gtag\/js\?id=G-K4RWGESF1K"><\/script>/,
+    );
+    expect(indexHtml.match(/gtag\/js\?id=G-K4RWGESF1K/g)).toHaveLength(1);
+    expect(indexHtml.match(/gtag\('config', 'G-K4RWGESF1K'\)/g)).toHaveLength(1);
+
+    for (const route of routes) {
+      const html = applyRouteHead(indexHtml, route);
+      expect(
+        html.match(/gtag\/js\?id=G-K4RWGESF1K/g),
+        `${route.path} should keep one Google tag`,
+      ).toHaveLength(1);
+    }
+
+    const notFound = applyRouteHead(indexHtml, notFoundHead);
+    expect(notFound.match(/gtag\/js\?id=G-K4RWGESF1K/g)).toHaveLength(1);
+  });
+
   it("covers every indexable site page", () => {
     const paths = new Set(routes.map((route) => route.path));
     for (const page of sitePageList) {
