@@ -112,9 +112,9 @@ const About = () => {
               </p>
               <p>
                 I don't advertise availability because capacity is limited by
-                design. When I reach twenty active partnerships, I raise rates
+                design. When I reach a handful of active partnerships, I raise rates
                 rather than add more names. If continuity matters to you, reach
-                out before the next review window.
+                out.
               </p>
             </section>
           </main>
