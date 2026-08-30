@@ -47,6 +47,11 @@ type FullscreenVideoSectionProps = {
 
 const nativeHlsSupported = canPlayNativeHls();
 
+const prefetchHlsJs =
+  typeof document !== "undefined" && !nativeHlsSupported
+    ? import("hls.js")
+    : null;
+
 function lockInlineAutoplay(element: HTMLVideoElement, muted: boolean) {
   element.setAttribute("playsinline", "true");
   element.setAttribute("webkit-playsinline", "true");
@@ -58,14 +63,11 @@ function lockInlineAutoplay(element: HTMLVideoElement, muted: boolean) {
   }
 }
 
-const POSTER_HOLD_SECONDS = 2.75;
-
 function markVideoRendering(
   element: HTMLVideoElement,
   onActive: () => void,
 ): () => void {
-  const shouldReveal = () =>
-    element.videoWidth > 0 && element.currentTime >= POSTER_HOLD_SECONDS;
+  const shouldReveal = () => element.videoWidth > 0;
 
   if (shouldReveal()) {
     onActive();
@@ -217,7 +219,7 @@ export default function FullscreenVideoSection({
 
     if (shouldLoadHlsJs(currentSrc, canPlayNativeHls(element))) {
       element.removeAttribute("src");
-      void import("hls.js").then(({ default: Hls }) => {
+      void (prefetchHlsJs ?? import("hls.js")).then(({ default: Hls }) => {
         if (
           !shouldAttachHlsAfterImport({
             cancelled,
@@ -235,10 +237,10 @@ export default function FullscreenVideoSection({
 
         const hls = new Hls({
           capLevelToPlayerSize: true,
-          maxDevicePixelRatio: 2,
+          maxDevicePixelRatio: 3,
           testBandwidth: false,
           startLevel: -1,
-          abrEwmaDefaultEstimate: 1_200_000,
+          abrEwmaDefaultEstimate: 3_500_000,
           maxBufferLength: 8,
           maxMaxBufferLength: 16,
           maxBufferSize: 15_000_000,

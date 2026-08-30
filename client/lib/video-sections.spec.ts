@@ -32,7 +32,7 @@ describe("hls helpers", () => {
     expect(isHlsSource(OPENING_HLS_PROXY_PATH)).toBe(true);
   });
 
-  it("starts at 480p and never 240p when a 480p rung exists", () => {
+  it("starts at 720p and never 240p or 480p when a 720p rung exists", () => {
     const levels = [
       { height: 240 },
       { height: 360 },
@@ -40,35 +40,37 @@ describe("hls helpers", () => {
       { height: 720 },
       { height: 1080 },
     ];
-    expect(pickHlsStartLevel(levels, HLS_START_HEIGHT)).toBe(2);
-    expect(levels[pickHlsStartLevel(levels)].height).toBe(480);
+    expect(pickHlsStartLevel(levels, HLS_START_HEIGHT)).toBe(3);
+    expect(levels[pickHlsStartLevel(levels)].height).toBe(720);
   });
 
-  it("caps at 720p rather than 1080p", () => {
+  it("caps at 1080p when that rung exists", () => {
     const levels = [
       { height: 480 },
       { height: 720 },
       { height: 1080 },
     ];
-    expect(pickHlsCapLevel(levels, HLS_MAX_HEIGHT)).toBe(1);
+    expect(pickHlsCapLevel(levels, HLS_MAX_HEIGHT)).toBe(2);
   });
 });
 
 describe("filterMobileHlsMaster", () => {
   const filtered = filterMobileHlsMaster(sampleMaster, STREAM_MASTER);
 
-  it("keeps 480p then 720p and drops 1080p and 240p", () => {
-    expect(filtered).toContain("RESOLUTION=852x480");
+  it("lists 720p first, then 1080p, then 480p, and drops 240p", () => {
     expect(filtered).toContain("RESOLUTION=1280x720");
-    expect(filtered).not.toContain("1920x1080");
+    expect(filtered).toContain("RESOLUTION=1920x1080");
+    expect(filtered).toContain("RESOLUTION=852x480");
     expect(filtered).not.toContain("426x240");
     expect(filtered).not.toContain("640x360");
 
     const firstVariant = filtered.indexOf("RESOLUTION=");
-    const at480 = filtered.indexOf("852x480");
     const at720 = filtered.indexOf("1280x720");
-    expect(at480).toBeGreaterThan(firstVariant - 1);
-    expect(at480).toBeLessThan(at720);
+    const at1080 = filtered.indexOf("1920x1080");
+    const at480 = filtered.indexOf("852x480");
+    expect(at720).toBeGreaterThan(firstVariant - 1);
+    expect(at720).toBeLessThan(at1080);
+    expect(at1080).toBeLessThan(at480);
   });
 
   it("strips SCORE so Safari does not prefer 1080/720 as the start rung", () => {

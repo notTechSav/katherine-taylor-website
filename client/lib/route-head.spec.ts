@@ -72,7 +72,8 @@ describe("prerender route heads", () => {
     expect(html).toContain('"@type":"Person"');
     expect(html).toContain('"@type":"WebSite"');
     expect(html).toContain('rel="preload" as="image"');
-    expect(html).toContain("thumbnails/thumbnail.jpg?time=3s&amp;height=720");
+    expect(html).toContain("thumbnails/thumbnail.jpg?time=3s&amp;height=1080");
+    expect(html).toContain('rel="preload" as="fetch" href="/api/opening-hls.m3u8"');
   });
 
   it("gives Sacramento its own title and canonical in raw HTML", () => {

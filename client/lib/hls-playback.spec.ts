@@ -152,18 +152,16 @@ describe("FullscreenVideoSection hls.js loading", () => {
     "utf8",
   );
 
-  it("does not start an hls.js import at module evaluation", () => {
-    expect(componentSource).not.toMatch(/hlsJsImport/);
-    expect(componentSource).not.toMatch(/=\s*import\("hls\.js"\)/);
+  it("prefetches hls.js on the client only when native HLS is unavailable", () => {
+    expect(componentSource).toContain("prefetchHlsJs");
+    expect(componentSource).toContain('typeof document !== "undefined"');
+    expect(componentSource).toContain('import("hls.js")');
   });
 
-  it("loads hls.js only from the playback effect after capability checks", () => {
-    expect([...componentSource.matchAll(/import\("hls\.js"\)/g)]).toHaveLength(
-      1,
-    );
-    expect(componentSource).toContain('void import("hls.js")');
+  it("attaches hls.js from the playback effect after capability checks", () => {
     expect(componentSource).toContain("shouldLoadHlsJs(");
     expect(componentSource).toContain("canPlayNativeHls(element)");
+    expect(componentSource).toContain("prefetchHlsJs ?? import(\"hls.js\")");
   });
 
   it("selects native HLS from canPlayType, not user-agent sniffing", () => {
