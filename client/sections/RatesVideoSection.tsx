@@ -6,7 +6,7 @@ export default function RatesVideoSection() {
   return (
     <FullscreenVideoSection
       posterSrc="/journal-teaser-bg.webp"
-      posterMobileSrc="/rates-video-poster-mobile.webp"
+      posterMobileSrc="/rates-video-poster-mobile.webp?v=hires1"
       objectPosition="center center"
       overlayClassName="homepage-veil-lower-strong"
     >

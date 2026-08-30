@@ -3,6 +3,10 @@
 # replacements are not stuck on phones after a same-URL update.
 /about-slide-mobile.webp
   Cache-Control: public, max-age=0, must-revalidate
+/rates-video-poster-mobile.webp
+  Cache-Control: public, max-age=0, must-revalidate
+/journal-slide.webp
+  Cache-Control: public, max-age=0, must-revalidate
 
 # Icon files must revalidate immediately. Zone Browser Cache TTL would
 # otherwise keep a leftover template mark (Cartier wordmark / Builder "B")
