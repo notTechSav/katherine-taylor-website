@@ -80,7 +80,7 @@ const ABriefInterruption = () => {
             aria-label={briefInterruptionSponsor.accessibleName}
             className="inline-flex min-h-[44px] items-center text-luxury-black transition-opacity duration-250 hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
           >
-            {briefInterruptionSponsor.heading}
+            {briefInterruptionSponsor.heading} ↗
           </a>
         </h2>
       </section>

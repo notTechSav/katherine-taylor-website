@@ -196,7 +196,7 @@ describe("prerender route bodies", () => {
 
     const film = renderRoute("/film/a-brief-interruption");
     expect(film).toMatch(/<h1[^>]*>A Brief Interruption<\/h1>/);
-    expect(film).toMatch(/<h2[^>]*>[\s\S]*A Word From Our Sponsors[\s\S]*<\/h2>/);
+    expect(film).toMatch(/<h2[^>]*>[\s\S]*A Word From Our Sponsors ↗[\s\S]*<\/h2>/);
     expect(film).toContain(
       'href="https://www.cigarsinternational.com/cigars.html"',
     );
