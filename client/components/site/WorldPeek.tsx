@@ -12,34 +12,40 @@ const focusRing =
 
 const peekImages = [
   {
-    src: "/katherinewindow.webp",
-    alt: "Katherine Taylor at a sunlit window",
+    src: "/peek/01.jpg",
+    alt: "Katherine Taylor in a red dress, from Instagram",
   },
   {
-    src: "/journal-slide.webp",
-    alt: "Journal still from Katherine Taylor’s world",
+    src: "/peek/02.jpg",
+    alt: "Katherine Taylor looking out over a city at night, from Instagram",
   },
   {
-    src: "/gifts-slide.webp",
-    alt: "A quiet interior from Katherine Taylor’s world",
+    src: "/peek/03.jpg",
+    alt: "Katherine Taylor, from Instagram",
   },
   {
-    src: "/sacramento-slide.webp",
-    alt: "Sacramento light",
+    src: "/peek/04.jpg",
+    alt: "Katherine Taylor, from Instagram",
   },
   {
-    src: "/location-slide.webp",
-    alt: "A Northern California room",
+    src: "/peek/05.jpg",
+    alt: "Katherine Taylor, from Instagram",
   },
   {
-    src: "/faq-slide.webp",
-    alt: "A still moment",
+    src: "/peek/07.jpg",
+    alt: "Katherine Taylor, from Instagram",
   },
   {
-    src: "/about-slide-mobile.webp",
-    alt: "About Katherine Taylor",
+    src: "/peek/08.jpg",
+    alt: "Katherine Taylor, from Instagram",
+  },
+  {
+    src: "/peek/09.jpg",
+    alt: "Katherine Taylor, from Instagram",
   },
 ] as const;
+
+const handleClass = `relative inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap text-[11px] font-light tracking-[0.08em] text-gray-500 transition-opacity duration-300 hover:opacity-70 ${focusRing}`;
 
 function PeekCursor({
   direction,
@@ -100,15 +106,41 @@ const WorldPeek = () => {
       <p className="text-[10px] font-light uppercase tracking-[0.18em] text-luxury-black sm:text-[11px]">
         A Peek Into My World
       </p>
-      <a
-        href="https://x.com/TheKatherineExp"
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Katherine Taylor on X"
-        className={`relative inline-flex min-h-11 items-center whitespace-nowrap text-[11px] font-light tracking-[0.08em] text-gray-500 transition-opacity duration-300 hover:opacity-70 ${focusRing}`}
-      >
-        𝕏 @TheKatherineExp
-      </a>
+      <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
+        <a
+          href="https://x.com/TheKatherineExp"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Katherine Taylor on X"
+          className={handleClass}
+        >
+          𝕏 @TheKatherineExp
+        </a>
+        <span aria-hidden="true" className="text-[11px] font-light text-gray-400">
+          |
+        </span>
+        <a
+          href="https://www.instagram.com/katherineunscripted/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Katherine Taylor on Instagram"
+          className={handleClass}
+        >
+          <svg
+            className="h-3 w-3"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.25}
+            aria-hidden="true"
+          >
+            <rect x="3.5" y="3.5" width="17" height="17" rx="4.5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.4" cy="6.6" r="0.8" fill="currentColor" stroke="none" />
+          </svg>
+          @katherineunscripted
+        </a>
+      </p>
 
       <div className="relative w-full max-w-luxury">
         <Carousel

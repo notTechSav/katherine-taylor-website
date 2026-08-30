@@ -258,6 +258,11 @@ describe("prerender route bodies", () => {
       expect(footer).not.toContain('rel="nofollow"');
       expect(footer).toContain('aria-label="Katherine Taylor on X"');
       expect(footer).toContain("𝕏 @TheKatherineExp");
+      expect(footer).toContain(
+        'href="https://www.instagram.com/katherineunscripted/"',
+      );
+      expect(footer).toContain('aria-label="Katherine Taylor on Instagram"');
+      expect(footer).toContain("@katherineunscripted");
       expect(footer).not.toMatch(/Follow|Twitter|Social/i);
 
       const headerNav = html.match(
@@ -265,6 +270,7 @@ describe("prerender route bodies", () => {
       )?.[0];
       expect(headerNav).toBeTruthy();
       expect(headerNav).not.toContain("https://x.com/TheKatherineExp");
+      expect(headerNav).not.toContain("katherineunscripted");
     }
   });
 
