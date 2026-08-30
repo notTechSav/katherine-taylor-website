@@ -992,7 +992,7 @@ const FAQPage = () => {
         </div>
       </section>
 
-      <NextSectionCTA label="Get in Touch" href="/inquire" />
+      <NextSectionCTA label="Please Stand By" href="/film/please-stand-by" />
     </main>
   );
 };

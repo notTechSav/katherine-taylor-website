@@ -58,6 +58,9 @@ describe("prerender route heads", () => {
     expect(prerenderOutputPath("/film/a-brief-interruption")).toBe(
       "film/a-brief-interruption.html",
     );
+    expect(prerenderOutputPath("/film/please-stand-by")).toBe(
+      "film/please-stand-by.html",
+    );
   });
 
   it("keeps homepage first-byte metadata on /", () => {
@@ -153,6 +156,50 @@ describe("prerender route heads", () => {
       /<script data-rh="true" type="application\/ld\+json">([\s\S]*?)<\/script>/,
     )?.[1];
     if (!jsonLd) throw new Error("missing film JSON-LD");
+    const parsed = JSON.parse(jsonLd) as { "@type": string };
+    expect(parsed["@type"]).toBe("VideoObject");
+  });
+
+  it("gives Please Stand By its own title, canonical, and VideoObject", () => {
+    const film = routes.find((route) => route.path === "/film/please-stand-by");
+    if (!film) throw new Error("missing please-stand-by route");
+    expect(film.title).toBe(pageSeo.pleaseStandBy.title);
+    expect(film.description).toBe(pageSeo.pleaseStandBy.description);
+    expect(film.canonical).toBe(
+      "https://katherinetaylorescort.com/film/please-stand-by",
+    );
+    expect(film.image).toBe(
+      "https://katherinetaylorescort.com/film/please-stand-by.jpg",
+    );
+    expect(film.robots).toMatch(/index,\s*follow/);
+
+    const html = applyRouteHead(indexHtml, film);
+    expect(html).toContain(
+      `<title data-rh="true">${pageSeo.pleaseStandBy.title}</title>`,
+    );
+    expect(html).toContain(`content="${pageSeo.pleaseStandBy.description}"`);
+    expect(html).toContain(
+      'rel="canonical" href="https://katherinetaylorescort.com/film/please-stand-by"',
+    );
+    expect(html).not.toContain(
+      'rel="canonical" href="https://katherinetaylorescort.com/"',
+    );
+    expect(html).not.toContain(pageSeo.home.title);
+    expect(html).not.toContain('rel="preload" as="image"');
+    expect(html).not.toContain(
+      'rel="preload" as="fetch" href="/api/opening-hls.m3u8"',
+    );
+    expect(html).toContain('"@type":"VideoObject"');
+    expect(html).toContain('"name":"Please Stand By"');
+    expect(html).toContain(
+      '"contentUrl":"https://katherinetaylorescort.com/film/please-stand-by.mp4"',
+    );
+    expect(html).not.toContain("a-brief-interruption.mp4");
+
+    const jsonLd = html.match(
+      /<script data-rh="true" type="application\/ld\+json">([\s\S]*?)<\/script>/,
+    )?.[1];
+    if (!jsonLd) throw new Error("missing please-stand-by JSON-LD");
     const parsed = JSON.parse(jsonLd) as { "@type": string };
     expect(parsed["@type"]).toBe("VideoObject");
   });

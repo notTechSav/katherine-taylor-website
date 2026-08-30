@@ -25,6 +25,7 @@ const requiredRoutes: { path: string; h1: string }[] = [
   { path: "/about", h1: "About Katherine Taylor" },
   { path: "/gallery", h1: "Private Collections" },
   { path: "/film/a-brief-interruption", h1: "A Brief Interruption" },
+  { path: "/film/please-stand-by", h1: "Please Stand By" },
   { path: "/rates", h1: "Rates" },
   { path: "/gifts", h1: "Gifts" },
   { path: "/faq", h1: "Frequently Asked Questions" },
@@ -212,6 +213,38 @@ describe("prerender route bodies", () => {
 
     const footer = film.slice(film.lastIndexOf("<footer"));
     expect(footer).not.toContain("/film/a-brief-interruption");
+  });
+
+  it("inserts Please Stand By between FAQ and Inquire", () => {
+    const faq = renderRoute("/faq");
+    expect(faq).toContain('href="/film/please-stand-by"');
+    expect(faq).toContain(">Please Stand By<");
+    expect(faq).not.toContain(">Get in Touch<");
+
+    const film = renderRoute("/film/please-stand-by");
+    expect(film).toMatch(/<h1[^>]*>Please Stand By<\/h1>/);
+    expect(film).toMatch(
+      /<h2[^>]*>[\s\S]*This Interruption Brought to You By ↗[\s\S]*<\/h2>/,
+    );
+    expect(film).toContain('href="https://trudoco.com/"');
+    expect(film).toContain('target="_blank"');
+    expect(film).toContain('rel="noopener noreferrer"');
+    expect(film).not.toContain('rel="sponsored"');
+    expect(film).toContain('src="/film/please-stand-by.mp4"');
+    expect(film).not.toContain("a-brief-interruption.mp4");
+    expect(film).toMatch(/<video\b[^>]*\bmuted\b/);
+    expect(film).toMatch(/<button\b[^>]*>[\s\S]*SOUND ON[\s\S]*<\/button>/);
+    expect(film).toContain('aria-label="Sound on"');
+    expect(film).toContain('href="/inquire"');
+    expect(film).toContain(">Private Inquiry<");
+
+    const footer = film.slice(film.lastIndexOf("<footer"));
+    expect(footer).not.toContain("/film/please-stand-by");
+    const headerNav = film.match(
+      /<nav\b[^>]*class="fixed top-0[\s\S]*?<\/nav>/,
+    )?.[0];
+    expect(headerNav).toBeTruthy();
+    expect(headerNav).not.toContain("/film/please-stand-by");
   });
 
   it("does not add a main landmark to the 404 page", () => {

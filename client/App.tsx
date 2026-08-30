@@ -23,6 +23,7 @@ import Index from "./pages/Index";
 
 const About = lazy(() => import("./pages/About"));
 const ABriefInterruption = lazy(() => import("./pages/ABriefInterruption"));
+const PleaseStandBy = lazy(() => import("./pages/PleaseStandBy"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Gifts = lazy(() => import("./pages/Gifts"));
 const Gallery = lazy(() => import("./pages/Gallery"));
@@ -98,6 +99,10 @@ const AppRoutes = () => {
           <Route
             path="/film/a-brief-interruption"
             element={withLayout(ABriefInterruption)}
+          />
+          <Route
+            path="/film/please-stand-by"
+            element={withLayout(PleaseStandBy)}
           />
           <Route path="/faq" element={withLayout(FAQ)} />
           <Route path="/inquire" element={withLayout(Inquire)} />

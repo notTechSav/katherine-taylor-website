@@ -91,6 +91,16 @@ describe("sitemap", () => {
     ).toBe("none");
   });
 
+  it("includes the unlisted Please Stand By interlude", () => {
+    expect(xml).toContain(
+      "<loc>https://katherinetaylorescort.com/film/please-stand-by</loc>",
+    );
+    expect(
+      sitePageList.find((page) => page.path === "/film/please-stand-by")
+        ?.footer,
+    ).toBe("none");
+  });
+
   it("lists every public journal essay", () => {
     for (const essay of essays) {
       const loc = `${ORIGIN}/journal/${essay.slug}`;

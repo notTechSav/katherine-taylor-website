@@ -122,6 +122,13 @@ export const sitePages = {
     priority: 0.6,
     footer: "none",
   },
+  pleaseStandBy: {
+    path: "/film/please-stand-by",
+    navLabel: "Please Stand By",
+    changefreq: "monthly",
+    priority: 0.6,
+    footer: "none",
+  },
   gifts: {
     path: "/gifts",
     navLabel: "Gifts",

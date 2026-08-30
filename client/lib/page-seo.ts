@@ -35,6 +35,12 @@ export const pageSeo = {
       "A Brief Interruption is a short film by Katherine Taylor—a brief editorial pause between private collections and gifts.",
     path: sitePages.briefInterruption.path,
   },
+  pleaseStandBy: {
+    title: "Katherine Taylor Film | Please Stand By",
+    description:
+      "Please Stand By is a short film by Katherine Taylor—an editorial interlude before private inquiry.",
+    path: sitePages.pleaseStandBy.path,
+  },
   faq: {
     title: "FAQ | Katherine Taylor Escort — San Francisco",
     description:
