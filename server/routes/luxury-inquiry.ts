@@ -67,7 +67,7 @@ router.post('/api/luxury-inquiry', async (req: Request, res: Response) => {
 
     // Example: Send admin notification (pseudo-code)
     // await sendEmail({
-    //   to: 'inquiries@katherinetaylor.com',
+    //   to: 'private@katherinetaylorescort.com',
     //   subject: `New Luxury Inquiry - ${inquiryData.company}`,
     //   template: 'admin-inquiry-notification',
     //   data: { ...inquiryData, confirmationNumber }

@@ -1,4 +1,4 @@
-import { DEFAULT_OG_IMAGE, SITE_URL } from "./site-config";
+import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_URL } from "./site-config";
 
 /** Homepage Person + WebSite graph. Kept identical in first-byte HTML and SeoHead. */
 export const homeJsonLd = [
@@ -12,6 +12,7 @@ export const homeJsonLd = [
     description:
       "High-end escort offering private companionship in San Francisco, Sacramento, and the Bay Area.",
     url: `${SITE_URL}/`,
+    email: CONTACT_EMAIL,
   },
   {
     "@context": "https://schema.org",

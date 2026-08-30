@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/site-config";
 import {
   footerGroupOrder,
   pagesInFooterGroup,
@@ -41,6 +42,12 @@ const Footer = () => {
             >
               {sitePages.inquire.navLabel} <span aria-hidden="true">→</span>
             </Link>
+            <a
+              href={CONTACT_MAILTO}
+              className={`block text-sm font-light text-luxury-black underline-offset-4 transition-colors duration-300 hover:text-gray-600 hover:underline ${focusRing}`}
+            >
+              {CONTACT_EMAIL}
+            </a>
           </div>
 
           <div className="grid gap-x-8 gap-y-6 sm:grid-cols-3 md:gap-x-14">
