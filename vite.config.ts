@@ -87,7 +87,7 @@ function expressPlugin(): Plugin {
           return;
         }
         res.statusCode = 301;
-        res.setHeader("Location", "/");
+        res.setHeader("Location", "/favicon.svg?v=5");
         res.end();
       });
       const app = createServer();
