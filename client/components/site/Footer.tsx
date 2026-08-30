@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+import WorldPeek from "@/components/site/WorldPeek";
 import { CONTACT_EMAIL, CONTACT_MAILTO } from "@/lib/site-config";
 import {
   footerGroupOrder,
@@ -24,6 +25,8 @@ const Footer = () => {
       className="border-t border-gray-100 bg-luxury-white py-9 focus:outline-none md:py-16"
     >
       <div className="homepage-rail flex max-w-luxury flex-col gap-7 md:gap-14">
+        <WorldPeek />
+
         <div className="flex flex-col gap-7 md:flex-row md:items-start md:justify-between md:gap-16">
           <div className="max-w-[22rem] space-y-2 md:space-y-3">
             <Link
@@ -81,20 +84,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-gray-100 pt-5 md:pt-6">
-          <p className="text-xs font-light tracking-[0.08em] text-gray-500">
-            © {new Date().getFullYear()} Katherine Taylor
-          </p>
-          <a
-            href="https://x.com/TheKatherineExp"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Katherine Taylor on X"
-            className={`relative mt-3 inline-flex min-h-11 items-center whitespace-nowrap text-[11px] font-light tracking-[0.08em] text-gray-500 transition-opacity duration-300 hover:opacity-70 ${focusRing}`}
-          >
-            𝕏 @TheKatherineExp
-          </a>
-        </div>
+        <p className="border-t border-gray-100 pt-5 text-xs font-light tracking-[0.08em] text-gray-500 md:pt-6">
+          © {new Date().getFullYear()} Katherine Taylor
+        </p>
       </div>
     </footer>
   );
