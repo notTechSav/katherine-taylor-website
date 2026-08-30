@@ -164,6 +164,12 @@ describe("FullscreenVideoSection hls.js loading", () => {
     expect(componentSource).toContain("prefetchHlsJs ?? import(\"hls.js\")");
   });
 
+  it("locks loop and restarts when HLS or native playback ends", () => {
+    expect(componentSource).toContain("lockVideoLoop(element)");
+    expect(componentSource).toContain("bindVideoLoopRestart(element");
+    expect(componentSource).toMatch(/\bloop\b/);
+  });
+
   it("selects native HLS from canPlayType, not user-agent sniffing", () => {
     expect(playbackSource).not.toMatch(/userAgent/);
     expect(playbackSource).not.toMatch(/Safari/);

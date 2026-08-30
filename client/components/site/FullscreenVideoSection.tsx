@@ -20,6 +20,7 @@ import {
   pickHlsCapLevel,
   pickHlsStartLevel,
 } from "@/lib/video-sections";
+import { bindVideoLoopRestart, lockVideoLoop } from "@/lib/video-loop";
 import { cn } from "@/lib/utils";
 import { useNearbyFullpageMedia } from "@/hooks/useNearbyFullpageMedia";
 
@@ -56,6 +57,7 @@ function lockInlineAutoplay(element: HTMLVideoElement, muted: boolean) {
   element.setAttribute("playsinline", "true");
   element.setAttribute("webkit-playsinline", "true");
   element.setAttribute("autoplay", "");
+  lockVideoLoop(element);
   if (muted) {
     element.defaultMuted = true;
     element.muted = true;
@@ -217,6 +219,11 @@ export default function FullscreenVideoSection({
       attemptPlay();
     };
 
+    const stopLoop = bindVideoLoopRestart(element, () => {
+      const section = containerRef.current?.closest("[data-fullpage-section]");
+      return section?.getAttribute("data-active") !== "false";
+    });
+
     if (shouldLoadHlsJs(currentSrc, canPlayNativeHls(element))) {
       element.removeAttribute("src");
       void (prefetchHlsJs ?? import("hls.js")).then(({ default: Hls }) => {
@@ -283,6 +290,7 @@ export default function FullscreenVideoSection({
         cancelled = true;
         stopRevealRef.current?.();
         stopRevealRef.current = null;
+        stopLoop();
         hlsRef.current?.destroy();
         hlsRef.current = null;
       };
@@ -301,6 +309,7 @@ export default function FullscreenVideoSection({
       cancelled = true;
       stopRevealRef.current?.();
       stopRevealRef.current = null;
+      stopLoop();
       element.removeEventListener("loadedmetadata", play);
       element.removeEventListener("loadeddata", play);
       element.removeEventListener("canplay", play);

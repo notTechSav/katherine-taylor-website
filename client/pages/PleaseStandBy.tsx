@@ -12,6 +12,7 @@ import {
 } from "@/lib/please-stand-by";
 import { pageSeo } from "@/lib/page-seo";
 import { absoluteUrl } from "@/lib/site-config";
+import { bindVideoLoopRestart, lockVideoLoop } from "@/lib/video-loop";
 
 const PleaseStandBy = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -25,6 +26,15 @@ const PleaseStandBy = () => {
     media.addEventListener("change", sync);
     return () => media.removeEventListener("change", sync);
   }, []);
+
+  useEffect(() => {
+    const element = videoRef.current;
+    if (!element || !playMotion) {
+      return;
+    }
+    lockVideoLoop(element);
+    return bindVideoLoopRestart(element);
+  }, [playMotion]);
 
   const toggleMute = () => {
     const element = videoRef.current;

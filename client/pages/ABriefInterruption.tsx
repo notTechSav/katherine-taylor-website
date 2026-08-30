@@ -8,6 +8,7 @@ import {
   briefInterruptionSponsor,
   briefInterruptionVideo,
 } from "@/lib/brief-interruption";
+import { bindVideoLoopRestart, lockVideoLoop } from "@/lib/video-loop";
 import { pageSeo } from "@/lib/page-seo";
 import { absoluteUrl } from "@/lib/site-config";
 
@@ -23,6 +24,15 @@ const ABriefInterruption = () => {
     media.addEventListener("change", sync);
     return () => media.removeEventListener("change", sync);
   }, []);
+
+  useEffect(() => {
+    const element = videoRef.current;
+    if (!element || !playMotion) {
+      return;
+    }
+    lockVideoLoop(element);
+    return bindVideoLoopRestart(element);
+  }, [playMotion]);
 
   const toggleMute = () => {
     const element = videoRef.current;
