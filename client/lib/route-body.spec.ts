@@ -247,6 +247,27 @@ describe("prerender route bodies", () => {
     expect(headerNav).not.toContain("/film/please-stand-by");
   });
 
+  it("places a discreet X profile mark in the global footer", () => {
+    for (const routePath of ["/", "/about"]) {
+      const html = renderRoute(routePath);
+      const footer = html.slice(html.lastIndexOf("<footer"));
+      expect(footer).toContain('href="https://x.com/TheKatherineExp"');
+      expect(footer).toContain('target="_blank"');
+      expect(footer).toContain('rel="noopener noreferrer"');
+      expect(footer).not.toContain('rel="sponsored"');
+      expect(footer).not.toContain('rel="nofollow"');
+      expect(footer).toContain('aria-label="Katherine Taylor on X"');
+      expect(footer).toContain("𝕏 @TheKatherineExp");
+      expect(footer).not.toMatch(/Follow|Twitter|Social/i);
+
+      const headerNav = html.match(
+        /<nav\b[^>]*class="fixed top-0[\s\S]*?<\/nav>/,
+      )?.[0];
+      expect(headerNav).toBeTruthy();
+      expect(headerNav).not.toContain("https://x.com/TheKatherineExp");
+    }
+  });
+
   it("does not add a main landmark to the 404 page", () => {
     const html = applyRouteBody(
       applyRouteHead(indexHtml, notFoundHead),

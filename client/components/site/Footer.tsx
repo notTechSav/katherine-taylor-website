@@ -81,9 +81,20 @@ const Footer = () => {
           </div>
         </div>
 
-        <p className="border-t border-gray-100 pt-5 text-xs font-light tracking-[0.08em] text-gray-500 md:pt-6">
-          © {new Date().getFullYear()} Katherine Taylor
-        </p>
+        <div className="border-t border-gray-100 pt-5 md:pt-6">
+          <p className="text-xs font-light tracking-[0.08em] text-gray-500">
+            © {new Date().getFullYear()} Katherine Taylor
+          </p>
+          <a
+            href="https://x.com/TheKatherineExp"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Katherine Taylor on X"
+            className={`relative mt-3 inline-flex min-h-11 items-center whitespace-nowrap text-[11px] font-light tracking-[0.08em] text-gray-500 transition-opacity duration-300 hover:opacity-70 ${focusRing}`}
+          >
+            𝕏 @TheKatherineExp
+          </a>
+        </div>
       </div>
     </footer>
   );
