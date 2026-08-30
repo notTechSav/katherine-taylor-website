@@ -29,14 +29,14 @@ type NavItem = {
 const navigationLinks: NavItem[] = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Rates", href: "/rates" },
   { label: "Gifts", href: "/gifts" },
   {
     label: "Journal",
     href: "/journal",
     children: [{ label: "Sacramento", href: "/sacramento-escorts" }],
   },
-  { label: "Rates", href: "/rates" },
-  { label: "Gallery", href: "/gallery" },
   { label: "FAQ", href: "/faq" },
 ];
 
