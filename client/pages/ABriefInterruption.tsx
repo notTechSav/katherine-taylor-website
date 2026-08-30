@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { Volume2, VolumeX } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
@@ -11,7 +12,9 @@ import { pageSeo } from "@/lib/page-seo";
 import { absoluteUrl } from "@/lib/site-config";
 
 const ABriefInterruption = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [playMotion, setPlayMotion] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -20,6 +23,20 @@ const ABriefInterruption = () => {
     media.addEventListener("change", sync);
     return () => media.removeEventListener("change", sync);
   }, []);
+
+  const toggleMute = () => {
+    const element = videoRef.current;
+    if (!element) {
+      return;
+    }
+
+    const nextMuted = !isMuted;
+    element.muted = nextMuted;
+    if (element.paused) {
+      void element.play();
+    }
+    setIsMuted(nextMuted);
+  };
 
   return (
     <main className="bg-luxury-white text-luxury-black">
@@ -52,21 +69,36 @@ const ABriefInterruption = () => {
             decoding="async"
           />
           {playMotion ? (
-            <video
-              className="absolute inset-0 h-full w-full object-cover"
-              src={briefInterruptionVideo.src}
-              poster={briefInterruptionVideo.poster}
-              width={briefInterruptionVideo.width}
-              height={briefInterruptionVideo.height}
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="none"
-              controls={false}
-              aria-label="A Brief Interruption"
-              {...{ "webkit-playsinline": "true" }}
-            />
+            <>
+              <video
+                ref={videoRef}
+                className="absolute inset-0 h-full w-full object-cover"
+                src={briefInterruptionVideo.src}
+                poster={briefInterruptionVideo.poster}
+                width={briefInterruptionVideo.width}
+                height={briefInterruptionVideo.height}
+                autoPlay
+                muted={isMuted}
+                loop
+                playsInline
+                preload="none"
+                controls={false}
+                aria-label="A Brief Interruption"
+                {...{ "webkit-playsinline": "true" }}
+              />
+              <button
+                type="button"
+                onClick={toggleMute}
+                className="absolute bottom-6 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur transition hover:bg-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black/40 sm:right-6"
+                aria-label={isMuted ? "Play audio" : "Mute video"}
+              >
+                {isMuted ? (
+                  <VolumeX className="h-4 w-4" aria-hidden="true" />
+                ) : (
+                  <Volume2 className="h-4 w-4" aria-hidden="true" />
+                )}
+              </button>
+            </>
           ) : null}
         </div>
       </section>

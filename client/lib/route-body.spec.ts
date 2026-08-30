@@ -206,6 +206,7 @@ describe("prerender route bodies", () => {
       'aria-label="A Word From Our Sponsors — Cigars International"',
     );
     expect(film).toContain('src="/film/a-brief-interruption.mp4"');
+    expect(film).toContain('aria-label="Play audio"');
     expect(film).toContain('href="/gifts"');
     expect(film).toContain(">Gift Etiquette<");
 
