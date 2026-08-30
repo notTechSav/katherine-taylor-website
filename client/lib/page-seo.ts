@@ -29,6 +29,12 @@ export const pageSeo = {
       "Private photography collections by Katherine Taylor. Intimate moments from Los Angeles to Northern California—available by appointment for select clientele.",
     path: sitePages.gallery.path,
   },
+  briefInterruption: {
+    title: "Katherine Taylor Film | A Brief Interruption",
+    description:
+      "A Brief Interruption is a short film by Katherine Taylor—a brief editorial pause between private collections and gifts.",
+    path: sitePages.briefInterruption.path,
+  },
   faq: {
     title: "FAQ | Katherine Taylor Escort — San Francisco",
     description:

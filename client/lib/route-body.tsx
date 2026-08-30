@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 
 import SiteLayout from "@/components/site/SiteLayout";
 import About from "@/pages/About";
+import ABriefInterruption from "@/pages/ABriefInterruption";
 import FAQ from "@/pages/FAQ";
 import Gallery from "@/pages/Gallery";
 import Gifts from "@/pages/Gifts";
@@ -48,6 +49,10 @@ const PrerenderRoutes = () => (
     <Route path="/journal/:slug" element={withLayout(JournalArticle)} />
     <Route path="/rates" element={withLayout(Rates)} />
     <Route path="/gallery" element={withLayout(Gallery)} />
+    <Route
+      path="/film/a-brief-interruption"
+      element={withLayout(ABriefInterruption)}
+    />
     <Route path="/faq" element={withLayout(FAQ)} />
     <Route path="/inquire" element={withLayout(Inquire)} />
     <Route path="/sacramento-escorts" element={withLayout(Sacramento)} />

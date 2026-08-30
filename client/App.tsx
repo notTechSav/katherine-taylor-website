@@ -22,6 +22,7 @@ import JournalModalRoute from "@/components/journal/JournalModalRoute";
 import Index from "./pages/Index";
 
 const About = lazy(() => import("./pages/About"));
+const ABriefInterruption = lazy(() => import("./pages/ABriefInterruption"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Gifts = lazy(() => import("./pages/Gifts"));
 const Gallery = lazy(() => import("./pages/Gallery"));
@@ -94,6 +95,10 @@ const AppRoutes = () => {
           <Route path="/journal/:slug" element={withLayout(JournalArticle)} />
           <Route path="/rates" element={withLayout(Rates)} />
           <Route path="/gallery" element={withLayout(Gallery)} />
+          <Route
+            path="/film/a-brief-interruption"
+            element={withLayout(ABriefInterruption)}
+          />
           <Route path="/faq" element={withLayout(FAQ)} />
           <Route path="/inquire" element={withLayout(Inquire)} />
           <Route path="/maison" element={<Navigate to="/" replace />} />

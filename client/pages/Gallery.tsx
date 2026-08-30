@@ -23,7 +23,7 @@ const Gallery = () => {
         alignment="left"
       />
       <DeckBuilderPreview />
-      <NextSectionCTA label="Browse Gifts" href="/gifts" />
+      <NextSectionCTA label="A Brief Interruption" href="/film/a-brief-interruption" />
     </main>
   );
 };

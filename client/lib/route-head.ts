@@ -1,3 +1,4 @@
+import { briefInterruptionJsonLd, briefInterruptionVideo } from "./brief-interruption";
 import { homeJsonLd } from "./home-json-ld";
 import { essays, essayMetadata, heroImage } from "./journal-content";
 import { pageSeo } from "./page-seo";
@@ -62,6 +63,11 @@ const pageSeoHeads: Record<string, Partial<RouteHead>> = {
   "/about": {},
   "/rates": {},
   "/gallery": {},
+  "/film/a-brief-interruption": {
+    image: absoluteUrl(briefInterruptionVideo.poster),
+    imageAlt: "A Brief Interruption",
+    jsonLd: [briefInterruptionJsonLd],
+  },
   "/faq": {},
   "/inquire": {},
   "/gifts": {},

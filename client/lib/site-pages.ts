@@ -115,6 +115,13 @@ export const sitePages = {
     priority: 0.8,
     footer: "collections",
   },
+  briefInterruption: {
+    path: "/film/a-brief-interruption",
+    navLabel: "A Brief Interruption",
+    changefreq: "monthly",
+    priority: 0.6,
+    footer: "none",
+  },
   gifts: {
     path: "/gifts",
     navLabel: "Gifts",

@@ -24,6 +24,7 @@ const requiredRoutes: { path: string; h1: string }[] = [
   { path: "/", h1: "Katherine Taylor Escort" },
   { path: "/about", h1: "About Katherine Taylor" },
   { path: "/gallery", h1: "Private Collections" },
+  { path: "/film/a-brief-interruption", h1: "A Brief Interruption" },
   { path: "/rates", h1: "Rates" },
   { path: "/gifts", h1: "Gifts" },
   { path: "/faq", h1: "Frequently Asked Questions" },
@@ -185,6 +186,31 @@ describe("prerender route bodies", () => {
       );
       expect(parts.inner).not.toMatch(/role="contentinfo"/);
     }
+  });
+
+  it("inserts A Brief Interruption between Gallery and Gifts", () => {
+    const gallery = renderRoute("/gallery");
+    expect(gallery).toContain('href="/film/a-brief-interruption"');
+    expect(gallery).toContain(">A Brief Interruption<");
+    expect(gallery).not.toContain(">Browse Gifts<");
+
+    const film = renderRoute("/film/a-brief-interruption");
+    expect(film).toMatch(/<h1[^>]*>A Brief Interruption<\/h1>/);
+    expect(film).toMatch(/<h2[^>]*>[\s\S]*A Word From Our Sponsors[\s\S]*<\/h2>/);
+    expect(film).toContain(
+      'href="https://www.cigarsinternational.com/cigars.html"',
+    );
+    expect(film).toContain('rel="noopener noreferrer"');
+    expect(film).not.toContain('rel="sponsored"');
+    expect(film).toContain(
+      'aria-label="A Word From Our Sponsors — Cigars International"',
+    );
+    expect(film).toContain('src="/film/a-brief-interruption.mp4"');
+    expect(film).toContain('href="/gifts"');
+    expect(film).toContain(">Gift Etiquette<");
+
+    const footer = film.slice(film.lastIndexOf("<footer"));
+    expect(footer).not.toContain("/film/a-brief-interruption");
   });
 
   it("does not add a main landmark to the 404 page", () => {

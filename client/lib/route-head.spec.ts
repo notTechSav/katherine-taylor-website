@@ -55,6 +55,9 @@ describe("prerender route heads", () => {
     expect(prerenderOutputPath("/journal/memoirs-in-the-city")).toBe(
       "journal/memoirs-in-the-city.html",
     );
+    expect(prerenderOutputPath("/film/a-brief-interruption")).toBe(
+      "film/a-brief-interruption.html",
+    );
   });
 
   it("keeps homepage first-byte metadata on /", () => {
@@ -108,6 +111,50 @@ describe("prerender route heads", () => {
     expect(html).toContain(
       'rel="canonical" href="https://katherinetaylorescort.com/journal/memoirs-in-the-city"',
     );
+  });
+
+  it("gives A Brief Interruption its own title, canonical, and VideoObject", () => {
+    const film = routes.find(
+      (route) => route.path === "/film/a-brief-interruption",
+    );
+    if (!film) throw new Error("missing film route");
+    expect(film.title).toBe(pageSeo.briefInterruption.title);
+    expect(film.description).toBe(pageSeo.briefInterruption.description);
+    expect(film.canonical).toBe(
+      "https://katherinetaylorescort.com/film/a-brief-interruption",
+    );
+    expect(film.image).toBe(
+      "https://katherinetaylorescort.com/film/a-brief-interruption.jpg",
+    );
+
+    const html = applyRouteHead(indexHtml, film);
+    expect(html).toContain(
+      `<title data-rh="true">${pageSeo.briefInterruption.title}</title>`,
+    );
+    expect(html).toContain(
+      `content="${pageSeo.briefInterruption.description}"`,
+    );
+    expect(html).toContain(
+      'rel="canonical" href="https://katherinetaylorescort.com/film/a-brief-interruption"',
+    );
+    expect(html).not.toContain(
+      'rel="canonical" href="https://katherinetaylorescort.com/"',
+    );
+    expect(html).not.toContain(pageSeo.home.title);
+    expect(html).not.toContain('rel="preload" as="image"');
+    expect(html).not.toContain('rel="preload" as="fetch" href="/api/opening-hls.m3u8"');
+    expect(html).toContain('"@type":"VideoObject"');
+    expect(html).toContain('"name":"A Brief Interruption"');
+    expect(html).toContain(
+      '"contentUrl":"https://katherinetaylorescort.com/film/a-brief-interruption.mp4"',
+    );
+
+    const jsonLd = html.match(
+      /<script data-rh="true" type="application\/ld\+json">([\s\S]*?)<\/script>/,
+    )?.[1];
+    if (!jsonLd) throw new Error("missing film JSON-LD");
+    const parsed = JSON.parse(jsonLd) as { "@type": string };
+    expect(parsed["@type"]).toBe("VideoObject");
   });
 
   it("does not canonical or index the 404 shell", () => {

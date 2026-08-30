@@ -81,6 +81,16 @@ describe("sitemap", () => {
     }
   });
 
+  it("includes the unlisted film interlude", () => {
+    expect(xml).toContain(
+      "<loc>https://katherinetaylorescort.com/film/a-brief-interruption</loc>",
+    );
+    expect(
+      sitePageList.find((page) => page.path === "/film/a-brief-interruption")
+        ?.footer,
+    ).toBe("none");
+  });
+
   it("lists every public journal essay", () => {
     for (const essay of essays) {
       const loc = `${ORIGIN}/journal/${essay.slug}`;
