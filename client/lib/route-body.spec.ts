@@ -233,8 +233,8 @@ describe("prerender route bodies", () => {
     expect(film).toContain('src="/film/please-stand-by.mp4"');
     expect(film).not.toContain("a-brief-interruption.mp4");
     expect(film).toMatch(/<video\b[^>]*\bmuted\b/);
-    expect(film).toMatch(/<button\b[^>]*>[\s\S]*SOUND ON[\s\S]*<\/button>/);
-    expect(film).toContain('aria-label="Sound on"');
+    expect(film).toContain('aria-label="Play audio"');
+    expect(film).not.toContain("SOUND ON");
     expect(film).toContain('href="/inquire"');
     expect(film).toContain(">Private Inquiry<");
 

@@ -1,27 +1,18 @@
 import { describe, expect, it } from "vitest";
 import {
-  SOUND_OFF_LABEL,
-  SOUND_ON_LABEL,
   applyVideoMute,
   pleaseStandBySponsor,
   pleaseStandByVideo,
-  soundControlCopy,
+  soundControlAriaLabel,
 } from "./please-stand-by";
 
 describe("please-stand-by sound control", () => {
-  it("starts from SOUND ON while muted", () => {
-    expect(soundControlCopy(true)).toEqual({
-      label: SOUND_ON_LABEL,
-      ariaLabel: "Sound on",
-    });
+  it("starts muted with the same play-audio label as the first interlude", () => {
+    expect(soundControlAriaLabel(true)).toBe("Play audio");
   });
 
-  it("toggles visible copy and aria-label with mute state", () => {
-    expect(soundControlCopy(false)).toEqual({
-      label: SOUND_OFF_LABEL,
-      ariaLabel: "Sound off",
-    });
-    expect(soundControlCopy(true).label).toBe(SOUND_ON_LABEL);
+  it("toggles to mute-video after opt-in", () => {
+    expect(soundControlAriaLabel(false)).toBe("Mute video");
   });
 
   it("keeps the UI truthful if unmuting is blocked", () => {
@@ -38,7 +29,7 @@ describe("please-stand-by sound control", () => {
     };
 
     expect(applyVideoMute(blocked, false)).toBe(true);
-    expect(soundControlCopy(true).label).toBe(SOUND_ON_LABEL);
+    expect(soundControlAriaLabel(true)).toBe("Play audio");
   });
 
   it("applies mute and unmute when the element accepts them", () => {

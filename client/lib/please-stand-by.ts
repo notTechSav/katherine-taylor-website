@@ -17,16 +17,8 @@ export const pleaseStandBySponsor = {
   heading: "This Interruption Brought to You By ↗",
 } as const;
 
-export const SOUND_ON_LABEL = "SOUND ON";
-export const SOUND_OFF_LABEL = "SOUND OFF";
-
-export function soundControlCopy(isMuted: boolean): {
-  label: typeof SOUND_ON_LABEL | typeof SOUND_OFF_LABEL;
-  ariaLabel: string;
-} {
-  return isMuted
-    ? { label: SOUND_ON_LABEL, ariaLabel: "Sound on" }
-    : { label: SOUND_OFF_LABEL, ariaLabel: "Sound off" };
+export function soundControlAriaLabel(isMuted: boolean): "Play audio" | "Mute video" {
+  return isMuted ? "Play audio" : "Mute video";
 }
 
 /** Apply mute preference and return the element's truthful muted state. */

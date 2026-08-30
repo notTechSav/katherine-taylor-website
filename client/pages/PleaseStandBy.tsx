@@ -1,3 +1,4 @@
+import { Volume2, VolumeX } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 import NextSectionCTA from "@/components/site/NextSectionCTA";
@@ -7,7 +8,7 @@ import {
   pleaseStandByJsonLd,
   pleaseStandBySponsor,
   pleaseStandByVideo,
-  soundControlCopy,
+  soundControlAriaLabel,
 } from "@/lib/please-stand-by";
 import { pageSeo } from "@/lib/page-seo";
 import { absoluteUrl } from "@/lib/site-config";
@@ -16,7 +17,6 @@ const PleaseStandBy = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playMotion, setPlayMotion] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
-  const sound = soundControlCopy(isMuted);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -26,7 +26,7 @@ const PleaseStandBy = () => {
     return () => media.removeEventListener("change", sync);
   }, []);
 
-  const toggleSound = () => {
+  const toggleMute = () => {
     const element = videoRef.current;
     if (!element) {
       return;
@@ -70,38 +70,41 @@ const PleaseStandBy = () => {
             decoding="async"
           />
           {playMotion ? (
-            <video
-              ref={videoRef}
-              className="absolute inset-0 h-full w-full object-cover"
-              src={pleaseStandByVideo.src}
-              poster={pleaseStandByVideo.poster}
-              width={pleaseStandByVideo.width}
-              height={pleaseStandByVideo.height}
-              autoPlay
-              muted={isMuted}
-              loop
-              playsInline
-              preload="none"
-              controls={false}
-              aria-label="Please Stand By"
-              {...{ "webkit-playsinline": "true" }}
-            />
+            <>
+              <video
+                ref={videoRef}
+                className="absolute inset-0 h-full w-full object-cover"
+                src={pleaseStandByVideo.src}
+                poster={pleaseStandByVideo.poster}
+                width={pleaseStandByVideo.width}
+                height={pleaseStandByVideo.height}
+                autoPlay
+                muted={isMuted}
+                loop
+                playsInline
+                preload="none"
+                controls={false}
+                aria-label="Please Stand By"
+                {...{ "webkit-playsinline": "true" }}
+              />
+              <button
+                type="button"
+                onClick={toggleMute}
+                className="absolute bottom-6 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur transition hover:bg-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 focus:ring-offset-2 focus:ring-offset-black/40 sm:right-6"
+                aria-label={soundControlAriaLabel(isMuted)}
+              >
+                {isMuted ? (
+                  <VolumeX className="h-4 w-4" aria-hidden="true" />
+                ) : (
+                  <Volume2 className="h-4 w-4" aria-hidden="true" />
+                )}
+              </button>
+            </>
           ) : null}
         </div>
       </section>
 
       <section className="px-6 py-16 text-center md:px-8 md:py-24">
-        {playMotion ? (
-          <button
-            type="button"
-            onClick={toggleSound}
-            aria-label={sound.ariaLabel}
-            aria-pressed={!isMuted}
-            className="mb-10 inline-flex min-h-[44px] min-w-[44px] items-center justify-center px-4 text-xs font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
-          >
-            {sound.label}
-          </button>
-        ) : null}
         <h2 className="homepage-h2">
           <a
             href={pleaseStandBySponsor.href}
