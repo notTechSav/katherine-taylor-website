@@ -8,6 +8,8 @@ pages_build_output_dir = "dist/spa"
 
 [vars]
 PING_MESSAGE = "ping pong"
+INQUIRY_TO_EMAIL = "private@katherinetaylorescort.com"
+INQUIRY_FROM_EMAIL = "Katherine Taylor <onboarding@resend.dev>"
 
 # Bind API Worker routes when deploying with custom domain
 # [[routes]]
