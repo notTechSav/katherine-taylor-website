@@ -347,7 +347,7 @@ I offer elite companion services including dinner dates at restaurants like Gary
 
 ### How do I book a luxury companion in San Francisco?
 
-Screening is required for all new clients. I accept LinkedIn profiles, employment verification, or two provider references. Please allow 24-48 hours advance notice for dinner dates and overnight arrangements, though occasional last-minute availability exists for repeat clients. Current rates are published on the [Rates page](/rates). Availability and appointment details are confirmed after screening.
+[Screening](/faq) is required for all new clients. I accept LinkedIn profiles, employment verification, or two provider references. Please allow 24-48 hours advance notice for dinner dates and overnight arrangements, though occasional last-minute availability exists for repeat clients. Current rates are published on the [Rates page](/rates). Availability and appointment details are confirmed after screening.
 
 ### Do you offer travel companionship?
 

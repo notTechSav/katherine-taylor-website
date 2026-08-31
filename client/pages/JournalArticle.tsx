@@ -19,6 +19,24 @@ import NotFound from "@/pages/NotFound";
 
 const headingLetterSpacing = { letterSpacing: "-0.02em" } as const;
 
+const journalInlineLinkClass =
+  "underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline";
+
+const memoirSelectedPress = [
+  {
+    label: "TMZ",
+    href: "https://www.tmz.com/2024/03/08/viral-nba-fan-warriors-game-bombarded-luxury-girlfriend-inquiries-athletes-in-direct-messages/?utm_source=chatgpt.com",
+  },
+  {
+    label: "New York Post",
+    href: "https://nypost.com/2024/03/08/sports/viral-warriors-fan-identified-as-900-per-hour-san-francisco-escort/",
+  },
+  {
+    label: "OutKick",
+    href: "https://www.outkick.com/culture/woman-from-the-viral-steph-curry-photo-has-stepped-forward?utm_source=chatgpt.com",
+  },
+] as const;
+
 const JournalArticle = () => {
   const { slug } = useParams();
   const essay = useMemo(() => getEssayBySlug(slug), [slug]);
@@ -102,6 +120,28 @@ const JournalArticle = () => {
             {journalDisplay.subtitle}
           </p>
           <JournalBody body={essay.body} idPrefix={essay.slug} />
+          {essay.slug === "memoirs-in-the-city" ? (
+            <div className="space-y-3">
+              <p className="text-sm font-light tracking-[0.12em] text-gray-600">
+                Selected Press
+              </p>
+              <p className="text-sm font-light text-luxury-black">
+                {memoirSelectedPress.map((source, index) => (
+                  <span key={source.href}>
+                    {index > 0 ? " · " : null}
+                    <a
+                      href={source.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={journalInlineLinkClass}
+                    >
+                      {source.label}
+                    </a>
+                  </span>
+                ))}
+              </p>
+            </div>
+          ) : null}
           <div className="flex justify-between pt-8 text-sm font-light text-luxury-black">
             <button
               type="button"

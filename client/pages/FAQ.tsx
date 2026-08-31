@@ -576,7 +576,12 @@ const FAQPage = () => {
                 </p>
                 <p className="font-medium text-luxury-black" style={{ fontWeight: 400 }}>Why I'm no longer on them:</p>
                 <p>
-                  I had to leave public forums after being photographed courtside with someone whose career required absolute anonymity. My rankings, reviews, and verification all came down overnight. It wasn't a choice—it was necessary.
+                  I had to leave public forums after being{" "}
+                  <a
+                    href="/journal/memoirs-in-the-city"
+                    className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+                  >{"photographed courtside"}</a>{" "}
+                  with someone whose career required absolute anonymity. My rankings, reviews, and verification all came down overnight. It wasn't a choice—it was necessary.
                 </p>
                 <p>
                   But that doesn't mean forums aren't valuable. They are. They're one of the best self-policing mechanisms in an industry where traditional verification doesn't exist.

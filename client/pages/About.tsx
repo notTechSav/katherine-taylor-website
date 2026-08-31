@@ -11,6 +11,9 @@ const ABOUT_SECONDARY_IMAGE =
   "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fc52c5d671db044f38e0442b59a54c778?format=webp&width=1200";
 const aboutSecondary = builderHeroAttrs(ABOUT_SECONDARY_IMAGE);
 
+const editorialLinkClass =
+  "underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline";
+
 const About = () => {
   return (
     <div className="bg-luxury-white text-neutral-600">
@@ -30,6 +33,15 @@ const About = () => {
         />
         <div className="mx-auto max-w-[680px] px-6 pb-24 pt-16 md:px-8 md:pb-28 md:pt-20">
           <header className="space-y-6">
+            <p className="text-[17px] leading-[1.9] text-luxury-black">
+              My work was built in San Francisco and now moves between San
+              Francisco and Sacramento. If you first found Katherine Taylor
+              through{" "}
+              <a
+                href="/journal/memoirs-in-the-city"
+                className={editorialLinkClass}
+              >{"the Warriors photograph that escaped into the internet in 2024"}</a>{", yes—same woman. This is my current home on the web, written and maintained in my own voice."}
+            </p>
             <p className="text-[17px] leading-[1.9] text-luxury-black">
               The conversation never resets. I carry forward everything—your
               M&amp;A timeline, your board anxieties, your daughter's college
@@ -83,12 +95,11 @@ const About = () => {
                 Strategic Counsel and Continuity
               </h2>
               <p>
-                My work sits at the intersection of strategic counsel and personal
-                continuity. Half of what I do is high-level thinking—pattern
-                recognition, operational clarity, risk sorting. The other half is
-                presence—listening until I can hear the sentence you didn't
-                finish. The outcome is relief: you don't have to explain yourself
-                to be understood.
+                My work sits at the intersection of strategic counsel and{" "}
+                <a
+                  href="/journal/continuity-as-craft"
+                  className={editorialLinkClass}
+                >{"personal continuity"}</a>{". Half of what I do is high-level thinking—pattern recognition, operational clarity, risk sorting. The other half is presence—listening until I can hear the sentence you didn't finish. The outcome is relief: you don't have to explain yourself to be understood."}
               </p>
               <p>
                 I keep a small roster so every relationship stays alive in my
