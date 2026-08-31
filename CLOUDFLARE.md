@@ -98,11 +98,12 @@ pnpm start        # Production Node server (SPA + API)
 ## Deploy
 
 ```bash
+# Put the encrypted secret *before* deploy. Direct Upload snapshots project
+# secrets at deploy time; `wrangler pages secret put` after deploy does not
+# update the live Function (POST /api/inquiry returns 503 until the next deploy).
+printf '%s' "$RESEND_API_KEY" | npx wrangler pages secret put RESEND_API_KEY --project-name katherine-taylor-website
 pnpm run build:client
 npx wrangler pages deploy dist/spa --project-name katherine-taylor-website
-# Re-attach the encrypted secret after every Pages deploy. New production
-# deployments inherit the secret *name* but not the value until this runs.
-printf '%s' "$RESEND_API_KEY" | npx wrangler pages secret put RESEND_API_KEY --project-name katherine-taylor-website
 ```
 
 Pages Functions in `functions/` are picked up automatically when deploying via Wrangler or Git integration.
