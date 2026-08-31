@@ -25,7 +25,7 @@ const journalInlineLinkClass =
 const memoirSelectedPress = [
   {
     label: "TMZ",
-    href: "https://www.tmz.com/2024/03/08/viral-nba-fan-warriors-game-bombarded-luxury-girlfriend-inquiries-athletes-in-direct-messages/?utm_source=chatgpt.com",
+    href: "https://www.tmz.com/2024/03/08/viral-nba-fan-warriors-game-bombarded-luxury-girlfriend-inquiries-athletes-in-direct-messages/",
   },
   {
     label: "New York Post",
@@ -33,7 +33,7 @@ const memoirSelectedPress = [
   },
   {
     label: "OutKick",
-    href: "https://www.outkick.com/culture/woman-from-the-viral-steph-curry-photo-has-stepped-forward?utm_source=chatgpt.com",
+    href: "https://www.outkick.com/culture/woman-from-the-viral-steph-curry-photo-has-stepped-forward",
   },
 ] as const;
 
