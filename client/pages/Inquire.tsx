@@ -37,12 +37,7 @@ const InquirePage = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await submitInquiryFromForm(e, formData);
-
-      if (!response.ok) {
-        throw new Error("Submission failed");
-      }
-
+      await submitInquiryFromForm(e, formData);
       setIsSubmitted(true);
     } catch {
       alert("Unable to submit inquiry. Please try again or email directly.");

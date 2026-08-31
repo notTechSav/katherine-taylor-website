@@ -8,8 +8,12 @@ import {
   OPENING_HLS_PROXY_PATH,
 } from "../../client/lib/video-sections";
 import { handleInquiryPostRequest } from "../../shared/inquiry";
+import {
+  createResendInquiryDeliver,
+  type InquiryDeliveryEnv,
+} from "../../shared/inquiry-delivery";
 
-interface Env {
+interface Env extends InquiryDeliveryEnv {
   PING_MESSAGE?: string;
 }
 
@@ -46,9 +50,7 @@ export async function onRequest(context: PagesContext): Promise<Response> {
   if (path === "/api/inquiry" && context.request.method === "POST") {
     return handleInquiryPostRequest(
       context.request,
-      (data, confirmationNumber) => {
-        console.log("Inquiry received:", confirmationNumber, data.email);
-      },
+      createResendInquiryDeliver(context.env),
     );
   }
 

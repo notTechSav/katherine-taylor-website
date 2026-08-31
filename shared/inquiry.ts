@@ -1,7 +1,7 @@
 /**
  * Shared inquiry payload handling for the Inquire form.
  * JSON (JavaScript fetch) and urlencoded (native form POST) normalize into
- * the same record, then share one validation pass and one delivery callback.
+ * the same record, then share one validation pass and one awaited delivery.
  */
 
 export const INQUIRY_ENDPOINT = "/api/inquiry";
@@ -29,32 +29,80 @@ export const EMPTY_INQUIRY: InquiryPayload = {
   message: "",
 };
 
-export const INQUIRY_VALIDATION_MESSAGE = "Name and email are required.";
+export const INQUIRY_FIELD_MAX_LENGTHS = {
+  name: 120,
+  email: 254,
+  phone: 40,
+  preferredDate: 80,
+  duration: 64,
+  location: 64,
+  referral: 200,
+  message: 4000,
+} as const;
+
+export const INQUIRY_REQUIRED_FIELDS = [
+  "name",
+  "email",
+  "duration",
+  "location",
+  "message",
+] as const;
+
+export const INQUIRY_VALIDATION_MESSAGE = "Unable to accept this inquiry.";
 export const INQUIRY_SUCCESS_MESSAGE = "Your inquiry has been received.";
 export const INQUIRY_INVALID_BODY_MESSAGE = "Invalid request body.";
+export const INQUIRY_CONFIG_MESSAGE =
+  "Inquiry delivery is temporarily unavailable.";
+export const INQUIRY_DELIVERY_MESSAGE =
+  "Unable to send your inquiry. Please try again.";
+
+export type InquiryDeliveryReceipt = {
+  provider: "resend";
+  id: string;
+};
 
 export type InquiryDeliver = (
   data: InquiryPayload,
   confirmationNumber: string,
-) => void;
+) => Promise<InquiryDeliveryReceipt>;
 
 export type InquiryProcessResult =
   | {
       ok: true;
       confirmationNumber: string;
+      receiptId: string;
       message: string;
     }
   | {
       ok: false;
+      status: 400 | 502 | 503;
       message: string;
     };
+
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
 
 function asField(value: unknown): string {
-  return typeof value === "string" ? value : "";
+  return typeof value === "string" ? value.trim() : "";
+}
+
+function isValidEmail(value: string): boolean {
+  if (value.includes("\n") || value.includes("\r")) {
+    return false;
+  }
+  return EMAIL_PATTERN.test(value);
+}
+
+function isConfigurationFailure(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    (("kind" in error && error.kind === "configuration") ||
+      ("name" in error && error.name === "InquiryDeliveryConfigError"))
+  );
 }
 
 export function normalizeInquiryInput(raw: unknown): InquiryPayload {
@@ -72,30 +120,71 @@ export function normalizeInquiryInput(raw: unknown): InquiryPayload {
 }
 
 export function validateInquiry(data: InquiryPayload): string | null {
-  if (!data.name || !data.email) {
+  for (const field of INQUIRY_REQUIRED_FIELDS) {
+    if (!data[field]) {
+      return INQUIRY_VALIDATION_MESSAGE;
+    }
+  }
+
+  if (!isValidEmail(data.email)) {
     return INQUIRY_VALIDATION_MESSAGE;
   }
+
+  for (const field of Object.keys(
+    INQUIRY_FIELD_MAX_LENGTHS,
+  ) as (keyof typeof INQUIRY_FIELD_MAX_LENGTHS)[]) {
+    if (data[field].length > INQUIRY_FIELD_MAX_LENGTHS[field]) {
+      return INQUIRY_VALIDATION_MESSAGE;
+    }
+  }
+
   return null;
 }
 
-export function processInquiry(
+export async function processInquiry(
   raw: unknown,
   deliver: InquiryDeliver,
-): InquiryProcessResult {
+): Promise<InquiryProcessResult> {
   const data = normalizeInquiryInput(raw);
   const validationError = validateInquiry(data);
   if (validationError) {
-    return { ok: false, message: validationError };
+    return { ok: false, status: 400, message: validationError };
   }
 
   const confirmationNumber = `INQ-${Date.now()}`;
-  deliver(data, confirmationNumber);
 
-  return {
-    ok: true,
-    confirmationNumber,
-    message: INQUIRY_SUCCESS_MESSAGE,
-  };
+  try {
+    const receipt = await deliver(data, confirmationNumber);
+    const receiptId = typeof receipt?.id === "string" ? receipt.id.trim() : "";
+    if (!receiptId) {
+      return {
+        ok: false,
+        status: 502,
+        message: INQUIRY_DELIVERY_MESSAGE,
+      };
+    }
+
+    return {
+      ok: true,
+      confirmationNumber,
+      receiptId,
+      message: INQUIRY_SUCCESS_MESSAGE,
+    };
+  } catch (error) {
+    if (isConfigurationFailure(error)) {
+      return {
+        ok: false,
+        status: 503,
+        message: INQUIRY_CONFIG_MESSAGE,
+      };
+    }
+
+    return {
+      ok: false,
+      status: 502,
+      message: INQUIRY_DELIVERY_MESSAGE,
+    };
+  }
 }
 
 export function parseInquiryRequestBody(
@@ -112,31 +201,37 @@ export function parseInquiryRequestBody(
   throw new Error("unsupported content type");
 }
 
+function jsonError(message: string, status: number): Response {
+  return Response.json({ success: false, message }, { status });
+}
+
 export async function handleInquiryPostRequest(
   request: Request,
   deliver: InquiryDeliver,
 ): Promise<Response> {
+  let raw: unknown;
   try {
-    const raw = parseInquiryRequestBody(
+    raw = parseInquiryRequestBody(
       request.headers.get("content-type"),
       await request.text(),
     );
-    const result = processInquiry(raw, deliver);
-    if (!result.ok) {
-      return Response.json(
-        { success: false, message: result.message },
-        { status: 400 },
-      );
+  } catch {
+    return jsonError(INQUIRY_INVALID_BODY_MESSAGE, 400);
+  }
+
+  try {
+    const result = await processInquiry(raw, deliver);
+    if (result.ok === false) {
+      return jsonError(result.message, result.status);
     }
+
     return Response.json({
       success: true,
       confirmationNumber: result.confirmationNumber,
+      receiptId: result.receiptId,
       message: result.message,
     });
   } catch {
-    return Response.json(
-      { success: false, message: INQUIRY_INVALID_BODY_MESSAGE },
-      { status: 400 },
-    );
+    return jsonError(INQUIRY_DELIVERY_MESSAGE, 502);
   }
 }

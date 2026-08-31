@@ -9,7 +9,7 @@ import {
   handleHealthCheck,
 } from "./routes/content-ai";
 import luxuryInquiryRouter from "./routes/luxury-inquiry";
-import inquiryRouter from "./routes/inquiry";
+import inquiryRouter, { handleInquiryParseError } from "./routes/inquiry";
 import {
   loadMobileOpeningManifest,
   OPENING_HLS_PROXY_PATH,
@@ -54,6 +54,7 @@ export function createServer() {
 
   // Simple inquiry form (Inquire page)
   app.use(inquiryRouter);
+  app.use(handleInquiryParseError);
 
   return app;
 }

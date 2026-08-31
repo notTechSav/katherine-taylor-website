@@ -76,10 +76,15 @@ Static files (`index.html`, `public/sitemap.xml`, `public/video-sitemap.xml`, `p
 
 ## Environment variables
 
-Set in Cloudflare Pages → Settings → Environment variables:
+Set in Cloudflare Pages → Settings → Variables and Secrets:
 
 - `PING_MESSAGE` — health check response (optional)
 - `ANTHROPIC_API_KEY` — server-side only, for future Pages Function / Node API work. Do not expose as `VITE_*`.
+- `RESEND_API_KEY` — encrypted secret; Resend API key for Inquire form delivery
+- `INQUIRY_TO_EMAIL` — destination address for inquiry emails
+- `INQUIRY_FROM_EMAIL` — verified Resend sender address
+
+Do not prefix any of these with `VITE_`. Do not put `RESEND_API_KEY` in `wrangler.toml` `[vars]`.
 
 ## Local development
 
