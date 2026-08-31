@@ -32,7 +32,7 @@ describe("hls helpers", () => {
     expect(isHlsSource(OPENING_HLS_PROXY_PATH)).toBe(true);
   });
 
-  it("starts at 720p and never 240p or 480p when a 720p rung exists", () => {
+  it("starts at 1080p and never 240p or 480p when a 1080p rung exists", () => {
     const levels = [
       { height: 240 },
       { height: 360 },
@@ -40,8 +40,8 @@ describe("hls helpers", () => {
       { height: 720 },
       { height: 1080 },
     ];
-    expect(pickHlsStartLevel(levels, HLS_START_HEIGHT)).toBe(3);
-    expect(levels[pickHlsStartLevel(levels)].height).toBe(720);
+    expect(pickHlsStartLevel(levels, HLS_START_HEIGHT)).toBe(4);
+    expect(levels[pickHlsStartLevel(levels)].height).toBe(1080);
   });
 
   it("caps at 1080p when that rung exists", () => {
@@ -57,20 +57,18 @@ describe("hls helpers", () => {
 describe("filterMobileHlsMaster", () => {
   const filtered = filterMobileHlsMaster(sampleMaster, STREAM_MASTER);
 
-  it("lists 720p first, then 1080p, then 480p, and drops 240p", () => {
-    expect(filtered).toContain("RESOLUTION=1280x720");
+  it("lists 1080p first, then 720p, and drops 480p and below", () => {
     expect(filtered).toContain("RESOLUTION=1920x1080");
-    expect(filtered).toContain("RESOLUTION=852x480");
+    expect(filtered).toContain("RESOLUTION=1280x720");
+    expect(filtered).not.toContain("RESOLUTION=852x480");
     expect(filtered).not.toContain("426x240");
     expect(filtered).not.toContain("640x360");
 
     const firstVariant = filtered.indexOf("RESOLUTION=");
     const at720 = filtered.indexOf("1280x720");
     const at1080 = filtered.indexOf("1920x1080");
-    const at480 = filtered.indexOf("852x480");
-    expect(at720).toBeGreaterThan(firstVariant - 1);
-    expect(at720).toBeLessThan(at1080);
-    expect(at1080).toBeLessThan(at480);
+    expect(at1080).toBeGreaterThan(firstVariant - 1);
+    expect(at1080).toBeLessThan(at720);
   });
 
   it("strips SCORE so Safari does not prefer 1080/720 as the start rung", () => {
@@ -79,7 +77,7 @@ describe("filterMobileHlsMaster", () => {
 
   it("rewrites relative child playlists to absolute Stream URLs", () => {
     expect(filtered).toContain(
-      `${STREAM_MASTER.replace(/video\.m3u8$/, "stream_480.m3u8")}`,
+      `${STREAM_MASTER.replace(/video\.m3u8$/, "stream_720.m3u8")}`,
     );
     expect(filtered).toContain(
       'URI="https://customer-xyp94kxe4za8b3w1.cloudflarestream.com/f17ef86e3e7fbfa3d2d58dd3bd3d9065/manifest/stream_audio.m3u8"',

@@ -11,7 +11,7 @@ import { pageSeo } from "./page-seo";
 import { pleaseStandByJsonLd, pleaseStandByVideo } from "./please-stand-by";
 import { DEFAULT_OG_IMAGE, SITE_URL, absoluteUrl } from "./site-config";
 import { sitePageList } from "./site-pages";
-import { OPENING_HLS_PROXY_PATH, openingVideo } from "./video-sections";
+import { OPENING_HLS_PROXY_PATH } from "./video-sections";
 
 export const ROUTE_HEAD_START = "<!--route-head:start-->";
 export const ROUTE_HEAD_END = "<!--route-head:end-->";
@@ -252,7 +252,6 @@ export function renderRouteHeadBlock(page: RouteHead): string {
 
   if (page.path === "/") {
     tags.push(
-      `    <link data-rh="true" rel="preload" as="image" href="${escapeAttr(openingVideo.poster)}" fetchpriority="high" />`,
       `    <link data-rh="true" rel="preload" as="fetch" href="${OPENING_HLS_PROXY_PATH}" crossorigin />`,
     );
   }

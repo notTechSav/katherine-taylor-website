@@ -1,6 +1,5 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
-import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
 import { aboutJsonLd } from "@/lib/about-json-ld";
 import { builderHeroAttrs } from "@/lib/builder-image";
@@ -121,7 +120,6 @@ const About = () => {
             </section>
           </main>
         </div>
-        <NextSectionCTA label="Browse Gallery" href="/gallery" />
       </div>
   );
 };

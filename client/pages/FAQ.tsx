@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
-import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
 import { pageSeo } from "@/lib/page-seo";
 
@@ -991,8 +990,6 @@ const FAQPage = () => {
           </div>
         </div>
       </section>
-
-      <NextSectionCTA label="Please Stand By" href="/film/please-stand-by" />
     </main>
   );
 };

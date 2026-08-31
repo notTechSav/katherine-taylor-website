@@ -12,16 +12,16 @@ const openingStream =
 /** Stream master lists 1080p first (SCORE=5). Do not pass clientBandwidthHint. */
 export const OPENING_STREAM_MASTER = `${openingStream}/manifest/video.m3u8`;
 
-/** Same-origin rewrite: 720p first so iOS native HLS is sharp without opening at 1080p. */
+/** Same-origin rewrite: 1080p first so the opening slide starts at the sharpest rung Stream has. */
 export const OPENING_HLS_PROXY_PATH = "/api/opening-hls.m3u8";
 
-export const HLS_START_HEIGHT = 720;
+export const HLS_START_HEIGHT = 1080;
 export const HLS_MAX_HEIGHT = 1080;
 
 export const openingVideo: VideoAsset = {
   src: OPENING_HLS_PROXY_PATH,
   fallbackSrc: OPENING_STREAM_MASTER,
-  poster: `${openingStream}/thumbnails/thumbnail.jpg?time=3s&height=1080`,
+  poster: "/opening-poster-black.svg",
   objectPosition: "center 30%",
 };
 
@@ -36,7 +36,7 @@ function heightOf(level: LevelLike): number {
 }
 
 /**
- * First fragment near 720p. Never pick 240/360/480 when a 720p+ rung exists.
+ * First fragment near 1080p. Never pick 240/360/480 when a 720p+ rung exists.
  */
 export function pickHlsStartLevel(
   levels: LevelLike[],
@@ -134,9 +134,8 @@ function closestInRange(
 }
 
 function selectOpeningVariants(variants: ParsedVariant[]): ParsedVariant[] {
-  const start = closestInRange(variants, HLS_START_HEIGHT, 680, 780);
-  const cap = closestInRange(variants, HLS_MAX_HEIGHT, 1000, 1200);
-  const fallback = closestInRange(variants, 480, 460, 540);
+  const start = closestInRange(variants, HLS_START_HEIGHT, 1000, 1200);
+  const mid = closestInRange(variants, 720, 680, 780);
   const picked: ParsedVariant[] = [];
   const pushUnique = (variant?: ParsedVariant) => {
     if (variant && !picked.some((entry) => entry.uri === variant.uri)) {
@@ -144,8 +143,7 @@ function selectOpeningVariants(variants: ParsedVariant[]): ParsedVariant[] {
     }
   };
   pushUnique(start);
-  pushUnique(cap);
-  pushUnique(fallback);
+  pushUnique(mid);
   if (picked.length > 0) {
     return picked;
   }
@@ -160,9 +158,8 @@ function selectOpeningVariants(variants: ParsedVariant[]): ParsedVariant[] {
 }
 
 /**
- * Keep 720p first, then 1080p, then 480p. Drop 240/360, strip SCORE, and
- * make child URIs absolute. Stream’s default master lists 1080p first with
- * SCORE=5, which is a slow first fragment on phones.
+ * Keep 1080p first, then 720p. Drop 240/360/480, strip SCORE, and
+ * make child URIs absolute. Stream’s highest rung for this UID is 1080p.
  */
 export function filterMobileHlsMaster(manifest: string, masterUrl: string): string {
   const lines = manifest.replace(/\r\n/g, "\n").split("\n");

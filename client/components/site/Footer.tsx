@@ -25,8 +25,6 @@ const Footer = () => {
       className="border-t border-gray-100 bg-luxury-white py-9 focus:outline-none md:py-16"
     >
       <div className="homepage-rail flex max-w-luxury flex-col gap-7 md:gap-14">
-        <WorldPeek />
-
         <div className="flex flex-col gap-7 md:flex-row md:items-start md:justify-between md:gap-16">
           <div className="max-w-[22rem] space-y-2 md:space-y-3">
             <Link
@@ -84,7 +82,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <p className="border-t border-gray-100 pt-5 text-xs font-light tracking-[0.08em] text-gray-500 md:pt-6">
+        <WorldPeek />
+
+        <p className="border-t border-gray-100 pt-5 text-center text-xs font-light tracking-[0.08em] text-gray-500 md:pt-6">
           © {new Date().getFullYear()} Katherine Taylor
         </p>
       </div>

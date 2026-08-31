@@ -3,6 +3,8 @@ import { useLocation } from "react-router-dom";
 
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/site/Footer";
+import { PageSectionNav } from "@/components/site/NextSectionCTA";
+import PageScrollArrows from "@/components/site/PageScrollArrows";
 import { cn } from "@/lib/utils";
 
 const SiteLayout = ({ children }: PropsWithChildren) => {
@@ -26,7 +28,9 @@ const SiteLayout = ({ children }: PropsWithChildren) => {
       >
         {children}
       </div>
+      {!isHomepage && <PageSectionNav />}
       {!isHomepage && <Footer />}
+      <PageScrollArrows />
     </div>
   );
 };

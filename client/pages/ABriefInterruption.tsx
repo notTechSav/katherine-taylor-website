@@ -1,7 +1,6 @@
 import { Volume2, VolumeX } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
 import {
   briefInterruptionJsonLd,
@@ -126,8 +125,6 @@ const ABriefInterruption = () => {
           </a>
         </h2>
       </section>
-
-      <NextSectionCTA label="Gift Etiquette" href="/gifts" />
     </main>
   );
 };

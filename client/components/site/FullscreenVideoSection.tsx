@@ -243,11 +243,11 @@ export default function FullscreenVideoSection({
         }
 
         const hls = new Hls({
-          capLevelToPlayerSize: true,
+          capLevelToPlayerSize: !priority,
           maxDevicePixelRatio: 3,
           testBandwidth: false,
           startLevel: -1,
-          abrEwmaDefaultEstimate: 3_500_000,
+          abrEwmaDefaultEstimate: 5_500_000,
           maxBufferLength: 8,
           maxMaxBufferLength: 16,
           maxBufferSize: 15_000_000,

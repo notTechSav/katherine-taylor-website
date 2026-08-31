@@ -79,8 +79,7 @@ describe("prerender route heads", () => {
     expect(html).toContain('"@type":"Person"');
     expect(html).toContain('"@type":"WebSite"');
     expect(html).toContain('"email":"private@katherinetaylorescort.com"');
-    expect(html).toContain('rel="preload" as="image"');
-    expect(html).toContain("thumbnails/thumbnail.jpg?time=3s&amp;height=1080");
+    expect(html).not.toContain('rel="preload" as="image"');
     expect(html).toContain('rel="preload" as="fetch" href="/api/opening-hls.m3u8"');
   });
 

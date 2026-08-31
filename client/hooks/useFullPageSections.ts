@@ -1,5 +1,11 @@
 import { type RefObject, useEffect } from "react";
 
+import {
+  FULLPAGE_NAVIGATE_EVENT,
+  type FullpageNavigateDetail,
+  getFullpageArrowState,
+} from "@/lib/page-scroll";
+
 const TRANSFORM_MS = 800;
 const FOOTER_MS = 480;
 const OPACITY_MS = 500;
@@ -27,11 +33,14 @@ type GoToOptions = {
 type FullPageChangeDetail = {
   id: string;
   index: number;
+  canGoUp?: boolean;
+  canGoDown?: boolean;
 };
 
 declare global {
   interface WindowEventMap {
     "fullpage:change": CustomEvent<FullPageChangeDetail>;
+    "fullpage:navigate": CustomEvent<FullpageNavigateDetail>;
   }
 }
 
@@ -168,12 +177,24 @@ function applySettledTransforms(sections: HTMLElement[], activeIndex: number) {
   });
 }
 
-function dispatchChange(id: string, index: number) {
-  document.documentElement.dataset.fullpageIndex = String(index);
-  document.documentElement.dataset.fullpageId = id;
+function dispatchChange(
+  id: string,
+  index: number,
+  extras?: { canGoUp: boolean; canGoDown: boolean; footerRevealed: boolean },
+) {
+  const html = document.documentElement;
+  html.dataset.fullpageIndex = String(index);
+  html.dataset.fullpageId = id;
+  if (extras) {
+    html.dataset.fullpageFooterRevealed = extras.footerRevealed
+      ? "true"
+      : "false";
+    html.dataset.fullpageCanGoUp = extras.canGoUp ? "true" : "false";
+    html.dataset.fullpageCanGoDown = extras.canGoDown ? "true" : "false";
+  }
   window.dispatchEvent(
     new CustomEvent<FullPageChangeDetail>("fullpage:change", {
-      detail: { id, index },
+      detail: { id, index, ...extras },
     }),
   );
 }
@@ -276,14 +297,31 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       }
     };
 
+    const emitChange = () => {
+      const section = state.sections[state.index];
+      if (!section) {
+        return;
+      }
+
+      const arrows = getFullpageArrowState({
+        index: state.index,
+        sectionCount: state.sections.length,
+        footerRevealed: state.footerRevealed,
+        hasFooter: Boolean(state.footer),
+      });
+
+      dispatchChange(section.id, state.index, {
+        ...arrows,
+        footerRevealed: state.footerRevealed,
+      });
+    };
+
     applySettledTransforms(state.sections, state.index);
     applyFooterSettled(false);
     if (state.footer) {
       setInert(state.footer, true);
     }
-    if (state.sections[state.index]) {
-      dispatchChange(state.sections[state.index].id, state.index);
-    }
+    emitChange();
 
     const clearPointerCooling = () => {
       state.pointerCooling = false;
@@ -334,7 +372,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       applySettledTransforms(state.sections, state.index);
       applyFooterSettled(state.footerRevealed);
       syncHash(toEl.id);
-      dispatchChange(toEl.id, state.index);
+      emitChange();
       if (options?.fromKeyboard) {
         if (state.footerRevealed && state.footer) {
           state.footer.focus({ preventScroll: true });
@@ -384,6 +422,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
         applyFooterSettled(revealed);
         last.style.pointerEvents = "auto";
         state.locked = false;
+        emitChange();
         if (options?.fromKeyboard && revealed) {
           footer.focus({ preventScroll: true });
         }
@@ -443,6 +482,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
         applyFooterSettled(revealed);
         last.style.pointerEvents = "auto";
         state.locked = false;
+        emitChange();
         if (options?.fromKeyboard && revealed) {
           footer.focus({ preventScroll: true });
         } else if (options?.fromKeyboard && !revealed) {
@@ -459,6 +499,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
         applyFooterSettled(revealed);
         last.style.pointerEvents = "auto";
         state.locked = false;
+        emitChange();
       }
     };
 
@@ -581,6 +622,19 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
           finishMove(toEl, nextIndex, options);
         }
       }
+    };
+
+    const onNavigate = (event: WindowEventMap["fullpage:navigate"]) => {
+      if (isMenuOpen()) {
+        return;
+      }
+
+      const delta = event.detail?.delta;
+      if (delta !== 1 && delta !== -1) {
+        return;
+      }
+
+      goBy(delta);
     };
 
     const goBy = (delta: number, options?: GoToOptions) => {
@@ -812,9 +866,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       }
       applySettledTransforms(state.sections, state.index);
       applyFooterSettled(state.footerRevealed);
-      if (state.sections[state.index]) {
-        dispatchChange(state.sections[state.index].id, state.index);
-      }
+      emitChange();
     };
 
     const onResize = () => {
@@ -835,6 +887,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
     root.addEventListener("touchmove", onTouchMove, { passive: false });
     root.addEventListener("touchend", onTouchEnd, { passive: true });
     window.addEventListener("keydown", onKeyDown, true);
+    window.addEventListener(FULLPAGE_NAVIGATE_EVENT, onNavigate);
     window.addEventListener("hashchange", goToHash);
     document.addEventListener("click", onClick);
     window.addEventListener("resize", onResize);
@@ -853,11 +906,14 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       delete html.dataset.fullpageIndex;
       delete html.dataset.fullpageId;
       delete html.dataset.fullpageFooterRevealed;
+      delete html.dataset.fullpageCanGoUp;
+      delete html.dataset.fullpageCanGoDown;
       root.removeEventListener("wheel", onWheel);
       root.removeEventListener("touchstart", onTouchStart);
       root.removeEventListener("touchmove", onTouchMove);
       root.removeEventListener("touchend", onTouchEnd);
       window.removeEventListener("keydown", onKeyDown, true);
+      window.removeEventListener(FULLPAGE_NAVIGATE_EVENT, onNavigate);
       window.removeEventListener("hashchange", goToHash);
       document.removeEventListener("click", onClick);
       window.removeEventListener("resize", onResize);

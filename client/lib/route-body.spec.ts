@@ -274,6 +274,49 @@ describe("prerender route bodies", () => {
     }
   });
 
+  it("includes discreet page-scroll arrows on every indexable route", () => {
+    for (const { path: routePath } of requiredRoutes) {
+      const html = renderRoute(routePath);
+      expect(html, routePath).toMatch(/aria-label="Scroll page"/);
+      expect(html, routePath).toContain('aria-label="Scroll up"');
+      expect(html, routePath).toContain('aria-label="Scroll down"');
+    }
+  });
+
+  it("renders a single-row page nav on inner routes and omits it on home", () => {
+    const pageNav = (html: string) =>
+      html.match(/<nav\b[^>]*aria-label="Page"[\s\S]*?<\/nav>/)?.[0];
+
+    const home = renderRoute("/");
+    expect(pageNav(home)).toBeUndefined();
+    expect(home).toMatch(/>Next</);
+    expect(home).toContain("About Katherine");
+
+    const about = pageNav(renderRoute("/about"));
+    expect(about).toBeTruthy();
+    expect(about).toContain('href="/"');
+    expect(about).toContain(">Home<");
+    expect(about).toContain('href="/gallery"');
+    expect(about).toContain(">Browse Gallery<");
+    expect(about).not.toMatch(/>Back</);
+    expect(about).not.toMatch(/>Next</);
+
+    const inquire = pageNav(renderRoute("/inquire"));
+    expect(inquire).toBeTruthy();
+    expect(inquire).toContain('href="/film/please-stand-by"');
+    expect(inquire).toContain(">Please Stand By<");
+    expect(inquire).not.toContain("/gallery");
+    expect(inquire).not.toMatch(/>Back</);
+    expect(inquire).not.toMatch(/>Next</);
+
+    const article = pageNav(renderRoute("/journal/memoirs-in-the-city"));
+    expect(article).toBeTruthy();
+    expect(article).toContain('href="/journal"');
+    expect(article).toContain(">The Journal<");
+    expect(article).not.toMatch(/>Back</);
+    expect(article).not.toMatch(/>Next</);
+  });
+
   it("does not add a main landmark to the 404 page", () => {
     const html = applyRouteBody(
       applyRouteHead(indexHtml, notFoundHead),

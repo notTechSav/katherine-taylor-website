@@ -2,7 +2,6 @@
 
 import JournalGrid from "@/components/journal/JournalGrid";
 import JournalHero from "@/components/journal/JournalHero";
-import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
 import { essays, heroImage, journalDisplay } from "@/lib/journal-content";
 import {
@@ -33,7 +32,6 @@ export const JournalIndexContent = () => (
       microline={journalDisplay.microline}
       ctaLabel={journalDisplay.ctaLabel}
     />
-    <NextSectionCTA label="Browse Gallery" href="/gallery" />
   </main>
 );
 

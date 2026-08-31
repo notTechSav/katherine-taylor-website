@@ -2,14 +2,20 @@
 
 import { useState, useCallback, type ReactNode } from "react";
 import GiftsGuidance from "@/pages/GiftsGuidance";
-import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
-import { builderHeroAttrs } from "@/lib/builder-image";
 import { pageSeo } from "@/lib/page-seo";
 
-const GIFTS_HERO_IMAGE =
-  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fe8959b4139fc4dd9a3ce4786c1b4e8dc?format=webp&width=1600";
-const giftsHero = builderHeroAttrs(GIFTS_HERO_IMAGE);
+const GIFTS_HERO_VERSION = "2";
+const giftsHero = {
+  src: `/gifts-hero.webp?v=${GIFTS_HERO_VERSION}`,
+  srcSet: [
+    `/gifts-hero-800w.webp?v=${GIFTS_HERO_VERSION} 800w`,
+    `/gifts-hero-1200w.webp?v=${GIFTS_HERO_VERSION} 1200w`,
+    `/gifts-hero-1600w.webp?v=${GIFTS_HERO_VERSION} 1600w`,
+    `/gifts-hero.webp?v=${GIFTS_HERO_VERSION} 2400w`,
+  ].join(", "),
+  sizes: "100vw",
+};
 
 const Gifts = ({ children }: { children?: ReactNode }) => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -27,13 +33,13 @@ const Gifts = ({ children }: { children?: ReactNode }) => {
       />
       {/* Hero Section - matching journal's hero exactly */}
       <section className="relative bg-luxury-white">
-        <figure className="relative h-[48vh] min-h-[280px] w-full overflow-hidden sm:h-[52vh]">
+        <figure className="relative flex min-h-[68vh] w-full items-start justify-center overflow-hidden bg-[#2c241c] pt-4 sm:min-h-[76vh] sm:pt-6">
           <img
             src={giftsHero.src}
             srcSet={giftsHero.srcSet}
             sizes={giftsHero.sizes}
-            alt="Gifts for Katherine Taylor escort — San Francisco and Sacramento"
-            className="h-full w-full object-cover"
+            alt="Open tan luxury cigar box with gold-banded cigars in warm window light"
+            className="max-h-[56vh] w-auto max-w-[min(100%,32rem)] object-contain object-top sm:max-h-[62vh] sm:max-w-[min(80%,40rem)]"
             loading="eager"
             fetchPriority="high"
           />
@@ -121,7 +127,6 @@ const Gifts = ({ children }: { children?: ReactNode }) => {
         </div>
       </section>
 
-      <NextSectionCTA label="Frequently Asked Questions" href="/faq" />
       {children}
     </main>
   );

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { ChevronDown } from "lucide-react";
 
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
-import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
 import { pageSeo } from "@/lib/page-seo";
 
@@ -387,8 +386,6 @@ const RatesPage = () => {
           </p>
         </div>
       </section>
-
-      <NextSectionCTA label="Browse Gifts" href="/gifts" />
     </main>
   );
 };
