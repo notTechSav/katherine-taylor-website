@@ -12,6 +12,7 @@ import {
   essayMetadata,
   formatJournalPublishedDate,
 } from "@/lib/journal-content";
+import { journalEssayJsonLd } from "@/lib/journal-json-ld";
 import { absoluteUrl } from "@/lib/site-config";
 import { builderHeroAttrs } from "@/lib/builder-image";
 import NotFound from "@/pages/NotFound";
@@ -56,27 +57,7 @@ const JournalArticle = () => {
         type="article"
         geoRegion={essay.seo?.geoRegion}
         geoPlacename={essay.seo?.geoPlacename}
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: essay.title,
-          description: seoDescription,
-          author: {
-            "@type": "Person",
-            name: "Katherine Taylor",
-          },
-          publisher: {
-            "@type": "Person",
-            name: "Katherine Taylor",
-          },
-          datePublished: essay.publishedDate,
-          mainEntityOfPage: {
-            "@type": "WebPage",
-            "@id": absoluteUrl(`/journal/${essay.slug}`),
-          },
-          keywords: essay.seo?.keywords ?? essayMetadata.keywords,
-          image: absoluteUrl(heroImage.src),
-        }}
+        jsonLd={journalEssayJsonLd(essay, seoDescription)}
       />
       <section className="relative overflow-hidden bg-luxury-white">
         <div className="relative h-[48vh] min-h-[260px] w-full sm:h-[52vh]">

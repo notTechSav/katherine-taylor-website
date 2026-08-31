@@ -3,6 +3,7 @@
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import SeoHead from "@/components/site/SeoHead";
 import SacramentoLongVersion from "@/pages/SacramentoLongVersion";
+import { katherineTaylorArticleAuthor } from "@/lib/about-json-ld";
 import { pageSeo } from "@/lib/page-seo";
 import { absoluteUrl } from "@/lib/site-config";
 
@@ -17,8 +18,7 @@ const sacramentoJsonLd = {
   headline: "Escorts Near Me | The High-End Edition",
   description: pageSeo.sacramento.description,
   author: {
-    "@type": "Person",
-    name: "Katherine Taylor",
+    ...katherineTaylorArticleAuthor,
     jobTitle: "Luxury Companion",
   },
   about: ["Sacramento escort", "escorts near me", "California escorts"],

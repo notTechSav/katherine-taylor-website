@@ -13,6 +13,10 @@ export const homeJsonLd = [
       "High-end escort offering private companionship in San Francisco, Sacramento, and the Bay Area.",
     url: `${SITE_URL}/`,
     email: CONTACT_EMAIL,
+    sameAs: [
+      "https://x.com/TheKatherineExp",
+      "https://www.instagram.com/katherineunscripted/",
+    ],
   },
   {
     "@context": "https://schema.org",

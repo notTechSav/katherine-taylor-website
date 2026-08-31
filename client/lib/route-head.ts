@@ -1,8 +1,14 @@
+import { aboutJsonLd, katherineTaylorArticleAuthor } from "./about-json-ld";
 import { briefInterruptionJsonLd, briefInterruptionVideo } from "./brief-interruption";
-import { pleaseStandByJsonLd, pleaseStandByVideo } from "./please-stand-by";
 import { homeJsonLd } from "./home-json-ld";
 import { essays, essayMetadata, heroImage } from "./journal-content";
+import {
+  journalEssayJsonLd,
+  journalIndexBreadcrumbJsonLd,
+  journalIndexJsonLd,
+} from "./journal-json-ld";
 import { pageSeo } from "./page-seo";
+import { pleaseStandByJsonLd, pleaseStandByVideo } from "./please-stand-by";
 import { DEFAULT_OG_IMAGE, SITE_URL, absoluteUrl } from "./site-config";
 import { sitePageList } from "./site-pages";
 import { OPENING_HLS_PROXY_PATH, openingVideo } from "./video-sections";
@@ -35,25 +41,11 @@ const sacramentoJsonLd: Record<string, unknown> = {
   headline: "Escorts Near Me | The High-End Edition",
   description: pageSeo.sacramento.description,
   author: {
-    "@type": "Person",
-    name: "Katherine Taylor",
+    ...katherineTaylorArticleAuthor,
     jobTitle: "Luxury Companion",
   },
   about: ["Sacramento escort", "escorts near me", "California escorts"],
   url: absoluteUrl("/sacramento-escorts"),
-};
-
-const journalIndexJsonLd: Record<string, unknown> = {
-  "@context": "https://schema.org",
-  "@type": "Blog",
-  name: "The High-End Edition",
-  description: pageSeo.journal.description,
-  url: absoluteUrl("/journal"),
-  image: absoluteUrl(heroImage.src),
-  author: {
-    "@type": "Person",
-    name: "Katherine Taylor",
-  },
 };
 
 const pageSeoHeads: Record<string, Partial<RouteHead>> = {
@@ -61,7 +53,9 @@ const pageSeoHeads: Record<string, Partial<RouteHead>> = {
     jsonLd: [...homeJsonLd] as Record<string, unknown>[],
     geoRegion: "US-CA",
   },
-  "/about": {},
+  "/about": {
+    jsonLd: [...aboutJsonLd] as Record<string, unknown>[],
+  },
   "/rates": {},
   "/gallery": {},
   "/film/a-brief-interruption": {
@@ -80,7 +74,7 @@ const pageSeoHeads: Record<string, Partial<RouteHead>> = {
   "/journal": {
     image: absoluteUrl(heroImage.src),
     imageAlt: heroImage.alt,
-    jsonLd: [journalIndexJsonLd],
+    jsonLd: [journalIndexJsonLd, journalIndexBreadcrumbJsonLd],
   },
   "/sacramento-escorts": {
     ogType: "article",
@@ -162,29 +156,7 @@ function essayHead(slug: string): RouteHead | null {
     imageAlt: heroImage.alt,
     geoRegion: essay.seo?.geoRegion,
     geoPlacename: essay.seo?.geoPlacename,
-    jsonLd: [
-      {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        headline: essay.title,
-        description,
-        author: {
-          "@type": "Person",
-          name: "Katherine Taylor",
-        },
-        publisher: {
-          "@type": "Person",
-          name: "Katherine Taylor",
-        },
-        datePublished: essay.publishedDate,
-        mainEntityOfPage: {
-          "@type": "WebPage",
-          "@id": absoluteUrl(path),
-        },
-        keywords: essay.seo?.keywords ?? essayMetadata.keywords,
-        image: absoluteUrl(heroImage.src),
-      },
-    ],
+    jsonLd: journalEssayJsonLd(essay, description),
   };
 }
 

@@ -2,6 +2,7 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import NextSectionCTA from "@/components/site/NextSectionCTA";
 import SeoHead from "@/components/site/SeoHead";
+import { aboutJsonLd } from "@/lib/about-json-ld";
 import { builderHeroAttrs } from "@/lib/builder-image";
 import { pageSeo } from "@/lib/page-seo";
 
@@ -18,6 +19,7 @@ const About = () => {
           title={pageSeo.about.title}
           description={pageSeo.about.description}
           path={pageSeo.about.path}
+          jsonLd={[...aboutJsonLd] as Record<string, unknown>[]}
         />
         <PageHeroOverlay
           title="About Katherine Taylor"

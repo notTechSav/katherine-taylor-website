@@ -9,6 +9,7 @@ import {
   notFoundHead,
   prerenderOutputPath,
 } from "./route-head";
+import { DEFAULT_OG_IMAGE } from "./site-config";
 import { sitePageList } from "./site-pages";
 
 const indexHtml = readFileSync(
@@ -210,5 +211,196 @@ describe("prerender route heads", () => {
     expect(html).not.toContain('rel="canonical"');
     expect(html).not.toContain('property="og:url"');
     expect(html).toContain(pageSeo.notFound.title);
+  });
+});
+
+const FORBIDDEN_SCHEMA_TYPES = new Set([
+  "LocalBusiness",
+  "Organization",
+  "FAQPage",
+  "Service",
+  "Product",
+  "Offer",
+  "Review",
+  "AggregateRating",
+]);
+
+function parseJsonLd(html: string): Record<string, unknown>[] {
+  const pattern =
+    /<script data-rh="true" type="application\/ld\+json">([\s\S]*?)<\/script>/g;
+  return [...html.matchAll(pattern)].map((match) => {
+    const raw = match[1];
+    if (!raw) throw new Error("empty JSON-LD script");
+    return JSON.parse(raw) as Record<string, unknown>;
+  });
+}
+
+function typesOf(nodes: Record<string, unknown>[]): string[] {
+  return nodes.map((node) => {
+    const type = node["@type"];
+    if (typeof type !== "string") {
+      throw new Error("JSON-LD node is missing @type");
+    }
+    return type;
+  });
+}
+
+function routeHtml(path: string): string {
+  const route = getPrerenderRoutes().find((entry) => entry.path === path);
+  if (!route) throw new Error(`missing route ${path}`);
+  return applyRouteHead(indexHtml, route);
+}
+
+describe("structured-data graph", () => {
+
+  it("keeps homepage Person + WebSite, including sameAs, without new types", () => {
+    const nodes = parseJsonLd(routeHtml("/"));
+    expect(typesOf(nodes)).toEqual(["Person", "WebSite"]);
+    const person = nodes[0] as {
+      sameAs: string[];
+      url: string;
+    };
+    expect(person.sameAs).toEqual([
+      "https://x.com/TheKatherineExp",
+      "https://www.instagram.com/katherineunscripted/",
+    ]);
+    expect(person.url).toBe("https://katherinetaylorescort.com/");
+  });
+
+  it("adds a single ProfilePage to /about whose mainEntity is Katherine Taylor", () => {
+    const nodes = parseJsonLd(routeHtml("/about"));
+    expect(typesOf(nodes)).toEqual(["ProfilePage"]);
+    const profile = nodes[0] as {
+      url: string;
+      mainEntity: {
+        "@type": string;
+        name: string;
+        alternateName: string;
+        jobTitle: string;
+        url: string;
+        image: string;
+        sameAs: string[];
+      };
+    };
+    expect(profile.url).toBe("https://katherinetaylorescort.com/about");
+    expect(profile.mainEntity["@type"]).toBe("Person");
+    expect(profile.mainEntity.name).toBe("Katherine Taylor");
+    expect(profile.mainEntity.alternateName).toBe("Katherine Taylor Escort");
+    expect(profile.mainEntity.jobTitle).toBe("Luxury Companion");
+    expect(profile.mainEntity.url).toBe(
+      "https://katherinetaylorescort.com/about",
+    );
+    expect(profile.mainEntity.image).toBe(DEFAULT_OG_IMAGE);
+    expect(profile.mainEntity.sameAs).toEqual([
+      "https://x.com/TheKatherineExp",
+      "https://www.instagram.com/katherineunscripted/",
+    ]);
+    expect(profile.mainEntity).not.toHaveProperty("email");
+    expect(JSON.stringify(profile)).not.toContain("interactionStatistic");
+    expect(JSON.stringify(profile)).not.toContain("dateCreated");
+  });
+
+  it("adds BreadcrumbList beside the existing Blog on /journal", () => {
+    const nodes = parseJsonLd(routeHtml("/journal"));
+    expect(typesOf(nodes)).toEqual(["Blog", "BreadcrumbList"]);
+    const blog = nodes[0] as { name: string };
+    expect(blog.name).toBe("The High-End Edition");
+    const crumbs = nodes[1] as {
+      itemListElement: Array<{
+        position: number;
+        name: string;
+        item: string;
+      }>;
+    };
+    expect(crumbs.itemListElement).toEqual([
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: "https://katherinetaylorescort.com/",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Journal",
+        item: "https://katherinetaylorescort.com/journal",
+      },
+    ]);
+  });
+
+  it("keeps one Article per essay, points author.url at /about, and adds breadcrumbs", () => {
+    for (const essay of essays) {
+      const nodes = parseJsonLd(routeHtml(`/journal/${essay.slug}`));
+      expect(typesOf(nodes), essay.slug).toEqual(["Article", "BreadcrumbList"]);
+      const article = nodes[0] as {
+        headline: string;
+        author: { "@type": string; name: string; url: string };
+      };
+      expect(article.headline).toBe(essay.title);
+      expect(article.author).toEqual({
+        "@type": "Person",
+        name: "Katherine Taylor",
+        url: "https://katherinetaylorescort.com/about",
+      });
+      expect(article.author).not.toHaveProperty("sameAs");
+      const crumbs = nodes[1] as {
+        itemListElement: Array<{ name: string; item: string }>;
+      };
+      expect(crumbs.itemListElement.map((item) => item.name)).toEqual([
+        "Home",
+        "Journal",
+        essay.title,
+      ]);
+      expect(crumbs.itemListElement[2]?.item).toBe(
+        `https://katherinetaylorescort.com/journal/${essay.slug}`,
+      );
+    }
+  });
+
+  it("points the Sacramento Article author at /about without adding a new schema type", () => {
+    const nodes = parseJsonLd(routeHtml("/sacramento-escorts"));
+    expect(typesOf(nodes)).toEqual(["Article"]);
+    const article = nodes[0] as {
+      author: { url: string; name: string; jobTitle: string };
+    };
+    expect(article.author.name).toBe("Katherine Taylor");
+    expect(article.author.jobTitle).toBe("Luxury Companion");
+    expect(article.author.url).toBe("https://katherinetaylorescort.com/about");
+  });
+
+  it("leaves film VideoObject graphs unchanged and does not add ProfilePage or breadcrumbs elsewhere", () => {
+    const breadcrumbPaths = new Set([
+      "/journal",
+      ...essays.map((essay) => `/journal/${essay.slug}`),
+    ]);
+
+    for (const route of getPrerenderRoutes()) {
+      const nodes = parseJsonLd(applyRouteHead(indexHtml, route));
+      const types = typesOf(nodes);
+      expect(types.filter((type) => type === "ProfilePage")).toHaveLength(
+        route.path === "/about" ? 1 : 0,
+      );
+      expect(types.filter((type) => type === "BreadcrumbList")).toHaveLength(
+        breadcrumbPaths.has(route.path) ? 1 : 0,
+      );
+      expect(types.filter((type) => type === "Article")).toHaveLength(
+        route.path === "/sacramento-escorts" ||
+          route.path.startsWith("/journal/")
+          ? 1
+          : 0,
+      );
+      for (const type of types) {
+        expect(FORBIDDEN_SCHEMA_TYPES.has(type), `${route.path} ${type}`).toBe(
+          false,
+        );
+      }
+    }
+
+    expect(typesOf(parseJsonLd(routeHtml("/film/a-brief-interruption")))).toEqual(
+      ["VideoObject"],
+    );
+    expect(typesOf(parseJsonLd(routeHtml("/film/please-stand-by")))).toEqual([
+      "VideoObject",
+    ]);
   });
 });
