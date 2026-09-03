@@ -31,122 +31,110 @@ const Index = () => {
         jsonLd={[...homeJsonLd] as Record<string, unknown>[]}
       />
       <FullPageSections>
-        <section
-          id="opening-video"
-          data-fullpage-section
-          className={sectionClass()}
-          aria-label="Opening Video"
-        >
-          <OpeningVideoSection />
-        </section>
+      <section
+        id="opening-video"
+        data-fullpage-section
+        className={sectionClass()}
+        aria-label="Opening Video"
+      >
+        <OpeningVideoSection />
+      </section>
 
-        <section
-          id="about-slide"
-          data-fullpage-section
-          className={sectionClass("bg-[#fdfaf6] md:hidden")}
-          aria-label="About Section"
-        >
-          <FullBleedPhoto src="/about-slide-mobile.webp?v=hires3" />
-          <AboutSection />
-        </section>
+      <section
+        id="about-slide"
+        data-fullpage-section
+        className={sectionClass("bg-[#fdfaf6] md:hidden")}
+        aria-label="About Section"
+      >
+        <FullBleedPhoto src="/about-slide-mobile.webp?v=hires3" />
+        <AboutSection />
+      </section>
 
-        <section
-          id="gallery-slide"
-          data-fullpage-section
-          className={sectionClass("bg-[#fdfaf6] md:hidden")}
-          aria-label="Gallery Section"
-        >
-          <FullBleedPhoto src="/katherinewindow.webp?v=hires3" />
-          <GallerySection />
-        </section>
+      <section
+        id="gallery-slide"
+        data-fullpage-section
+        className={sectionClass("bg-[#fdfaf6] md:hidden")}
+        aria-label="Gallery Section"
+      >
+        <FullBleedPhoto src="/katherinewindow.webp?v=hires3" />
+        <GallerySection />
+      </section>
 
-        <section
-          id="about-gallery-combined"
-          data-fullpage-section
-          className={sectionClass("hidden bg-[#fdfaf6] md:flex")}
-          aria-label="About and Gallery"
-        >
-          <AboutGalleryCombinedSection />
-        </section>
+      <section
+        id="about-gallery-combined"
+        data-fullpage-section
+        className={sectionClass("hidden bg-[#fdfaf6] md:flex")}
+        aria-label="About and Gallery"
+      >
+        <AboutGalleryCombinedSection />
+      </section>
 
-        <section
-          id="rates-video"
-          data-fullpage-section
-          className={sectionClass()}
-          aria-label="Rates Video"
-        >
-          <RatesVideoSection />
-        </section>
+      <section
+        id="rates-video"
+        data-fullpage-section
+        className={sectionClass()}
+        aria-label="Rates Video"
+      >
+        <RatesVideoSection />
+      </section>
 
-        <section
-          id="gifts"
-          data-fullpage-section
-          className={sectionClass("bg-luxury-cream")}
-          aria-label="Gifts Section"
-        >
-          <FullBleedPhoto src="/gifts-slide.webp?v=hires3" />
-          <GiftsSection />
-        </section>
+      <section
+        id="gifts"
+        data-fullpage-section
+        className={sectionClass("bg-luxury-cream")}
+        aria-label="Gifts Section"
+      >
+        <FullBleedPhoto src="/gifts-slide.webp?v=hires3" />
+        <GiftsSection />
+      </section>
 
-        <section
-          id="blog-teaser"
-          data-fullpage-section
-          className={sectionClass("bg-luxury-cream")}
-          aria-label="Blog Teaser"
-        >
-          <FullBleedPhoto
-            src="/journal-slide.webp?v=hires6"
-            width={1366}
-            height={2048}
-          />
-          <BlogTeaserSection />
-        </section>
+      <section
+        id="blog-teaser"
+        data-fullpage-section
+        className={sectionClass("bg-luxury-cream")}
+        aria-label="Blog Teaser"
+      >
+        <FullBleedPhoto src="/journal-slide.webp?v=hires5" />
+        <BlogTeaserSection />
+      </section>
 
-        <section
-          id="faq-teaser"
-          data-fullpage-section
-          className={sectionClass("bg-luxury-cream")}
-          aria-label="FAQ Teaser"
-        >
-          <FullBleedPhoto
-            src="/faq-slide.webp?v=hires6"
-            width={1024}
-            height={1536}
-          />
-          <FAQTeaserSection />
-        </section>
+      <section
+        id="faq-teaser"
+        data-fullpage-section
+        className={sectionClass("bg-luxury-cream")}
+        aria-label="FAQ Teaser"
+      >
+        <FullBleedPhoto src="/faq-slide.webp?v=hires5" />
+        <FAQTeaserSection />
+      </section>
 
-        <section
-          id="sacramento"
-          data-fullpage-section
-          className={sectionClass("bg-luxury-cream")}
-          aria-label="Sacramento Location"
-        >
-          <FullBleedPhoto
-            src="/sacramento-slide.webp?v=hires2"
-            width={1125}
-            height={1536}
-          />
-          <SacramentoSection />
-        </section>
+      <section
+        id="sacramento"
+        data-fullpage-section
+        className={sectionClass("bg-luxury-cream")}
+        aria-label="Sacramento Location"
+      >
+        <FullBleedPhoto src="/sacramento-slide.webp?v=hires1" />
+        <SacramentoSection />
+      </section>
 
-        <section
-          id="closing-video"
-          data-fullpage-section
-          className={sectionClass()}
-          aria-label="Inquiry Video - Limited Availability"
-        >
-          <ClosingVideoSection />
-        </section>
-        <div
-          data-fullpage-footer
-          tabIndex={-1}
-          className="bg-luxury-white focus:outline-none"
-        >
-          <NextSectionCTA label="About Katherine" href="/about" />
-          <Footer />
-        </div>
-      </FullPageSections>
+      <section
+        id="closing-video"
+        data-fullpage-section
+        className={sectionClass()}
+        aria-label="Inquiry Video - Limited Availability"
+      >
+        <ClosingVideoSection />
+      </section>
+      <div
+        data-fullpage-footer
+        tabIndex={-1}
+        className="bg-luxury-white focus:outline-none"
+      >
+        <NextSectionCTA label="About Katherine" href="/about" />
+        <Footer />
+      </div>
+    </FullPageSections>
     </>
   );
 };

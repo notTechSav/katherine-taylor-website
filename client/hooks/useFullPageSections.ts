@@ -6,14 +6,16 @@ import {
   getFullpageArrowState,
 } from "@/lib/page-scroll";
 
-const TRANSFORM_MS = 780;
-const FOOTER_MS = 560;
+const TRANSFORM_MS = 800;
+const FOOTER_MS = 480;
+const OPACITY_MS = 500;
 const REDUCED_MOTION_MS = 120;
-const TRANSFORM_EASE = "cubic-bezier(0.4, 0, 0.2, 1)";
-const OUTGOING_PARALLAX = "translate3d(0, -6%, 0)";
+const TRANSFORM_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+const OPACITY_EASE = "cubic-bezier(0.25, 0.1, 0.25, 1)";
+const INCOMING_OPACITY = 0.96;
 const WHEEL_THRESHOLD = 100;
-const WHEEL_IDLE_MS = 140;
-const WHEEL_COOLDOWN_MS = 120;
+const WHEEL_IDLE_MS = 180;
+const WHEEL_COOLDOWN_MS = 320;
 const SWIPE_THRESHOLD = 48;
 
 const SECTION_ALIASES: Record<string, string[]> = {
@@ -69,9 +71,7 @@ function isEditableTarget(target: EventTarget | null) {
     return true;
   }
 
-  return Boolean(
-    target.closest("input, textarea, select, [contenteditable='true']"),
-  );
+  return Boolean(target.closest("input, textarea, select, [contenteditable='true']"));
 }
 
 function isMenuOpen() {
@@ -361,11 +361,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       }, WHEEL_COOLDOWN_MS);
     };
 
-    const finishMove = (
-      toEl: HTMLElement,
-      nextIndex: number,
-      options?: GoToOptions,
-    ) => {
+    const finishMove = (toEl: HTMLElement, nextIndex: number, options?: GoToOptions) => {
       state.animations.forEach((animation) => {
         animation.commitStyles();
         animation.cancel();
@@ -395,19 +391,12 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
         beginPointerCooldown();
       }
 
-      if (
-        queuedIndex !== null &&
-        queuedIndex !== state.index &&
-        !queuedOptions?.fromPointer
-      ) {
+      if (queuedIndex !== null && queuedIndex !== state.index && !queuedOptions?.fromPointer) {
         void goTo(queuedIndex, queuedOptions);
       }
     };
 
-    const setFooterRevealed = async (
-      revealed: boolean,
-      options?: GoToOptions,
-    ) => {
+    const setFooterRevealed = async (revealed: boolean, options?: GoToOptions) => {
       const footer = state.footer;
       const last = state.sections[state.sections.length - 1];
       if (!footer || !last || revealed === state.footerRevealed) {
@@ -483,9 +472,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
         }
 
         await Promise.all(
-          state.animations.map((animation) =>
-            animation.finished.catch(() => undefined),
-          ),
+          state.animations.map((animation) => animation.finished.catch(() => undefined)),
         );
         if (!alive) {
           return;
@@ -575,11 +562,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
             { transform: "translate3d(0, 0, 0)", opacity: 0 },
             { transform: "translate3d(0, 0, 0)", opacity: 1 },
           ],
-          {
-            duration: options?.instant ? 1 : REDUCED_MOTION_MS,
-            easing: "linear",
-            fill: "forwards",
-          },
+          { duration: options?.instant ? 1 : REDUCED_MOTION_MS, easing: "linear", fill: "forwards" },
         );
         state.animations = [fade];
         await fade.finished.catch(() => undefined);
@@ -595,33 +578,24 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
           fromEl.style.zIndex = "1";
           toEl.style.zIndex = "2";
           toEl.style.transform = "translate3d(0, 100%, 0)";
+          toEl.style.opacity = String(INCOMING_OPACITY);
           state.animations = [
-            fromEl.animate(
-              [
-                { transform: "translate3d(0, 0, 0)" },
-                { transform: OUTGOING_PARALLAX },
-              ],
-              {
-                duration: TRANSFORM_MS,
-                easing: TRANSFORM_EASE,
-                fill: "forwards",
-              },
-            ),
             toEl.animate(
               [
                 { transform: "translate3d(0, 100%, 0)" },
                 { transform: "translate3d(0, 0, 0)" },
               ],
-              {
-                duration: TRANSFORM_MS,
-                easing: TRANSFORM_EASE,
-                fill: "forwards",
-              },
+              { duration: TRANSFORM_MS, easing: TRANSFORM_EASE, fill: "forwards" },
+            ),
+            toEl.animate(
+              [{ opacity: INCOMING_OPACITY }, { opacity: 1 }],
+              { duration: OPACITY_MS, easing: OPACITY_EASE, fill: "forwards" },
             ),
           ];
         } else {
           toEl.style.zIndex = "1";
-          toEl.style.transform = OUTGOING_PARALLAX;
+          toEl.style.transform = "translate3d(0, 0, 0)";
+          toEl.style.opacity = String(INCOMING_OPACITY);
           fromEl.style.zIndex = "2";
           state.animations = [
             fromEl.animate(
@@ -629,31 +603,16 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
                 { transform: "translate3d(0, 0, 0)" },
                 { transform: "translate3d(0, 100%, 0)" },
               ],
-              {
-                duration: TRANSFORM_MS,
-                easing: TRANSFORM_EASE,
-                fill: "forwards",
-              },
+              { duration: TRANSFORM_MS, easing: TRANSFORM_EASE, fill: "forwards" },
             ),
             toEl.animate(
-              [
-                { transform: OUTGOING_PARALLAX },
-                { transform: "translate3d(0, 0, 0)" },
-              ],
-              {
-                duration: TRANSFORM_MS,
-                easing: TRANSFORM_EASE,
-                fill: "forwards",
-              },
+              [{ opacity: INCOMING_OPACITY }, { opacity: 1 }],
+              { duration: OPACITY_MS, easing: OPACITY_EASE, fill: "forwards" },
             ),
           ];
         }
 
-        await Promise.all(
-          state.animations.map((animation) =>
-            animation.finished.catch(() => undefined),
-          ),
-        );
+        await Promise.all(state.animations.map((animation) => animation.finished.catch(() => undefined)));
         if (!alive) {
           return;
         }
@@ -685,12 +644,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
 
       const lastIndex = state.sections.length - 1;
 
-      if (
-        state.footer &&
-        delta > 0 &&
-        state.index === lastIndex &&
-        !state.footerRevealed
-      ) {
+      if (state.footer && delta > 0 && state.index === lastIndex && !state.footerRevealed) {
         void setFooterRevealed(true, options);
         return;
       }
@@ -800,12 +754,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
     };
 
     const onTouchEnd = (event: TouchEvent) => {
-      if (
-        isMenuOpen() ||
-        state.locked ||
-        state.pointerCooling ||
-        !event.changedTouches.length
-      ) {
+      if (isMenuOpen() || state.locked || state.pointerCooling || !event.changedTouches.length) {
         return;
       }
 
@@ -822,10 +771,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
         return;
       }
 
-      if (
-        Math.abs(deltaY) < SWIPE_THRESHOLD ||
-        Math.abs(deltaY) < Math.abs(deltaX)
-      ) {
+      if (Math.abs(deltaY) < SWIPE_THRESHOLD || Math.abs(deltaY) < Math.abs(deltaX)) {
         return;
       }
 
@@ -911,10 +857,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
         ? resolveSectionIndex(state.sections, previousId)
         : 0;
       if (nextIndex < 0) {
-        nextIndex = Math.min(
-          state.index,
-          Math.max(state.sections.length - 1, 0),
-        );
+        nextIndex = Math.min(state.index, Math.max(state.sections.length - 1, 0));
       }
       state.index = nextIndex;
       state.targetIndex = nextIndex;
