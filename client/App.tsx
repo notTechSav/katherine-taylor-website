@@ -2,11 +2,7 @@ import { HelmetProvider } from "react-helmet-async";
 import "./global.css";
 
 import "./setup/patchViteOverlay";
-import { Toaster } from "@/components/ui/toaster";
 import { createRoot, type Root } from "react-dom/client";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   BrowserRouter,
   Navigate,
@@ -35,8 +31,6 @@ const Sacramento = lazy(() => import("./pages/Sacramento"));
 const ContentGenerator = lazy(() => import("./pages/ContentGenerator"));
 const AIConcierge = lazy(() => import("./pages/AIConcierge"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-
-const queryClient = new QueryClient();
 
 type RouterState = {
   backgroundLocation?: Location;
@@ -121,7 +115,10 @@ const AppRoutes = () => {
             path="/sacramento"
             element={<Navigate to="/sacramento-escorts" replace />}
           />
-          <Route path="/content-generator" element={withLayout(ContentGenerator)} />
+          <Route
+            path="/content-generator"
+            element={withLayout(ContentGenerator)}
+          />
           <Route path="/ai-concierge" element={withLayout(AIConcierge)} />
           <Route path="*" element={withLayout(NotFound)} />
         </Routes>
@@ -137,15 +134,9 @@ const AppRoutes = () => {
 
 const App = () => (
   <HelmetProvider>
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
   </HelmetProvider>
 );
 
