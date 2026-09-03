@@ -10,7 +10,7 @@ export default function OpeningVideoSection() {
       fallbackSrc={openingVideo.fallbackSrc}
       posterSrc={openingVideo.poster}
       objectPosition={openingVideo.objectPosition}
-      overlayClassName="homepage-veil-lower"
+      overlayClassName="homepage-veil-video"
       priority
     >
       <HomepageEditorialOverlay>

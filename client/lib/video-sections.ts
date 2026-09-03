@@ -12,7 +12,7 @@ const openingStream =
 /** Stream master lists 1080p first (SCORE=5). Do not pass clientBandwidthHint. */
 export const OPENING_STREAM_MASTER = `${openingStream}/manifest/video.m3u8`;
 
-/** Same-origin rewrite: 1080p first so the opening slide starts at the sharpest rung Stream has. */
+/** Same-origin rewrite: 1080p only so the opening slide cannot fall to a grainy rung. */
 export const OPENING_HLS_PROXY_PATH = "/api/opening-hls.m3u8";
 
 export const HLS_START_HEIGHT = 1080;
@@ -21,7 +21,7 @@ export const HLS_MAX_HEIGHT = 1080;
 export const openingVideo: VideoAsset = {
   src: OPENING_HLS_PROXY_PATH,
   fallbackSrc: OPENING_STREAM_MASTER,
-  poster: "/opening-poster-black.svg",
+  poster: "/opening-poster.jpg",
   objectPosition: "center 30%",
 };
 
@@ -135,31 +135,28 @@ function closestInRange(
 
 function selectOpeningVariants(variants: ParsedVariant[]): ParsedVariant[] {
   const start = closestInRange(variants, HLS_START_HEIGHT, 1000, 1200);
-  const mid = closestInRange(variants, 720, 680, 780);
-  const picked: ParsedVariant[] = [];
-  const pushUnique = (variant?: ParsedVariant) => {
-    if (variant && !picked.some((entry) => entry.uri === variant.uri)) {
-      picked.push(variant);
-    }
-  };
-  pushUnique(start);
-  pushUnique(mid);
-  if (picked.length > 0) {
-    return picked;
+  if (start) {
+    return [start];
   }
 
   const capped = variants.filter(
     (variant) => variant.height > 0 && variant.height <= HLS_MAX_HEIGHT,
   );
-  const sharp = capped.filter((variant) => variant.height >= 680);
-  return (sharp.length > 0 ? sharp : capped)
-    .slice()
-    .sort((a, b) => b.height - a.height);
+  const sharp = capped.filter((variant) => variant.height >= 1000);
+  const pool = sharp.length > 0 ? sharp : capped;
+  if (pool.length === 0) {
+    return [];
+  }
+  return [
+    pool.reduce((best, variant) =>
+      variant.height > best.height ? variant : best,
+    ),
+  ];
 }
 
 /**
- * Keep 1080p first, then 720p. Drop 240/360/480, strip SCORE, and
- * make child URIs absolute. Stream’s highest rung for this UID is 1080p.
+ * Keep a single 1080p rung. Drop 720p and below so ABR cannot fall into
+ * a grainy ladder. Stream’s highest rung for this UID is 1080p.
  */
 export function filterMobileHlsMaster(manifest: string, masterUrl: string): string {
   const lines = manifest.replace(/\r\n/g, "\n").split("\n");

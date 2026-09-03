@@ -2,7 +2,14 @@ import { type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-type HomepageVeilTone = "light" | "standard" | "strong" | "lower" | "lower-strong" | "center";
+type HomepageVeilTone =
+  | "light"
+  | "standard"
+  | "strong"
+  | "lower"
+  | "lower-strong"
+  | "center"
+  | "video";
 
 export function HomepageVeil({ tone }: { tone: HomepageVeilTone }) {
   return (

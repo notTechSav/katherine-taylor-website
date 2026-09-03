@@ -8,6 +8,8 @@ type SeoHeadProps = {
   path?: string;
   image?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   type?: "website" | "article";
   noIndex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
@@ -21,6 +23,8 @@ const SeoHead = ({
   path,
   image = DEFAULT_OG_IMAGE,
   imageAlt = "Katherine Taylor Escort",
+  imageWidth,
+  imageHeight,
   type = "website",
   noIndex = false,
   jsonLd,
@@ -47,17 +51,41 @@ const SeoHead = ({
         />
       )}
       {url ? <link rel="canonical" href={url} /> : null}
+      {path === "/" ? (
+        <>
+          <link
+            rel="preload"
+            as="image"
+            href="/opening-poster.jpg"
+            fetchPriority="high"
+          />
+          <link
+            rel="preload"
+            as="fetch"
+            href="/api/opening-hls.m3u8"
+            crossOrigin="anonymous"
+          />
+        </>
+      ) : null}
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="Katherine Taylor" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       {url ? <meta property="og:url" content={url} /> : null}
+      <meta property="og:locale" content="en_US" />
       <meta property="og:image" content={image} />
       <meta property="og:image:alt" content={imageAlt} />
+      {imageWidth ? (
+        <meta property="og:image:width" content={String(imageWidth)} />
+      ) : null}
+      {imageHeight ? (
+        <meta property="og:image:height" content={String(imageHeight)} />
+      ) : null}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
+      <meta name="twitter:image:alt" content={imageAlt} />
       {geoRegion ? <meta name="geo.region" content={geoRegion} /> : null}
       {geoPlacename ? (
         <meta name="geo.placename" content={geoPlacename} />

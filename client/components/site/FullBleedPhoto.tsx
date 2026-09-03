@@ -35,8 +35,9 @@ export default function FullBleedPhoto({
           loading={priority ? "eager" : "lazy"}
           decoding={priority ? "sync" : "async"}
           fetchPriority={priority ? "high" : "low"}
+          sizes="100vw"
           className={cn(
-            "pointer-events-none h-full w-full max-h-none max-w-none object-cover object-center",
+            "fullpage-media-layer pointer-events-none h-full w-full max-h-none max-w-none object-cover object-center",
             className,
           )}
         />

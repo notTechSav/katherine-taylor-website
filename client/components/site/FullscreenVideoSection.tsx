@@ -243,14 +243,15 @@ export default function FullscreenVideoSection({
         }
 
         const hls = new Hls({
-          capLevelToPlayerSize: !priority,
-          maxDevicePixelRatio: 3,
+          capLevelToPlayerSize: false,
+          maxDevicePixelRatio: 2,
           testBandwidth: false,
           startLevel: -1,
-          abrEwmaDefaultEstimate: 5_500_000,
-          maxBufferLength: 8,
-          maxMaxBufferLength: 16,
-          maxBufferSize: 15_000_000,
+          abrEwmaDefaultEstimate: 8_000_000,
+          maxBufferLength: 12,
+          maxMaxBufferLength: 24,
+          maxBufferSize: 30_000_000,
+          startFragPrefetch: true,
         });
 
         if (
@@ -422,7 +423,7 @@ export default function FullscreenVideoSection({
           alt=""
           aria-hidden="true"
           decoding="async"
-          className="absolute inset-0 h-full w-full object-cover md:hidden"
+          className="fullpage-media-layer absolute inset-0 h-full w-full object-cover md:hidden"
           style={{ objectPosition }}
         />
       ) : null}
@@ -434,11 +435,11 @@ export default function FullscreenVideoSection({
         fetchPriority={priority ? "high" : "auto"}
         loading={priority ? "eager" : "lazy"}
         decoding={priority ? "sync" : "async"}
-        className={cn(
-          "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
-          posterMobileSrc && "max-md:hidden",
-          videoActive ? "opacity-0" : "opacity-100",
-        )}
+          className={cn(
+            "fullpage-media-layer absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
+            posterMobileSrc && "max-md:hidden",
+            videoActive ? "opacity-0" : "opacity-100",
+          )}
         style={{ objectPosition }}
       />
 
@@ -448,7 +449,7 @@ export default function FullscreenVideoSection({
           key={currentSrc}
           src={useNativeHlsSrc ? currentSrc : undefined}
           className={cn(
-            "absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
+            "fullpage-media-layer absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out",
             posterMobileSrc && "max-md:hidden",
             videoActive ? "opacity-100" : "opacity-0",
           )}

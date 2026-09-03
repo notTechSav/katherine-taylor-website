@@ -29,6 +29,8 @@ export type RouteHead = {
   ogType: "website" | "article";
   image: string;
   imageAlt: string;
+  imageWidth?: number;
+  imageHeight?: number;
   jsonLd: Record<string, unknown>[];
   geoRegion?: string;
   geoPlacename?: string;
@@ -52,6 +54,9 @@ const pageSeoHeads: Record<string, Partial<RouteHead>> = {
   "/": {
     jsonLd: [...homeJsonLd] as Record<string, unknown>[],
     geoRegion: "US-CA",
+    geoPlacename: "San Francisco",
+    imageWidth: 1920,
+    imageHeight: 1080,
   },
   "/about": {
     jsonLd: [...aboutJsonLd] as Record<string, unknown>[],
@@ -61,11 +66,15 @@ const pageSeoHeads: Record<string, Partial<RouteHead>> = {
   "/film/a-brief-interruption": {
     image: absoluteUrl(briefInterruptionVideo.poster),
     imageAlt: "A Brief Interruption",
+    imageWidth: 1920,
+    imageHeight: 1080,
     jsonLd: [briefInterruptionJsonLd],
   },
   "/film/please-stand-by": {
     image: absoluteUrl(pleaseStandByVideo.poster),
     imageAlt: "Please Stand By",
+    imageWidth: 1920,
+    imageHeight: 1080,
     jsonLd: [pleaseStandByJsonLd],
   },
   "/faq": {},
@@ -225,12 +234,28 @@ export function renderRouteHeadBlock(page: RouteHead): string {
   }
 
   tags.push(
+    `    <meta data-rh="true" property="og:locale" content="en_US" />`,
     `    <meta data-rh="true" property="og:image" content="${escapeAttr(page.image)}" />`,
     `    <meta data-rh="true" property="og:image:alt" content="${escapeAttr(page.imageAlt)}" />`,
+  );
+
+  if (page.imageWidth) {
+    tags.push(
+      `    <meta data-rh="true" property="og:image:width" content="${page.imageWidth}" />`,
+    );
+  }
+  if (page.imageHeight) {
+    tags.push(
+      `    <meta data-rh="true" property="og:image:height" content="${page.imageHeight}" />`,
+    );
+  }
+
+  tags.push(
     `    <meta data-rh="true" name="twitter:card" content="summary_large_image" />`,
     `    <meta data-rh="true" name="twitter:title" content="${escapeAttr(page.title)}" />`,
     `    <meta data-rh="true" name="twitter:description" content="${escapeAttr(page.description)}" />`,
     `    <meta data-rh="true" name="twitter:image" content="${escapeAttr(page.image)}" />`,
+    `    <meta data-rh="true" name="twitter:image:alt" content="${escapeAttr(page.imageAlt)}" />`,
   );
 
   if (page.geoRegion) {
@@ -252,6 +277,7 @@ export function renderRouteHeadBlock(page: RouteHead): string {
 
   if (page.path === "/") {
     tags.push(
+      `    <link data-rh="true" rel="preload" as="image" href="/opening-poster.jpg" fetchpriority="high" />`,
       `    <link data-rh="true" rel="preload" as="fetch" href="${OPENING_HLS_PROXY_PATH}" crossorigin />`,
     );
   }

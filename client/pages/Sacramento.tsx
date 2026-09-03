@@ -8,7 +8,7 @@ import { pageSeo } from "@/lib/page-seo";
 import { absoluteUrl } from "@/lib/site-config";
 
 const heroImage = {
-  src: "/sacramento-slide.webp?v=hires1",
+  src: "/location-slide.webp?v=hires2",
   alt: "Katherine Taylor — Sacramento escort",
 };
 

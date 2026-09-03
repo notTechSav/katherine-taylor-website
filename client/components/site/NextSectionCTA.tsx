@@ -54,7 +54,7 @@ const NextSectionCTA = memo(
     // Homepage keeps the original stacked NEXT band.
     if (!hasBack) {
       return (
-        <section className="border-t border-neutral-200 bg-luxury-white py-24 md:py-32 lg:py-40">
+        <section className="border-t border-neutral-200 bg-luxury-white py-12 md:py-16">
           <div className="mx-auto flex max-w-[680px] flex-col items-center gap-6 px-6 text-center md:px-8">
             <span className="text-xs font-light uppercase tracking-uppercase text-neutral-500">
               Next

@@ -28,6 +28,9 @@ const Index = () => {
         description={pageSeo.home.description}
         path={pageSeo.home.path}
         geoRegion="US-CA"
+        geoPlacename="San Francisco"
+        imageWidth={1920}
+        imageHeight={1080}
         jsonLd={[...homeJsonLd] as Record<string, unknown>[]}
       />
       <FullPageSections>
@@ -46,7 +49,7 @@ const Index = () => {
         className={sectionClass("bg-[#fdfaf6] md:hidden")}
         aria-label="About Section"
       >
-        <FullBleedPhoto src="/about-slide-mobile.webp?v=hires3" />
+        <FullBleedPhoto src="/about-slide-mobile.webp?v=hires3" width={2048} height={3072} />
         <AboutSection />
       </section>
 
@@ -56,7 +59,7 @@ const Index = () => {
         className={sectionClass("bg-[#fdfaf6] md:hidden")}
         aria-label="Gallery Section"
       >
-        <FullBleedPhoto src="/katherinewindow.webp?v=hires3" />
+        <FullBleedPhoto src="/katherinewindow.webp?v=hires3" width={2048} height={3072} />
         <GallerySection />
       </section>
 
@@ -84,7 +87,7 @@ const Index = () => {
         className={sectionClass("bg-luxury-cream")}
         aria-label="Gifts Section"
       >
-        <FullBleedPhoto src="/gifts-slide.webp?v=hires3" />
+        <FullBleedPhoto src="/gifts-slide.webp?v=hires3" width={2048} height={3072} />
         <GiftsSection />
       </section>
 
@@ -94,7 +97,7 @@ const Index = () => {
         className={sectionClass("bg-luxury-cream")}
         aria-label="Blog Teaser"
       >
-        <FullBleedPhoto src="/journal-slide.webp?v=hires5" />
+        <FullBleedPhoto src="/journal-slide.webp?v=hires6" width={1000} height={1500} />
         <BlogTeaserSection />
       </section>
 
@@ -104,7 +107,7 @@ const Index = () => {
         className={sectionClass("bg-luxury-cream")}
         aria-label="FAQ Teaser"
       >
-        <FullBleedPhoto src="/faq-slide.webp?v=hires5" />
+        <FullBleedPhoto src="/faq-slide.webp?v=hires7" width={1000} height={1500} />
         <FAQTeaserSection />
       </section>
 
@@ -114,7 +117,7 @@ const Index = () => {
         className={sectionClass("bg-luxury-cream")}
         aria-label="Sacramento Location"
       >
-        <FullBleedPhoto src="/sacramento-slide.webp?v=hires1" />
+        <FullBleedPhoto src="/location-slide.webp?v=hires2" width={2048} height={3072} />
         <SacramentoSection />
       </section>
 
@@ -126,14 +129,15 @@ const Index = () => {
       >
         <ClosingVideoSection />
       </section>
-      <div
-        data-fullpage-footer
-        tabIndex={-1}
-        className="bg-luxury-white focus:outline-none"
+      <section
+        id="site-footer"
+        data-fullpage-section
+        className={sectionClass("fullpage-footer-section bg-luxury-white")}
+        aria-label="Site footer"
       >
         <NextSectionCTA label="About Katherine" href="/about" />
         <Footer />
-      </div>
+      </section>
     </FullPageSections>
     </>
   );

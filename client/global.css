@@ -257,9 +257,11 @@
 
   html.fullpage-is-ready .fullpage-section.is-transitioning {
     backface-visibility: hidden;
+    will-change: transform;
   }
 
-  html.fullpage-is-ready .fullpage-section:not(.is-active):not(.is-transitioning) {
+  html.fullpage-is-ready
+    .fullpage-section:not(.is-active):not(.is-transitioning) {
     visibility: hidden;
     pointer-events: none;
   }
@@ -271,6 +273,11 @@
   html.fullpage-is-ready .fullpage-section:focus-visible {
     outline: 2px solid var(--gray-400);
     outline-offset: -2px;
+  }
+
+  .fullpage-media-layer {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
   }
 
   .tracking-luxury {
@@ -558,6 +565,16 @@
     background: rgba(0, 0, 0, 0.22);
   }
 
+  .homepage-veil-video {
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.36) 0%,
+      rgba(0, 0, 0, 0.14) 38%,
+      rgba(0, 0, 0, 0.04) 68%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+
   .homepage-veil-lower {
     background: linear-gradient(
       to top,
@@ -599,6 +616,12 @@
     .homepage-overlay-bottom {
       padding-bottom: max(7rem, calc(env(safe-area-inset-bottom, 0px) + 3.5rem));
     }
+  }
+
+  html.fullpage-is-ready .fullpage-section.fullpage-footer-section {
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background-color: var(--luxury-white);
   }
 
   html.fullpage-is-ready [data-fullpage-footer] {

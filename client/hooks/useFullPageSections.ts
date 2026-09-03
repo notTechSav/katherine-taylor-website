@@ -6,16 +6,13 @@ import {
   getFullpageArrowState,
 } from "@/lib/page-scroll";
 
-const TRANSFORM_MS = 800;
-const FOOTER_MS = 480;
-const OPACITY_MS = 500;
+const TRANSFORM_MS = 680;
+const FOOTER_MS = 520;
 const REDUCED_MOTION_MS = 120;
-const TRANSFORM_EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
-const OPACITY_EASE = "cubic-bezier(0.25, 0.1, 0.25, 1)";
-const INCOMING_OPACITY = 0.96;
-const WHEEL_THRESHOLD = 100;
-const WHEEL_IDLE_MS = 180;
-const WHEEL_COOLDOWN_MS = 320;
+const TRANSFORM_EASE = "cubic-bezier(0.65, 0, 0.35, 1)";
+const WHEEL_THRESHOLD = 72;
+const WHEEL_IDLE_MS = 140;
+const WHEEL_COOLDOWN_MS = 140;
 const SWIPE_THRESHOLD = 48;
 
 const SECTION_ALIASES: Record<string, string[]> = {
@@ -391,7 +388,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
         beginPointerCooldown();
       }
 
-      if (queuedIndex !== null && queuedIndex !== state.index && !queuedOptions?.fromPointer) {
+      if (queuedIndex !== null && queuedIndex !== state.index) {
         void goTo(queuedIndex, queuedOptions);
       }
     };
@@ -514,10 +511,8 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       }
 
       if (state.locked) {
-        if (!options?.fromPointer) {
-          state.queuedIndex = nextIndex;
-          state.queuedOptions = options;
-        }
+        state.queuedIndex = nextIndex;
+        state.queuedOptions = options;
         return;
       }
 
@@ -574,40 +569,52 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
       }
 
       try {
+        const transformOptions: KeyframeAnimationOptions = {
+          duration: TRANSFORM_MS,
+          easing: TRANSFORM_EASE,
+          fill: "forwards",
+        };
+
         if (direction === "down") {
           fromEl.style.zIndex = "1";
           toEl.style.zIndex = "2";
           toEl.style.transform = "translate3d(0, 100%, 0)";
-          toEl.style.opacity = String(INCOMING_OPACITY);
+          fromEl.style.transform = "translate3d(0, 0, 0)";
           state.animations = [
+            fromEl.animate(
+              [
+                { transform: "translate3d(0, 0, 0)" },
+                { transform: "translate3d(0, -100%, 0)" },
+              ],
+              transformOptions,
+            ),
             toEl.animate(
               [
                 { transform: "translate3d(0, 100%, 0)" },
                 { transform: "translate3d(0, 0, 0)" },
               ],
-              { duration: TRANSFORM_MS, easing: TRANSFORM_EASE, fill: "forwards" },
-            ),
-            toEl.animate(
-              [{ opacity: INCOMING_OPACITY }, { opacity: 1 }],
-              { duration: OPACITY_MS, easing: OPACITY_EASE, fill: "forwards" },
+              transformOptions,
             ),
           ];
         } else {
-          toEl.style.zIndex = "1";
-          toEl.style.transform = "translate3d(0, 0, 0)";
-          toEl.style.opacity = String(INCOMING_OPACITY);
           fromEl.style.zIndex = "2";
+          toEl.style.zIndex = "1";
+          toEl.style.transform = "translate3d(0, -100%, 0)";
+          fromEl.style.transform = "translate3d(0, 0, 0)";
           state.animations = [
             fromEl.animate(
               [
                 { transform: "translate3d(0, 0, 0)" },
                 { transform: "translate3d(0, 100%, 0)" },
               ],
-              { duration: TRANSFORM_MS, easing: TRANSFORM_EASE, fill: "forwards" },
+              transformOptions,
             ),
             toEl.animate(
-              [{ opacity: INCOMING_OPACITY }, { opacity: 1 }],
-              { duration: OPACITY_MS, easing: OPACITY_EASE, fill: "forwards" },
+              [
+                { transform: "translate3d(0, -100%, 0)" },
+                { transform: "translate3d(0, 0, 0)" },
+              ],
+              transformOptions,
             ),
           ];
         }
@@ -638,7 +645,7 @@ export function useFullPageSections(rootRef: RefObject<HTMLElement>) {
     };
 
     const goBy = (delta: number, options?: GoToOptions) => {
-      if (options?.fromPointer && (state.locked || state.pointerCooling)) {
+      if (options?.fromPointer && state.pointerCooling && !state.locked) {
         return;
       }
 

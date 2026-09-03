@@ -78,9 +78,16 @@ describe("prerender route heads", () => {
     );
     expect(html).toContain('"@type":"Person"');
     expect(html).toContain('"@type":"WebSite"');
+    expect(html).toContain('"@type":"WebPage"');
+    expect(html).toContain('"@type":"VideoObject"');
     expect(html).toContain('"email":"private@katherinetaylorescort.com"');
-    expect(html).not.toContain('rel="preload" as="image"');
+    expect(html).toContain(
+      'rel="preload" as="image" href="/opening-poster.jpg"',
+    );
     expect(html).toContain('rel="preload" as="fetch" href="/api/opening-hls.m3u8"');
+    expect(html).toContain('property="og:locale" content="en_US"');
+    expect(html).toContain('name="twitter:image:alt"');
+    expect(html).toContain('property="og:image:width" content="1920"');
   });
 
   it("gives Sacramento its own title and canonical in raw HTML", () => {
@@ -252,18 +259,34 @@ function routeHtml(path: string): string {
 
 describe("structured-data graph", () => {
 
-  it("keeps homepage Person + WebSite, including sameAs, without new types", () => {
+  it("keeps homepage Person, WebSite, WebPage, and VideoObject, including sameAs", () => {
     const nodes = parseJsonLd(routeHtml("/"));
-    expect(typesOf(nodes)).toEqual(["Person", "WebSite"]);
+    expect(typesOf(nodes)).toEqual([
+      "Person",
+      "WebSite",
+      "WebPage",
+      "VideoObject",
+    ]);
     const person = nodes[0] as {
       sameAs: string[];
       url: string;
+      areaServed: Array<{ name: string }>;
     };
     expect(person.sameAs).toEqual([
       "https://x.com/TheKatherineExp",
       "https://www.instagram.com/katherineunscripted/",
     ]);
     expect(person.url).toBe("https://katherinetaylorescort.com/");
+    expect(person.areaServed.map((place) => place.name)).toEqual([
+      "San Francisco",
+      "Sacramento",
+    ]);
+    const page = nodes[2] as { inLanguage: string; url: string };
+    expect(page.inLanguage).toBe("en-US");
+    expect(page.url).toBe("https://katherinetaylorescort.com/");
+    const video = nodes[3] as { duration: string; embedUrl: string };
+    expect(video.duration).toBe("PT24S");
+    expect(video.embedUrl).toContain("cloudflarestream.com");
   });
 
   it("adds a single ProfilePage to /about whose mainEntity is Katherine Taylor", () => {
