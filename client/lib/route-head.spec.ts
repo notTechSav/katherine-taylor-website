@@ -390,9 +390,41 @@ describe("structured-data graph", () => {
     expect(article.author.url).toBe("https://katherinetaylorescort.com/about");
   });
 
+  it("adds WebPage and BreadcrumbList to rates and FAQ without Offer or FAQPage", () => {
+    const rates = parseJsonLd(routeHtml("/rates"));
+    expect(typesOf(rates)).toEqual(["WebPage", "BreadcrumbList"]);
+    const ratesPage = rates[0] as {
+      url: string;
+      about: { "@type": string; name: string; url: string };
+      significantLink: string[];
+    };
+    expect(ratesPage.url).toBe("https://katherinetaylorescort.com/rates");
+    expect(ratesPage.about).toEqual({
+      "@type": "Person",
+      name: "Katherine Taylor",
+      url: "https://katherinetaylorescort.com/about",
+    });
+    expect(ratesPage.significantLink).toEqual([
+      "https://katherinetaylorescort.com/faq#reviews",
+      "https://katherinetaylorescort.com/journal/continuity-as-craft",
+      "https://katherinetaylorescort.com/journal/scarcity-discipline",
+    ]);
+
+    const faq = parseJsonLd(routeHtml("/faq"));
+    expect(typesOf(faq)).toEqual(["WebPage", "BreadcrumbList"]);
+    const faqPage = faq[0] as { url: string; significantLink: string[] };
+    expect(faqPage.url).toBe("https://katherinetaylorescort.com/faq");
+    expect(faqPage.significantLink).toEqual([
+      "https://katherinetaylorescort.com/rates#why",
+      "https://katherinetaylorescort.com/faq#reviews",
+    ]);
+  });
+
   it("leaves film VideoObject graphs unchanged and does not add ProfilePage or breadcrumbs elsewhere", () => {
     const breadcrumbPaths = new Set([
       "/journal",
+      "/rates",
+      "/faq",
       ...essays.map((essay) => `/journal/${essay.slug}`),
     ]);
 

@@ -34,6 +34,10 @@ const About = () => {
         <div className="mx-auto max-w-[680px] px-6 pb-24 pt-16 md:px-8 md:pb-28 md:pt-20">
           <header className="space-y-6">
             <p className="text-[17px] leading-[1.9] text-luxury-black">
+              Katherine Taylor is a high-end escort working privately in San
+              Francisco and Sacramento.
+            </p>
+            <p className="text-[17px] leading-[1.9] text-luxury-black">
               My work was built in San Francisco and now moves between San
               Francisco and Sacramento. If you first found Katherine Taylor
               through{" "}
@@ -108,10 +112,17 @@ const About = () => {
                 >{"personal continuity"}</a>{". Half of what I do is high-level thinking—pattern recognition, operational clarity, risk sorting. The other half is presence—listening until I can hear the sentence you didn't finish. The outcome is relief: you don't have to explain yourself to be understood."}
               </p>
               <p>
-                I keep a small roster so every relationship stays alive in my
-                head. Each engagement builds on the last; by the third, we're
-                operating at full depth. Decisions move faster, and the
-                conversations reach a level most people never get to have.
+                I keep a{" "}
+                <a
+                  href="/journal/scarcity-discipline"
+                  className={editorialLinkClass}
+                >
+                  small roster
+                </a>{" "}
+                so every relationship stays alive in my head. Each engagement
+                builds on the last; by the third, we're operating at full depth.
+                Decisions move faster, and the conversations reach a level most
+                people never get to have.
               </p>
             </section>
 
@@ -130,7 +141,10 @@ const About = () => {
               </p>
               <p>
                 I don't advertise availability because capacity is limited by
-                design. When I reach a handful of active partnerships, I raise rates
+                design. When I reach a handful of active partnerships, I{" "}
+                <a href="/rates#why" className={editorialLinkClass}>
+                  raise rates
+                </a>{" "}
                 rather than add more names. If continuity matters to you, reach
                 out.
               </p>

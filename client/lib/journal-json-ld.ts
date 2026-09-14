@@ -1,4 +1,5 @@
 import { katherineTaylorArticleAuthor } from "./about-json-ld";
+import { breadcrumbJsonLd } from "./breadcrumb-json-ld";
 import {
   essayMetadata,
   heroImage,
@@ -8,21 +9,6 @@ import {
 import { pageSeo } from "./page-seo";
 import { absoluteUrl } from "./site-config";
 import { sitePages } from "./site-pages";
-
-function breadcrumbJsonLd(
-  items: readonly { name: string; path: string }[],
-): Record<string, unknown> {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: items.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.name,
-      item: absoluteUrl(item.path),
-    })),
-  };
-}
 
 export const journalIndexJsonLd: Record<string, unknown> = {
   "@context": "https://schema.org",

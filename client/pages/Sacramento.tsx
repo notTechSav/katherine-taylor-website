@@ -69,6 +69,10 @@ const SacramentoPage = () => {
               What “Escorts Near Me” Doesn't Tell You
             </h2>
             <div className="space-y-7">
+              <p className={`${body} text-luxury-black`}>
+                Katherine Taylor is a high-end escort working privately in
+                Sacramento and San Francisco.
+              </p>
               <p className={body}>“Escorts near me” is an incredibly efficient Google search.</p>
               <p className={body}>I'm not convinced it's a particularly good selection criterion.</p>
               <p className={body}>Near you tells you distance.</p>

@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import SeoHead from "@/components/site/SeoHead";
+import { faqJsonLd } from "@/lib/page-json-ld";
 import { pageSeo } from "@/lib/page-seo";
 
 const heroImage = {
@@ -21,6 +22,7 @@ const FAQPage = () => {
         title={pageSeo.faq.title}
         description={pageSeo.faq.description}
         path={pageSeo.faq.path}
+        jsonLd={faqJsonLd}
       />
       <PageHeroOverlay
         title="Frequently Asked Questions"
@@ -252,7 +254,13 @@ const FAQPage = () => {
             </h2>
             <div className="space-y-4 text-base font-light leading-[1.8] text-gray-700">
               <p>
-                Email me with: who you are, what you're looking for, preferred dates and duration, and how you found me.
+                <a
+                  href="/inquire"
+                  className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+                >
+                  Email me
+                </a>{" "}
+                with: who you are, what you're looking for, preferred dates and duration, and how you found me.
               </p>
               <p>
                 Vague inquiries rarely get responses. If you've read this far, you know what I'm looking for—substance, clarity, respect for both our time.

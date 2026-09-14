@@ -14,7 +14,7 @@ export const pageSeo = {
   about: {
     title: "About Katherine Taylor | High-End Private Companionship",
     description:
-      "Katherine Taylor offers refined, ongoing companionship for executives and founders. Strategic counsel meets personal continuity—institutional memory that lets you move without rehearsal.",
+      "Katherine Taylor is a high-end escort working privately in San Francisco and Sacramento. Strategic counsel meets personal continuity—institutional memory that lets you move without rehearsal.",
     path: sitePages.about.path,
   },
   rates: {

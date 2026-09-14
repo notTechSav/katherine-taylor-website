@@ -5,6 +5,7 @@ import { ChevronDown } from "lucide-react";
 
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import SeoHead from "@/components/site/SeoHead";
+import { ratesJsonLd } from "@/lib/page-json-ld";
 import { pageSeo } from "@/lib/page-seo";
 
 const editorialLinkClass =
@@ -24,6 +25,7 @@ const RatesPage = () => {
         title={pageSeo.rates.title}
         description={pageSeo.rates.description}
         path={pageSeo.rates.path}
+        jsonLd={ratesJsonLd}
       />
       <PageHeroOverlay
         title="Rates"

@@ -7,6 +7,7 @@ import {
   journalIndexBreadcrumbJsonLd,
   journalIndexJsonLd,
 } from "./journal-json-ld";
+import { faqJsonLd, ratesJsonLd } from "./page-json-ld";
 import { pageSeo } from "./page-seo";
 import { pleaseStandByJsonLd, pleaseStandByVideo } from "./please-stand-by";
 import { DEFAULT_OG_IMAGE, SITE_URL, absoluteUrl } from "./site-config";
@@ -61,7 +62,9 @@ const pageSeoHeads: Record<string, Partial<RouteHead>> = {
   "/about": {
     jsonLd: [...aboutJsonLd] as Record<string, unknown>[],
   },
-  "/rates": {},
+  "/rates": {
+    jsonLd: ratesJsonLd,
+  },
   "/gallery": {},
   "/film/a-brief-interruption": {
     image: absoluteUrl(briefInterruptionVideo.poster),
@@ -77,7 +80,9 @@ const pageSeoHeads: Record<string, Partial<RouteHead>> = {
     imageHeight: 1080,
     jsonLd: [pleaseStandByJsonLd],
   },
-  "/faq": {},
+  "/faq": {
+    jsonLd: faqJsonLd,
+  },
   "/inquire": {},
   "/gifts": {},
   "/journal": {

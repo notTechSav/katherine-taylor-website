@@ -244,8 +244,19 @@ describe("prerender route bodies", () => {
     expect(rates).toContain("SHOW CURRENT STRUCTURE");
 
     const about = renderRoute("/about");
+    expect(about).toContain(
+      "Katherine Taylor is a high-end escort working privately in San Francisco and Sacramento.",
+    );
     expect(about).toContain("keep that memory human");
     expect(about).toContain('href="/rates#why"');
+    expect(about).toContain('href="/journal/scarcity-discipline"');
+    expect(about).toContain(">small roster<");
+    expect(about).toContain(">raise rates<");
+
+    const sacramento = renderRoute("/sacramento-escorts");
+    expect(sacramento).toContain(
+      "Katherine Taylor is a high-end escort working privately in Sacramento and San Francisco.",
+    );
   });
 
   it("inserts Please Stand By between FAQ and Inquire", () => {
