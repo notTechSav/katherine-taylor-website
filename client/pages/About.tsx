@@ -49,6 +49,12 @@ const About = () => {
               take notes, but because I've built a decade of pattern libraries
               that let me read what you don't say.
             </p>
+            <p className="text-[17px] leading-[1.9] text-luxury-black">
+              <a href="/rates#why" className={editorialLinkClass}>
+                The rate
+              </a>{" "}
+              is what it costs to keep that memory human.
+            </p>
           </header>
 
           <div className="my-16 flex justify-center" aria-hidden="true">

@@ -223,6 +223,31 @@ describe("prerender route bodies", () => {
     expect(faq).toContain("Why don&#x27;t you have escort reviews?");
   });
 
+  it("answers why the rates are high on the visible FAQ and rates page", () => {
+    const faq = renderRoute("/faq");
+    expect(faq).toContain('id="why-rates"');
+    expect(faq).toContain("Why are your rates this high?");
+    expect(faq).toContain('href="/rates#why"');
+    expect(faq).toContain('href="/journal/continuity-as-craft"');
+    expect(faq).toContain('href="/journal/scarcity-discipline"');
+    expect(faq).toContain("volume is how you forget people");
+
+    const rates = renderRoute("/rates");
+    expect(rates).toContain('id="why"');
+    expect(rates).toContain("Why these rates");
+    expect(rates).toContain("The rate is not a mood.");
+    expect(rates).toContain('href="/faq#reviews"');
+    expect(rates).toContain('href="/journal/continuity-as-craft"');
+    expect(rates).toContain('href="/journal/scarcity-discipline"');
+    expect(rates).toContain('href="/national-ranking.jpg"');
+    expect(rates).toContain("The national ranking is still on file.");
+    expect(rates).toContain("SHOW CURRENT STRUCTURE");
+
+    const about = renderRoute("/about");
+    expect(about).toContain("keep that memory human");
+    expect(about).toContain('href="/rates#why"');
+  });
+
   it("inserts Please Stand By between FAQ and Inquire", () => {
     const faq = renderRoute("/faq");
     expect(faq).toContain('href="/film/please-stand-by"');

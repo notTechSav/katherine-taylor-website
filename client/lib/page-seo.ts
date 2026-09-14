@@ -20,7 +20,7 @@ export const pageSeo = {
   rates: {
     title: "Companion Rates | Katherine Taylor — San Francisco & Sacramento",
     description:
-      "Transparent rates for high-end companionship with Katherine Taylor in San Francisco and Sacramento. Continuity, discretion, and scarcity—priced to protect the work.",
+      "Rates for private companionship with Katherine Taylor in San Francisco and Sacramento. A small roster and memory that does not reset—priced to keep the work possible.",
     path: sitePages.rates.path,
   },
   gallery: {

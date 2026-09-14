@@ -135,6 +135,62 @@ const FAQPage = () => {
           {/* FAQ 4 */}
           <div className="mb-16">
             <h2
+              id="why-rates"
+              className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+              style={{ fontWeight: 200 }}
+            >
+              Why are your rates this high?
+            </h2>
+            <div className="space-y-4 text-base font-light leading-[1.8] text-gray-700">
+              <p>
+                Because the alternative is volume, and volume is how you forget people.
+              </p>
+              <p>
+                I keep a small roster so every relationship stays alive in my head. When demand rises I raise rates rather than add names. That is not ambition. It is how{" "}
+                <a
+                  href="/journal/continuity-as-craft"
+                  className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+                >
+                  continuity
+                </a>{" "}
+                survives.
+              </p>
+              <p>
+                Before I delisted I was ranked #1 or #2 among San Francisco escorts and in the top twelve nationally. The public proof came down. The work did not get cheaper.
+              </p>
+              <p>
+                <a
+                  href="/national-ranking.jpg"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+                >
+                  The national ranking is still on file.
+                </a>
+              </p>
+              <p>
+                The figures are on the{" "}
+                <a
+                  href="/rates#why"
+                  className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+                >
+                  Rates
+                </a>{" "}
+                page. The longer argument is{" "}
+                <a
+                  href="/journal/scarcity-discipline"
+                  className="underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline"
+                >
+                  scarcity as infrastructure
+                </a>
+                {". "}
+              </p>
+            </div>
+          </div>
+
+          {/* FAQ 5 */}
+          <div className="mb-16">
+            <h2
               className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
@@ -150,7 +206,7 @@ const FAQPage = () => {
             </div>
           </div>
 
-          {/* FAQ 5 */}
+          {/* FAQ 6 */}
           <div className="mb-16">
             <h2
               className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
