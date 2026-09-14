@@ -3,26 +3,12 @@
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import SeoHead from "@/components/site/SeoHead";
 import SacramentoLongVersion from "@/pages/SacramentoLongVersion";
-import { katherineTaylorArticleAuthor } from "@/lib/about-json-ld";
+import { sacramentoJsonLd } from "@/lib/page-json-ld";
 import { pageSeo } from "@/lib/page-seo";
-import { absoluteUrl } from "@/lib/site-config";
 
 const heroImage = {
   src: "/location-slide.webp?v=hires2",
   alt: "Katherine Taylor — Sacramento escort",
-};
-
-const sacramentoJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "Escorts Near Me | The High-End Edition",
-  description: pageSeo.sacramento.description,
-  author: {
-    ...katherineTaylorArticleAuthor,
-    jobTitle: "Luxury Companion",
-  },
-  about: ["Sacramento escort", "escorts near me", "California escorts"],
-  url: absoluteUrl("/sacramento-escorts"),
 };
 
 const body =

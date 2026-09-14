@@ -42,9 +42,9 @@ export const pageSeo = {
     path: sitePages.pleaseStandBy.path,
   },
   faq: {
-    title: "FAQ | Katherine Taylor Escort — San Francisco",
+    title: "FAQ | Katherine Taylor Escort — San Francisco & Sacramento",
     description:
-      "Straight answers on booking, screening, rates, and discretion from Katherine Taylor, a high-end San Francisco escort. What agency pages won't tell you.",
+      "Straight answers on booking, screening, rates, and discretion from Katherine Taylor, a high-end escort in San Francisco and Sacramento. What agency pages won't tell you.",
     path: sitePages.faq.path,
   },
   inquire: {

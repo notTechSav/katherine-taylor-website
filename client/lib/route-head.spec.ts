@@ -276,7 +276,7 @@ describe("structured-data graph", () => {
       "https://x.com/KatherineTaylor",
       "https://www.instagram.com/katherineunscripted/",
     ]);
-    expect(person.url).toBe("https://katherinetaylorescort.com/");
+    expect(person.url).toBe("https://katherinetaylorescort.com/about");
     expect(person.areaServed.map((place) => place.name)).toEqual([
       "San Francisco",
       "Sacramento",
@@ -379,15 +379,17 @@ describe("structured-data graph", () => {
     }
   });
 
-  it("points the Sacramento Article author at /about without adding a new schema type", () => {
+  it("points the Sacramento Article author at /about and adds breadcrumbs", () => {
     const nodes = parseJsonLd(routeHtml("/sacramento-escorts"));
-    expect(typesOf(nodes)).toEqual(["Article"]);
+    expect(typesOf(nodes)).toEqual(["Article", "BreadcrumbList"]);
     const article = nodes[0] as {
       author: { url: string; name: string; jobTitle: string };
+      datePublished: string;
     };
     expect(article.author.name).toBe("Katherine Taylor");
     expect(article.author.jobTitle).toBe("Luxury Companion");
     expect(article.author.url).toBe("https://katherinetaylorescort.com/about");
+    expect(article.datePublished).toBe("2026-08-20");
   });
 
   it("adds WebPage and BreadcrumbList to rates and FAQ without Offer or FAQPage", () => {
@@ -417,7 +419,20 @@ describe("structured-data graph", () => {
     expect(faqPage.significantLink).toEqual([
       "https://katherinetaylorescort.com/rates#why",
       "https://katherinetaylorescort.com/faq#reviews",
+      "https://katherinetaylorescort.com/faq#screening",
+      "https://katherinetaylorescort.com/faq#booking",
     ]);
+
+    const inquire = parseJsonLd(routeHtml("/inquire"));
+    expect(typesOf(inquire)).toEqual(["WebPage", "BreadcrumbList"]);
+    const inquirePage = inquire[0] as { significantLink: string[] };
+    expect(inquirePage.significantLink).toEqual([
+      "https://katherinetaylorescort.com/faq#screening",
+      "https://katherinetaylorescort.com/faq#booking",
+    ]);
+
+    const gifts = parseJsonLd(routeHtml("/gifts"));
+    expect(typesOf(gifts)).toEqual(["WebPage", "BreadcrumbList"]);
   });
 
   it("leaves film VideoObject graphs unchanged and does not add ProfilePage or breadcrumbs elsewhere", () => {
@@ -425,6 +440,9 @@ describe("structured-data graph", () => {
       "/journal",
       "/rates",
       "/faq",
+      "/inquire",
+      "/gifts",
+      "/sacramento-escorts",
       ...essays.map((essay) => `/journal/${essay.slug}`),
     ]);
 

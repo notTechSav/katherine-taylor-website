@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useLayoutEffect, useMemo } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import JournalBody from "@/components/journal/JournalBody";
 import SeoHead from "@/components/site/SeoHead";
@@ -13,6 +13,7 @@ import {
   formatJournalPublishedDate,
 } from "@/lib/journal-content";
 import { journalEssayJsonLd } from "@/lib/journal-json-ld";
+import { scrollToHashTarget } from "@/lib/page-scroll";
 import { absoluteUrl } from "@/lib/site-config";
 import { builderHeroAttrs } from "@/lib/builder-image";
 import NotFound from "@/pages/NotFound";
@@ -48,8 +49,11 @@ const JournalArticle = () => {
     [essay],
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!essay) {
+      return;
+    }
+    if (window.location.hash && scrollToHashTarget(window.location.hash)) {
       return;
     }
     window.scrollTo({ top: 0, behavior: "auto" });
@@ -121,7 +125,7 @@ const JournalArticle = () => {
           </p>
           <JournalBody body={essay.body} idPrefix={essay.slug} />
           {essay.slug === "memoirs-in-the-city" ? (
-            <div className="space-y-3">
+            <div id="selected-press" className="scroll-mt-28 space-y-3">
               <p className="text-sm font-light tracking-[0.12em] text-gray-600">
                 Selected Press
               </p>

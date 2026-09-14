@@ -68,7 +68,8 @@ const About = () => {
           <main className="space-y-16">
             <section className="space-y-7">
               <h2
-                className="text-2xl font-extralight tracking-[-0.02em] text-luxury-black md:text-3xl"
+                id="institutional-memory"
+                className="scroll-mt-28 text-2xl font-extralight tracking-[-0.02em] text-luxury-black md:text-3xl"
                 style={{ fontWeight: 200 }}
               >
                 Institutional Memory
@@ -99,7 +100,8 @@ const About = () => {
 
             <section className="space-y-7">
               <h2
-                className="text-2xl font-extralight tracking-[-0.02em] text-luxury-black md:text-3xl"
+                id="strategic-counsel"
+                className="scroll-mt-28 text-2xl font-extralight tracking-[-0.02em] text-luxury-black md:text-3xl"
                 style={{ fontWeight: 200 }}
               >
                 Strategic Counsel and Continuity
@@ -128,7 +130,8 @@ const About = () => {
 
             <section className="space-y-7">
               <h2
-                className="text-2xl font-extralight tracking-[-0.02em] text-luxury-black md:text-3xl"
+                id="who-i-work-with"
+                className="scroll-mt-28 text-2xl font-extralight tracking-[-0.02em] text-luxury-black md:text-3xl"
                 style={{ fontWeight: 200 }}
               >
                 Who I Work With

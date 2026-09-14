@@ -1,4 +1,4 @@
-import { aboutJsonLd, katherineTaylorArticleAuthor } from "./about-json-ld";
+import { aboutJsonLd } from "./about-json-ld";
 import { briefInterruptionJsonLd, briefInterruptionVideo } from "./brief-interruption";
 import { homeJsonLd } from "./home-json-ld";
 import { essays, essayMetadata, heroImage } from "./journal-content";
@@ -7,7 +7,13 @@ import {
   journalIndexBreadcrumbJsonLd,
   journalIndexJsonLd,
 } from "./journal-json-ld";
-import { faqJsonLd, ratesJsonLd } from "./page-json-ld";
+import {
+  faqJsonLd,
+  giftsJsonLd,
+  inquireJsonLd,
+  ratesJsonLd,
+  sacramentoJsonLd,
+} from "./page-json-ld";
 import { pageSeo } from "./page-seo";
 import { pleaseStandByJsonLd, pleaseStandByVideo } from "./please-stand-by";
 import { DEFAULT_OG_IMAGE, SITE_URL, absoluteUrl } from "./site-config";
@@ -36,19 +42,6 @@ export type RouteHead = {
   geoRegion?: string;
   geoPlacename?: string;
   noIndex?: boolean;
-};
-
-const sacramentoJsonLd: Record<string, unknown> = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: "Escorts Near Me | The High-End Edition",
-  description: pageSeo.sacramento.description,
-  author: {
-    ...katherineTaylorArticleAuthor,
-    jobTitle: "Luxury Companion",
-  },
-  about: ["Sacramento escort", "escorts near me", "California escorts"],
-  url: absoluteUrl("/sacramento-escorts"),
 };
 
 const pageSeoHeads: Record<string, Partial<RouteHead>> = {
@@ -83,8 +76,12 @@ const pageSeoHeads: Record<string, Partial<RouteHead>> = {
   "/faq": {
     jsonLd: faqJsonLd,
   },
-  "/inquire": {},
-  "/gifts": {},
+  "/inquire": {
+    jsonLd: inquireJsonLd,
+  },
+  "/gifts": {
+    jsonLd: giftsJsonLd,
+  },
   "/journal": {
     image: absoluteUrl(heroImage.src),
     imageAlt: heroImage.alt,
@@ -92,7 +89,7 @@ const pageSeoHeads: Record<string, Partial<RouteHead>> = {
   },
   "/sacramento-escorts": {
     ogType: "article",
-    jsonLd: [sacramentoJsonLd],
+    jsonLd: sacramentoJsonLd,
     geoRegion: "US-CA",
     geoPlacename: "Sacramento",
   },

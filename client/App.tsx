@@ -18,6 +18,7 @@ import {
 import { lazy, Suspense, useLayoutEffect } from "react";
 import SiteLayout from "@/components/site/SiteLayout";
 import JournalModalRoute from "@/components/journal/JournalModalRoute";
+import { scrollToHashTarget } from "@/lib/page-scroll";
 
 import Index from "./pages/Index";
 
@@ -79,8 +80,17 @@ const AppRoutes = () => {
   }, []);
 
   useLayoutEffect(() => {
-    if (state?.backgroundLocation || location.hash) {
+    if (state?.backgroundLocation) {
       return;
+    }
+    if (location.hash) {
+      if (scrollToHashTarget(location.hash)) {
+        return;
+      }
+      const frame = window.requestAnimationFrame(() => {
+        scrollToHashTarget(location.hash);
+      });
+      return () => window.cancelAnimationFrame(frame);
     }
     restoreScrollToTop();
   }, [location.hash, location.pathname, state?.backgroundLocation]);

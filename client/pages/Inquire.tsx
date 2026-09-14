@@ -4,6 +4,7 @@ import { useState } from "react";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import SeoHead from "@/components/site/SeoHead";
 import { submitInquiryFromForm } from "@/lib/inquiry-submit";
+import { inquireJsonLd } from "@/lib/page-json-ld";
 import { pageSeo } from "@/lib/page-seo";
 import {
   EMPTY_INQUIRY,
@@ -16,6 +17,9 @@ const heroImage = {
   src: "/inquire-hero.webp",
   alt: "Private threshold with elegant architectural details in soft light",
 };
+
+const editorialLinkClass =
+  "underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline";
 
 const InquirePage = () => {
   const [formData, setFormData] = useState<InquiryPayload>(EMPTY_INQUIRY);
@@ -53,6 +57,7 @@ const InquirePage = () => {
           title={pageSeo.inquire.title}
           description={pageSeo.inquire.description}
           path={pageSeo.inquire.path}
+          jsonLd={inquireJsonLd}
         />
         <div className="container mx-auto px-6 md:px-8 max-w-2xl text-center space-y-8">
           <h1
@@ -87,6 +92,7 @@ const InquirePage = () => {
         title={pageSeo.inquire.title}
         description={pageSeo.inquire.description}
         path={pageSeo.inquire.path}
+        jsonLd={inquireJsonLd}
       />
       <PageHeroOverlay
         title="Inquire"
@@ -101,16 +107,27 @@ const InquirePage = () => {
         <div className="container mx-auto px-6 md:px-8 max-w-2xl">
           <div className="mb-12 space-y-4 text-center">
             <h2
-              className="text-3xl font-extralight tracking-[-0.02em] text-luxury-black md:text-4xl"
+              id="how-to-inquire"
+              className="scroll-mt-28 text-3xl font-extralight tracking-[-0.02em] text-luxury-black md:text-4xl"
               style={{ fontWeight: 200 }}
             >
               Private Inquiry
             </h2>
             <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700">
-              Please provide enough context for me to understand who you are and what you're looking for.
+              I read every inquiry myself. Tell me who you are, what you are looking for, preferred dates and duration, and how you found me.
+            </p>
+            <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700">
+              <a href="/faq#screening" className={editorialLinkClass}>
+                Screening
+              </a>{" "}
+              is required before we meet: two professional references, or government-issued ID and LinkedIn.{" "}
+              <a href="/faq#booking" className={editorialLinkClass}>
+                How to book
+              </a>{" "}
+              is on the FAQ if you want the longer version first.
             </p>
             <p className="text-sm font-light italic text-gray-500">
-              Incomplete inquiries rarely receive a response.
+              I respond within 24 hours when the fit seems mutual. Incomplete inquiries rarely receive a response.
             </p>
           </div>
 

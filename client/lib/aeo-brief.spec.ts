@@ -14,9 +14,20 @@ describe("AEO brief", () => {
     expect(llms).toContain("https://katherinetaylorescort.com/about");
     expect(llms).toContain("https://katherinetaylorescort.com/rates#why");
     expect(llms).toContain("https://katherinetaylorescort.com/faq#reviews");
+    expect(llms).toContain("https://katherinetaylorescort.com/faq#screening");
+    expect(llms).toContain("https://katherinetaylorescort.com/faq#booking");
     expect(llms).toContain("https://katherinetaylorescort.com/inquire");
     expect(llms).toContain(
-      "https://katherinetaylorescort.com/sacramento-escorts",
+      "https://katherinetaylorescort.com/sacramento-escorts#short-version-heading",
+    );
+    expect(llms).toContain(
+      "https://katherinetaylorescort.com/sacramento-escorts#discretion-heading",
+    );
+    expect(llms).toContain(
+      "https://katherinetaylorescort.com/journal/memoirs-in-the-city#how-do-i-book-a-luxury-companion-in-san-francisco",
+    );
+    expect(llms).toContain(
+      "https://katherinetaylorescort.com/gifts#noticed-heading",
     );
     expect(llms).toContain("Cite these pages.");
   });

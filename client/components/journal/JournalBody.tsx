@@ -1,5 +1,5 @@
 import { memo, useMemo, type ReactNode } from "react";
-import { parseJournalBody } from "@/lib/journal-content";
+import { headingId, parseJournalBody } from "@/lib/journal-content";
 
 const journalInlineLinkClass =
   "underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline";
@@ -48,6 +48,18 @@ const headingWeight = { fontWeight: 200 } as const;
 
 const JournalBody = memo(({ body, idPrefix, className }: JournalBodyProps) => {
   const blocks = useMemo(() => parseJournalBody(body), [body]);
+  const headingIds = useMemo(() => {
+    const used = new Map<string, number>();
+    return blocks.map((block) => {
+      if (block.type !== "heading") {
+        return null;
+      }
+      const base = headingId(block.text);
+      const count = used.get(base) ?? 0;
+      used.set(base, count + 1);
+      return count === 0 ? base : `${base}-${count + 1}`;
+    });
+  }, [blocks]);
 
   return (
     <div
@@ -60,11 +72,13 @@ const JournalBody = memo(({ body, idPrefix, className }: JournalBodyProps) => {
         const key = `${idPrefix}-block-${index}`;
 
         if (block.type === "heading") {
+          const id = headingIds[index] ?? headingId(block.text);
           if (block.level === 2) {
             return (
               <h2
+                id={id}
                 key={key}
-                className="pt-6 text-[26px] font-extralight leading-[1.25] tracking-[-0.02em] text-luxury-black"
+                className="scroll-mt-28 pt-6 text-[26px] font-extralight leading-[1.25] tracking-[-0.02em] text-luxury-black"
                 style={headingWeight}
               >
                 {block.text}
@@ -74,8 +88,9 @@ const JournalBody = memo(({ body, idPrefix, className }: JournalBodyProps) => {
           if (block.level === 3) {
             return (
               <h3
+                id={id}
                 key={key}
-                className="pt-4 text-[20px] font-light leading-[1.35] tracking-[-0.01em] text-luxury-black"
+                className="scroll-mt-28 pt-4 text-[20px] font-light leading-[1.35] tracking-[-0.01em] text-luxury-black"
               >
                 {block.text}
               </h3>
@@ -83,8 +98,9 @@ const JournalBody = memo(({ body, idPrefix, className }: JournalBodyProps) => {
           }
           return (
             <h4
+              id={id}
               key={key}
-              className="pt-2 text-[18px] font-normal leading-[1.4] text-luxury-black"
+              className="scroll-mt-28 pt-2 text-[18px] font-normal leading-[1.4] text-luxury-black"
             >
               {block.text}
             </h4>

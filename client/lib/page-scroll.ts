@@ -105,3 +105,20 @@ export function readFullpageArrowStateFromDocument(
     hasFooter,
   });
 }
+
+/** Scroll to a citation fragment. Returns false when the id is not in the DOM yet. */
+export function scrollToHashTarget(hash: string): boolean {
+  if (typeof document === "undefined") {
+    return false;
+  }
+  const id = decodeURIComponent(hash.replace(/^#/, ""));
+  if (!id) {
+    return false;
+  }
+  const element = document.getElementById(id);
+  if (!element) {
+    return false;
+  }
+  element.scrollIntoView({ behavior: "auto", block: "start" });
+  return true;
+}

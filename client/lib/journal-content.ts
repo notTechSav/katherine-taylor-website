@@ -526,6 +526,18 @@ export const essayMetadata = {
 
 const headingPattern = /^(#{2,4})\s+(.*)$/;
 
+/** Stable URL fragment for a journal heading. */
+export function headingId(text: string): string {
+  const slug = text
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/&/g, " and ")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+  return slug || "section";
+}
+
 /**
  * Essay bodies are plain text. Longer pieces mark structure with `##`/`###`/`####`
  * headings and `- ` list items so a single body string can carry a full memoir.

@@ -107,6 +107,12 @@ describe("prerender route bodies", () => {
     const html = renderRoute("/journal/memoirs-in-the-city");
     expect(html).toMatch(/<h1[^>]*>Memoirs in the City<\/h1>/);
     expect(html).toContain("Searching for Katherine Taylor in San Francisco");
+    expect(html).toContain('id="searching-for-katherine-taylor-in-san-francisco"');
+    expect(html).toContain(
+      'id="how-do-i-book-a-luxury-companion-in-san-francisco"',
+    );
+    expect(html).toContain('id="selected-press"');
+    expect(html).toContain("https://www.tmz.com/");
     expect(html).toContain(memoir.seo?.title);
   });
 
@@ -218,6 +224,10 @@ describe("prerender route bodies", () => {
   it("links the review-board FAQ to the national ranking screenshot", () => {
     const faq = renderRoute("/faq");
     expect(faq).toContain('id="reviews"');
+    expect(faq).toContain('id="screening"');
+    expect(faq).toContain('id="booking"');
+    expect(faq).toContain('id="first-time"');
+    expect(faq).toContain('id="sacramento-vs-sf"');
     expect(faq).toContain('href="/national-ranking.jpg"');
     expect(faq).toContain("The national ranking is still on file.");
     expect(faq).toContain("Why don&#x27;t you have escort reviews?");
@@ -252,6 +262,15 @@ describe("prerender route bodies", () => {
     expect(about).toContain('href="/journal/scarcity-discipline"');
     expect(about).toContain(">small roster<");
     expect(about).toContain(">raise rates<");
+    expect(about).toContain('id="institutional-memory"');
+    expect(about).toContain('id="who-i-work-with"');
+
+    const inquire = renderRoute("/inquire");
+    expect(inquire).toContain('id="how-to-inquire"');
+    expect(inquire).toContain('href="/faq#screening"');
+    expect(inquire).toContain('href="/faq#booking"');
+    expect(inquire).toContain("Screening");
+    expect(inquire).toContain("I read every inquiry myself.");
 
     const sacramento = renderRoute("/sacramento-escorts");
     expect(sacramento).toContain(

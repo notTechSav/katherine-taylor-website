@@ -3,6 +3,7 @@
 import { useState, useCallback, type ReactNode } from "react";
 import GiftsGuidance from "@/pages/GiftsGuidance";
 import SeoHead from "@/components/site/SeoHead";
+import { giftsJsonLd } from "@/lib/page-json-ld";
 import { pageSeo } from "@/lib/page-seo";
 
 const GIFTS_HERO_VERSION = "2";
@@ -30,6 +31,7 @@ const Gifts = ({ children }: { children?: ReactNode }) => {
         title={pageSeo.gifts.title}
         description={pageSeo.gifts.description}
         path={pageSeo.gifts.path}
+        jsonLd={giftsJsonLd}
       />
       {/* Hero Section - matching journal's hero exactly */}
       <section className="relative bg-luxury-white">

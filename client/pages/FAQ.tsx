@@ -54,7 +54,8 @@ const FAQPage = () => {
           {/* FAQ 1 */}
           <div className="mb-16">
             <h2
-              className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+              id="screening"
+              className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
               What does screening involve?
@@ -72,7 +73,8 @@ const FAQPage = () => {
           {/* FAQ 2 */}
           <div className="mb-16">
             <h2
-              className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+              id="payment"
+              className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
               What payment methods do you accept?
@@ -193,7 +195,8 @@ const FAQPage = () => {
           {/* FAQ 5 */}
           <div className="mb-16">
             <h2
-              className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+              id="nda"
+              className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
               Do you require an NDA?
@@ -211,7 +214,8 @@ const FAQPage = () => {
           {/* FAQ 6 */}
           <div className="mb-16">
             <h2
-              className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+              id="hosting"
+              className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
               Do you prefer hosting or visiting?
@@ -229,7 +233,8 @@ const FAQPage = () => {
           {/* FAQ 6 */}
           <div className="mb-16">
             <h2
-              className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+              id="overnight"
+              className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
               What do overnight or multi-day bookings include?
@@ -247,7 +252,8 @@ const FAQPage = () => {
           {/* FAQ 7 */}
           <div className="mb-16">
             <h2
-              className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+              id="booking"
+              className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
               How do I book?
@@ -274,7 +280,8 @@ const FAQPage = () => {
           {/* FAQ 8 */}
           <div className="mb-16">
             <h2
-              className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+              id="travel"
+              className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
               Do you travel, or only work locally?
@@ -324,7 +331,8 @@ const FAQPage = () => {
             {/* FAQ 9 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="legal"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 Is escorting legal in California?
@@ -357,7 +365,8 @@ const FAQPage = () => {
             {/* FAQ 10 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="taxes"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 How do escorts pay taxes?
@@ -384,7 +393,8 @@ const FAQPage = () => {
             {/* FAQ 11 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="escort-vs-prostitution"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 What's the legal difference between an escort and prostitution?
@@ -417,7 +427,8 @@ const FAQPage = () => {
             {/* FAQ 12 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="llc"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 Do I need an LLC as an escort?
@@ -451,7 +462,8 @@ const FAQPage = () => {
             {/* FAQ 13 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="earnings"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 How much do high-end escorts actually make?
@@ -485,7 +497,8 @@ const FAQPage = () => {
             {/* FAQ 14 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="independent-vs-agency"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 Independent escort vs agency—what's the difference?
@@ -525,7 +538,8 @@ const FAQPage = () => {
             {/* FAQ 15 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="gfe"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 What is GFE in escorting?
@@ -552,7 +566,8 @@ const FAQPage = () => {
             {/* FAQ 16 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="first-time"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 What should first-time escort clients know?
@@ -597,7 +612,8 @@ const FAQPage = () => {
             {/* FAQ 17 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="verify"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 How do I verify an escort is legitimate?
@@ -674,7 +690,8 @@ const FAQPage = () => {
             {/* FAQ 18 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="luxury-experience"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 What should I expect from a luxury escort experience?
@@ -712,7 +729,8 @@ const FAQPage = () => {
             {/* FAQ 19 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="discretion-married"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 How do married clients see escorts discreetly?
@@ -752,7 +770,8 @@ const FAQPage = () => {
             {/* FAQ 20 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="executives"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 What do founders and executives look for in a companion?
@@ -791,7 +810,8 @@ const FAQPage = () => {
             {/* FAQ 21 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="sacramento-vs-sf"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 Sacramento vs San Francisco escort market—what's the difference?
@@ -831,7 +851,8 @@ const FAQPage = () => {
             {/* FAQ 22 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="fmty"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 FMTY escort etiquette and logistics
@@ -875,7 +896,8 @@ const FAQPage = () => {
             {/* FAQ 23 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="industry-change"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 How has escorting changed in the last 10 years?
@@ -914,7 +936,8 @@ const FAQPage = () => {
             {/* FAQ 24 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="first-appointment"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 What should I expect on my first escort appointment? How do I prepare?
@@ -958,7 +981,8 @@ const FAQPage = () => {
             {/* FAQ 25 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="dateable"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 Are escorts dateable?
@@ -998,7 +1022,8 @@ const FAQPage = () => {
             {/* FAQ 26 */}
             <div className="mb-16">
               <h2
-                className="mb-4 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
+                id="fall-in-love"
+                className="mb-4 scroll-mt-28 text-2xl md:text-3xl font-extralight tracking-[-0.02em] text-luxury-black"
                 style={{ fontWeight: 200 }}
               >
                 Do escorts fall in love with their clients?

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { formatJournalPublishedDate } from "./journal-content";
+import { formatJournalPublishedDate, headingId } from "./journal-content";
 
 describe("formatJournalPublishedDate", () => {
   it("keeps the calendar day of a date-only value", () => {
@@ -12,5 +12,15 @@ describe("formatJournalPublishedDate", () => {
 
   it("returns the original string when the value is not date-only", () => {
     expect(formatJournalPublishedDate("unpublished")).toBe("unpublished");
+  });
+});
+
+describe("headingId", () => {
+  it("slugs memoir booking and press headings for citation fragments", () => {
+    expect(headingId("How do I book a luxury companion in San Francisco?")).toBe(
+      "how-do-i-book-a-luxury-companion-in-san-francisco",
+    );
+    expect(headingId("Screening Required")).toBe("screening-required");
+    expect(headingId("I ♥ SF")).toBe("i-sf");
   });
 });

@@ -1,7 +1,8 @@
-import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_URL } from "./site-config";
+import { CONTACT_EMAIL, DEFAULT_OG_IMAGE, SITE_URL, absoluteUrl } from "./site-config";
 import { pageSeo } from "./page-seo";
 
 const homeUrl = `${SITE_URL}/`;
+const aboutUrl = absoluteUrl(pageSeo.about.path);
 
 /** Homepage Person + WebSite + WebPage + VideoObject. Kept identical in first-byte HTML and SeoHead. */
 export const homeJsonLd = [
@@ -14,7 +15,7 @@ export const homeJsonLd = [
     image: DEFAULT_OG_IMAGE,
     description:
       "High-end escort offering private companionship in San Francisco, Sacramento, and the Bay Area.",
-    url: homeUrl,
+    url: aboutUrl,
     email: CONTACT_EMAIL,
     areaServed: [
       {
@@ -55,7 +56,7 @@ export const homeJsonLd = [
     description: pageSeo.home.description,
     inLanguage: "en-US",
     isPartOf: { "@type": "WebSite", name: "Katherine Taylor", url: homeUrl },
-    about: { "@type": "Person", name: "Katherine Taylor", url: homeUrl },
+    about: { "@type": "Person", name: "Katherine Taylor", url: aboutUrl },
     primaryImageOfPage: DEFAULT_OG_IMAGE,
   },
   {

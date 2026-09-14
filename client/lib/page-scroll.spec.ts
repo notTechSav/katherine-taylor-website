@@ -4,6 +4,7 @@ import {
   getDocumentArrowState,
   getFullpageArrowState,
   nextDocumentScrollTop,
+  scrollToHashTarget,
 } from "./page-scroll";
 
 describe("getFullpageArrowState", () => {
@@ -98,5 +99,12 @@ describe("nextDocumentScrollTop", () => {
     expect(nextDocumentScrollTop(-1, 736, 800, 3000)).toBe(0);
     expect(nextDocumentScrollTop(1, 2100, 800, 3000)).toBe(2200);
     expect(nextDocumentScrollTop(-1, 0, 800, 3000)).toBe(0);
+  });
+});
+
+describe("scrollToHashTarget", () => {
+  it("returns false for an empty hash", () => {
+    expect(scrollToHashTarget("")).toBe(false);
+    expect(scrollToHashTarget("#")).toBe(false);
   });
 });
