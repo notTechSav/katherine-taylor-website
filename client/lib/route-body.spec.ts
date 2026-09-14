@@ -215,6 +215,14 @@ describe("prerender route bodies", () => {
     expect(footer).not.toContain("/film/a-brief-interruption");
   });
 
+  it("links the review-board FAQ to the national ranking screenshot", () => {
+    const faq = renderRoute("/faq");
+    expect(faq).toContain('id="reviews"');
+    expect(faq).toContain('href="/national-ranking.jpg"');
+    expect(faq).toContain("The national ranking is still on file.");
+    expect(faq).toContain("Why don&#x27;t you have escort reviews?");
+  });
+
   it("inserts Please Stand By between FAQ and Inquire", () => {
     const faq = renderRoute("/faq");
     expect(faq).toContain('href="/film/please-stand-by"');
