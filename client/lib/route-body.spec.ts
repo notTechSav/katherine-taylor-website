@@ -251,13 +251,13 @@ describe("prerender route bodies", () => {
     for (const routePath of ["/", "/about"]) {
       const html = renderRoute(routePath);
       const footer = html.slice(html.lastIndexOf("<footer"));
-      expect(footer).toContain('href="https://x.com/TheKatherineExp"');
+      expect(footer).toContain('href="https://x.com/KatherineTaylor"');
       expect(footer).toContain('target="_blank"');
       expect(footer).toContain('rel="noopener noreferrer"');
       expect(footer).not.toContain('rel="sponsored"');
       expect(footer).not.toContain('rel="nofollow"');
       expect(footer).toContain('aria-label="Katherine Taylor on X"');
-      expect(footer).toContain("𝕏 @TheKatherineExp");
+      expect(footer).toContain("𝕏 @KatherineTaylor");
       expect(footer).toContain(
         'href="https://www.instagram.com/katherineunscripted/"',
       );
@@ -269,7 +269,7 @@ describe("prerender route bodies", () => {
         /<nav\b[^>]*class="fixed top-0[\s\S]*?<\/nav>/,
       )?.[0];
       expect(headerNav).toBeTruthy();
-      expect(headerNav).not.toContain("https://x.com/TheKatherineExp");
+      expect(headerNav).not.toContain("https://x.com/KatherineTaylor");
       expect(headerNav).not.toContain("katherineunscripted");
     }
   });

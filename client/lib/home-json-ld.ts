@@ -29,7 +29,7 @@ export const homeJsonLd = [
       },
     ],
     sameAs: [
-      "https://x.com/TheKatherineExp",
+      "https://x.com/KatherineTaylor",
       "https://www.instagram.com/katherineunscripted/",
     ],
   },

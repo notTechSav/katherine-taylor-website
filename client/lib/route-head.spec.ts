@@ -273,7 +273,7 @@ describe("structured-data graph", () => {
       areaServed: Array<{ name: string }>;
     };
     expect(person.sameAs).toEqual([
-      "https://x.com/TheKatherineExp",
+      "https://x.com/KatherineTaylor",
       "https://www.instagram.com/katherineunscripted/",
     ]);
     expect(person.url).toBe("https://katherinetaylorescort.com/");
@@ -314,7 +314,7 @@ describe("structured-data graph", () => {
     );
     expect(profile.mainEntity.image).toBe(DEFAULT_OG_IMAGE);
     expect(profile.mainEntity.sameAs).toEqual([
-      "https://x.com/TheKatherineExp",
+      "https://x.com/KatherineTaylor",
       "https://www.instagram.com/katherineunscripted/",
     ]);
     expect(profile.mainEntity).not.toHaveProperty("email");

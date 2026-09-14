@@ -108,13 +108,13 @@ const WorldPeek = () => {
       </p>
       <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
         <a
-          href="https://x.com/TheKatherineExp"
+          href="https://x.com/KatherineTaylor"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Katherine Taylor on X"
           className={handleClass}
         >
-          𝕏 @TheKatherineExp
+          𝕏 @KatherineTaylor
         </a>
         <span aria-hidden="true" className="text-[11px] font-light text-gray-400">
           |
