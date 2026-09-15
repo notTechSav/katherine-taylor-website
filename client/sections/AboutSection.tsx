@@ -16,7 +16,7 @@ export default function AboutSection() {
         <p className="homepage-body">
           I remember what matters. The conversation picks up where it left off.
         </p>
-        <Link to="/about" className="homepage-cta text-white">
+        <Link to="/about" className="homepage-cta-frame text-white">
           About Katherine
         </Link>
       </HomepageEditorialOverlay>

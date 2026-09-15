@@ -13,7 +13,7 @@ import { sitePages } from "./site-pages";
 export const journalIndexJsonLd: Record<string, unknown> = {
   "@context": "https://schema.org",
   "@type": "Blog",
-  name: journalDisplay.pageTitle,
+  name: journalDisplay.publicationName,
   description: pageSeo.journal.description,
   url: absoluteUrl(sitePages.journal.path),
   image: absoluteUrl(heroImage.src),

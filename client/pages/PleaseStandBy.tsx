@@ -71,14 +71,14 @@ const PleaseStandBy = () => {
             alt=""
             width={pleaseStandByVideo.width}
             height={pleaseStandByVideo.height}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover object-[center_62%] md:object-center"
             decoding="async"
           />
           {playMotion ? (
             <>
               <video
                 ref={videoRef}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover object-[center_62%] md:object-center"
                 src={pleaseStandByVideo.src}
                 poster={pleaseStandByVideo.poster}
                 width={pleaseStandByVideo.width}

@@ -10,6 +10,7 @@ export default function OpeningVideoSection() {
       fallbackSrc={openingVideo.fallbackSrc}
       posterSrc={openingVideo.poster}
       objectPosition={openingVideo.objectPosition}
+      objectPositionMobile={openingVideo.objectPositionMobile}
       overlayClassName="homepage-veil-video"
       priority
     >
@@ -22,7 +23,7 @@ export default function OpeningVideoSection() {
           Private companionship in
           <br className="md:hidden" /> San Francisco and Sacramento.
         </p>
-        <Link to="/about" className="homepage-cta text-white">
+        <Link to="/about" className="homepage-cta-frame text-white">
           About Katherine
         </Link>
       </HomepageEditorialOverlay>

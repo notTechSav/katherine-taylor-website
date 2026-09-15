@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { cn } from "@/lib/utils";
 
@@ -43,14 +43,19 @@ const navigationLinks: NavItem[] = [
 const inquireHref = "/inquire";
 
 const navLinkClass =
-  "text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2";
+  "text-sm font-light uppercase tracking-uppercase transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
 const inquireButtonClass =
-  "inline-flex items-center justify-center border border-luxury-black/25 px-4 py-2 text-sm font-light uppercase tracking-uppercase text-luxury-black transition-colors duration-250 ease-out hover:border-luxury-black hover:bg-luxury-black hover:text-luxury-white focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2";
+  "inline-flex items-center justify-center border px-4 py-2 text-sm font-light uppercase tracking-uppercase transition-colors duration-250 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2";
 
 const Navigation = () => {
+  const { pathname } = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const inverseSurface =
+    !isMenuOpen &&
+    !scrolled &&
+    (pathname === "/" || pathname.startsWith("/film/"));
 
   useEffect(() => {
     const handleScroll = () => {
@@ -69,7 +74,7 @@ const Navigation = () => {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("fullpage:change", handleFullPage);
     };
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     document.documentElement.toggleAttribute("data-menu-open", isMenuOpen);
@@ -87,31 +92,50 @@ const Navigation = () => {
     }
   };
 
+  const linkTone = inverseSurface
+    ? "text-white focus:ring-white/50 focus:ring-offset-0"
+    : "text-luxury-black focus:ring-gray-300 focus:ring-offset-2";
+  const inquireTone = inverseSurface
+    ? "border-white/70 text-white hover:border-white hover:bg-white hover:text-luxury-black focus:ring-white/50 focus:ring-offset-0"
+    : "border-luxury-black/25 text-luxury-black hover:border-luxury-black hover:bg-luxury-black hover:text-luxury-white focus:ring-gray-300 focus:ring-offset-2";
+
   return (
     <nav
       data-site-nav
+      data-nav-inverse={inverseSurface ? "" : undefined}
       className={cn(
-        "fixed top-0 z-50 w-full px-4 transition-all duration-400 ease-out md:px-8",
+        "fixed top-0 z-50 w-full px-4 transition-colors duration-400 ease-out md:px-8",
         isMenuOpen
           ? "h-dvh overflow-y-auto bg-luxury-white py-5 md:h-auto md:overflow-visible"
-          : scrolled
-            ? "bg-luxury-white/95 py-3 backdrop-blur-sm shadow-luxury-sm md:py-4"
-            : "bg-luxury-white/80 py-5 backdrop-blur-sm md:py-8",
+          : inverseSurface
+            ? "bg-transparent py-5 md:py-8"
+            : "border-b border-luxury-black/10 bg-luxury-white py-3 md:py-4",
       )}
     >
-      <div className="mx-auto flex max-w-luxury items-center justify-between gap-6">
+      <div className="mx-auto flex max-w-luxury items-center justify-between gap-4 sm:gap-6">
         <Link
           to="/"
-          className="flex items-center gap-3 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2"
+          className={cn(
+            "flex min-w-0 items-center focus:outline-none focus:ring-2",
+            linkTone,
+          )}
         >
-          <span className="font-helvetica text-xl font-extralight uppercase leading-[1.1] tracking-uppercase text-luxury-black md:text-2xl">
+          <span
+            className={cn(
+              "font-helvetica whitespace-nowrap text-[clamp(0.95rem,4.2vw,1.5rem)] font-extralight uppercase leading-none tracking-uppercase md:text-2xl",
+              inverseSurface ? "text-white" : "text-luxury-black",
+            )}
+          >
             KATHERINE TAYLOR
           </span>
         </Link>
         <button
           type="button"
           onClick={() => setIsMenuOpen((previous) => !previous)}
-          className="inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-sm font-light uppercase tracking-uppercase text-luxury-black transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 md:hidden"
+          className={cn(
+            "inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-sm font-light uppercase tracking-uppercase transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 md:hidden",
+            linkTone,
+          )}
           aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
           aria-expanded={isMenuOpen}
           aria-controls="mobile-navigation"
@@ -125,7 +149,7 @@ const Navigation = () => {
                 <Link
                   to={link.href}
                   onMouseEnter={() => handleMouseEnter(link.href)}
-                  className={navLinkClass}
+                  className={cn(navLinkClass, linkTone)}
                 >
                   {link.label}
                 </Link>
@@ -134,12 +158,15 @@ const Navigation = () => {
                     {link.children.map((child) => (
                       <li
                         key={child.href}
-                        className="bg-luxury-white/95 py-2 shadow-luxury-sm backdrop-blur-sm"
+                        className="border border-luxury-black/10 bg-luxury-white py-2"
                       >
                         <Link
                           to={child.href}
                           onMouseEnter={() => handleMouseEnter(child.href)}
-                          className={cn(navLinkClass, "block px-4 py-1.5")}
+                          className={cn(
+                            navLinkClass,
+                            "block px-4 py-1.5 text-luxury-black focus:ring-gray-300 focus:ring-offset-2",
+                          )}
                         >
                           {child.label}
                         </Link>
@@ -153,7 +180,7 @@ const Navigation = () => {
           <Link
             to={inquireHref}
             onMouseEnter={() => handleMouseEnter(inquireHref)}
-            className={inquireButtonClass}
+            className={cn(inquireButtonClass, inquireTone)}
           >
             Inquire
           </Link>
@@ -162,7 +189,7 @@ const Navigation = () => {
       {isMenuOpen ? (
         <div
           id="mobile-navigation"
-          className="mt-4 flex flex-1 flex-col border-t border-gray-200 px-2 pt-6 md:hidden"
+          className="mt-4 flex flex-1 flex-col border-t border-gray-200 bg-luxury-white px-2 pt-6 md:hidden"
         >
           <ul className="flex flex-col gap-2">
             {navigationLinks.map((link) => (
@@ -195,7 +222,10 @@ const Navigation = () => {
               <Link
                 to={inquireHref}
                 onClick={() => setIsMenuOpen(false)}
-                className={cn(inquireButtonClass, "w-full py-3")}
+                className={cn(
+                  inquireButtonClass,
+                  "w-full border-luxury-black/25 py-3 text-luxury-black hover:border-luxury-black hover:bg-luxury-black hover:text-luxury-white focus:ring-gray-300",
+                )}
               >
                 Inquire
               </Link>

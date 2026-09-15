@@ -15,7 +15,7 @@ export default function GallerySection() {
           From Los Angeles to Northern California. Some rooms hold stillness,
           others hold saturation.
         </p>
-        <Link to="/gallery" className="homepage-cta text-white">
+        <Link to="/gallery" className="homepage-cta-frame text-white">
           View Private Collections
         </Link>
       </HomepageEditorialOverlay>

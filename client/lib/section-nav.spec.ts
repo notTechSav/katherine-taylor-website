@@ -59,4 +59,8 @@ describe("getSectionAdjacent", () => {
       getSectionAdjacent("/journal/memoirs-in-the-city").back,
     ).toEqual({ href: "/journal", label: "The Journal" });
   });
+
+  it("does not add a page-to-page band on unknown routes", () => {
+    expect(getSectionAdjacent("/this-page-does-not-exist")).toEqual({});
+  });
 });

@@ -21,7 +21,7 @@ function ScrollChevron({ direction }: { direction: "up" | "down" }) {
 
   return (
     <svg
-      className="h-3.5 w-3.5"
+      className="h-5 w-5"
       fill="none"
       viewBox="0 0 24 24"
       aria-hidden="true"

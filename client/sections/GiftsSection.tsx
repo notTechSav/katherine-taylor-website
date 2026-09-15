@@ -14,7 +14,7 @@ const GiftsBannerSection = () => {
         <p className="homepage-body">
           Gifts aren't expected—they're punctuation, not purpose. When they happen, they feel like a quiet thank-you that marks knowing each other. The best ones reflect the texture of us.
         </p>
-        <Link to="/gifts" className="homepage-cta text-white">
+        <Link to="/gifts" className="homepage-cta-frame text-white">
           Gift Guide
         </Link>
       </HomepageEditorialOverlay>

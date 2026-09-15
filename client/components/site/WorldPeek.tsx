@@ -61,9 +61,7 @@ function PeekCursor({
       type="button"
       aria-label={isPrev ? "Previous" : "Next"}
       onClick={onClick}
-      className={`absolute top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-luxury-black bg-transparent text-luxury-black transition-opacity duration-300 hover:opacity-70 ${
-        isPrev ? "left-1 sm:left-2" : "right-1 sm:right-2"
-      } ${focusRing}`}
+      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-luxury-black bg-transparent text-luxury-black transition-opacity duration-300 hover:opacity-70 ${focusRing}`}
     >
       <svg
         className="h-3.5 w-3.5"
@@ -142,7 +140,7 @@ const WorldPeek = () => {
         </a>
       </p>
 
-      <div className="relative w-full max-w-luxury">
+      <div className="flex w-full max-w-luxury flex-col items-center gap-4">
         <Carousel
           setApi={setApi}
           opts={{ align: "start", loop: true, dragFree: true }}
@@ -166,8 +164,10 @@ const WorldPeek = () => {
             ))}
           </CarouselContent>
         </Carousel>
-        <PeekCursor direction="prev" onClick={scrollPrev} />
-        <PeekCursor direction="next" onClick={scrollNext} />
+        <div className="flex items-center gap-3">
+          <PeekCursor direction="prev" onClick={scrollPrev} />
+          <PeekCursor direction="next" onClick={scrollNext} />
+        </div>
       </div>
 
       <p className="text-sm font-light text-gray-500">

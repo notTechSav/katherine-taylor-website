@@ -24,6 +24,12 @@ const editorialLinkClass =
 const fieldClass =
   "w-full border border-gray-300 bg-luxury-white px-4 py-3 text-base font-light text-luxury-black placeholder-gray-400 outline-none transition-colors duration-300 focus:border-luxury-black";
 
+const selectClass =
+  `${fieldClass} cursor-pointer appearance-none bg-[length:12px_8px] bg-[right_1rem_center] bg-no-repeat pr-12`;
+
+const selectChevron =
+  "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none' stroke='%23111111' stroke-width='1.25'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E\")";
+
 const InquirePage = () => {
   const [formData, setFormData] = useState<InquiryPayload>(EMPTY_INQUIRY);
 
@@ -238,8 +244,8 @@ const InquirePage = () => {
                   value={formData.duration}
                   onChange={handleChange}
                   required
-                  className={`${fieldClass} cursor-pointer`}
-                  style={{ fontWeight: 300 }}
+                  className={selectClass}
+                  style={{ fontWeight: 300, backgroundImage: selectChevron }}
                 >
                   <option value="">Select duration</option>
                   <option value="1-hour">1 hour</option>
@@ -271,8 +277,8 @@ const InquirePage = () => {
                 value={formData.location}
                 onChange={handleChange}
                 required
-                className={`${fieldClass} cursor-pointer`}
-                style={{ fontWeight: 300 }}
+                className={selectClass}
+                style={{ fontWeight: 300, backgroundImage: selectChevron }}
               >
                 <option value="">Select location</option>
                 <option value="san-francisco">San Francisco (your hosting)</option>
@@ -336,7 +342,7 @@ const InquirePage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center justify-center bg-luxury-black px-12 py-4 text-sm font-light tracking-[0.1em] text-luxury-white transition-opacity duration-300 hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex w-full items-center justify-center bg-luxury-black px-12 py-4 text-sm font-light tracking-[0.1em] text-luxury-white transition-opacity duration-300 hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
                 style={{ fontWeight: 300 }}
               >
                 {isSubmitting ? "SUBMITTING..." : "SUBMIT INQUIRY"}

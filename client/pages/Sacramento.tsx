@@ -30,7 +30,7 @@ const SacramentoPage = () => {
       <article itemScope itemType="https://schema.org/Article">
         <PageHeroOverlay
           title="The High-End Edition"
-          subtitle="What ten years in escorting—and two years trying very hard not to do it—taught me about proximity, compatibility, discretion, money, memory, and finding the right person in Sacramento."
+          subtitle="Proximity isn't chemistry. A Sacramento essay on discretion, memory, and coming back to the work."
           eyebrow="Sacramento"
           imageSrc={heroImage.src}
           imageAlt={heroImage.alt}

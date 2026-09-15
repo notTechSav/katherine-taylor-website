@@ -16,7 +16,7 @@ export default function RatesVideoSection() {
         <p className="homepage-body">
           Rates are published plainly. Availability remains intentionally limited.
         </p>
-        <Link to="/rates" className="homepage-cta text-white">
+        <Link to="/rates" className="homepage-cta-frame text-white">
           View Rates
         </Link>
       </HomepageEditorialOverlay>

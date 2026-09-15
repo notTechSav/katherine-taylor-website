@@ -30,7 +30,7 @@ const requiredRoutes: { path: string; h1: string }[] = [
   { path: "/gifts", h1: "Gifts" },
   { path: "/faq", h1: "Frequently Asked Questions" },
   { path: "/inquire", h1: "Inquire" },
-  { path: "/journal", h1: "The High-End Edition" },
+  { path: "/journal", h1: "Journal" },
   { path: "/journal/memoirs-in-the-city", h1: "Memoirs in the City" },
   { path: "/journal/continuity-as-craft", h1: "Continuity as Craft" },
   { path: "/journal/the-luxury-of-unsaid-things", h1: "The Luxury of Unsaid Things" },
@@ -125,7 +125,7 @@ describe("prerender route bodies", () => {
     expect(home).toContain('href="/sacramento-escorts"');
 
     const journal = renderRoute("/journal");
-    expect(journal).toMatch(/<h1[^>]*>The High-End Edition<\/h1>/);
+    expect(journal).toMatch(/<h1[^>]*>Journal<\/h1>/);
     for (const essay of essays) {
       expect(journal).toContain(`href="/journal/${essay.slug}"`);
       expect(journal).toContain(`aria-label="Read: ${essay.title}"`);
@@ -267,7 +267,7 @@ describe("prerender route bodies", () => {
     expect(rates).toContain('href="/journal/scarcity-discipline"');
     expect(rates).toContain('href="/national-ranking.jpg"');
     expect(rates).toContain("The national ranking is still on file.");
-    expect(rates).toContain("CONCEAL STRUCTURE");
+    expect(rates).toContain("Hide rates");
     expect(rates).not.toMatch(/max-h-0 opacity-0/);
 
     const about = renderRoute("/about");

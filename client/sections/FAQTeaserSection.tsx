@@ -16,7 +16,7 @@ const FAQTeaserCard = () => {
         <p className="homepage-body">
           Clear answers on screening, discretion, etiquette, and the practical details worth understanding before an introduction.
         </p>
-        <Link to="/faq" className="homepage-cta text-white">
+        <Link to="/faq" className="homepage-cta-frame text-white">
           Read the FAQ
         </Link>
       </HomepageEditorialOverlay>

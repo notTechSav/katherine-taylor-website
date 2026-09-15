@@ -61,7 +61,7 @@ const RatesPage = () => {
               style={{ fontWeight: 300 }}
             >
               <span>
-                {isRevealed ? "CONCEAL STRUCTURE" : "SHOW CURRENT STRUCTURE"}
+                {isRevealed ? "Hide rates" : "View rates"}
               </span>
               <ChevronDown
                 className={`h-4 w-4 transition-all duration-300 ${isRevealed ? "rotate-180" : ""}`}
@@ -131,7 +131,7 @@ const RatesPage = () => {
               <div className="flex items-baseline justify-between border-b border-gray-200 pb-3 transition-all duration-200 hover:border-gray-400 hover:pb-4">
                 <span className="text-base font-light text-gray-700">
                   5 hours
-                  <span className="ml-3 text-xs font-light tracking-[0.08em] uppercase text-gray-400">
+                  <span className="ml-3 text-xs font-light tracking-[0.08em] uppercase text-gray-600">
                     Most Popular
                   </span>
                 </span>

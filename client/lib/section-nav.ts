@@ -51,6 +51,10 @@ export function getSectionAdjacent(pathname: string): SectionAdjacent {
     return { back: JOURNAL_BACK };
   }
 
+  if (!(pathname in BACK_BY_PATH) && !(pathname in NEXT_BY_PATH)) {
+    return {};
+  }
+
   const back = BACK_BY_PATH[pathname] ?? HOME_BACK;
   const next = NEXT_BY_PATH[pathname];
 

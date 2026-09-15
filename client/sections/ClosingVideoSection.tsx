@@ -18,7 +18,7 @@ export default function ClosingVideoSection() {
         <p className="homepage-body">
           Each inquiry is considered personally.
         </p>
-        <Link to="/inquire" className="homepage-cta text-white">
+        <Link to="/inquire" className="homepage-cta-frame text-white">
           Private Inquiry
         </Link>
       </HomepageEditorialOverlay>

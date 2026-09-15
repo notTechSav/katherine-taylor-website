@@ -4,6 +4,8 @@ export type VideoAsset = {
   fallbackSrc?: string;
   poster: string;
   objectPosition?: string;
+  /** Portrait crop. Desktop `objectPosition` stays landscape-first. */
+  objectPositionMobile?: string;
 };
 
 const openingStream =
@@ -23,6 +25,7 @@ export const openingVideo: VideoAsset = {
   fallbackSrc: OPENING_STREAM_MASTER,
   poster: "/opening-poster.jpg",
   objectPosition: "center 30%",
+  objectPositionMobile: "center 68%",
 };
 
 export function isHlsSource(src: string): boolean {

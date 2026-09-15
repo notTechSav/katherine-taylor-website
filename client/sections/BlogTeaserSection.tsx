@@ -14,7 +14,7 @@ const JournalTeaserCard = () => {
         <p className="homepage-body">
           The conversation never resets. I remember your M&A timeline, your board anxieties, the trip you've been planning. Not because I take notes—because I've built a decade of pattern libraries that let me read what you don't say.
         </p>
-        <Link to="/journal" className="homepage-cta text-white">
+        <Link to="/journal" className="homepage-cta-frame text-white">
           Read the Journal
         </Link>
       </HomepageEditorialOverlay>

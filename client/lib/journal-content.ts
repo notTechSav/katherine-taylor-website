@@ -26,6 +26,7 @@ export type JournalBlock =
 
 export type JournalDisplayCopy = {
   pageTitle: string;
+  publicationName: string;
   subtitle: string;
   microline: string;
   ctaLabel: string;
@@ -34,7 +35,8 @@ export type JournalDisplayCopy = {
 };
 
 export const journalDisplay: JournalDisplayCopy = {
-  pageTitle: "The High-End Edition",
+  pageTitle: "Journal",
+  publicationName: "The High-End Edition",
   subtitle: "A journal by Katherine Taylor Escort",
   microline: "I write infrequently. Scarcity is intentional.",
   ctaLabel: "Read",

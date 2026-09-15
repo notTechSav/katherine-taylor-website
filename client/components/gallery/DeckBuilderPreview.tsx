@@ -428,7 +428,7 @@ function Hub({
               aria-label={`Enter collection ${c.title}`}
               aria-describedby={`${c.id}-desc`}
             >
-              <div className="aspect-[4/5] overflow-hidden shadow-md transition-all duration-[400ms] ease-out group-hover:scale-[1.02]">
+              <div className="relative aspect-[4/5] overflow-hidden bg-neutral-200">
                 {(() => {
                   const src = heroSrc(c);
                   if (!src) {
@@ -446,11 +446,13 @@ function Hub({
                     />
                   );
                 })()}
+                <div className="pointer-events-none absolute inset-x-0 top-0 bg-gradient-to-b from-black/65 via-black/20 to-transparent px-4 pb-16 pt-4">
+                  <h2 className="text-[22px] font-extralight leading-[1.15] tracking-[-0.02em] text-white sm:text-[26px]">
+                    {c.title}
+                  </h2>
+                </div>
               </div>
               <div className="mt-5 space-y-2">
-                <h2 className="text-[22px] font-extralight leading-[1.15] tracking-[-0.02em] transition-colors duration-[250ms] group-hover:text-[#6B5D54] sm:text-[26px] md:text-[32px]">
-                  {c.title}
-                </h2>
                 <p
                   id={`${c.id}-desc`}
                   className="text-xs font-light text-neutral-600 sm:text-sm"
@@ -529,9 +531,7 @@ function FrameGrid({
         className="block text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-[#6B5D54]/40"
         aria-label={`Open ${alt} full screen`}
       >
-        <figure
-          className="overflow-hidden shadow-sm"
-        >
+        <figure className="aspect-[4/5] overflow-hidden bg-neutral-200">
           <img
             src={src}
             srcSet={srcSet}
@@ -539,7 +539,7 @@ function FrameGrid({
             alt={alt}
             loading={index === 1 ? "eager" : "lazy"}
             decoding="async"
-            className="w-full h-auto object-contain"
+            className="h-full w-full object-cover"
           />
         </figure>
       </button>
@@ -640,7 +640,7 @@ function ImageViewer({
 
   return (
     <div
-      className="fixed inset-0 z-[70] bg-black/90 text-white"
+      className="fixed inset-0 z-[80] bg-black text-white"
       role="dialog"
       aria-modal="true"
       aria-label="Image viewer"

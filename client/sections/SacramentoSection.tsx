@@ -18,10 +18,7 @@ const SacramentoTeaserSection = () => {
         <p className="homepage-body">
           “Escorts near me” can find proximity. It can't find chemistry, trust, or history.
         </p>
-        <p className="homepage-body">
-          I left escorting two years ago to pursue marriage and a normal life. That chapter went differently than expected. This is why I left—and what brought me back.
-        </p>
-        <Link to="/sacramento-escorts" className="homepage-cta text-white">
+        <Link to="/sacramento-escorts" className="homepage-cta-frame text-white">
           Read the High{"\u2011"}End Edition
         </Link>
       </HomepageEditorialOverlay>

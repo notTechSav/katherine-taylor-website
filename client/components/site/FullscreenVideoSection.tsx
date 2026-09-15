@@ -42,6 +42,7 @@ type FullscreenVideoSectionProps = {
   posterMobileSrc?: string;
   overlayClassName?: string;
   objectPosition?: string;
+  objectPositionMobile?: string;
   priority?: boolean;
   children: ReactNode;
 };
@@ -112,6 +113,7 @@ export default function FullscreenVideoSection({
   posterMobileSrc,
   overlayClassName = "homepage-veil-lower",
   objectPosition = "center center",
+  objectPositionMobile,
   priority = false,
   children,
 }: FullscreenVideoSectionProps) {
@@ -125,6 +127,14 @@ export default function FullscreenVideoSection({
   const [sourceIndex, setSourceIndex] = useState(0);
   const [holdMobilePoster, setHoldMobilePoster] = useState(false);
   const allowMedia = useNearbyFullpageMedia(containerRef, priority);
+  const mediaObjectStyle = {
+    ["--video-object-position" as string]: objectPosition,
+    ...(objectPositionMobile
+      ? {
+          ["--video-object-position-mobile" as string]: objectPositionMobile,
+        }
+      : {}),
+  };
 
   useEffect(() => {
     if (!posterMobileSrc) {
@@ -423,8 +433,8 @@ export default function FullscreenVideoSection({
           alt=""
           aria-hidden="true"
           decoding="async"
-          className="fullpage-media-layer absolute inset-0 h-full w-full object-cover md:hidden"
-          style={{ objectPosition }}
+          className="fullpage-media-layer fullpage-media-crop absolute inset-0 h-full w-full object-cover md:hidden"
+          style={mediaObjectStyle}
         />
       ) : null}
 
@@ -436,11 +446,11 @@ export default function FullscreenVideoSection({
         loading={priority ? "eager" : "lazy"}
         decoding={priority ? "sync" : "async"}
           className={cn(
-            "fullpage-media-layer absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
+            "fullpage-media-layer fullpage-media-crop absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
             posterMobileSrc && "max-md:hidden",
             videoActive ? "opacity-0" : "opacity-100",
           )}
-        style={{ objectPosition }}
+          style={mediaObjectStyle}
       />
 
       {currentSrc && !holdMobilePoster && allowMedia ? (
@@ -449,11 +459,11 @@ export default function FullscreenVideoSection({
           key={currentSrc}
           src={useNativeHlsSrc ? currentSrc : undefined}
           className={cn(
-            "fullpage-media-layer absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out",
+            "fullpage-media-layer fullpage-media-crop absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out",
             posterMobileSrc && "max-md:hidden",
             videoActive ? "opacity-100" : "opacity-0",
           )}
-          style={{ objectPosition }}
+          style={mediaObjectStyle}
           autoPlay
           muted={isMuted}
           loop
@@ -479,7 +489,7 @@ export default function FullscreenVideoSection({
           type="button"
           onClick={toggleMute}
           className={cn(
-            "absolute bottom-6 right-4 z-30 flex h-9 w-9 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur transition hover:bg-black/50 sm:right-6",
+            "absolute bottom-6 right-4 z-30 flex h-11 w-11 items-center justify-center rounded-full bg-black/35 text-white backdrop-blur transition hover:bg-black/50 sm:right-6",
             posterMobileSrc && "max-md:hidden",
           )}
           aria-label={isMuted ? "Unmute video" : "Mute video"}

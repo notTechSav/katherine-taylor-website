@@ -280,6 +280,20 @@
     backface-visibility: hidden;
   }
 
+  /* Inline object-position loses to itself; crop via custom properties instead. */
+  .fullpage-media-crop {
+    object-position: var(--video-object-position, center center);
+  }
+
+  @media (max-width: 767px) {
+    .fullpage-media-crop {
+      object-position: var(
+        --video-object-position-mobile,
+        var(--video-object-position, center center)
+      );
+    }
+  }
+
   .tracking-luxury {
     letter-spacing: 0.025em;
   }
@@ -507,7 +521,9 @@
   }
 
   .homepage-cta-frame {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
     border: 1px solid currentColor;
     padding: 0.5rem 1.125rem;
   }
@@ -603,7 +619,7 @@
     display: flex;
     align-items: flex-end;
     padding-top: 7rem;
-    padding-right: max(3.25rem, calc(env(safe-area-inset-right, 0px) + 2.75rem));
+    padding-right: max(4.75rem, calc(env(safe-area-inset-right, 0px) + 3.5rem));
     padding-bottom: max(4rem, calc(env(safe-area-inset-bottom, 0px) + 2.5rem));
   }
 

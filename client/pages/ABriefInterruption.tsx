@@ -70,14 +70,14 @@ const ABriefInterruption = () => {
             alt=""
             width={briefInterruptionVideo.width}
             height={briefInterruptionVideo.height}
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-cover object-[center_62%] md:object-center"
             decoding="async"
           />
           {playMotion ? (
             <>
               <video
                 ref={videoRef}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="absolute inset-0 h-full w-full object-cover object-[center_62%] md:object-center"
                 src={briefInterruptionVideo.src}
                 poster={briefInterruptionVideo.poster}
                 width={briefInterruptionVideo.width}
