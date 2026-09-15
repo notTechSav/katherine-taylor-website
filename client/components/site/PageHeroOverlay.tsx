@@ -12,6 +12,7 @@ type PageHeroOverlayProps = {
   alignment?: "left" | "right";
   gradient?: "horizontal" | "vertical";
   headingAs?: "h1" | "h2" | "p";
+  compact?: boolean;
   className?: string;
   imageClassName?: string;
 };
@@ -35,6 +36,7 @@ const PageHeroOverlay = memo(
     alignment = "left",
     gradient = "horizontal",
     headingAs = "h1",
+    compact = false,
     className,
     imageClassName,
   }: PageHeroOverlayProps) => {
@@ -58,7 +60,14 @@ const PageHeroOverlay = memo(
 
     return (
       <section className={cn("relative bg-luxury-white", className)}>
-        <figure className="relative h-[48vh] min-h-[320px] w-full overflow-hidden bg-luxury-black sm:h-[56vh]">
+        <figure
+          className={cn(
+            "relative w-full overflow-hidden bg-luxury-black",
+            compact
+              ? "h-[36vh] min-h-[240px] sm:h-[42vh]"
+              : "h-[48vh] min-h-[320px] sm:h-[56vh]",
+          )}
+        >
           <img
             src={heroImage.src}
             srcSet={heroImage.srcSet}

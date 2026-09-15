@@ -10,11 +10,10 @@ const SacramentoTeaserSection = () => {
       <HomepageVeil tone="lower-strong" />
       <HomepageEditorialOverlay>
         <p className="homepage-eyebrow">
-          Katherine Taylor • Sacramento Escort
+          Katherine Taylor • Sacramento
         </p>
         <h2 className="homepage-h2">
-          Escorts Near Me |{" "}
-          <span className="homepage-h2-break">The High{"\u2011"}End Edition</span>
+          The High{"\u2011"}End Edition
         </h2>
         <p className="homepage-body">
           “Escorts near me” can find proximity. It can't find chemistry, trust, or history.

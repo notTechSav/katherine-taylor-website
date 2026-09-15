@@ -23,7 +23,7 @@ const SiteLayout = ({ children }: PropsWithChildren) => {
         className={
           isHomepage
             ? "min-h-0 min-w-0 flex-1 overflow-hidden"
-            : "min-w-0 flex-1 pt-24 md:pt-44 lg:pt-48"
+            : "min-w-0 flex-1"
         }
       >
         {children}

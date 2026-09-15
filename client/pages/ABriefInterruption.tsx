@@ -58,11 +58,7 @@ const ABriefInterruption = () => {
         jsonLd={briefInterruptionJsonLd}
       />
 
-      <header className="px-6 pb-10 pt-6 text-center md:px-8 md:pb-14 md:pt-10">
-        <h1 className="homepage-h1 text-luxury-black">A Brief Interruption</h1>
-      </header>
-
-      <section className="w-full bg-luxury-black">
+      <section className="relative w-full bg-luxury-black">
         <div
           className="relative w-full overflow-hidden"
           style={{
@@ -109,6 +105,9 @@ const ABriefInterruption = () => {
               </button>
             </>
           ) : null}
+          <h1 className="pointer-events-none absolute bottom-8 left-6 z-[1] max-w-xl text-[32px] font-extralight leading-[1.15] tracking-[-0.02em] text-white sm:bottom-10 sm:left-12 sm:text-4xl md:text-[50px]">
+            A Brief Interruption
+          </h1>
         </div>
       </section>
 

@@ -35,7 +35,7 @@ const requiredRoutes: { path: string; h1: string }[] = [
   { path: "/journal/continuity-as-craft", h1: "Continuity as Craft" },
   { path: "/journal/the-luxury-of-unsaid-things", h1: "The Luxury of Unsaid Things" },
   { path: "/journal/scarcity-discipline", h1: "Scarcity Discipline" },
-  { path: "/sacramento-escorts", h1: "Escorts Near Me | The High-End Edition" },
+  { path: "/sacramento-escorts", h1: "The High-End Edition" },
 ];
 
 function renderRoute(pathName: string): string {
@@ -89,7 +89,7 @@ describe("prerender route bodies", () => {
   it("keeps Sacramento long-form copy in a native details element", () => {
     const html = renderRoute("/sacramento-escorts");
     expect(html).toMatch(
-      /<h1[^>]*>Escorts Near Me \| The High-End Edition<\/h1>/,
+      /<h1[^>]*>The High-End Edition<\/h1>/,
     );
     expect(html).toContain("<details");
     expect(html).toContain("like to hear this story");
@@ -128,7 +128,7 @@ describe("prerender route bodies", () => {
     expect(journal).toMatch(/<h1[^>]*>The High-End Edition<\/h1>/);
     for (const essay of essays) {
       expect(journal).toContain(`href="/journal/${essay.slug}"`);
-      expect(journal).toContain(`aria-label="Read quietly: ${essay.title}"`);
+      expect(journal).toContain(`aria-label="Read: ${essay.title}"`);
     }
     const buttons = journal.match(/<button\b[\s\S]*?<\/button>/g) ?? [];
     expect(buttons.some((button) => button.includes("Read quietly"))).toBe(
@@ -355,13 +355,14 @@ describe("prerender route bodies", () => {
     }
   });
 
-  it("includes discreet page-scroll arrows on every indexable route", () => {
-    for (const { path: routePath } of requiredRoutes) {
-      const html = renderRoute(routePath);
-      expect(html, routePath).toMatch(/aria-label="Scroll page"/);
-      expect(html, routePath).toContain('aria-label="Scroll up"');
-      expect(html, routePath).toContain('aria-label="Scroll down"');
-    }
+  it("includes discreet page-scroll arrows on the homepage only", () => {
+    const home = renderRoute("/");
+    expect(home).toMatch(/aria-label="Scroll page"/);
+    expect(home).toContain('aria-label="Scroll up"');
+    expect(home).toContain('aria-label="Scroll down"');
+
+    const about = renderRoute("/about");
+    expect(about).not.toMatch(/aria-label="Scroll page"/);
   });
 
   it("renders a single-row page nav on inner routes and omits it on home", () => {

@@ -14,7 +14,7 @@ const NotFound = () => {
   }, [location.pathname]);
 
   return (
-    <div className="flex min-h-[60vh] flex-col items-center justify-center gap-6 px-6 text-center">
+    <div className="flex min-h-[70vh] flex-col items-center justify-center gap-6 px-6 pt-24 text-center md:pt-28">
       <SeoHead
         title={pageSeo.notFound.title}
         description={pageSeo.notFound.description}
@@ -25,8 +25,7 @@ const NotFound = () => {
       </span>
       <h1 className="font-serif text-6xl text-foreground">404</h1>
       <p className="max-w-sm text-sm text-muted-foreground">
-        The experience you are looking for has not been crafted yet. Continue
-        guiding us to bring it to life.
+        This address isn't on the site. The rest of the house is.
       </p>
       <Link
         to="/"

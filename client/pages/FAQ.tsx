@@ -35,7 +35,7 @@ const FAQPage = () => {
 
       {/* Introduction */}
       <section className="bg-luxury-white">
-        <div className="container mx-auto px-6 pb-12 pt-16 md:px-8 md:pt-20">
+        <div className="container mx-auto px-6 pb-8 pt-10 md:px-8 md:pt-12">
           <div className="mx-auto max-w-2xl space-y-6 text-center">
             <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700 md:text-lg">
               Most escort FAQ pages are evasive, moralistic, or written by people who've never done this work.
@@ -81,7 +81,7 @@ const FAQPage = () => {
             </h2>
             <div className="space-y-4 text-base font-light leading-[1.8] text-gray-700">
               <p>
-                Wire transfer, Zelle, PayPal, Visa, MasterCard, Amex—whatever moves money cleanly for you.
+                I accept bank transfer, Zelle, PayPal, Visa, and MasterCard.
               </p>
               <p>
                 I'm an established merchant with payment processing, so everything runs through secure infrastructure. Your transaction is protected, documented if you need records, and completely discreet.
@@ -93,7 +93,7 @@ const FAQPage = () => {
                 The only caveat: Amex charges a 3% processing fee on transactions over $10,000. I ask that you cover that if you're using Amex for larger bookings.
               </p>
               <p>
-                Payment is preferred in advance—full amount or 50% deposit to secure, with balance due 24 hours before we meet. This removes the transactional moment from our actual time together.
+                Full payment is preferred in advance. A 50% deposit secures your date; balance due before we meet. This removes the transactional moment from our actual time together.
               </p>
             </div>
           </div>

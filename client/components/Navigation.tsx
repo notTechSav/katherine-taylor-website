@@ -89,11 +89,14 @@ const Navigation = () => {
 
   return (
     <nav
+      data-site-nav
       className={cn(
         "fixed top-0 z-50 w-full px-4 transition-all duration-400 ease-out md:px-8",
-        scrolled
-          ? "bg-luxury-white/95 py-3 backdrop-blur-sm shadow-luxury-sm md:py-4"
-          : "bg-luxury-white/80 py-5 backdrop-blur-sm md:py-8",
+        isMenuOpen
+          ? "h-dvh overflow-y-auto bg-luxury-white py-5 md:h-auto md:overflow-visible"
+          : scrolled
+            ? "bg-luxury-white/95 py-3 backdrop-blur-sm shadow-luxury-sm md:py-4"
+            : "bg-luxury-white/80 py-5 backdrop-blur-sm md:py-8",
       )}
     >
       <div className="mx-auto flex max-w-luxury items-center justify-between gap-6">
@@ -159,7 +162,7 @@ const Navigation = () => {
       {isMenuOpen ? (
         <div
           id="mobile-navigation"
-          className="mt-4 border-t border-gray-200 px-2 pt-4 md:hidden"
+          className="mt-4 flex flex-1 flex-col border-t border-gray-200 px-2 pt-6 md:hidden"
         >
           <ul className="flex flex-col gap-2">
             {navigationLinks.map((link) => (

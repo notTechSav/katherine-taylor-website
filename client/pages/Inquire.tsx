@@ -21,6 +21,9 @@ const heroImage = {
 const editorialLinkClass =
   "underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline";
 
+const fieldClass =
+  "w-full border border-gray-300 bg-luxury-white px-4 py-3 text-base font-light text-luxury-black placeholder-gray-400 outline-none transition-colors duration-300 focus:border-luxury-black";
+
 const InquirePage = () => {
   const [formData, setFormData] = useState<InquiryPayload>(EMPTY_INQUIRY);
 
@@ -59,7 +62,7 @@ const InquirePage = () => {
           path={pageSeo.inquire.path}
           jsonLd={inquireJsonLd}
         />
-        <div className="container mx-auto px-6 md:px-8 max-w-2xl text-center space-y-8">
+        <div className="container mx-auto px-6 md:px-8 max-w-2xl text-center space-y-8 pt-24">
           <h1
             className="text-4xl md:text-5xl font-extralight tracking-[-0.02em] text-luxury-black"
             style={{ fontWeight: 200 }}
@@ -101,11 +104,12 @@ const InquirePage = () => {
         imageSrc={heroImage.src}
         imageAlt={heroImage.alt}
         alignment="left"
+        compact
       />
 
-      <section className="bg-luxury-white py-20 md:py-28">
+      <section className="bg-luxury-white py-12 md:py-16">
         <div className="container mx-auto px-6 md:px-8 max-w-2xl">
-          <div className="mb-12 space-y-4 text-center">
+          <div className="mb-8 space-y-3 text-center">
             <h2
               id="how-to-inquire"
               className="scroll-mt-28 text-3xl font-extralight tracking-[-0.02em] text-luxury-black md:text-4xl"
@@ -154,7 +158,7 @@ const InquirePage = () => {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  className="w-full border-b border-gray-300 bg-transparent py-3 text-base font-light text-luxury-black placeholder-gray-400 outline-none transition-all duration-300 focus:border-gray-600"
+                  className={fieldClass}
                   style={{ fontWeight: 300 }}
                 />
               </div>
@@ -174,7 +178,7 @@ const InquirePage = () => {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full border-b border-gray-300 bg-transparent py-3 text-base font-light text-luxury-black placeholder-gray-400 outline-none transition-all duration-300 focus:border-gray-600"
+                  className={fieldClass}
                   style={{ fontWeight: 300 }}
                 />
               </div>
@@ -195,7 +199,7 @@ const InquirePage = () => {
                 autoComplete="tel"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full border-b border-gray-300 bg-transparent py-3 text-base font-light text-luxury-black placeholder-gray-400 outline-none transition-all duration-300 focus:border-gray-600"
+                className={fieldClass}
                 style={{ fontWeight: 300 }}
               />
             </div>
@@ -216,7 +220,7 @@ const InquirePage = () => {
                   value={formData.preferredDate}
                   onChange={handleChange}
                   placeholder="e.g., March 15 or 'flexible'"
-                  className="w-full border-b border-gray-300 bg-transparent py-3 text-base font-light text-luxury-black placeholder-gray-400 outline-none transition-all duration-300 focus:border-gray-600"
+                  className={fieldClass}
                   style={{ fontWeight: 300 }}
                 />
               </div>
@@ -234,7 +238,7 @@ const InquirePage = () => {
                   value={formData.duration}
                   onChange={handleChange}
                   required
-                  className="w-full border-b border-gray-300 bg-transparent py-3 text-base font-light text-luxury-black outline-none transition-all duration-300 focus:border-gray-600 cursor-pointer"
+                  className={`${fieldClass} cursor-pointer`}
                   style={{ fontWeight: 300 }}
                 >
                   <option value="">Select duration</option>
@@ -267,7 +271,7 @@ const InquirePage = () => {
                 value={formData.location}
                 onChange={handleChange}
                 required
-                className="w-full border-b border-gray-300 bg-transparent py-3 text-base font-light text-luxury-black outline-none transition-all duration-300 focus:border-gray-600 cursor-pointer"
+                className={`${fieldClass} cursor-pointer`}
                 style={{ fontWeight: 300 }}
               >
                 <option value="">Select location</option>
@@ -296,7 +300,7 @@ const InquirePage = () => {
                 name="referral"
                 value={formData.referral}
                 onChange={handleChange}
-                className="w-full border-b border-gray-300 bg-transparent py-3 text-base font-light text-luxury-black placeholder-gray-400 outline-none transition-all duration-300 focus:border-gray-600"
+                className={fieldClass}
                 style={{ fontWeight: 300 }}
               />
             </div>
@@ -317,7 +321,7 @@ const InquirePage = () => {
                 required
                 rows={6}
                 placeholder="Who you are, what you're looking for, and why we might be a good fit..."
-                className="w-full border border-gray-300 bg-transparent px-4 py-3 text-base font-light leading-[1.8] text-luxury-black placeholder-gray-400 outline-none transition-all duration-300 focus:border-gray-600 resize-none"
+                className={`${fieldClass} resize-none leading-[1.8]`}
                 style={{ fontWeight: 300 }}
               />
             </div>
@@ -332,7 +336,7 @@ const InquirePage = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center gap-3 border border-gray-300 px-12 py-4 text-sm font-medium tracking-[0.1em] text-gray-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-400 hover:text-luxury-black hover:shadow-[0_4px_8px_rgba(0,0,0,0.08)] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+                className="inline-flex items-center justify-center bg-luxury-black px-12 py-4 text-sm font-light tracking-[0.1em] text-luxury-white transition-opacity duration-300 hover:opacity-80 disabled:cursor-not-allowed disabled:opacity-50"
                 style={{ fontWeight: 300 }}
               >
                 {isSubmitting ? "SUBMITTING..." : "SUBMIT INQUIRY"}

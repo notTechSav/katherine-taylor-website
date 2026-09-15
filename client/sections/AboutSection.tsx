@@ -14,7 +14,7 @@ export default function AboutSection() {
           About <span className="homepage-h2-break">Katherine Taylor</span>
         </h2>
         <p className="homepage-body">
-          I remember what matters. The conversation picks up where it left.
+          I remember what matters. The conversation picks up where it left off.
         </p>
         <Link to="/about" className="homepage-cta text-white">
           About Katherine

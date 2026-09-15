@@ -37,7 +37,7 @@ export const journalDisplay: JournalDisplayCopy = {
   pageTitle: "The High-End Edition",
   subtitle: "A journal by Katherine Taylor Escort",
   microline: "I write infrequently. Scarcity is intentional.",
-  ctaLabel: "Read quietly",
+  ctaLabel: "Read",
   closeLabel: "Close",
   readNextPrefix: "Read next:",
 };

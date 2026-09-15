@@ -29,9 +29,9 @@ const SacramentoPage = () => {
 
       <article itemScope itemType="https://schema.org/Article">
         <PageHeroOverlay
-          title="Escorts Near Me | The High-End Edition"
+          title="The High-End Edition"
           subtitle="What ten years in escorting—and two years trying very hard not to do it—taught me about proximity, compatibility, discretion, money, memory, and finding the right person in Sacramento."
-          eyebrow="Sacramento Escort • Memoirs in the City"
+          eyebrow="Sacramento"
           imageSrc={heroImage.src}
           imageAlt={heroImage.alt}
           alignment="left"

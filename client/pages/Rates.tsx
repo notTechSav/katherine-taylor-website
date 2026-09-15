@@ -37,7 +37,7 @@ const RatesPage = () => {
       />
 
       <section className="bg-luxury-white">
-        <div className="container mx-auto px-6 pb-20 pt-16 md:px-8 md:pt-20">
+        <div className="container mx-auto px-6 pb-10 pt-10 md:px-8 md:pb-12 md:pt-12">
           <div className="mx-auto max-w-2xl space-y-6 text-center">
             <p className="text-base font-light leading-[1.85] tracking-[0.01em] text-gray-700 md:text-lg">
               My work is cumulative, not transactional. Each engagement carries
@@ -52,64 +52,8 @@ const RatesPage = () => {
         </div>
       </section>
 
-      <section className="border-t border-gray-200 bg-luxury-white py-20 md:py-28">
-        <div className="container mx-auto max-w-2xl px-6 md:px-8">
-          <h2
-            id="why"
-            className="mb-8 scroll-mt-28 text-3xl font-extralight tracking-[-0.02em] text-luxury-black md:text-4xl"
-            style={{ fontWeight: 200 }}
-          >
-            Why these rates
-          </h2>
-          <div className="space-y-6 text-base font-light leading-[1.8] text-gray-700">
-            <p>
-              The rate is not a mood. It is what it costs to keep a small number
-              of conversations in my head and refuse the next one. After a decade
-              between San Francisco and Sacramento, I still work that way: a small
-              roster, memory that does not reset, and no notes.
-            </p>
-            <p>
-              Before I left public review boards I was ranked at the top of San
-              Francisco and in the{" "}
-              <a href="/faq#reviews" className={editorialLinkClass}>
-                national twelve
-              </a>{". That was the last time the market was allowed to say it out loud. The work did not get cheaper after I delisted."}
-            </p>
-            <p>
-              I don't sell first meetings. I sell the third one—the one that
-              moves at full depth because we no longer waste energy on
-              translation.{" "}
-              <a
-                href="/journal/continuity-as-craft"
-                className={editorialLinkClass}
-              >
-                Continuity
-              </a>{" "}
-              is why the rate is what it is.{" "}
-              <a
-                href="/journal/scarcity-discipline"
-                className={editorialLinkClass}
-              >
-                Scarcity
-              </a>{" "}
-              is the workshop that keeps that craft possible.
-            </p>
-            <p>
-              <a
-                href="/national-ranking.jpg"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={editorialLinkClass}
-              >
-                The national ranking is still on file.
-              </a>
-            </p>
-          </div>
-        </div>
-      </section>
-
       <section className="bg-luxury-white">
-        <div className="container mx-auto px-6 pb-20 pt-4 md:px-8">
+        <div className="container mx-auto px-6 pb-8 pt-4 md:px-8">
           <div className="mt-0 text-center">
             <button
               onClick={() => setIsRevealed(!isRevealed)}
@@ -442,6 +386,62 @@ const RatesPage = () => {
           </div>
         </section>
       </div>
+
+      <section className="border-t border-gray-200 bg-luxury-white py-20 md:py-28">
+        <div className="container mx-auto max-w-2xl px-6 md:px-8">
+          <h2
+            id="why"
+            className="mb-8 scroll-mt-28 text-3xl font-extralight tracking-[-0.02em] text-luxury-black md:text-4xl"
+            style={{ fontWeight: 200 }}
+          >
+            Why these rates
+          </h2>
+          <div className="space-y-6 text-base font-light leading-[1.8] text-gray-700">
+            <p>
+              The rate is not a mood. It is what it costs to keep a small number
+              of conversations in my head and refuse the next one. After a decade
+              between San Francisco and Sacramento, I still work that way: a small
+              roster, memory that does not reset, and no notes.
+            </p>
+            <p>
+              Before I left public review boards I was ranked at the top of San
+              Francisco and in the{" "}
+              <a href="/faq#reviews" className={editorialLinkClass}>
+                national twelve
+              </a>{". That was the last time the market was allowed to say it out loud. The work did not get cheaper after I delisted."}
+            </p>
+            <p>
+              I don't sell first meetings. I sell the third one—the one that
+              moves at full depth because we no longer waste energy on
+              translation.{" "}
+              <a
+                href="/journal/continuity-as-craft"
+                className={editorialLinkClass}
+              >
+                Continuity
+              </a>{" "}
+              is why the rate is what it is.{" "}
+              <a
+                href="/journal/scarcity-discipline"
+                className={editorialLinkClass}
+              >
+                Scarcity
+              </a>{" "}
+              is the workshop that keeps that craft possible.
+            </p>
+            <p>
+              <a
+                href="/national-ranking.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={editorialLinkClass}
+              >
+                The national ranking is still on file.
+              </a>
+            </p>
+          </div>
+        </div>
+      </section>
 
       {/* Closing Statement */}
       <section className="border-t border-gray-200 py-20 md:py-28 bg-luxury-white">

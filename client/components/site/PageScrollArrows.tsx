@@ -1,10 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import {
   type ArrowState,
-  getDocumentArrowState,
-  nextDocumentScrollTop,
   readFullpageArrowStateFromDocument,
   requestFullpageNavigate,
 } from "@/lib/page-scroll";
@@ -46,32 +44,11 @@ function ScrollChevron({ direction }: { direction: "up" | "down" }) {
   );
 }
 
-function scrollDocumentBy(direction: 1 | -1) {
-  const top = nextDocumentScrollTop(
-    direction,
-    window.scrollY,
-    window.innerHeight,
-    document.documentElement.scrollHeight,
-  );
-  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  window.scrollTo({ top, left: 0, behavior: reduced ? "auto" : "smooth" });
-}
-
 const PageScrollArrows = () => {
   const { pathname } = useLocation();
   const isHomepage = pathname === "/";
   const [arrows, setArrows] = useState<ArrowState>(INITIAL_STATE);
   const [menuOpen, setMenuOpen] = useState(false);
-
-  const syncDocument = useCallback(() => {
-    setArrows(
-      getDocumentArrowState(
-        window.scrollY,
-        window.innerHeight,
-        document.documentElement.scrollHeight,
-      ),
-    );
-  }, []);
 
   useEffect(() => {
     const html = document.documentElement;
@@ -91,13 +68,7 @@ const PageScrollArrows = () => {
 
   useEffect(() => {
     if (!isHomepage) {
-      syncDocument();
-      window.addEventListener("scroll", syncDocument, { passive: true });
-      window.addEventListener("resize", syncDocument);
-      return () => {
-        window.removeEventListener("scroll", syncDocument);
-        window.removeEventListener("resize", syncDocument);
-      };
+      return;
     }
 
     const syncFullpage = (event?: WindowEventMap["fullpage:change"]) => {
@@ -122,18 +93,9 @@ const PageScrollArrows = () => {
     return () => {
       window.removeEventListener("fullpage:change", syncFullpage);
     };
-  }, [isHomepage, pathname, syncDocument]);
+  }, [isHomepage]);
 
-  const go = (direction: 1 | -1) => {
-    if (isHomepage) {
-      requestFullpageNavigate(direction);
-      return;
-    }
-
-    scrollDocumentBy(direction);
-  };
-
-  if (menuOpen || (!arrows.canGoUp && !arrows.canGoDown)) {
+  if (!isHomepage || menuOpen || (!arrows.canGoUp && !arrows.canGoDown)) {
     return null;
   }
 
@@ -153,7 +115,9 @@ const PageScrollArrows = () => {
             aria-hidden={enabled ? undefined : true}
             tabIndex={enabled ? 0 : -1}
             disabled={!enabled}
-            onClick={() => go(direction === "up" ? -1 : 1)}
+            onClick={() =>
+              requestFullpageNavigate(direction === "up" ? -1 : 1)
+            }
             className={cn(
               "pointer-events-auto inline-flex h-11 w-11 touch-manipulation items-center justify-center bg-transparent text-luxury-black transition-opacity duration-300",
               "focus:outline-none",

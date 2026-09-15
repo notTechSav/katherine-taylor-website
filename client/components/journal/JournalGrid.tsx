@@ -29,6 +29,7 @@ const JournalGrid = memo(
                 excerpt={entry.excerpt}
                 href={essayPath(entry.slug)}
                 ctaLabel={ctaLabel}
+                publishedDate={entry.publishedDate}
               />
             ))}
           </div>

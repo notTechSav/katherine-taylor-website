@@ -25,7 +25,7 @@ const About = () => {
         />
         <PageHeroOverlay
           title="About Katherine Taylor"
-          subtitle="I remember what matters. The conversation picks up where it left."
+          subtitle="I remember what matters. The conversation picks up where it left off."
           eyebrow="Katherine Taylor Escort"
           imageSrc={ABOUT_HERO_IMAGE}
           imageAlt="Sunlit doorway opening onto herringbone floors beside linen curtains"

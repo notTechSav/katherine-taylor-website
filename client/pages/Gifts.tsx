@@ -3,6 +3,7 @@
 import { useState, useCallback, type ReactNode } from "react";
 import GiftsGuidance from "@/pages/GiftsGuidance";
 import SeoHead from "@/components/site/SeoHead";
+import { guidanceParagraphs } from "@/lib/gifts-content";
 import { giftsJsonLd } from "@/lib/page-json-ld";
 import { pageSeo } from "@/lib/page-seo";
 
@@ -101,8 +102,13 @@ const Gifts = ({ children }: { children?: ReactNode }) => {
                 </h2>
               </header>
               <p className="max-w-[62ch] text-[18px] font-light leading-[1.75] text-gray-600">
-                When they happen, they feel like punctuation — a quiet
-                thank-you, a gesture that marks continuity, not transaction.
+                {guidanceParagraphs[0]}
+              </p>
+              <p className="max-w-[62ch] text-[18px] font-light leading-[1.75] text-gray-600">
+                {guidanceParagraphs[1]}
+              </p>
+              <p className="max-w-[62ch] text-[18px] font-light leading-[1.75] text-gray-600">
+                {guidanceParagraphs[2]}
               </p>
               <button
                 type="button"

@@ -6,6 +6,7 @@ interface JournalCardProps {
   excerpt: string;
   href: string;
   ctaLabel: string;
+  publishedDate: string;
 }
 
 const ctaClassName =
@@ -17,10 +18,21 @@ const ctaStyle = {
 } as const;
 
 const JournalCard = memo(
-  ({ title, excerpt, href, ctaLabel }: JournalCardProps) => {
+  ({ title, excerpt, href, ctaLabel, publishedDate }: JournalCardProps) => {
+    const formattedDate = new Date(`${publishedDate}T00:00:00`).toLocaleDateString(
+      "en-US",
+      { year: "numeric", month: "long", day: "numeric" },
+    );
+
     return (
       <article className="group space-y-4 border-t border-gray-200 pt-10 text-left first:border-t-0 first:pt-0">
-        <header>
+        <header className="space-y-2">
+          <time
+            dateTime={publishedDate}
+            className="block text-[12px] font-light uppercase tracking-[0.16em] text-gray-500"
+          >
+            {formattedDate}
+          </time>
           <h2
             className="text-[28px] font-extralight leading-[1.25] tracking-[-0.02em] text-luxury-black"
             style={{ fontWeight: 200 }}

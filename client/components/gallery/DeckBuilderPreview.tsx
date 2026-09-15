@@ -405,18 +405,15 @@ function Hub({
   return (
     <section
       id={GALLERY_INDEX_ID}
-      className="mx-auto max-w-[1180px] scroll-mt-28 px-6 pt-32 pb-8 md:scroll-mt-36 md:px-12 md:pt-40 md:pb-12"
+      className="mx-auto max-w-[1180px] scroll-mt-28 px-6 pb-8 pt-10 md:scroll-mt-36 md:px-12 md:pb-12 md:pt-12"
       aria-label="Private Collections"
     >
-      <header className="mx-auto mb-14 max-w-[720px] sm:mb-24">
+      <header className="mx-auto mb-10 max-w-[720px] sm:mb-14">
         <p
           data-gallery-index-title
           tabIndex={-1}
-          className="text-[56px] font-extralight leading-[0.95] tracking-[-0.03em] outline-none sm:text-[68px] md:text-[84px]"
+          className="text-center text-[12px] font-light uppercase tracking-[0.16em] text-neutral-600 outline-none"
         >
-          Private Collections
-        </p>
-        <p className="mt-3 max-w-prose text-sm font-light leading-[1.75] text-neutral-700 sm:mt-4 sm:text-base">
           Three collections I'm sharing with you. Take your time.
         </p>
       </header>
@@ -480,53 +477,32 @@ function CollectionHeader({
   return (
     <section
       id={c.id}
-      className="mx-auto max-w-[1180px] scroll-mt-28 px-6 pt-32 pb-24 md:scroll-mt-36 md:px-12 md:pt-40 md:pb-36"
+      className="mx-auto max-w-[1180px] scroll-mt-28 px-6 pb-8 pt-24 md:scroll-mt-36 md:px-12 md:pb-10 md:pt-28"
       aria-labelledby={`${c.id}-title`}
     >
-      <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(320px,360px)] lg:items-start">
-        <div className="space-y-8">
-          <Link
-            to={galleryIndexHref}
-            className="inline-flex h-11 items-center gap-2 text-xs uppercase tracking-[0.15em] text-[#6B5D54] transition-colors duration-[250ms] hover:text-luxury-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B5D54]/40"
-            aria-label="Back to Private Collections"
+      <div className="space-y-6">
+        <Link
+          to={galleryIndexHref}
+          className="inline-flex h-11 items-center gap-2 text-xs uppercase tracking-[0.15em] text-[#6B5D54] transition-colors duration-[250ms] hover:text-luxury-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B5D54]/40"
+          aria-label="Back to Private Collections"
+        >
+          <span className="text-base" aria-hidden="true">
+            ←
+          </span>{" "}
+          Back to Collections
+        </Link>
+        <div className="space-y-3">
+          <h2
+            id={`${c.id}-title`}
+            tabIndex={-1}
+            className="text-3xl font-extralight leading-[1.05] tracking-[-0.025em] outline-none sm:text-4xl md:text-[48px]"
           >
-            <span className="text-base" aria-hidden="true">
-              ←
-            </span>{" "}
-            Back to Collections
-          </Link>
-          <div className="space-y-4">
-            <h2
-              id={`${c.id}-title`}
-              tabIndex={-1}
-              className="text-3xl font-extralight leading-[1.05] tracking-[-0.025em] outline-none sm:text-4xl md:text-[48px]"
-            >
-              {c.title}
-            </h2>
-            <p className="max-w-[48ch] text-sm font-light leading-[1.75] text-neutral-700 sm:text-base">
-              {c.statement}
-            </p>
-          </div>
+            {c.title}
+          </h2>
+          <p className="max-w-[48ch] text-sm font-light leading-[1.75] text-neutral-700 sm:text-base">
+            {c.statement}
+          </p>
         </div>
-        {(() => {
-          const src = heroSrc(c);
-          if (!src) return null;
-          return (
-            <figure
-              className="hidden lg:block aspect-[4/5] overflow-hidden shadow-md"
-            >
-              <img
-                src={src}
-                srcSet={heroSrcSet(c)}
-                sizes="(min-width: 1280px) 360px, 30vw"
-                alt={c.hero?.alt ?? `${c.title} hero frame`}
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover"
-              />
-            </figure>
-          );
-        })()}
       </div>
     </section>
   );
@@ -639,7 +615,12 @@ function ImageViewer({
       if (e.key.toLowerCase() === "d") setShowDetails((v) => !v);
     }
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    const html = document.documentElement;
+    html.setAttribute("data-lightbox-open", "");
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      html.removeAttribute("data-lightbox-open");
+    };
   }, [onClose, onPrev, onNext]);
 
   useEffect(() => {
@@ -659,7 +640,7 @@ function ImageViewer({
 
   return (
     <div
-      className="fixed inset-0 bg-black/90 text-white"
+      className="fixed inset-0 z-[70] bg-black/90 text-white"
       role="dialog"
       aria-modal="true"
       aria-label="Image viewer"
