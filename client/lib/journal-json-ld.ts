@@ -44,6 +44,7 @@ export function journalEssayArticleJsonLd(
       name: "Katherine Taylor",
     },
     datePublished: essay.publishedDate,
+    dateModified: essay.updatedDate ?? essay.publishedDate,
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": absoluteUrl(path),

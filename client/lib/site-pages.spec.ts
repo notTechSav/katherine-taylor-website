@@ -81,6 +81,12 @@ describe("sitemap", () => {
     }
   });
 
+  it("includes lastmod on every URL", () => {
+    expect(xml.match(/<lastmod>2026-09-14<\/lastmod>/g)?.length).toBe(
+      sitePageList.length,
+    );
+  });
+
   it("includes the unlisted film interlude", () => {
     expect(xml).toContain(
       "<loc>https://katherinetaylorescort.com/film/a-brief-interruption</loc>",

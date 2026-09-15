@@ -29,6 +29,8 @@ export const aboutJsonLd = [
       jobTitle: "Luxury Companion",
       url: aboutUrl,
       image: DEFAULT_OG_IMAGE,
+      description: homepagePerson.description,
+      areaServed: homepagePerson.areaServed,
       sameAs: homepagePerson.sameAs,
     },
   },

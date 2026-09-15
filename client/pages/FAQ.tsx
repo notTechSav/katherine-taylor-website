@@ -14,7 +14,7 @@ const heroImage = {
 };
 
 const FAQPage = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
 
   return (
     <main className="bg-luxury-white text-luxury-black">

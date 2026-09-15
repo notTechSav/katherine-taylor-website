@@ -144,6 +144,14 @@ const JournalArticle = () => {
                   </span>
                 ))}
               </p>
+              <p className="text-sm font-light leading-[1.8] text-gray-700">
+                Those pieces ran in March 2024. Figures they printed are not
+                current.{" "}
+                <a href="/rates#hourly" className={journalInlineLinkClass}>
+                  Current rates
+                </a>{" "}
+                are on the Rates page.
+              </p>
             </div>
           ) : null}
           <div className="flex justify-between pt-8 text-sm font-light text-luxury-black">

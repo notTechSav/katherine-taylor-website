@@ -350,7 +350,8 @@ const InquirePage = () => {
       <section className="border-t border-gray-200 py-20 md:py-28 bg-luxury-gray-50">
         <div className="container mx-auto px-6 md:px-8 max-w-2xl">
           <h2
-            className="mb-8 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black"
+            id="what-to-expect"
+            className="mb-8 scroll-mt-28 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black"
             style={{ fontWeight: 200 }}
           >
             What to Expect

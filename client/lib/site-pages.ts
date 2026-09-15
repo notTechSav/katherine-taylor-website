@@ -160,9 +160,13 @@ export const pagesInFooterGroup = (group: FooterGroupId) =>
   sitePageList.filter((page) => page.footer === group);
 
 /** Absolute URLs for every indexable page, for sitemap generation. */
+/** Last sitewide content/schema pass included in the generated sitemap. */
+export const SITEMAP_LASTMOD = "2026-09-14";
+
 export const sitemapEntries = (origin: string) =>
   sitePageList.map((page) => ({
     loc: page.path === "/" ? `${origin}/` : `${origin}${page.path}`,
+    lastmod: SITEMAP_LASTMOD,
     changefreq: page.changefreq,
     priority: page.priority.toFixed(1),
   }));
@@ -171,7 +175,7 @@ export const renderSitemap = (origin: string): string => {
   const urls = sitemapEntries(origin)
     .map(
       (entry) =>
-        `  <url>\n    <loc>${entry.loc}</loc>\n    <changefreq>${entry.changefreq}</changefreq>\n    <priority>${entry.priority}</priority>\n  </url>`,
+        `  <url>\n    <loc>${entry.loc}</loc>\n    <lastmod>${entry.lastmod}</lastmod>\n    <changefreq>${entry.changefreq}</changefreq>\n    <priority>${entry.priority}</priority>\n  </url>`,
     )
     .join("\n");
 

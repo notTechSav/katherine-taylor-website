@@ -113,6 +113,8 @@ describe("prerender route bodies", () => {
     );
     expect(html).toContain('id="selected-press"');
     expect(html).toContain("https://www.tmz.com/");
+    expect(html).toContain("Figures they printed are not current.");
+    expect(html).toContain('href="/rates#hourly"');
     expect(html).toContain(memoir.seo?.title);
   });
 
@@ -228,6 +230,8 @@ describe("prerender route bodies", () => {
     expect(faq).toContain('id="booking"');
     expect(faq).toContain('id="first-time"');
     expect(faq).toContain('id="sacramento-vs-sf"');
+    expect(faq).toContain("VIEW FEWER QUESTIONS");
+    expect(faq).not.toMatch(/max-h-0 opacity-0/);
     expect(faq).toContain('href="/national-ranking.jpg"');
     expect(faq).toContain("The national ranking is still on file.");
     expect(faq).toContain("Why don&#x27;t you have escort reviews?");
@@ -244,14 +248,20 @@ describe("prerender route bodies", () => {
 
     const rates = renderRoute("/rates");
     expect(rates).toContain('id="why"');
+    expect(rates).toContain('id="hourly"');
+    expect(rates).toContain('id="overnight"');
+    expect(rates).toContain('id="travel"');
+    expect(rates).toContain('id="payment"');
     expect(rates).toContain("Why these rates");
     expect(rates).toContain("The rate is not a mood.");
+    expect(rates).toContain("$2,000");
     expect(rates).toContain('href="/faq#reviews"');
     expect(rates).toContain('href="/journal/continuity-as-craft"');
     expect(rates).toContain('href="/journal/scarcity-discipline"');
     expect(rates).toContain('href="/national-ranking.jpg"');
     expect(rates).toContain("The national ranking is still on file.");
-    expect(rates).toContain("SHOW CURRENT STRUCTURE");
+    expect(rates).toContain("CONCEAL STRUCTURE");
+    expect(rates).not.toMatch(/max-h-0 opacity-0/);
 
     const about = renderRoute("/about");
     expect(about).toContain(
@@ -267,6 +277,7 @@ describe("prerender route bodies", () => {
 
     const inquire = renderRoute("/inquire");
     expect(inquire).toContain('id="how-to-inquire"');
+    expect(inquire).toContain('id="what-to-expect"');
     expect(inquire).toContain('href="/faq#screening"');
     expect(inquire).toContain('href="/faq#booking"');
     expect(inquire).toContain("Screening");

@@ -41,6 +41,7 @@ export const ratesJsonLd: Record<string, unknown>[] = [
     pageSeo.rates.title,
     pageSeo.rates.description,
     [
+      absoluteUrl("/rates#hourly"),
       absoluteUrl("/faq#reviews"),
       absoluteUrl("/journal/continuity-as-craft"),
       absoluteUrl("/journal/scarcity-discipline"),
@@ -75,7 +76,11 @@ export const inquireJsonLd: Record<string, unknown>[] = [
     sitePages.inquire.path,
     pageSeo.inquire.title,
     pageSeo.inquire.description,
-    [absoluteUrl("/faq#screening"), absoluteUrl("/faq#booking")],
+    [
+      absoluteUrl("/inquire#what-to-expect"),
+      absoluteUrl("/faq#screening"),
+      absoluteUrl("/faq#booking"),
+    ],
   ),
   breadcrumbJsonLd([
     { name: "Home", path: sitePages.home.path },
@@ -99,6 +104,19 @@ export const giftsJsonLd: Record<string, unknown>[] = [
   ]),
 ];
 
+export const galleryJsonLd: Record<string, unknown>[] = [
+  webPageJsonLd(
+    sitePages.gallery.path,
+    pageSeo.gallery.title,
+    pageSeo.gallery.description,
+    [absoluteUrl("/film/a-brief-interruption")],
+  ),
+  breadcrumbJsonLd([
+    { name: "Home", path: sitePages.home.path },
+    { name: "Private Collections", path: sitePages.gallery.path },
+  ]),
+];
+
 export const sacramentoJsonLd: Record<string, unknown>[] = [
   {
     "@context": "https://schema.org",
@@ -112,6 +130,7 @@ export const sacramentoJsonLd: Record<string, unknown>[] = [
     about: ["Sacramento escort", "escorts near me", "California escorts"],
     url: absoluteUrl(sitePages.sacramento.path),
     datePublished: "2026-08-20",
+    dateModified: "2026-08-20",
     image: absoluteUrl("/location-slide.webp?v=hires2"),
     mainEntityOfPage: {
       "@type": "WebPage",

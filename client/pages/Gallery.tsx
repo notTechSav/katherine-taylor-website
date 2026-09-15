@@ -1,6 +1,7 @@
 import DeckBuilderPreview from "@/components/gallery/DeckBuilderPreview";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import SeoHead from "@/components/site/SeoHead";
+import { galleryJsonLd } from "@/lib/page-json-ld";
 import { pageSeo } from "@/lib/page-seo";
 
 const GALLERY_HERO_IMAGE = "/rose-hero.webp";
@@ -12,6 +13,7 @@ const Gallery = () => {
         title={pageSeo.gallery.title}
         description={pageSeo.gallery.description}
         path={pageSeo.gallery.path}
+        jsonLd={galleryJsonLd}
       />
       <PageHeroOverlay
         title="Private Collections"

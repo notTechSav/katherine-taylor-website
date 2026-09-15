@@ -12,10 +12,17 @@ describe("AEO brief", () => {
       "Katherine Taylor is a high-end escort working privately in San Francisco and Sacramento.",
     );
     expect(llms).toContain("https://katherinetaylorescort.com/about");
+    expect(llms).toContain("https://katherinetaylorescort.com/rates#hourly");
     expect(llms).toContain("https://katherinetaylorescort.com/rates#why");
     expect(llms).toContain("https://katherinetaylorescort.com/faq#reviews");
     expect(llms).toContain("https://katherinetaylorescort.com/faq#screening");
     expect(llms).toContain("https://katherinetaylorescort.com/faq#booking");
+    expect(llms).toContain("https://katherinetaylorescort.com/faq#payment");
+    expect(llms).toContain("https://katherinetaylorescort.com/faq#nda");
+    expect(llms).toContain("https://katherinetaylorescort.com/faq#first-time");
+    expect(llms).toContain("https://katherinetaylorescort.com/faq#verify");
+    expect(llms).toContain("https://katherinetaylorescort.com/faq#legal");
+    expect(llms).toContain("https://katherinetaylorescort.com/faq#sacramento-vs-sf");
     expect(llms).toContain("https://katherinetaylorescort.com/inquire");
     expect(llms).toContain(
       "https://katherinetaylorescort.com/sacramento-escorts#short-version-heading",

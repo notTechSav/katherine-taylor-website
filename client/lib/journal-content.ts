@@ -13,6 +13,8 @@ export type JournalEssay = {
   excerpt: string;
   body: string;
   publishedDate: string;
+  /** Set when the essay body changes after first publish. */
+  updatedDate?: string;
   readNext?: string;
   seo?: JournalEssaySeo;
 };
@@ -409,6 +411,7 @@ So I'm back. If this sounds aligned—welcome to my world.
 
 -Katherine`,
     publishedDate: "2026-08-27",
+    updatedDate: "2026-09-14",
     readNext: "continuity-as-craft",
     seo: {
       title: "Memoirs in the City | Katherine Taylor in San Francisco",

@@ -301,6 +301,8 @@ describe("structured-data graph", () => {
         jobTitle: string;
         url: string;
         image: string;
+        description: string;
+        areaServed: Array<{ name: string }>;
         sameAs: string[];
       };
     };
@@ -313,6 +315,13 @@ describe("structured-data graph", () => {
       "https://katherinetaylorescort.com/about",
     );
     expect(profile.mainEntity.image).toBe(DEFAULT_OG_IMAGE);
+    expect(profile.mainEntity.description).toBe(
+      "High-end escort offering private companionship in San Francisco, Sacramento, and the Bay Area.",
+    );
+    expect(profile.mainEntity.areaServed.map((place) => place.name)).toEqual([
+      "San Francisco",
+      "Sacramento",
+    ]);
     expect(profile.mainEntity.sameAs).toEqual([
       "https://x.com/KatherineTaylor",
       "https://www.instagram.com/katherineunscripted/",
@@ -356,9 +365,15 @@ describe("structured-data graph", () => {
       expect(typesOf(nodes), essay.slug).toEqual(["Article", "BreadcrumbList"]);
       const article = nodes[0] as {
         headline: string;
+        datePublished: string;
+        dateModified: string;
         author: { "@type": string; name: string; url: string };
       };
       expect(article.headline).toBe(essay.title);
+      expect(article.datePublished).toBe(essay.publishedDate);
+      expect(article.dateModified).toBe(
+        essay.updatedDate ?? essay.publishedDate,
+      );
       expect(article.author).toEqual({
         "@type": "Person",
         name: "Katherine Taylor",
@@ -385,11 +400,13 @@ describe("structured-data graph", () => {
     const article = nodes[0] as {
       author: { url: string; name: string; jobTitle: string };
       datePublished: string;
+      dateModified: string;
     };
     expect(article.author.name).toBe("Katherine Taylor");
     expect(article.author.jobTitle).toBe("Luxury Companion");
     expect(article.author.url).toBe("https://katherinetaylorescort.com/about");
     expect(article.datePublished).toBe("2026-08-20");
+    expect(article.dateModified).toBe("2026-08-20");
   });
 
   it("adds WebPage and BreadcrumbList to rates and FAQ without Offer or FAQPage", () => {
@@ -407,6 +424,7 @@ describe("structured-data graph", () => {
       url: "https://katherinetaylorescort.com/about",
     });
     expect(ratesPage.significantLink).toEqual([
+      "https://katherinetaylorescort.com/rates#hourly",
       "https://katherinetaylorescort.com/faq#reviews",
       "https://katherinetaylorescort.com/journal/continuity-as-craft",
       "https://katherinetaylorescort.com/journal/scarcity-discipline",
@@ -427,12 +445,16 @@ describe("structured-data graph", () => {
     expect(typesOf(inquire)).toEqual(["WebPage", "BreadcrumbList"]);
     const inquirePage = inquire[0] as { significantLink: string[] };
     expect(inquirePage.significantLink).toEqual([
+      "https://katherinetaylorescort.com/inquire#what-to-expect",
       "https://katherinetaylorescort.com/faq#screening",
       "https://katherinetaylorescort.com/faq#booking",
     ]);
 
     const gifts = parseJsonLd(routeHtml("/gifts"));
     expect(typesOf(gifts)).toEqual(["WebPage", "BreadcrumbList"]);
+
+    const gallery = parseJsonLd(routeHtml("/gallery"));
+    expect(typesOf(gallery)).toEqual(["WebPage", "BreadcrumbList"]);
   });
 
   it("leaves film VideoObject graphs unchanged and does not add ProfilePage or breadcrumbs elsewhere", () => {
@@ -442,6 +464,7 @@ describe("structured-data graph", () => {
       "/faq",
       "/inquire",
       "/gifts",
+      "/gallery",
       "/sacramento-escorts",
       ...essays.map((essay) => `/journal/${essay.slug}`),
     ]);

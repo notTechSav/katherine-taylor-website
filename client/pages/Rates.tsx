@@ -17,7 +17,7 @@ const heroImage = {
 };
 
 const RatesPage = () => {
-  const [isRevealed, setIsRevealed] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(true);
 
   return (
     <main className="bg-luxury-white text-luxury-black">
@@ -137,14 +137,20 @@ const RatesPage = () => {
         <section className="border-t border-gray-200 py-20 md:py-28 bg-luxury-white">
           <div className="container mx-auto px-6 md:px-8 max-w-2xl">
             <h2
-              className="mb-8 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black"
+              id="hourly"
+              className="mb-8 scroll-mt-28 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
               Hourly and Overnight
             </h2>
 
             {/* Hourly Rates */}
-            <h3 className="mb-4 text-lg font-light text-luxury-black">Hourly Engagements</h3>
+            <h3
+              id="hourly-engagements"
+              className="mb-4 scroll-mt-28 text-lg font-light text-luxury-black"
+            >
+              Hourly Engagements
+            </h3>
             <div className="space-y-4 mb-12">
               <div className="flex items-baseline justify-between border-b border-gray-200 pb-3 transition-all duration-200 hover:border-gray-400 hover:pb-4">
                 <span className="text-base font-light text-gray-700">
@@ -205,7 +211,12 @@ const RatesPage = () => {
             </div>
 
             {/* Extended Rates */}
-            <h3 className="mb-4 text-lg font-light text-luxury-black">Overnight and Multi-Day</h3>
+            <h3
+              id="overnight"
+              className="mb-4 scroll-mt-28 text-lg font-light text-luxury-black"
+            >
+              Overnight and Multi-Day
+            </h3>
             <div className="space-y-4">
               <div className="flex items-baseline justify-between border-b border-gray-200 pb-3 transition-all duration-200 hover:border-gray-400 hover:pb-4">
                 <span className="text-base font-light text-gray-700">
@@ -248,7 +259,8 @@ const RatesPage = () => {
         <section className="border-t border-gray-200 py-20 md:py-28 bg-luxury-gray-50">
           <div className="container mx-auto px-6 md:px-8 max-w-2xl">
             <h2
-              className="mb-8 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black"
+              id="travel"
+              className="mb-8 scroll-mt-28 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
               Travel
@@ -345,7 +357,8 @@ const RatesPage = () => {
         <section className="border-t border-gray-200 py-20 md:py-28 bg-luxury-gray-50">
           <div className="container mx-auto px-6 md:px-8 max-w-2xl">
             <h2
-              className="mb-8 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black"
+              id="payment"
+              className="mb-8 scroll-mt-28 text-3xl md:text-4xl font-extralight tracking-[-0.02em] text-luxury-black"
               style={{ fontWeight: 200 }}
             >
               Payment

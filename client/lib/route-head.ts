@@ -9,6 +9,7 @@ import {
 } from "./journal-json-ld";
 import {
   faqJsonLd,
+  galleryJsonLd,
   giftsJsonLd,
   inquireJsonLd,
   ratesJsonLd,
@@ -58,7 +59,9 @@ const pageSeoHeads: Record<string, Partial<RouteHead>> = {
   "/rates": {
     jsonLd: ratesJsonLd,
   },
-  "/gallery": {},
+  "/gallery": {
+    jsonLd: galleryJsonLd,
+  },
   "/film/a-brief-interruption": {
     image: absoluteUrl(briefInterruptionVideo.poster),
     imageAlt: "A Brief Interruption",
