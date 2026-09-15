@@ -98,33 +98,6 @@ const pageSeoHeads: Record<string, Partial<RouteHead>> = {
   },
 };
 
-const extraPrerenderRoutes: RouteHead[] = [
-  {
-    path: "/content-generator",
-    title: "Content Generator | Katherine Taylor",
-    description: "Internal content tools.",
-    canonical: null,
-    robots: NOINDEX_ROBOTS,
-    ogType: "website",
-    image: DEFAULT_OG_IMAGE,
-    imageAlt: "Katherine Taylor Escort",
-    jsonLd: [],
-    noIndex: true,
-  },
-  {
-    path: "/ai-concierge",
-    title: "AI Concierge | Katherine Taylor",
-    description: "Internal concierge tools.",
-    canonical: null,
-    robots: NOINDEX_ROBOTS,
-    ogType: "website",
-    image: DEFAULT_OG_IMAGE,
-    imageAlt: "Katherine Taylor Escort",
-    jsonLd: [],
-    noIndex: true,
-  },
-];
-
 function escapeAttr(value: string): string {
   return value
     .replace(/&/g, "&amp;")
@@ -209,7 +182,7 @@ export function getPrerenderRoutes(): RouteHead[] {
     };
   });
 
-  return [...fromPages, ...extraPrerenderRoutes];
+  return fromPages;
 }
 
 export function renderRouteHeadBlock(page: RouteHead): string {

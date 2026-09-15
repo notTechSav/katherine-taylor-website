@@ -197,6 +197,13 @@ describe("prerender route bodies", () => {
     }
   });
 
+  it("does not offer an unfinished private-deck builder", () => {
+    const gallery = renderRoute("/gallery");
+    expect(gallery).not.toContain("Build a private deck");
+    expect(gallery).not.toContain("Create Deck");
+    expect(gallery).not.toContain("/decks/");
+  });
+
   it("inserts A Brief Interruption between Gallery and Gifts", () => {
     const gallery = renderRoute("/gallery");
     expect(gallery).toContain('href="/film/a-brief-interruption"');

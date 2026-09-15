@@ -80,43 +80,7 @@ function revealCollapsedSections(html: string): string {
   return html.replace(/max-h-0 opacity-0/g, "max-h-none opacity-100");
 }
 
-function titledFallback(title: string, description: string): string {
-  return renderToStaticMarkup(
-    createElement(
-      "div",
-      {
-        className:
-          "flex min-h-screen w-full max-w-[100vw] flex-col overflow-x-hidden bg-luxury-white text-gray-700",
-      },
-      createElement(
-        "main",
-        { className: "px-6 py-24 md:px-8" },
-        createElement(
-          "h1",
-          {
-            className:
-              "text-[32px] font-extralight tracking-[-0.02em] text-luxury-black",
-          },
-          title,
-        ),
-        createElement(
-          "p",
-          { className: "mt-6 text-base font-light text-gray-700" },
-          description,
-        ),
-      ),
-    ),
-  );
-}
-
 export function renderRouteBodyInner(path: string): string {
-  if (path === "/content-generator") {
-    return titledFallback("Content Generator", "Internal content tools.");
-  }
-  if (path === "/ai-concierge") {
-    return titledFallback("AI Concierge", "Internal concierge tools.");
-  }
-
   const markup = revealCollapsedSections(
     renderToStaticMarkup(createElement(PrerenderApp, { path })),
   );

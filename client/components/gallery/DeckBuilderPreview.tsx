@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 type FrameAsset = {
@@ -397,63 +397,6 @@ function summarizeMeta(m?: FrameMeta): string {
   return parts.join(" · ") || "—";
 }
 
-function RadioCard({
-  label,
-  checked,
-  onChange,
-}: {
-  label: string;
-  checked: boolean;
-  onChange: () => void;
-}) {
-  return (
-    <label
-      className={`border border-neutral-300 px-4 py-3 text-sm font-light rounded-none cursor-pointer ${
-        checked ? "bg-luxury-black text-luxury-white" : ""
-      }`}
-    >
-      <input
-        type="radio"
-        name="layout"
-        className="sr-only"
-        checked={checked}
-        onChange={onChange}
-      />
-      {label}
-    </label>
-  );
-}
-
-function PrimaryButton({
-  children,
-  onClick,
-  disabled,
-  className,
-  ariaLabel,
-  ariaBusy,
-}: {
-  children: React.ReactNode;
-  onClick?: () => void;
-  disabled?: boolean;
-  className?: string;
-  ariaLabel?: string;
-  ariaBusy?: boolean;
-}) {
-  return (
-    <button
-      onClick={onClick}
-      disabled={disabled}
-      aria-label={ariaLabel}
-      aria-busy={ariaBusy}
-      className={`inline-flex items-center justify-center uppercase tracking-[0.15em] text-[13px] sm:text-[14px] font-light px-12 sm:px-14 py-5 sm:py-6 bg-luxury-black text-luxury-white rounded-none transition-all duration-[250ms] ease-out hover:opacity-90 hover:scale-[1.01] hover:shadow-md disabled:opacity-60 ${
-        className ?? ""
-      }`}
-    >
-      {children}
-    </button>
-  );
-}
-
 function Hub({
   onIntent,
 }: {
@@ -531,12 +474,9 @@ function Hub({
 
 function CollectionHeader({
   c,
-  onOpen,
 }: {
   c: Collection;
-  onOpen: () => void;
 }) {
-  const totalFrames = frameCount(c);
   return (
     <section
       id={c.id}
@@ -566,15 +506,6 @@ function CollectionHeader({
             <p className="max-w-[48ch] text-sm font-light leading-[1.75] text-neutral-700 sm:text-base">
               {c.statement}
             </p>
-            <button
-              type="button"
-              onClick={onOpen}
-              disabled={totalFrames === 0}
-              className="text-[10px] font-light uppercase tracking-[0.18em] text-neutral-400 transition-colors duration-[250ms] hover:text-neutral-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6B5D54]/40 disabled:cursor-not-allowed disabled:opacity-40 sm:text-[11px]"
-              aria-label={`Build a private deck of ${c.title}`}
-            >
-              Build a private deck
-            </button>
           </div>
         </div>
         {(() => {
@@ -679,259 +610,6 @@ function CollectionHandoff({ c }: { c: Collection }) {
   );
 }
 
-function DeckBuilder({ c, onClose }: { c: Collection; onClose: () => void }) {
-  const totalFrames = frameCount(c);
-  const [layout, setLayout] = useState<"one" | "four" | "sheet">("one");
-  const [selected, setSelected] = useState(
-    () => new Set<number>(Array.from({ length: totalFrames }, (_, i) => i + 1)),
-  );
-  const [email, setEmail] = useState("");
-  const [includeWatermark, setIncludeWatermark] = useState(false);
-  const [building, setBuilding] = useState(false);
-  const [result, setResult] = useState<{ url: string; expires: string } | null>(
-    null,
-  );
-  const closeRef = useRef<HTMLButtonElement>(null);
-  const liveRef = useRef<HTMLDivElement>(null);
-  const [announce, setAnnounce] = useState<string | null>(null);
-
-  useEffect(() => {
-    closeRef.current?.focus();
-  }, []);
-
-  useEffect(() => {
-    function onKey(e: KeyboardEvent) {
-      if (e.key === "Escape") onClose();
-    }
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [onClose]);
-
-  useEffect(() => {
-    setSelected(new Set(Array.from({ length: totalFrames }, (_, i) => i + 1)));
-  }, [totalFrames]);
-
-  const toggle = (n: number) => {
-    const next = new Set(selected);
-    next.has(n) ? next.delete(n) : next.add(n);
-    setSelected(next);
-  };
-
-  const frames = useMemo(
-    () => Array.from({ length: totalFrames }, (_, i) => i + 1),
-    [totalFrames],
-  );
-  const selectedCount = selected.size;
-  const allSelected = selectedCount === totalFrames;
-
-  function onSelectAll() {
-    if (allSelected) {
-      setSelected(new Set());
-      setAnnounce("Cleared all frames");
-    } else {
-      setSelected(new Set(frames));
-      setAnnounce("Selected all frames");
-    }
-    setTimeout(() => setAnnounce(null), 1200);
-  }
-
-  function build() {
-    setBuilding(true);
-    setTimeout(() => {
-      const token = Math.random().toString(36).slice(2, 10);
-      const url = `/decks/${token}/deck.pdf`;
-      const expires = new Date(
-        Date.now() + 7 * 24 * 60 * 60 * 1000,
-      ).toISOString();
-      console.log({ includeWatermark });
-      setResult({ url, expires });
-      setBuilding(false);
-      if (liveRef.current) liveRef.current.focus();
-    }, 600);
-  }
-
-  return (
-    <div
-      className="fixed inset-0 bg-black/30"
-      role="dialog"
-      aria-modal="true"
-      aria-labelledby="deck-title"
-      aria-describedby="deck-desc"
-    >
-      <div
-        className="absolute right-0 top-0 h-full w-full md:max-w-[560px] bg-luxury-white p-6 sm:p-8 pb-[calc(1rem+env(safe-area-inset-bottom))] overflow-y-auto shadow-lg"
-      >
-        <div className="flex items-start justify-between gap-6">
-          <h2
-            id="deck-title"
-            className="text-xl sm:text-2xl font-extralight tracking-[-0.02em]"
-          >
-            Build Private Deck
-          </h2>
-          <button
-            ref={closeRef}
-            onClick={onClose}
-            className="text-sm uppercase tracking-[0.15em]"
-            aria-label="Close deck builder"
-          >
-            Close
-          </button>
-        </div>
-        <p id="deck-desc" className="mt-2 text-sm font-light text-neutral-700">
-          {c.title}
-        </p>
-
-        <hr className="my-6 border-neutral-200" />
-
-        <div role="group" aria-labelledby="layout-label">
-          <h3
-            id="layout-label"
-            className="text-xs sm:text-sm uppercase tracking-[0.15em]"
-          >
-            Layout
-          </h3>
-          <div
-            className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3"
-            role="radiogroup"
-            aria-label="Deck layout"
-          >
-            <RadioCard
-              label="One per page"
-              checked={layout === "one"}
-              onChange={() => setLayout("one")}
-            />
-            <RadioCard
-              label="Four per page"
-              checked={layout === "four"}
-              onChange={() => setLayout("four")}
-            />
-            <RadioCard
-              label="Contact sheet"
-              checked={layout === "sheet"}
-              onChange={() => setLayout("sheet")}
-            />
-          </div>
-        </div>
-
-        <div className="mt-8" role="group" aria-labelledby="frames-label">
-          <div className="flex items-center justify-between gap-3 flex-wrap">
-            <div className="flex items-center gap-3">
-              <h3
-                id="frames-label"
-                className="text-xs sm:text-sm uppercase tracking-[0.15em]"
-              >
-                Frames
-              </h3>
-              <span className="text-xs text-neutral-600">
-                {selectedCount}/{totalFrames} selected
-              </span>
-            </div>
-            <button
-              className={`text-[11px] sm:text-xs uppercase tracking-[0.15em] underline underline-offset-4 transition-all duration-[250ms] ease-out ${
-                allSelected
-                  ? "decoration-luxury-black/80"
-                  : "decoration-luxury-black/60"
-              } focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300/60`}
-              onClick={onSelectAll}
-              aria-label={
-                allSelected ? "Clear all frames" : "Select all frames"
-              }
-              aria-pressed={allSelected}
-            >
-              {allSelected ? "Clear all" : "Select all"}
-            </button>
-          </div>
-          <div className="mt-3 grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 gap-2">
-            {frames.map((n) => (
-              <button
-                key={n}
-                onClick={() => toggle(n)}
-                role="checkbox"
-                aria-checked={selected.has(n)}
-                className={`h-9 sm:h-10 text-[11px] sm:text-xs font-light border border-neutral-300 ${
-                  selected.has(n)
-                    ? "bg-luxury-black text-luxury-white"
-                    : "text-luxury-black"
-                } rounded-none transition-all duration-[250ms]`}
-              >
-                {pad3(n)}
-              </button>
-            ))}
-          </div>
-          <div className="sr-only" aria-live="polite">
-            {announce ?? ""}
-          </div>
-        </div>
-
-        <div className="mt-8" role="group" aria-labelledby="delivery-label">
-          <h3
-            id="delivery-label"
-            className="text-xs sm:text-sm uppercase tracking-[0.15em]"
-          >
-            Delivery
-          </h3>
-          <div className="mt-3 grid gap-3">
-            <label className="sr-only" htmlFor="deck-email">
-              Email (optional)
-            </label>
-            <input
-              id="deck-email"
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Optional email for share link"
-              className="w-full border border-neutral-300 px-4 py-3 text-sm font-light rounded-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-300/60"
-            />
-            <PrimaryButton
-              onClick={build}
-              disabled={building || frames.length === 0}
-              className="w-full md:w-auto"
-              ariaLabel="Create deck"
-              ariaBusy={building}
-            >
-              {building ? "Creating…" : "Create Deck"}
-            </PrimaryButton>
-            {result && (
-              <div
-                ref={liveRef}
-                tabIndex={-1}
-                aria-live="polite"
-                className="mt-3 text-sm font-light"
-              >
-                <div>Your private deck is ready. Link expires in 7 days.</div>
-                <div className="mt-1">
-                  <a
-                    className="underline"
-                    href={result.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {result.url}
-                  </a>
-                </div>
-                <div className="mt-1 text-neutral-600">
-                  Expires: {new Date(result.expires).toLocaleString()}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        <hr className="my-6 border-neutral-200" />
-
-        <ul className="text-[11px] sm:text-xs text-neutral-600 leading-relaxed">
-          <li>Cover: {c.title} — From the archive.</li>
-          <li>
-            Footer: By-appointment only · Private social escort & strategic
-            presence.
-          </li>
-          <li>Watermark: off by default (toggle above if needed).</li>
-          <li>Noindex / nofollow for share links; 7-day expiry.</li>
-        </ul>
-      </div>
-    </div>
-  );
-}
 
 function ImageViewer({
   c,
@@ -1082,7 +760,6 @@ export default function DeckBuilderPreview() {
   const currentFromHash = DATA.find((item) => item.id === hashId);
   const view = currentFromHash ? "collection" : "hub";
   const current = currentFromHash ?? DATA[0];
-  const [open, setOpen] = useState(false);
   const [viewerIdx, setViewerIdx] = useState<number | null>(null);
   const meta = useCollectionMeta(current);
   const currentFrameCount = frameCount(current);
@@ -1112,7 +789,6 @@ export default function DeckBuilderPreview() {
   }, [hashId, currentFromHash]);
 
   useEffect(() => {
-    setOpen(false);
     setViewerIdx(null);
   }, [hashId]);
 
@@ -1152,13 +828,10 @@ export default function DeckBuilderPreview() {
         />
       ) : (
         <>
-          <CollectionHeader c={current} onOpen={() => setOpen(true)} />
+          <CollectionHeader c={current} />
           <FrameGrid c={current} onOpen={(i) => setViewerIdx(i)} />
           <CollectionHandoff c={current} />
         </>
-      )}
-      {open && frameCount(current) > 0 && (
-        <DeckBuilder c={current} onClose={() => setOpen(false)} />
       )}
       {viewerIdx !== null && currentFrameCount > 0 && (
         <ImageViewer

@@ -48,6 +48,12 @@ describe("prerender route heads", () => {
     }
   });
 
+  it("does not prerender unfinished internal tools", () => {
+    const paths = new Set(routes.map((route) => route.path));
+    expect(paths.has("/content-generator")).toBe(false);
+    expect(paths.has("/ai-concierge")).toBe(false);
+  });
+
   it("emits extension-less Cloudflare pretty-URL files", () => {
     expect(prerenderOutputPath("/")).toBe("index.html");
     expect(prerenderOutputPath("/sacramento-escorts")).toBe(

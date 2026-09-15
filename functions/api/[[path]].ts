@@ -54,13 +54,5 @@ export async function onRequest(context: PagesContext): Promise<Response> {
     );
   }
 
-  if (path === "/api/luxury-inquiry/health" && context.request.method === "GET") {
-    return Response.json({ status: "ok", service: "luxury-inquiry-api" });
-  }
-
-  if (path === "/api/content/health" && context.request.method === "GET") {
-    return Response.json({ status: "ok", service: "content-ai" });
-  }
-
   return Response.json({ error: "Not found" }, { status: 404 });
 }

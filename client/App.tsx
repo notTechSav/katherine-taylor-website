@@ -33,8 +33,6 @@ const Journal = lazy(() => import("./pages/Journal"));
 const JournalArticle = lazy(() => import("./pages/JournalArticle"));
 const Rates = lazy(() => import("./pages/Rates"));
 const Sacramento = lazy(() => import("./pages/Sacramento"));
-const ContentGenerator = lazy(() => import("./pages/ContentGenerator"));
-const AIConcierge = lazy(() => import("./pages/AIConcierge"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -131,8 +129,6 @@ const AppRoutes = () => {
             path="/sacramento"
             element={<Navigate to="/sacramento-escorts" replace />}
           />
-          <Route path="/content-generator" element={withLayout(ContentGenerator)} />
-          <Route path="/ai-concierge" element={withLayout(AIConcierge)} />
           <Route path="*" element={withLayout(NotFound)} />
         </Routes>
       </Suspense>
