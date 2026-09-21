@@ -48,6 +48,42 @@ const navLinkClass =
 const inquireButtonClass =
   "inline-flex items-center justify-center border px-4 py-2 text-sm font-light uppercase tracking-uppercase transition-colors duration-250 ease-out focus:outline-none focus:ring-2 focus:ring-offset-2";
 
+const Preferred411Seal = ({
+  visible,
+  inverse,
+}: {
+  visible: boolean;
+  inverse: boolean;
+}) => (
+  <a
+    href="https://preferred411.com/admirer/register?ref=191346"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Preferred411.com"
+    aria-hidden={visible ? undefined : true}
+    tabIndex={visible ? undefined : -1}
+    className={cn(
+      "inline-flex shrink-0 transition-opacity duration-400 ease-out focus:outline-none focus:ring-2",
+      visible
+        ? "opacity-90 hover:opacity-100"
+        : "pointer-events-none opacity-0",
+      inverse
+        ? "drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)] focus:ring-white/50 focus:ring-offset-0"
+        : "focus:ring-gray-300 focus:ring-offset-2",
+    )}
+  >
+    <span className="relative block h-6 w-6 overflow-hidden rounded-full">
+      <img
+        src="https://preferred411.com/a/preferredSeal-bw-1.png"
+        alt=""
+        width={109}
+        height={119}
+        className="h-full w-full object-cover object-top"
+      />
+    </span>
+  </a>
+);
+
 const Navigation = () => {
   const { pathname } = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -98,6 +134,7 @@ const Navigation = () => {
   const inquireTone = inverseSurface
     ? "border-white/70 text-white hover:border-white hover:bg-white hover:text-luxury-black focus:ring-white/50 focus:ring-offset-0"
     : "border-luxury-black/25 text-luxury-black hover:border-luxury-black hover:bg-luxury-black hover:text-luxury-white focus:ring-gray-300 focus:ring-offset-2";
+  const showPreferred411 = !scrolled && !isMenuOpen;
 
   return (
     <nav
@@ -108,64 +145,50 @@ const Navigation = () => {
         isMenuOpen
           ? "h-dvh overflow-y-auto bg-luxury-white py-5 md:h-auto md:overflow-visible"
           : inverseSurface
-            ? "bg-transparent py-5 md:py-8"
-            : "border-b border-luxury-black/10 bg-luxury-white py-3 md:py-4",
+            ? "overflow-visible bg-transparent py-5 md:py-8"
+            : "overflow-visible border-b border-luxury-black/10 bg-luxury-white py-3 md:py-4",
       )}
     >
       <div className="mx-auto flex max-w-luxury items-center justify-between gap-4 sm:gap-6">
-        <div className="flex shrink-0 items-center gap-3">
-          <Link
-            to="/"
-            className={cn(
-              "flex items-center focus:outline-none focus:ring-2",
-              linkTone,
-            )}
-          >
-            <span
-              className={cn(
-                "font-helvetica whitespace-nowrap text-[clamp(0.95rem,4.2vw,1.5rem)] font-extralight uppercase leading-none tracking-uppercase md:text-2xl",
-                inverseSurface ? "text-white" : "text-luxury-black",
-              )}
-            >
-              KATHERINE TAYLOR
-            </span>
-          </Link>
-          <a
-            href="https://preferred411.com/admirer/register?ref=191346"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Preferred411.com"
-            className={cn(
-              "inline-flex shrink-0 opacity-90 transition-opacity duration-250 ease-out hover:opacity-100 focus:outline-none focus:ring-2",
-              inverseSurface
-                ? "drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] focus:ring-white/50 focus:ring-offset-0"
-                : "focus:ring-gray-300 focus:ring-offset-2",
-            )}
-          >
-            <img
-              src="https://preferred411.com/a/preferredSeal-bw-1.png"
-              alt=""
-              width={22}
-              height={24}
-              className="h-6 w-[1.375rem]"
-            />
-          </a>
-        </div>
-        <button
-          type="button"
-          onClick={() => setIsMenuOpen((previous) => !previous)}
+        <Link
+          to="/"
           className={cn(
-            "inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-sm font-light uppercase tracking-uppercase transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2 md:hidden",
+            "flex min-w-0 items-center focus:outline-none focus:ring-2",
             linkTone,
           )}
-          aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
-          aria-expanded={isMenuOpen}
-          aria-controls="mobile-navigation"
         >
-          {isMenuOpen ? "Close" : "Menu"}
-        </button>
-        <div className="hidden items-center gap-6 md:flex lg:gap-10">
-          <ul className="flex items-center gap-6 lg:gap-10">
+          <span
+            className={cn(
+              "font-helvetica whitespace-nowrap text-[clamp(0.95rem,4.2vw,1.5rem)] font-extralight uppercase leading-none tracking-uppercase md:text-2xl",
+              inverseSurface ? "text-white" : "text-luxury-black",
+            )}
+          >
+            KATHERINE TAYLOR
+          </span>
+        </Link>
+        <div className="relative md:hidden">
+          <button
+            type="button"
+            onClick={() => setIsMenuOpen((previous) => !previous)}
+            className={cn(
+              "inline-flex min-h-[44px] min-w-[44px] items-center justify-center text-sm font-light uppercase tracking-uppercase transition-opacity duration-250 ease-out hover:opacity-60 focus:outline-none focus:ring-2",
+              linkTone,
+            )}
+            aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={isMenuOpen}
+            aria-controls="mobile-navigation"
+          >
+            {isMenuOpen ? "Close" : "Menu"}
+          </button>
+          <div className="absolute left-1/2 top-full z-10 -translate-x-1/2 pt-1">
+            <Preferred411Seal
+              visible={showPreferred411}
+              inverse={inverseSurface}
+            />
+          </div>
+        </div>
+        <div className="relative hidden items-center gap-8 md:flex lg:gap-12">
+          <ul className="flex items-center gap-8 lg:gap-12">
             {navigationLinks.map((link) => (
               <li key={link.label} className={link.children ? "group relative" : undefined}>
                 <Link
@@ -199,13 +222,21 @@ const Navigation = () => {
               </li>
             ))}
           </ul>
-          <Link
-            to={inquireHref}
-            onMouseEnter={() => handleMouseEnter(inquireHref)}
-            className={cn(inquireButtonClass, inquireTone)}
-          >
-            Inquire
-          </Link>
+          <div className="relative">
+            <Link
+              to={inquireHref}
+              onMouseEnter={() => handleMouseEnter(inquireHref)}
+              className={cn(inquireButtonClass, inquireTone)}
+            >
+              Inquire
+            </Link>
+            <div className="absolute left-1/2 top-full z-10 -translate-x-1/2 pt-1">
+              <Preferred411Seal
+                visible={showPreferred411}
+                inverse={inverseSurface}
+              />
+            </div>
+          </div>
         </div>
       </div>
       {isMenuOpen ? (
