@@ -113,22 +113,44 @@ const Navigation = () => {
       )}
     >
       <div className="mx-auto flex max-w-luxury items-center justify-between gap-4 sm:gap-6">
-        <Link
-          to="/"
-          className={cn(
-            "flex min-w-0 items-center focus:outline-none focus:ring-2",
-            linkTone,
-          )}
-        >
-          <span
+        <div className="flex shrink-0 items-center gap-3">
+          <Link
+            to="/"
             className={cn(
-              "font-helvetica whitespace-nowrap text-[clamp(0.95rem,4.2vw,1.5rem)] font-extralight uppercase leading-none tracking-uppercase md:text-2xl",
-              inverseSurface ? "text-white" : "text-luxury-black",
+              "flex items-center focus:outline-none focus:ring-2",
+              linkTone,
             )}
           >
-            KATHERINE TAYLOR
-          </span>
-        </Link>
+            <span
+              className={cn(
+                "font-helvetica whitespace-nowrap text-[clamp(0.95rem,4.2vw,1.5rem)] font-extralight uppercase leading-none tracking-uppercase md:text-2xl",
+                inverseSurface ? "text-white" : "text-luxury-black",
+              )}
+            >
+              KATHERINE TAYLOR
+            </span>
+          </Link>
+          <a
+            href="https://preferred411.com/admirer/register?ref=191346"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Preferred411.com"
+            className={cn(
+              "inline-flex shrink-0 opacity-90 transition-opacity duration-250 ease-out hover:opacity-100 focus:outline-none focus:ring-2",
+              inverseSurface
+                ? "drop-shadow-[0_1px_8px_rgba(0,0,0,0.4)] focus:ring-white/50 focus:ring-offset-0"
+                : "focus:ring-gray-300 focus:ring-offset-2",
+            )}
+          >
+            <img
+              src="https://preferred411.com/a/preferredSeal-bw-1.png"
+              alt=""
+              width={22}
+              height={24}
+              className="h-6 w-[1.375rem]"
+            />
+          </a>
+        </div>
         <button
           type="button"
           onClick={() => setIsMenuOpen((previous) => !previous)}
@@ -142,8 +164,8 @@ const Navigation = () => {
         >
           {isMenuOpen ? "Close" : "Menu"}
         </button>
-        <div className="hidden items-center gap-8 md:flex lg:gap-12">
-          <ul className="flex items-center gap-8 lg:gap-12">
+        <div className="hidden items-center gap-6 md:flex lg:gap-10">
+          <ul className="flex items-center gap-6 lg:gap-10">
             {navigationLinks.map((link) => (
               <li key={link.label} className={link.children ? "group relative" : undefined}>
                 <Link

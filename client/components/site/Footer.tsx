@@ -14,12 +14,7 @@ const focusRing =
 
 const linkClass = `relative text-sm font-light leading-[1.5] text-gray-600 underline-offset-4 transition-colors duration-300 hover:text-luxury-black hover:underline focus-visible:text-luxury-black after:absolute after:-inset-x-2 after:-inset-y-3 after:content-[''] ${focusRing}`;
 
-type FooterProps = {
-  /** Homepage-only affiliation seal, rendered last and centered. */
-  showPreferred411?: boolean;
-};
-
-const Footer = ({ showPreferred411 = false }: FooterProps) => {
+const Footer = () => {
   return (
     <footer
       tabIndex={-1}
@@ -89,28 +84,9 @@ const Footer = ({ showPreferred411 = false }: FooterProps) => {
 
         <WorldPeek />
 
-        <div className="flex flex-col items-center gap-4 border-t border-gray-100 pt-5 md:gap-5 md:pt-6">
-          <p className="text-center text-xs font-light tracking-[0.08em] text-gray-500">
-            © {new Date().getFullYear()} Katherine Taylor
-          </p>
-          {showPreferred411 ? (
-            <a
-              href="https://preferred411.com/admirer/register?ref=191346"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Preferred411.com"
-              className={`inline-flex ${focusRing}`}
-            >
-              <img
-                src="https://preferred411.com/a/preferredSeal-bw-1.png"
-                alt="Preferred411.com"
-                width={32}
-                height={35}
-                className="h-[2.1875rem] w-8"
-              />
-            </a>
-          ) : null}
-        </div>
+        <p className="border-t border-gray-100 pt-5 text-center text-xs font-light tracking-[0.08em] text-gray-500 md:pt-6">
+          © {new Date().getFullYear()} Katherine Taylor
+        </p>
       </div>
     </footer>
   );

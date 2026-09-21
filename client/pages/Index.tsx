@@ -136,7 +136,7 @@ const Index = () => {
         aria-label="Site footer"
       >
         <NextSectionCTA label="About Katherine" href="/about" />
-        <Footer showPreferred411 />
+        <Footer />
       </section>
     </FullPageSections>
     </>
