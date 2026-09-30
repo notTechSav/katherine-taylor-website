@@ -32,33 +32,38 @@ const About = () => {
           alignment="left"
         />
         <div className="mx-auto max-w-[680px] px-6 pb-24 pt-16 md:px-8 md:pb-28 md:pt-20">
-          <header className="space-y-6">
+          <header>
             <p className="text-[17px] leading-[1.9] text-luxury-black">
               Katherine Taylor is a high-end escort working privately in San
               Francisco and Sacramento.
             </p>
-            <p className="text-[17px] leading-[1.9] text-luxury-black">
-              My work was built in San Francisco and now moves between San
-              Francisco and Sacramento. If you first found Katherine Taylor
-              through{" "}
-              <a
-                href="/journal/memoirs-in-the-city"
-                className={editorialLinkClass}
-              >{"the Warriors photograph that escaped into the internet in 2024"}</a>{", yes—same woman. This is my current home on the web, written and maintained in my own voice."}
-            </p>
-            <p className="text-[17px] leading-[1.9] text-luxury-black">
-              The conversation never resets. I carry forward everything—your
-              M&amp;A timeline, your board anxieties, your daughter's college
-              decision, the trip to Patagonia you've been planning. Not because I
-              take notes, but because I've built a decade of pattern libraries
-              that let me read what you don't say.
-            </p>
-            <p className="text-[17px] leading-[1.9] text-luxury-black">
-              <a href="/rates#why" className={editorialLinkClass}>
-                The rate
-              </a>{" "}
-              is what it costs to keep that memory human.
-            </p>
+            <div className="my-16 flex justify-center" aria-hidden="true">
+              <span className="text-neutral-400/60">• • •</span>
+            </div>
+            <div className="space-y-6">
+              <p className="text-[17px] leading-[1.9] text-luxury-black">
+                My work was built in San Francisco and now moves between San
+                Francisco and Sacramento. If you first found Katherine Taylor
+                through{" "}
+                <a
+                  href="/journal/memoirs-in-the-city"
+                  className={editorialLinkClass}
+                >{"the Warriors photograph that escaped into the internet in 2024"}</a>{", yes—same woman. This is my current home on the web, written and maintained in my own voice."}
+              </p>
+              <p className="text-[17px] leading-[1.9] text-luxury-black">
+                The conversation never resets. I carry forward everything—your
+                M&amp;A timeline, your board anxieties, your daughter's college
+                decision, the trip to Patagonia you've been planning. Not because I
+                take notes, but because I've built a decade of pattern libraries
+                that let me read what you don't say.
+              </p>
+              <p className="text-[17px] leading-[1.9] text-luxury-black">
+                <a href="/rates#why" className={editorialLinkClass}>
+                  The rate
+                </a>{" "}
+                is what it costs to keep that memory human.
+              </p>
+            </div>
           </header>
 
           <div className="my-16 flex justify-center" aria-hidden="true">

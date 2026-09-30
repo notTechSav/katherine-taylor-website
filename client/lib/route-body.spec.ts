@@ -274,6 +274,8 @@ describe("prerender route bodies", () => {
     expect(about).toContain(
       "Katherine Taylor is a high-end escort working privately in San Francisco and Sacramento.",
     );
+    expect(about).toContain("• • •");
+    expect(about.match(/• • •/g)?.length).toBe(2);
     expect(about).toContain("keep that memory human");
     expect(about).toContain('href="/rates#why"');
     expect(about).toContain('href="/journal/scarcity-discipline"');
