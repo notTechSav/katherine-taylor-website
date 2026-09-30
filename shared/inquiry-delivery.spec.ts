@@ -19,6 +19,7 @@ const sample = {
   preferredDate: "March 15",
   duration: "2-hours",
   location: "san-francisco",
+  preferred411: "ada-lovelace",
   referral: "a friend",
   message: "Hello from a test handler",
 };
@@ -120,6 +121,7 @@ describe("Resend inquiry delivery", () => {
     expect(payload.text).toContain(sample.preferredDate);
     expect(payload.text).toContain(sample.duration);
     expect(payload.text).toContain(sample.location);
+    expect(payload.text).toContain(sample.preferred411);
     expect(payload.text).toContain(sample.referral);
     expect(payload.text).toContain(sample.message);
 

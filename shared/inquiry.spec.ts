@@ -24,6 +24,7 @@ const sample = {
   preferredDate: "March 15",
   duration: "2-hours",
   location: "san-francisco",
+  preferred411: "ada-lovelace",
   referral: "a friend",
   message: "Hello from a test handler",
 };
@@ -167,6 +168,18 @@ describe("inquiry POST handler", () => {
       expect(deliver).not.toHaveBeenCalled();
     },
   );
+
+  it("accepts an empty Preferred411 handle", async () => {
+    const deliver = resolvingDeliver();
+    const response = await handleInquiryPostRequest(
+      jsonRequest({ ...sample, preferred411: "" }),
+      deliver,
+    );
+
+    expect(response.status).toBe(200);
+    expect(deliver).toHaveBeenCalledTimes(1);
+    expect(deliver.mock.calls[0][0]).toEqual({ ...sample, preferred411: "" });
+  });
 
   it("rejects whitespace-only required fields", async () => {
     const deliver = resolvingDeliver();

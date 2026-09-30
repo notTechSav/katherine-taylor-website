@@ -76,6 +76,7 @@ export function formatInquiryPlainText(
     `Preferred date: ${data.preferredDate}`,
     `Duration: ${data.duration}`,
     `Location: ${data.location}`,
+    `Preferred411: ${data.preferred411}`,
     `Referral: ${data.referral}`,
     `Message: ${data.message}`,
   ].join("\n");

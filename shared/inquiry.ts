@@ -14,6 +14,7 @@ export type InquiryPayload = {
   preferredDate: string;
   duration: string;
   location: string;
+  preferred411: string;
   referral: string;
   message: string;
 };
@@ -25,6 +26,7 @@ export const EMPTY_INQUIRY: InquiryPayload = {
   preferredDate: "",
   duration: "",
   location: "",
+  preferred411: "",
   referral: "",
   message: "",
 };
@@ -36,6 +38,7 @@ export const INQUIRY_FIELD_MAX_LENGTHS = {
   preferredDate: 80,
   duration: 64,
   location: 64,
+  preferred411: 80,
   referral: 200,
   message: 4000,
 } as const;
@@ -114,6 +117,7 @@ export function normalizeInquiryInput(raw: unknown): InquiryPayload {
     preferredDate: asField(source.preferredDate),
     duration: asField(source.duration),
     location: asField(source.location),
+    preferred411: asField(source.preferred411),
     referral: asField(source.referral),
     message: asField(source.message),
   };

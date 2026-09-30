@@ -281,15 +281,35 @@ const InquirePage = () => {
                 style={{ fontWeight: 300, backgroundImage: selectChevron }}
               >
                 <option value="">Select location</option>
-                <option value="san-francisco">San Francisco (your hosting)</option>
+                <option value="san-francisco">San Francisco (incall)</option>
                 <option value="san-francisco-outcall">San Francisco (outcall)</option>
-                <option value="sacramento">Sacramento (your hosting)</option>
+                <option value="sacramento">Sacramento (incall)</option>
                 <option value="sacramento-outcall">Sacramento (outcall)</option>
                 <option value="west-coast">West Coast Travel</option>
                 <option value="midwest">Midwest Travel</option>
                 <option value="national">National Travel</option>
                 <option value="international">International Travel</option>
               </select>
+            </div>
+
+            <div className="space-y-2">
+              <label
+                htmlFor="preferred411"
+                className="block text-xs font-light tracking-[0.08em] uppercase text-gray-500"
+              >
+                Preferred411{" "}
+                <span className="text-gray-400">(Recommended)</span>
+              </label>
+              <input
+                type="text"
+                id="preferred411"
+                name="preferred411"
+                value={formData.preferred411}
+                onChange={handleChange}
+                placeholder="Your handle, if you have one"
+                className={fieldClass}
+                style={{ fontWeight: 300 }}
+              />
             </div>
 
             {/* How did you hear */}

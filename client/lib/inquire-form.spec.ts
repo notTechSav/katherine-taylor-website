@@ -62,6 +62,7 @@ function assertInquiryFormContract(html: string) {
   const preferredDate = namedControl(form, "preferredDate");
   const duration = namedControl(form, "duration");
   const location = namedControl(form, "location");
+  const preferred411 = namedControl(form, "preferred411");
   const referral = namedControl(form, "referral");
   const message = namedControl(form, "message");
 
@@ -71,6 +72,7 @@ function assertInquiryFormContract(html: string) {
   expect(hasRequired(preferredDate)).toBe(false);
   expect(hasRequired(duration)).toBe(true);
   expect(hasRequired(location)).toBe(true);
+  expect(hasRequired(preferred411)).toBe(false);
   expect(hasRequired(referral)).toBe(false);
   expect(hasRequired(message)).toBe(true);
 
