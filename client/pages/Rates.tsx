@@ -429,14 +429,16 @@ const RatesPage = () => {
               </a>{" "}
               is the workshop that keeps that craft possible.
             </p>
-            <p>
+            <p className="pt-2">
               <a
                 href="/national-ranking.jpg"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={editorialLinkClass}
+                className="font-bold text-luxury-black underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline focus:outline-none focus-visible:underline"
               >
-                The national ranking is still on file.
+                {
+                  "For those who are curious, my former national ranking remains archived and can elegantly be found by clicking here."
+                }
               </a>
             </p>
           </div>

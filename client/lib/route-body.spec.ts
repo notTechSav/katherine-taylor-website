@@ -266,7 +266,9 @@ describe("prerender route bodies", () => {
     expect(rates).toContain('href="/journal/continuity-as-craft"');
     expect(rates).toContain('href="/journal/scarcity-discipline"');
     expect(rates).toContain('href="/national-ranking.jpg"');
-    expect(rates).toContain("The national ranking is still on file.");
+    expect(rates).toContain(
+      "For those who are curious, my former national ranking remains archived and can elegantly be found by clicking here.",
+    );
     expect(rates).toContain("Hide rates");
     expect(rates).not.toMatch(/max-h-0 opacity-0/);
 
