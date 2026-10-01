@@ -411,6 +411,18 @@ const RatesPage = () => {
               </a>{". That was the last time the market was allowed to say it out loud. The work did not get cheaper after I delisted."}
             </p>
             <p>
+              <a
+                href="/national-ranking.jpg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 focus:outline-none"
+              >
+                {
+                  "Uncover a screenshot of my national ranking before I willingly delisted."
+                }
+              </a>
+            </p>
+            <p>
               I don't sell first meetings. I sell the third one—the one that
               moves at full depth because we no longer waste energy on
               translation.{" "}
@@ -428,18 +440,6 @@ const RatesPage = () => {
                 Scarcity
               </a>{" "}
               is the workshop that keeps that craft possible.
-            </p>
-            <p className="pt-2">
-              <a
-                href="/national-ranking.jpg"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold text-luxury-black underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline focus:outline-none focus-visible:underline"
-              >
-                {
-                  "For those who are curious, my former national ranking remains archived and can elegantly be found by clicking here."
-                }
-              </a>
             </p>
           </div>
         </div>
