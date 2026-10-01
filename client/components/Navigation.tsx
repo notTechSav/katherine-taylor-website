@@ -166,7 +166,7 @@ const Navigation = () => {
             KATHERINE TAYLOR
           </span>
         </Link>
-        <div className="relative md:hidden">
+        <div className="md:hidden">
           <button
             type="button"
             onClick={() => setIsMenuOpen((previous) => !previous)}
@@ -180,12 +180,6 @@ const Navigation = () => {
           >
             {isMenuOpen ? "Close" : "Menu"}
           </button>
-          <div className="absolute left-1/2 top-full z-10 -translate-x-1/2 pt-1">
-            <Preferred411Seal
-              visible={showPreferred411}
-              inverse={inverseSurface}
-            />
-          </div>
         </div>
         <div className="relative hidden items-center gap-8 md:flex lg:gap-12">
           <ul className="flex items-center gap-8 lg:gap-12">

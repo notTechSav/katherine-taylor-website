@@ -8,7 +8,6 @@ export default function OpeningVideoSection() {
     <FullscreenVideoSection
       videoSrc={openingVideo.src}
       fallbackSrc={openingVideo.fallbackSrc}
-      posterSrc={openingVideo.poster}
       objectPosition={openingVideo.objectPosition}
       objectPositionMobile={openingVideo.objectPositionMobile}
       overlayClassName="homepage-veil-video"

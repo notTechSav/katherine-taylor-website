@@ -11,7 +11,7 @@ export default function AboutGalleryCombinedSection() {
       </div>
 
       <div className="relative h-full min-w-0">
-        <FullBleedPhoto src="/katherinewindow.webp?v=hires3" width={2048} height={3072} />
+        <FullBleedPhoto src="/katherinewindow.webp?v=hires6" width={682} height={1024} />
         <GallerySection />
       </div>
     </div>

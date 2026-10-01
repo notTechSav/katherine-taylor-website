@@ -13,6 +13,7 @@ import inquiryRouter, { handleInquiryParseError } from "./routes/inquiry";
 import {
   loadMobileOpeningManifest,
   OPENING_HLS_PROXY_PATH,
+  openingManifestLinkHeader,
 } from "../client/lib/video-sections";
 
 export function createServer() {
@@ -28,7 +29,11 @@ export function createServer() {
       const body = await loadMobileOpeningManifest();
       res.status(200);
       res.setHeader("Content-Type", "application/vnd.apple.mpegurl");
-      res.setHeader("Cache-Control", "public, max-age=60");
+      res.setHeader("Cache-Control", "public, max-age=120");
+      const link = openingManifestLinkHeader(body);
+      if (link) {
+        res.setHeader("Link", link);
+      }
       res.end(body);
     } catch {
       res.status(502).type("text/plain").send("Opening HLS manifest unavailable");

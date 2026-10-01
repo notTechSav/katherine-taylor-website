@@ -52,20 +52,12 @@ const SeoHead = ({
       )}
       {url ? <link rel="canonical" href={url} /> : null}
       {path === "/" ? (
-        <>
-          <link
-            rel="preload"
-            as="image"
-            href="/opening-poster.jpg"
-            fetchPriority="high"
-          />
-          <link
-            rel="preload"
-            as="fetch"
-            href="/api/opening-hls.m3u8"
-            crossOrigin="anonymous"
-          />
-        </>
+        <link
+          rel="preload"
+          as="fetch"
+          href="/api/opening-hls.m3u8"
+          crossOrigin="anonymous"
+        />
       ) : null}
       <meta property="og:type" content={type} />
       <meta property="og:site_name" content="Katherine Taylor" />

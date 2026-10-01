@@ -5,6 +5,8 @@ import {
   HLS_START_HEIGHT,
   isHlsSource,
   OPENING_HLS_PROXY_PATH,
+  openingManifestChildUrls,
+  openingManifestLinkHeader,
   pickHlsCapLevel,
   pickHlsStartLevel,
 } from "./video-sections";
@@ -32,7 +34,7 @@ describe("hls helpers", () => {
     expect(isHlsSource(OPENING_HLS_PROXY_PATH)).toBe(true);
   });
 
-  it("starts at 1080p and never 240p or 480p when a 1080p rung exists", () => {
+  it("starts at 720p and never 240p or 480p when a 720p rung exists", () => {
     const levels = [
       { height: 240 },
       { height: 360 },
@@ -40,8 +42,8 @@ describe("hls helpers", () => {
       { height: 720 },
       { height: 1080 },
     ];
-    expect(pickHlsStartLevel(levels, HLS_START_HEIGHT)).toBe(4);
-    expect(levels[pickHlsStartLevel(levels)].height).toBe(1080);
+    expect(pickHlsStartLevel(levels, HLS_START_HEIGHT)).toBe(3);
+    expect(levels[pickHlsStartLevel(levels)].height).toBe(720);
   });
 
   it("caps at 1080p when that rung exists", () => {
@@ -57,14 +59,17 @@ describe("hls helpers", () => {
 describe("filterMobileHlsMaster", () => {
   const filtered = filterMobileHlsMaster(sampleMaster, STREAM_MASTER);
 
-  it("lists 1080p only, and drops 720p and below", () => {
+  it("lists 720p then 1080p, and drops 480p and below", () => {
+    expect(filtered).toContain("RESOLUTION=1280x720");
     expect(filtered).toContain("RESOLUTION=1920x1080");
-    expect(filtered).not.toContain("RESOLUTION=1280x720");
     expect(filtered).not.toContain("RESOLUTION=852x480");
     expect(filtered).not.toContain("426x240");
     expect(filtered).not.toContain("640x360");
 
-    expect(filtered.match(/RESOLUTION=/g)).toHaveLength(1);
+    expect(filtered.match(/RESOLUTION=/g)).toHaveLength(2);
+    expect(filtered.indexOf("1280x720")).toBeLessThan(
+      filtered.indexOf("1920x1080"),
+    );
   });
 
   it("strips SCORE so Safari does not prefer 1080/720 as the start rung", () => {
@@ -73,10 +78,24 @@ describe("filterMobileHlsMaster", () => {
 
   it("rewrites relative child playlists to absolute Stream URLs", () => {
     expect(filtered).toContain(
+      `${STREAM_MASTER.replace(/video\.m3u8$/, "stream_720.m3u8")}`,
+    );
+    expect(filtered).toContain(
       `${STREAM_MASTER.replace(/video\.m3u8$/, "stream_1080.m3u8")}`,
     );
     expect(filtered).toContain(
       'URI="https://customer-xyp94kxe4za8b3w1.cloudflarestream.com/f17ef86e3e7fbfa3d2d58dd3bd3d9065/manifest/stream_audio.m3u8"',
+    );
+  });
+
+  it("preloads the audio playlist and the 720p child playlist", () => {
+    const urls = openingManifestChildUrls(filtered);
+    expect(urls).toEqual([
+      "https://customer-xyp94kxe4za8b3w1.cloudflarestream.com/f17ef86e3e7fbfa3d2d58dd3bd3d9065/manifest/stream_audio.m3u8",
+      "https://customer-xyp94kxe4za8b3w1.cloudflarestream.com/f17ef86e3e7fbfa3d2d58dd3bd3d9065/manifest/stream_720.m3u8",
+    ]);
+    expect(openingManifestLinkHeader(filtered)).toContain(
+      'rel="preload"; as="fetch"; crossorigin',
     );
   });
 });

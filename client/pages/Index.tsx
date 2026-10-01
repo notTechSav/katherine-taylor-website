@@ -59,7 +59,7 @@ const Index = () => {
         className={sectionClass("bg-[#fdfaf6] md:hidden")}
         aria-label="Gallery Section"
       >
-        <FullBleedPhoto src="/katherinewindow.webp?v=hires3" width={2048} height={3072} />
+        <FullBleedPhoto src="/katherinewindow.webp?v=hires6" width={682} height={1024} />
         <GallerySection />
       </section>
 

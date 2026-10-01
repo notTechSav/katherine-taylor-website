@@ -162,6 +162,9 @@ describe("FullscreenVideoSection hls.js loading", () => {
     expect(componentSource).toContain("shouldLoadHlsJs(");
     expect(componentSource).toContain("canPlayNativeHls(element)");
     expect(componentSource).toContain("prefetchHlsJs ?? import(\"hls.js\")");
+    expect(componentSource).toContain("autoStartLoad: false");
+    expect(componentSource).toContain("hls.startLoad()");
+    expect(componentSource).toContain("progressive: true");
   });
 
   it("locks loop and restarts when HLS or native playback ends", () => {

@@ -25,6 +25,25 @@ const Footer = () => {
       className="border-t border-gray-100 bg-luxury-white py-9 focus:outline-none md:py-16"
     >
       <div className="homepage-rail flex max-w-luxury flex-col gap-7 md:gap-14">
+        <div className="flex justify-center md:hidden">
+          <a
+            href="https://preferred411.com/admirer/register?ref=191346"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Preferred411.com"
+            className={`inline-flex opacity-90 transition-opacity duration-400 ease-out hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 ${focusRing}`}
+          >
+            <span className="relative block h-6 w-6 overflow-hidden rounded-full">
+              <img
+                src="https://preferred411.com/a/preferredSeal-bw-1.png"
+                alt=""
+                width={109}
+                height={119}
+                className="h-full w-full object-cover object-top"
+              />
+            </span>
+          </a>
+        </div>
         <div className="flex flex-col gap-7 md:flex-row md:items-start md:justify-between md:gap-16">
           <div className="max-w-[22rem] space-y-2 md:space-y-3">
             <Link

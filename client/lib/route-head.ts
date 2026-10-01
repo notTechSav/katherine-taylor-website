@@ -255,7 +255,6 @@ export function renderRouteHeadBlock(page: RouteHead): string {
 
   if (page.path === "/") {
     tags.push(
-      `    <link data-rh="true" rel="preload" as="image" href="/opening-poster.jpg" fetchpriority="high" />`,
       `    <link data-rh="true" rel="preload" as="fetch" href="${OPENING_HLS_PROXY_PATH}" crossorigin />`,
     );
   }

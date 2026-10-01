@@ -2,14 +2,10 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import SeoHead from "@/components/site/SeoHead";
 import { aboutJsonLd } from "@/lib/about-json-ld";
-import { builderHeroAttrs } from "@/lib/builder-image";
 import { pageSeo } from "@/lib/page-seo";
 
-const ABOUT_HERO_IMAGE =
-  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2F544eebd3dfb24d86b1212878113625c0?format=webp&width=1600";
-const ABOUT_SECONDARY_IMAGE =
-  "https://cdn.builder.io/api/v1/image/assets%2F5b9cc53f5f324d22a1f8c88faaaa270c%2Fc52c5d671db044f38e0442b59a54c778?format=webp&width=1200";
-const aboutSecondary = builderHeroAttrs(ABOUT_SECONDARY_IMAGE);
+const ABOUT_HERO_IMAGE = "/about-hero.webp?v=1";
+const ABOUT_MEMORY_IMAGE = "/about-memory.webp?v=2";
 
 const editorialLinkClass =
   "underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline";
@@ -28,12 +24,12 @@ const About = () => {
           subtitle="I remember what matters. The conversation picks up where it left off."
           eyebrow="Katherine Taylor Escort"
           imageSrc={ABOUT_HERO_IMAGE}
-          imageAlt="Sunlit doorway opening onto herringbone floors beside linen curtains"
+          imageAlt="Katherine Taylor seated in a doorway beside white shutters"
           alignment="left"
         />
         <div className="mx-auto max-w-[680px] px-6 pb-24 pt-16 md:px-8 md:pb-28 md:pt-20">
           <header>
-            <p className="text-[17px] leading-[1.9] text-luxury-black">
+            <p className="text-center text-[17px] leading-[1.9] text-luxury-black">
               Katherine Taylor is a high-end escort working privately in San
               Francisco and Sacramento.
             </p>
@@ -41,7 +37,7 @@ const About = () => {
               <span className="text-neutral-400/60">• • •</span>
             </div>
             <div className="space-y-6">
-              <p className="text-[17px] leading-[1.9] text-luxury-black">
+              <p>
                 My work was built in San Francisco and now moves between San
                 Francisco and Sacramento. If you first found Katherine Taylor
                 through{" "}
@@ -50,14 +46,14 @@ const About = () => {
                   className={editorialLinkClass}
                 >{"the Warriors photograph that escaped into the internet in 2024"}</a>{", yes—same woman. This is my current home on the web, written and maintained in my own voice."}
               </p>
-              <p className="text-[17px] leading-[1.9] text-luxury-black">
+              <p>
                 The conversation never resets. I carry forward everything—your
                 M&amp;A timeline, your board anxieties, your daughter's college
                 decision, the trip to Patagonia you've been planning. Not because I
                 take notes, but because I've built a decade of pattern libraries
                 that let me read what you don't say.
               </p>
-              <p className="text-[17px] leading-[1.9] text-luxury-black">
+              <p>
                 <a href="/rates#why" className={editorialLinkClass}>
                   The rate
                 </a>{" "}
@@ -92,11 +88,12 @@ const About = () => {
               <div className="relative overflow-hidden rounded-sm bg-gradient-to-br from-neutral-200 via-neutral-100 to-neutral-200">
                 <AspectRatio ratio={16 / 9}>
                   <img
-                    src={aboutSecondary.src}
-                    srcSet={aboutSecondary.srcSet}
+                    src={ABOUT_MEMORY_IMAGE}
+                    width={1024}
+                    height={682}
                     sizes="(min-width: 768px) 680px, 100vw"
-                    alt="Hardcover journal with pencil and card in warm window light"
-                    className="h-full w-full object-cover"
+                    alt="Katherine Taylor lying on a tiled floor at the foot of a staircase"
+                    className="h-full w-full object-cover object-center"
                     loading="lazy"
                   />
                 </AspectRatio>

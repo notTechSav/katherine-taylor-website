@@ -14,8 +14,8 @@ import {
 } from "@shared/inquiry";
 
 const heroImage = {
-  src: "/inquire-hero.webp",
-  alt: "Private threshold with elegant architectural details in soft light",
+  src: "/inquire-hero.webp?v=1",
+  alt: "Katherine Taylor reclining on a velvet sofa",
 };
 
 const editorialLinkClass =
@@ -109,6 +109,7 @@ const InquirePage = () => {
         eyebrow="Katherine Taylor Escort"
         imageSrc={heroImage.src}
         imageAlt={heroImage.alt}
+        imageClassName="object-top sm:object-top"
         alignment="left"
         compact
       />

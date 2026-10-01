@@ -28,6 +28,7 @@ type HlsInstance = {
   destroy: () => void;
   loadSource: (src: string) => void;
   attachMedia: (element: HTMLMediaElement) => void;
+  startLoad: () => void;
   on: (event: string, callback: (...args: unknown[]) => void) => void;
   startLevel: number;
   autoLevelCapping: number;
@@ -38,7 +39,7 @@ type HlsInstance = {
 type FullscreenVideoSectionProps = {
   videoSrc?: string;
   fallbackSrc?: string;
-  posterSrc: string;
+  posterSrc?: string;
   posterMobileSrc?: string;
   overlayClassName?: string;
   objectPosition?: string;
@@ -77,33 +78,51 @@ function markVideoRendering(
     return () => {};
   }
 
+  let stopped = false;
+  const reveal = () => {
+    if (stopped || !shouldReveal()) {
+      return false;
+    }
+    stopped = true;
+    onActive();
+    return true;
+  };
+
   const videoWithFrameCallback = element as HTMLVideoElement & {
     requestVideoFrameCallback?: (callback: () => void) => number;
     cancelVideoFrameCallback?: (handle: number) => void;
   };
 
+  let handle = 0;
   if (videoWithFrameCallback.requestVideoFrameCallback) {
-    let handle = 0;
     const tick = () => {
-      if (shouldReveal()) {
-        onActive();
+      if (reveal()) {
         return;
       }
       handle = videoWithFrameCallback.requestVideoFrameCallback!(tick);
     };
     handle = videoWithFrameCallback.requestVideoFrameCallback(tick);
-    return () => videoWithFrameCallback.cancelVideoFrameCallback?.(handle);
   }
 
-  const onTimeUpdate = () => {
-    if (shouldReveal()) {
-      onActive();
-      element.removeEventListener("timeupdate", onTimeUpdate);
+  const onReady = () => {
+    if (reveal()) {
+      element.removeEventListener("loadeddata", onReady);
+      element.removeEventListener("canplay", onReady);
+      element.removeEventListener("timeupdate", onReady);
     }
   };
 
-  element.addEventListener("timeupdate", onTimeUpdate);
-  return () => element.removeEventListener("timeupdate", onTimeUpdate);
+  element.addEventListener("loadeddata", onReady);
+  element.addEventListener("canplay", onReady);
+  element.addEventListener("timeupdate", onReady);
+
+  return () => {
+    stopped = true;
+    videoWithFrameCallback.cancelVideoFrameCallback?.(handle);
+    element.removeEventListener("loadeddata", onReady);
+    element.removeEventListener("canplay", onReady);
+    element.removeEventListener("timeupdate", onReady);
+  };
 }
 
 export default function FullscreenVideoSection({
@@ -253,15 +272,17 @@ export default function FullscreenVideoSection({
         }
 
         const hls = new Hls({
+          autoStartLoad: false,
           capLevelToPlayerSize: false,
           maxDevicePixelRatio: 2,
           testBandwidth: false,
           startLevel: -1,
           abrEwmaDefaultEstimate: 8_000_000,
-          maxBufferLength: 12,
-          maxMaxBufferLength: 24,
-          maxBufferSize: 30_000_000,
+          maxBufferLength: 8,
+          maxMaxBufferLength: 16,
+          maxBufferSize: 20_000_000,
           startFragPrefetch: true,
+          progressive: true,
         });
 
         if (
@@ -286,6 +307,7 @@ export default function FullscreenVideoSection({
           if (cap >= 0) {
             hls.autoLevelCapping = cap;
           }
+          hls.startLoad();
           play();
         });
         hls.on(Hls.Events.ERROR, (_, data: { fatal?: boolean }) => {
@@ -438,20 +460,22 @@ export default function FullscreenVideoSection({
         />
       ) : null}
 
-      <img
-        src={posterSrc}
-        alt=""
-        aria-hidden="true"
-        fetchPriority={priority ? "high" : "auto"}
-        loading={priority ? "eager" : "lazy"}
-        decoding={priority ? "sync" : "async"}
+      {posterSrc ? (
+        <img
+          src={posterSrc}
+          alt=""
+          aria-hidden="true"
+          fetchPriority={priority ? "high" : "auto"}
+          loading={priority ? "eager" : "lazy"}
+          decoding={priority ? "sync" : "async"}
           className={cn(
             "fullpage-media-layer fullpage-media-crop absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ease-out",
             posterMobileSrc && "max-md:hidden",
             videoActive ? "opacity-0" : "opacity-100",
           )}
           style={mediaObjectStyle}
-      />
+        />
+      ) : null}
 
       {currentSrc && !holdMobilePoster && allowMedia ? (
         <video
@@ -459,7 +483,7 @@ export default function FullscreenVideoSection({
           key={currentSrc}
           src={useNativeHlsSrc ? currentSrc : undefined}
           className={cn(
-            "fullpage-media-layer fullpage-media-crop absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ease-out",
+            "fullpage-media-layer fullpage-media-crop absolute inset-0 h-full w-full object-cover transition-opacity duration-200 ease-out",
             posterMobileSrc && "max-md:hidden",
             videoActive ? "opacity-100" : "opacity-0",
           )}
@@ -470,6 +494,7 @@ export default function FullscreenVideoSection({
           playsInline
           {...{ "webkit-playsinline": "true" }}
           preload={priority ? "auto" : "none"}
+          fetchPriority={priority ? "high" : "auto"}
           poster={posterSrc}
           onPlaying={handleVideoPlaying}
           onError={tryNextSource}

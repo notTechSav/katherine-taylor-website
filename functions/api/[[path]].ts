@@ -6,6 +6,7 @@
 import {
   loadMobileOpeningManifest,
   OPENING_HLS_PROXY_PATH,
+  openingManifestLinkHeader,
 } from "../../client/lib/video-sections";
 import { handleInquiryPostRequest } from "../../shared/inquiry";
 import {
@@ -30,12 +31,15 @@ export async function onRequest(context: PagesContext): Promise<Response> {
   if (path === OPENING_HLS_PROXY_PATH && context.request.method === "GET") {
     try {
       const body = await loadMobileOpeningManifest();
-      return new Response(body, {
-        headers: {
-          "Content-Type": "application/vnd.apple.mpegurl",
-          "Cache-Control": "public, max-age=60",
-        },
-      });
+      const headers: Record<string, string> = {
+        "Content-Type": "application/vnd.apple.mpegurl",
+        "Cache-Control": "public, max-age=120",
+      };
+      const link = openingManifestLinkHeader(body);
+      if (link) {
+        headers.Link = link;
+      }
+      return new Response(body, { headers });
     } catch {
       return new Response("Opening HLS manifest unavailable", { status: 502 });
     }

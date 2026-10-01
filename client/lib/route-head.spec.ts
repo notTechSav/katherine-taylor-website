@@ -87,9 +87,7 @@ describe("prerender route heads", () => {
     expect(html).toContain('"@type":"WebPage"');
     expect(html).toContain('"@type":"VideoObject"');
     expect(html).toContain('"email":"private@katherinetaylorescort.com"');
-    expect(html).toContain(
-      'rel="preload" as="image" href="/opening-poster.jpg"',
-    );
+    expect(html).not.toContain("/opening-poster.jpg");
     expect(html).toContain('rel="preload" as="fetch" href="/api/opening-hls.m3u8"');
     expect(html).toContain('property="og:locale" content="en_US"');
     expect(html).toContain('name="twitter:image:alt"');
