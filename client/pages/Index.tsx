@@ -97,7 +97,7 @@ const Index = () => {
         className={sectionClass("bg-luxury-cream")}
         aria-label="Blog Teaser"
       >
-        <FullBleedPhoto src="/journal-slide.webp?v=hires6" width={1000} height={1500} />
+        <FullBleedPhoto src="/journal-slide.webp?v=hires7" width={682} height={1024} />
         <BlogTeaserSection />
       </section>
 
