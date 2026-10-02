@@ -4,8 +4,8 @@ import SeoHead from "@/components/site/SeoHead";
 import { aboutJsonLd } from "@/lib/about-json-ld";
 import { pageSeo } from "@/lib/page-seo";
 
-const ABOUT_HERO_IMAGE = "/about-hero.webp?v=1";
-const ABOUT_MEMORY_IMAGE = "/about-memory.webp?v=2";
+const ABOUT_HERO_IMAGE = "/about-hero.webp?v=2";
+const ABOUT_MEMORY_IMAGE = "/about-memory.webp?v=3";
 
 const editorialLinkClass =
   "underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline";
@@ -24,7 +24,8 @@ const About = () => {
           subtitle="I remember what matters. The conversation picks up where it left off."
           eyebrow="Katherine Taylor Escort"
           imageSrc={ABOUT_HERO_IMAGE}
-          imageAlt="Katherine Taylor seated in a doorway beside white shutters"
+          imageAlt="Katherine Taylor lying along the tiled edge of a swimming pool"
+          imageClassName="object-[center_42%] sm:object-[center_42%]"
           alignment="left"
         />
         <div className="mx-auto max-w-[680px] px-6 pb-24 pt-16 md:px-8 md:pb-28 md:pt-20">
@@ -92,7 +93,7 @@ const About = () => {
                     width={1024}
                     height={682}
                     sizes="(min-width: 768px) 680px, 100vw"
-                    alt="Katherine Taylor lying on a tiled floor at the foot of a staircase"
+                    alt="Katherine Taylor lying beside a swimming pool in sunlight"
                     className="h-full w-full object-cover object-center"
                     loading="lazy"
                   />

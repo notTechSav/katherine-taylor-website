@@ -25,7 +25,7 @@ const Footer = () => {
       className="border-t border-gray-100 bg-luxury-white py-9 focus:outline-none md:py-16"
     >
       <div className="homepage-rail flex max-w-luxury flex-col gap-7 md:gap-14">
-        <div className="flex justify-center md:hidden">
+        <div className="flex justify-start md:hidden">
           <a
             href="https://preferred411.com/admirer/register?ref=191346"
             target="_blank"
