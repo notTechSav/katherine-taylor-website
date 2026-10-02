@@ -3,6 +3,7 @@ import {
   bindVideoLoopRestart,
   lockVideoLoop,
   restartLoopingVideo,
+  unlockVideoLoop,
 } from "./video-loop";
 
 function fakeVideo(initialTime = 12) {
@@ -14,6 +15,9 @@ function fakeVideo(initialTime = 12) {
     playCalls: 0,
     setAttribute(name: string, value: string) {
       this.attributes.set(name, value);
+    },
+    removeAttribute(name: string) {
+      this.attributes.delete(name);
     },
     addEventListener(name: string, handler: () => void) {
       const bucket = listeners.get(name) ?? new Set();
@@ -64,6 +68,29 @@ describe("video loop helpers", () => {
     video.emit("ended");
     expect(video.currentTime).toBe(9);
     expect(video.playCalls).toBe(1);
+  });
+
+  it("clears the loop attribute", () => {
+    const video = fakeVideo();
+    lockVideoLoop(video as unknown as HTMLVideoElement);
+    unlockVideoLoop(video as unknown as HTMLVideoElement);
+    expect(video.loop).toBe(false);
+    expect(video.attributes.has("loop")).toBe(false);
+  });
+
+  it("uses a custom restart when playback ends", () => {
+    const video = fakeVideo(11);
+    let restarted = 0;
+    bindVideoLoopRestart(
+      video as unknown as HTMLVideoElement,
+      () => true,
+      () => {
+        restarted += 1;
+      },
+    );
+    video.emit("ended");
+    expect(restarted).toBe(1);
+    expect(video.currentTime).toBe(11);
   });
 
   it("does not restart when the caller says the section is inactive", () => {

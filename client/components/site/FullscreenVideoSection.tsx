@@ -20,7 +20,12 @@ import {
   pickHlsCapLevel,
   pickHlsStartLevel,
 } from "@/lib/video-sections";
-import { bindVideoLoopRestart, lockVideoLoop } from "@/lib/video-loop";
+import {
+  bindVideoLoopRestart,
+  lockVideoLoop,
+  restartLoopingVideo,
+  unlockVideoLoop,
+} from "@/lib/video-loop";
 import { cn } from "@/lib/utils";
 import { useNearbyFullpageMedia } from "@/hooks/useNearbyFullpageMedia";
 
@@ -55,11 +60,19 @@ const prefetchHlsJs =
     ? import("hls.js")
     : null;
 
-function lockInlineAutoplay(element: HTMLVideoElement, muted: boolean) {
+function lockInlineAutoplay(
+  element: HTMLVideoElement,
+  muted: boolean,
+  nativeLoop: boolean,
+) {
   element.setAttribute("playsinline", "true");
   element.setAttribute("webkit-playsinline", "true");
   element.setAttribute("autoplay", "");
-  lockVideoLoop(element);
+  if (nativeLoop) {
+    lockVideoLoop(element);
+  } else {
+    unlockVideoLoop(element);
+  }
   if (muted) {
     element.defaultMuted = true;
     element.muted = true;
@@ -140,10 +153,14 @@ export default function FullscreenVideoSection({
   const videoRef = useRef<HTMLVideoElement>(null);
   const hlsRef = useRef<HlsInstance | null>(null);
   const isMutedRef = useRef(true);
+  const hlsSourceRef = useRef(false);
+  const ignoreVideoErrorRef = useRef(false);
+  const reloopRef = useRef(false);
   const stopRevealRef = useRef<(() => void) | null>(null);
   const [isMuted, setIsMuted] = useState(true);
   const [videoActive, setVideoActive] = useState(false);
   const [sourceIndex, setSourceIndex] = useState(0);
+  const [loopEpoch, setLoopEpoch] = useState(0);
   const [holdMobilePoster, setHoldMobilePoster] = useState(false);
   const allowMedia = useNearbyFullpageMedia(containerRef, priority);
   const mediaObjectStyle = {
@@ -173,9 +190,9 @@ export default function FullscreenVideoSection({
     [fallbackSrc, videoSrc],
   );
   const currentSrc = sources[sourceIndex];
-  const useNativeHlsSrc = Boolean(
-    currentSrc && isHlsSource(currentSrc) && nativeHlsSupported,
-  );
+  const hlsSource = Boolean(currentSrc && isHlsSource(currentSrc));
+  hlsSourceRef.current = hlsSource;
+  const useNativeHlsSrc = Boolean(hlsSource && nativeHlsSupported);
 
   const tryNextSource = useCallback(() => {
     setVideoActive(false);
@@ -189,7 +206,7 @@ export default function FullscreenVideoSection({
     if (!element) {
       return;
     }
-    lockInlineAutoplay(element, isMutedRef.current);
+    lockInlineAutoplay(element, isMutedRef.current, !hlsSourceRef.current);
   }, []);
 
   const attemptPlay = useCallback(() => {
@@ -198,7 +215,7 @@ export default function FullscreenVideoSection({
       return;
     }
 
-    lockInlineAutoplay(element, isMutedRef.current);
+    lockInlineAutoplay(element, isMutedRef.current, !hlsSourceRef.current);
     const playPromise = element.play();
     if (playPromise) {
       playPromise.catch(() => {});
@@ -211,6 +228,7 @@ export default function FullscreenVideoSection({
       return;
     }
 
+    ignoreVideoErrorRef.current = false;
     stopRevealRef.current?.();
     stopRevealRef.current = markVideoRendering(element, () => setVideoActive(true));
     attemptPlay();
@@ -233,8 +251,13 @@ export default function FullscreenVideoSection({
       return;
     }
 
-    setVideoActive(false);
-    lockInlineAutoplay(element, isMutedRef.current);
+    if (!reloopRef.current) {
+      setVideoActive(false);
+    }
+    reloopRef.current = false;
+    // Teardown errors from the previous element are ignored. Real load errors after this are not.
+    ignoreVideoErrorRef.current = false;
+    lockInlineAutoplay(element, isMutedRef.current, !hlsSourceRef.current);
 
     hlsRef.current?.destroy();
     hlsRef.current = null;
@@ -248,10 +271,27 @@ export default function FullscreenVideoSection({
       attemptPlay();
     };
 
-    const stopLoop = bindVideoLoopRestart(element, () => {
-      const section = containerRef.current?.closest("[data-fullpage-section]");
-      return section?.getAttribute("data-active") !== "false";
-    });
+    const stopLoop = bindVideoLoopRestart(
+      element,
+      () => {
+        const section = containerRef.current?.closest("[data-fullpage-section]");
+        return section?.getAttribute("data-active") !== "false";
+      },
+      () => {
+        // Reloading the element avoids the backwards seek that fails the HLS demuxer and stops playback.
+        if (isHlsSource(currentSrc)) {
+          ignoreVideoErrorRef.current = true;
+          reloopRef.current = true;
+          setLoopEpoch((epoch) => epoch + 1);
+          return;
+        }
+
+        const video = videoRef.current;
+        if (video) {
+          restartLoopingVideo(video);
+        }
+      },
+    );
 
     if (shouldLoadHlsJs(currentSrc, canPlayNativeHls(element))) {
       element.removeAttribute("src");
@@ -311,9 +351,10 @@ export default function FullscreenVideoSection({
           play();
         });
         hls.on(Hls.Events.ERROR, (_, data: { fatal?: boolean }) => {
-          if (data.fatal) {
-            tryNextSource();
+          if (cancelled || ignoreVideoErrorRef.current || !data.fatal) {
+            return;
           }
+          tryNextSource();
         });
         hls.loadSource(currentSrc);
         hls.attachMedia(element);
@@ -352,6 +393,7 @@ export default function FullscreenVideoSection({
     attemptPlay,
     currentSrc,
     holdMobilePoster,
+    loopEpoch,
     tryNextSource,
     useNativeHlsSrc,
   ]);
@@ -480,7 +522,7 @@ export default function FullscreenVideoSection({
       {currentSrc && !holdMobilePoster && allowMedia ? (
         <video
           ref={setVideoNode}
-          key={currentSrc}
+          key={hlsSource ? `${currentSrc}:${loopEpoch}` : currentSrc}
           src={useNativeHlsSrc ? currentSrc : undefined}
           className={cn(
             "fullpage-media-layer fullpage-media-crop absolute inset-0 h-full w-full object-cover transition-opacity duration-200 ease-out",
@@ -490,14 +532,19 @@ export default function FullscreenVideoSection({
           style={mediaObjectStyle}
           autoPlay
           muted={isMuted}
-          loop
+          loop={!hlsSource}
           playsInline
           {...{ "webkit-playsinline": "true" }}
           preload={priority ? "auto" : "none"}
           fetchPriority={priority ? "high" : "auto"}
           poster={posterSrc}
           onPlaying={handleVideoPlaying}
-          onError={tryNextSource}
+          onError={() => {
+            if (ignoreVideoErrorRef.current) {
+              return;
+            }
+            tryNextSource();
+          }}
         />
       ) : null}
 
