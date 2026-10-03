@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import type { CSSProperties } from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
@@ -27,8 +28,165 @@ function SectionRule() {
   );
 }
 
+type PortraitFrame = {
+  layoutWidth: number;
+  layoutHeight: number;
+  offsetTop: number;
+  offsetLeft: number;
+  visualWidth: number;
+  visualHeight: number;
+  rotate: number;
+};
+
+const EMPTY_PORTRAIT_FRAME: PortraitFrame = {
+  layoutWidth: 0,
+  layoutHeight: 0,
+  offsetTop: 0,
+  offsetLeft: 0,
+  visualWidth: 0,
+  visualHeight: 0,
+  rotate: 0,
+};
+
+function framesMatch(a: PortraitFrame, b: PortraitFrame) {
+  return (
+    a.layoutWidth === b.layoutWidth &&
+    a.layoutHeight === b.layoutHeight &&
+    a.offsetTop === b.offsetTop &&
+    a.offsetLeft === b.offsetLeft &&
+    a.visualWidth === b.visualWidth &&
+    a.visualHeight === b.visualHeight &&
+    a.rotate === b.rotate
+  );
+}
+
+function normalizeAngle(angle: number) {
+  return ((angle % 360) + 360) % 360;
+}
+
+/** Clockwise degrees from the device's natural orientation. */
+function clockwiseDeviceAngle() {
+  const orientation = window.screen?.orientation;
+  if (orientation && typeof orientation.angle === "number") {
+    return normalizeAngle(orientation.angle);
+  }
+
+  const legacy = (window as Window & { orientation?: number }).orientation;
+  if (typeof legacy === "number") {
+    // window.orientation is counterclockwise.
+    return normalizeAngle(-legacy);
+  }
+
+  return 0;
+}
+
+/**
+ * Degrees to rotate the photograph so it stays upright when the layout
+ * viewport did not follow the phone. 0 means the viewport already matches.
+ */
+function uprightTurn() {
+  if (typeof window === "undefined") return 0;
+
+  const legacy = (window as Window & { orientation?: number }).orientation;
+  const handheld =
+    typeof legacy === "number" || window.matchMedia("(pointer: coarse)").matches;
+  if (!handheld) return 0;
+
+  const angle = clockwiseDeviceAngle();
+  if (angle === 90) return -90;
+  if (angle === 270) return 90;
+  return 0;
+}
+
+function readPortraitFrame(): PortraitFrame {
+  if (typeof window === "undefined") return EMPTY_PORTRAIT_FRAME;
+
+  const viewport = window.visualViewport;
+  const layoutWidth = Math.round(viewport?.width || window.innerWidth);
+  const layoutHeight = Math.round(viewport?.height || window.innerHeight);
+  const offsetTop = Math.round(viewport?.offsetTop ?? 0);
+  const offsetLeft = Math.round(viewport?.offsetLeft ?? 0);
+  const turn = uprightTurn();
+  const layoutPortrait = layoutHeight >= layoutWidth;
+  const stuckSideways = (turn === 90 || turn === -90) && layoutPortrait;
+
+  return {
+    layoutWidth,
+    layoutHeight,
+    offsetTop,
+    offsetLeft,
+    visualWidth: stuckSideways ? layoutHeight : layoutWidth,
+    visualHeight: stuckSideways ? layoutWidth : layoutHeight,
+    rotate: stuckSideways ? turn : 0,
+  };
+}
+
+function usePortraitFrame(open: boolean) {
+  const [frame, setFrame] = useState(readPortraitFrame);
+  const [trackedOpen, setTrackedOpen] = useState(open);
+
+  if (open !== trackedOpen) {
+    setTrackedOpen(open);
+    if (open) setFrame(readPortraitFrame());
+  }
+
+  useEffect(() => {
+    if (!open) return;
+
+    let timeouts: number[] = [];
+    const commit = () => {
+      const next = readPortraitFrame();
+      setFrame((prev) => (framesMatch(prev, next) ? prev : next));
+    };
+    // iOS can report the new orientation before the visual viewport resizes.
+    const followTurn = () => {
+      commit();
+      window.requestAnimationFrame(commit);
+      timeouts.forEach((id) => window.clearTimeout(id));
+      timeouts = [80, 200, 400, 700].map((delay) => window.setTimeout(commit, delay));
+    };
+
+    followTurn();
+    window.addEventListener("resize", followTurn);
+    window.addEventListener("orientationchange", followTurn);
+    const viewport = window.visualViewport;
+    viewport?.addEventListener("resize", followTurn);
+    viewport?.addEventListener("scroll", commit);
+    const orientation = window.screen?.orientation;
+    orientation?.addEventListener("change", followTurn);
+    const observer = new ResizeObserver(commit);
+    observer.observe(document.documentElement);
+
+    return () => {
+      timeouts.forEach((id) => window.clearTimeout(id));
+      observer.disconnect();
+      window.removeEventListener("resize", followTurn);
+      window.removeEventListener("orientationchange", followTurn);
+      viewport?.removeEventListener("resize", followTurn);
+      viewport?.removeEventListener("scroll", commit);
+      orientation?.removeEventListener("change", followTurn);
+    };
+  }, [open]);
+
+  return frame;
+}
+
+function layerStyle(frame: PortraitFrame): CSSProperties {
+  return {
+    top: 0,
+    left: 0,
+    width: frame.layoutWidth,
+    height: frame.layoutHeight,
+    transform:
+      frame.offsetTop !== 0 || frame.offsetLeft !== 0
+        ? `translate(${frame.offsetLeft}px, ${frame.offsetTop}px)`
+        : undefined,
+  };
+}
+
 function AboutFigure({ src, alt }: { src: string; alt: string }) {
   const [open, setOpen] = useState(false);
+  const frame = usePortraitFrame(open);
 
   useEffect(() => {
     if (!open) return;
@@ -57,27 +215,43 @@ function AboutFigure({ src, alt }: { src: string; alt: string }) {
           </span>
         </DialogPrimitive.Trigger>
         <DialogPrimitive.Portal>
-          <DialogPrimitive.Overlay className="about-portrait-stage about-portrait-veil fixed inset-0 z-[80]" />
+          <DialogPrimitive.Overlay
+            className="about-portrait-stage about-portrait-veil about-portrait-layer"
+            style={layerStyle(frame)}
+          />
           <DialogPrimitive.Content
             aria-describedby={undefined}
-            className="about-portrait-stage fixed inset-0 z-[80] flex items-center justify-center outline-none"
+            className="about-portrait-stage about-portrait-layer about-portrait-shell"
+            style={layerStyle(frame)}
             onClick={() => setOpen(false)}
           >
             <DialogPrimitive.Title className="sr-only">{alt}</DialogPrimitive.Title>
-            <DialogPrimitive.Close
-              className="about-portrait-close"
-              onClick={(event) => event.stopPropagation()}
+            <div
+              className="about-portrait-orient"
+              data-turned={frame.rotate !== 0 ? "" : undefined}
+              style={{
+                width: frame.visualWidth,
+                height: frame.visualHeight,
+                transform: `translate(-50%, -50%) rotate(${frame.rotate}deg)`,
+              }}
             >
-              Close
-            </DialogPrimitive.Close>
-            <img
-              src={src}
-              alt={alt}
-              width={1024}
-              height={682}
-              className="max-h-[86vh] max-w-[92vw] object-contain"
-              onClick={(event) => event.stopPropagation()}
-            />
+              <DialogPrimitive.Close
+                className="about-portrait-close"
+                onClick={(event) => event.stopPropagation()}
+              >
+                Close
+              </DialogPrimitive.Close>
+              <div className="about-portrait-fit">
+                <img
+                  src={src}
+                  alt={alt}
+                  width={1024}
+                  height={682}
+                  className="about-portrait-photo"
+                  onClick={(event) => event.stopPropagation()}
+                />
+              </div>
+            </div>
           </DialogPrimitive.Content>
         </DialogPrimitive.Portal>
       </DialogPrimitive.Root>
