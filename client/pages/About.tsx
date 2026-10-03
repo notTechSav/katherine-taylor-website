@@ -39,15 +39,6 @@ const About = () => {
             </div>
             <div className="space-y-6">
               <p>
-                My work was built in San Francisco and now moves between San
-                Francisco and Sacramento. If you first found Katherine Taylor
-                through{" "}
-                <a
-                  href="/journal/memoirs-in-the-city"
-                  className={editorialLinkClass}
-                >{"the Warriors photograph that escaped into the internet in 2024"}</a>{", yes—same woman. This is my current home on the web, written and maintained in my own voice."}
-              </p>
-              <p>
                 The conversation never resets. I carry forward everything—your
                 M&amp;A timeline, your board anxieties, your daughter's college
                 decision, the trip to Patagonia you've been planning. Not because I
