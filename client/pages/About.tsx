@@ -6,6 +6,7 @@ import { pageSeo } from "@/lib/page-seo";
 
 const ABOUT_HERO_IMAGE = "/about-hero.webp?v=2";
 const ABOUT_MEMORY_IMAGE = "/about-memory.webp?v=3";
+const ABOUT_CONTINUITY_IMAGE = "/about-continuity.webp?v=1";
 
 const editorialLinkClass =
   "underline-offset-[4px] transition-colors duration-300 hover:text-gray-600 hover:underline";
@@ -37,19 +38,20 @@ const About = () => {
             <div className="my-16 flex justify-center" aria-hidden="true">
               <span className="text-neutral-400/60">• • •</span>
             </div>
-            <div className="space-y-6">
+            <div className="space-y-7">
+              <h2
+                id="where-we-left-off"
+                className="scroll-mt-28 text-2xl font-extralight tracking-[-0.02em] text-luxury-black md:text-3xl"
+                style={{ fontWeight: 200 }}
+              >
+                Where We Left Off
+              </h2>
               <p>
                 The conversation never resets. I carry forward everything—your
                 M&amp;A timeline, your board anxieties, your daughter's college
                 decision, the trip to Patagonia you've been planning. Not because I
                 take notes, but because I've built a decade of pattern libraries
                 that let me read what you don't say.
-              </p>
-              <p>
-                <a href="/rates#why" className={editorialLinkClass}>
-                  The rate
-                </a>{" "}
-                is what it costs to keep that memory human.
               </p>
             </div>
           </header>
@@ -120,6 +122,19 @@ const About = () => {
                 Decisions move faster, and the conversations reach a level most
                 people never get to have.
               </p>
+              <div className="relative overflow-hidden rounded-sm bg-gradient-to-br from-neutral-200 via-neutral-100 to-neutral-200">
+                <AspectRatio ratio={16 / 9}>
+                  <img
+                    src={ABOUT_CONTINUITY_IMAGE}
+                    width={1024}
+                    height={682}
+                    sizes="(min-width: 768px) 680px, 100vw"
+                    alt="Katherine Taylor reclining on a white sofa in a fur coat"
+                    className="h-full w-full object-cover object-center"
+                    loading="lazy"
+                  />
+                </AspectRatio>
+              </div>
             </section>
 
             <section className="space-y-7">
