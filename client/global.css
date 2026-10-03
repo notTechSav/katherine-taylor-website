@@ -678,7 +678,150 @@
   }
 }
 
+html[data-lightbox-open],
+html[data-lightbox-open] body {
+  overflow: hidden;
+}
+
 html[data-lightbox-open] [data-site-nav] {
   visibility: hidden;
   pointer-events: none;
+}
+
+.about-portrait {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  text-align: center;
+}
+
+.about-portrait:focus {
+  outline: none;
+}
+
+.about-portrait:focus-visible {
+  outline: 1px solid var(--luxury-black);
+  outline-offset: 5px;
+}
+
+.about-portrait img {
+  transform: scale(1);
+  transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-portrait-cue {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  padding: 2.4rem 1.25rem 1.15rem;
+  background: linear-gradient(
+    to top,
+    rgba(26, 26, 26, 0.18) 0%,
+    rgba(26, 26, 26, 0.02) 55%,
+    transparent 100%
+  );
+  opacity: 1;
+  pointer-events: none;
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-portrait-view {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.72);
+  padding-bottom: 0.42rem;
+  color: rgba(255, 255, 255, 0.94);
+  font-size: 11px;
+  font-weight: 200;
+  letter-spacing: 0.34em;
+  line-height: 1;
+  text-indent: 0.34em;
+  text-transform: uppercase;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .about-portrait-cue {
+    opacity: 0;
+  }
+
+  .about-portrait:hover img,
+  .about-portrait:focus-visible img {
+    transform: scale(1.03);
+  }
+
+  .about-portrait:hover .about-portrait-cue,
+  .about-portrait:focus-visible .about-portrait-cue {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-portrait img,
+  .about-portrait-cue,
+  .about-portrait-stage {
+    transition: none;
+    animation: none;
+  }
+
+  .about-portrait:hover img,
+  .about-portrait:focus-visible img {
+    transform: none;
+  }
+}
+
+.about-portrait-stage {
+  animation: about-portrait-fade 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.about-portrait-veil {
+  background: rgba(250, 250, 250, 0.94);
+}
+
+.about-portrait-stage img {
+  box-shadow: 0 16px 40px rgba(26, 26, 26, 0.08);
+}
+
+.about-portrait-close {
+  position: absolute;
+  top: calc(1.25rem + env(safe-area-inset-top));
+  left: 50%;
+  z-index: 1;
+  transform: translateX(-50%);
+  border: 0;
+  border-bottom: 1px solid rgba(26, 26, 26, 0.45);
+  padding: 0 0 0.42rem;
+  background: transparent;
+  color: rgba(26, 26, 26, 0.72);
+  font-size: 11px;
+  font-weight: 200;
+  letter-spacing: 0.34em;
+  line-height: 1;
+  text-indent: 0.34em;
+  text-transform: uppercase;
+}
+
+.about-portrait-close:focus {
+  outline: none;
+}
+
+.about-portrait-close:focus-visible {
+  outline: 1px solid rgba(26, 26, 26, 0.45);
+  outline-offset: 6px;
+}
+
+@keyframes about-portrait-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

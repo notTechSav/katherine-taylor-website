@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import PageHeroOverlay from "@/components/site/PageHeroOverlay";
 import SeoHead from "@/components/site/SeoHead";
@@ -26,19 +28,59 @@ function SectionRule() {
 }
 
 function AboutFigure({ src, alt }: { src: string; alt: string }) {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const html = document.documentElement;
+    html.setAttribute("data-lightbox-open", "");
+    return () => html.removeAttribute("data-lightbox-open");
+  }, [open]);
+
   return (
-    <figure className="mt-10 overflow-hidden">
-      <AspectRatio ratio={3 / 2}>
-        <img
-          src={src}
-          width={1024}
-          height={682}
-          sizes="(min-width: 768px) 640px, 100vw"
-          alt={alt}
-          className="h-full w-full object-cover object-center"
-          loading="lazy"
-        />
-      </AspectRatio>
+    <figure className="mt-10">
+      <DialogPrimitive.Root open={open} onOpenChange={setOpen}>
+        <DialogPrimitive.Trigger className="about-portrait" aria-label={`View, ${alt}`}>
+          <AspectRatio ratio={3 / 2}>
+            <img
+              src={src}
+              width={1024}
+              height={682}
+              sizes="(min-width: 768px) 640px, 100vw"
+              alt={alt}
+              className="h-full w-full object-cover object-center"
+              loading="lazy"
+            />
+          </AspectRatio>
+          <span className="about-portrait-cue" aria-hidden="true">
+            <span className="about-portrait-view">View</span>
+          </span>
+        </DialogPrimitive.Trigger>
+        <DialogPrimitive.Portal>
+          <DialogPrimitive.Overlay className="about-portrait-stage about-portrait-veil fixed inset-0 z-[80]" />
+          <DialogPrimitive.Content
+            aria-describedby={undefined}
+            className="about-portrait-stage fixed inset-0 z-[80] flex items-center justify-center outline-none"
+            onClick={() => setOpen(false)}
+          >
+            <DialogPrimitive.Title className="sr-only">{alt}</DialogPrimitive.Title>
+            <DialogPrimitive.Close
+              className="about-portrait-close"
+              onClick={(event) => event.stopPropagation()}
+            >
+              Close
+            </DialogPrimitive.Close>
+            <img
+              src={src}
+              alt={alt}
+              width={1024}
+              height={682}
+              className="max-h-[86vh] max-w-[92vw] object-contain"
+              onClick={(event) => event.stopPropagation()}
+            />
+          </DialogPrimitive.Content>
+        </DialogPrimitive.Portal>
+      </DialogPrimitive.Root>
     </figure>
   );
 }
