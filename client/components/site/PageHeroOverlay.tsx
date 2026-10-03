@@ -9,7 +9,7 @@ type PageHeroOverlayProps = {
   imageSrc: string;
   imageAlt: string;
   eyebrow?: string;
-  alignment?: "left" | "right";
+  alignment?: "left" | "right" | "center";
   gradient?: "horizontal" | "vertical";
   headingAs?: "h1" | "h2" | "p";
   compact?: boolean;
@@ -52,11 +52,22 @@ const PageHeroOverlay = memo(
           }
         : { background: verticalGradient };
 
-    const desktopJustify =
-      alignment === "right" ? "sm:justify-end" : "sm:justify-start";
-    const textAlignment = alignment === "right" ? "sm:text-right" : "text-left";
-    const containerAlignment =
-      alignment === "right" ? "sm:ml-auto sm:mr-0" : "sm:mr-auto sm:ml-0";
+    const isCenter = alignment === "center";
+    const desktopJustify = isCenter
+      ? "justify-center"
+      : alignment === "right"
+        ? "sm:justify-end"
+        : "sm:justify-start";
+    const textAlignment = isCenter
+      ? "text-center"
+      : alignment === "right"
+        ? "sm:text-right"
+        : "text-left";
+    const containerAlignment = isCenter
+      ? "mx-auto"
+      : alignment === "right"
+        ? "sm:ml-auto sm:mr-0"
+        : "sm:mr-auto sm:ml-0";
 
     return (
       <section className={cn("relative bg-luxury-white", className)}>
@@ -93,6 +104,7 @@ const PageHeroOverlay = memo(
                 <div
                   className={cn(
                     "max-w-xl text-luxury-white",
+                    isCenter && "mx-auto",
                     textAlignment,
                   )}
                 >
